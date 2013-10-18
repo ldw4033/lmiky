@@ -1,5 +1,10 @@
 package com.lmiky.jdp.util;
 
+import javax.servlet.ServletContext;
+
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 /**
  * 环境
  * @author lmiky
@@ -10,6 +15,10 @@ public class Environment {
 	public static final String CLASSPATH_NAME = "classes";
 	private static String classPath;	//web应用class目录
 	private static String webAppPath;	//web应用上下文目录
+	private static String contextPath;
+	
+	private static ServletContext servletContext;
+	private static WebApplicationContext webApplicationContext;
 	
 	static {
 		//初始化
@@ -41,5 +50,52 @@ public class Environment {
 	 */
 	public static String getClassPath() {
 		return classPath + CLASSPATH_NAME + "/";
+	}
+	
+	/**
+	 * @return the contextPath
+	 */
+	/**
+	 * 获取项目根路径
+	 * @author lmiky
+	 * @date 2013-10-18
+	 * @return
+	 */
+	public static String getContextPath() {
+		return contextPath;
+	}
+
+	/**
+	 * 获取bean
+	 * @author lmiky
+	 * @date 2013-5-19
+	 * @param beanName
+	 * @return
+	 */
+	public static Object getBean(String beanName) {
+		return webApplicationContext.getBean(beanName);
+	}
+
+	/**
+	 * @param sc the servletContext to set
+	 */
+	public static void setServletContext(ServletContext servletContext) {
+		Environment.servletContext = servletContext;
+		webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+		contextPath = servletContext.getRealPath("/");
+	}
+	
+	/**
+	 * @return the servletContext
+	 */
+	public static ServletContext getServletContext() {
+		return servletContext;
+	}
+
+	/**
+	 * @return the webApplicationContext
+	 */
+	public static WebApplicationContext getWebApplicationContext() {
+		return webApplicationContext;
 	}
 }

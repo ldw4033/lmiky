@@ -19,8 +19,8 @@ import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.session.service.SessionService;
 import com.lmiky.jdp.system.menu.pojo.LatelyOperateMenu;
+import com.lmiky.jdp.util.Environment;
 import com.lmiky.jdp.util.PropertiesUtils;
-import com.lmiky.jdp.util.SpringUtils;
 import com.lmiky.jdp.web.model.ContinuationRequest;
 
 /**
@@ -44,9 +44,9 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 		ServletContext application = config.getServletContext();
 		application.setAttribute(Constants.CONTEXT_KEY_FORMAT_DATE, PropertiesUtils.getStringContextValue(Constants.CONTEXT_KEY_FORMAT_DATE));
 		application.setAttribute(Constants.CONTEXT_KEY_FORMAT_DATETIME, PropertiesUtils.getStringContextValue(Constants.CONTEXT_KEY_FORMAT_DATETIME));
-		SpringUtils.setServletContext(application);
-		baseService = (BaseService)SpringUtils.getBean("baseService");
-		sessionService = (SessionService)SpringUtils.getBean("sessionService");
+		Environment.setServletContext(application);
+		baseService = (BaseService)Environment.getBean("baseService");
+		sessionService = (SessionService)Environment.getBean("sessionService");
 		super.init(config);
 	}
 

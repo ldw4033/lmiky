@@ -3,13 +3,12 @@ package com.lmiky.jdp.web.ui.taglib;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 
-
 import com.lmiky.jdp.authority.service.AuthorityService;
 import com.lmiky.jdp.module.pojo.Function;
 import com.lmiky.jdp.module.pojo.Module;
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.session.model.SessionInfo;
-import com.lmiky.jdp.util.SpringUtils;
+import com.lmiky.jdp.util.Environment;
 import com.lmiky.jdp.web.util.WebUtils;
 
 /**
@@ -26,8 +25,8 @@ public class CheckAuthorityTag extends BaseTag {
 	private String authorityCode;
 
 	public CheckAuthorityTag() {
-		authorityService = (AuthorityService) SpringUtils.getBean("authorityService");
-		baseService = (BaseService) SpringUtils.getBean("baseService");
+		authorityService = (AuthorityService) Environment.getBean("authorityService");
+		baseService = (BaseService) Environment.getBean("baseService");
 	}
 
 	/*

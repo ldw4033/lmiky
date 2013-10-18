@@ -12,7 +12,7 @@ import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.service.exception.ServiceException;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.session.service.SessionService;
-import com.lmiky.jdp.util.SpringUtils;
+import com.lmiky.jdp.util.Environment;
 
 /**
  * web工具
@@ -32,7 +32,7 @@ public class WebUtils {
 	 */
 	public static Module getModule(BaseService baseService, String modulePath) throws ServiceException {
 		// 先从上下文环境中取
-		ServletContext application = SpringUtils.getServletContext();
+		ServletContext application = Environment.getServletContext();
 		String key = "modulePath_" + modulePath;
 		Module module = (Module) application.getAttribute(key);
 		if (module != null) {
@@ -110,7 +110,7 @@ public class WebUtils {
 	 * @return
 	 */
 	public static SessionInfo getSessionInfo(HttpServletRequest request) {
-		SessionService sessionService = (SessionService)SpringUtils.getBean("sessionService");
+		SessionService sessionService = (SessionService)Environment.getBean("sessionService");
 		return sessionService.getSessionInfo(request);
 	}
 	

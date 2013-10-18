@@ -2,7 +2,7 @@ package com.lmiky.jdp.web.ui.taglib;
 
 
 import com.lmiky.jdp.service.BaseService;
-import com.lmiky.jdp.util.SpringUtils;
+import com.lmiky.jdp.util.Environment;
 
 /**
  * 我的收藏菜单
@@ -15,7 +15,7 @@ public abstract class MyFavoriteMenuTag extends BaseTag {
 	private String menuId;
 
 	public MyFavoriteMenuTag() {
-		baseService = (BaseService) SpringUtils.getBean("baseService");
+		baseService = (BaseService) Environment.getBean("baseService");
 	}
 
 	/**
