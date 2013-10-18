@@ -26,6 +26,7 @@ import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.session.service.SessionService;
 import com.lmiky.jdp.sso.exception.SsoException;
 import com.lmiky.jdp.sso.service.SsoService;
+import com.lmiky.jdp.util.PropertiesUtils;
 import com.lmiky.jdp.util.UUIDGenerator;
 import com.lmiky.jdp.web.util.WebUtils;
 
@@ -43,8 +44,8 @@ public abstract class BaseController {
 	protected SessionService sessionService;
 	protected SsoService ssoService;
 	protected AuthorityService authorityService;
-	private String viewType;
-	protected String loginUrl;
+	private String viewType = PropertiesUtils.getStringContextValue("system.viewType");
+	protected String loginUrl = PropertiesUtils.getStringContextValue("system.loginUrl");
 	
 	/**
 	 * 设入提示信息
@@ -289,27 +290,12 @@ public abstract class BaseController {
 	}
 
 	/**
-	 * @param viewType the viewType to set
-	 */
-	@Resource(name="viewType")
-	public void setViewType(String viewType) {
-		this.viewType = viewType;
-	}
-
-	/**
 	 * @return the loginUrl
 	 */
 	public String getLoginUrl() {
 		return loginUrl;
 	}
 
-	/**
-	 * @param loginUrl the loginUrl to set
-	 */
-	@Resource(name="loginUrl")
-	public void setLoginUrl(String loginUrl) {
-		this.loginUrl = loginUrl;
-	}
 	/**
 	 * @return the ssoService
 	 */

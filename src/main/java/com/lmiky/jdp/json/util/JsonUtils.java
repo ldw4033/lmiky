@@ -1,6 +1,7 @@
 package com.lmiky.jdp.json.util;
 
 import com.lmiky.jdp.json.JsonMapper;
+import com.lmiky.jdp.util.PropertiesUtils;
 import com.lmiky.jdp.util.SpringUtils;
 
 /**
@@ -9,7 +10,7 @@ import com.lmiky.jdp.util.SpringUtils;
  * @date 2013-5-19
  */
 public class JsonUtils {
-	private static JsonMapper jsonMapper = (JsonMapper)SpringUtils.getBean(SpringUtils.getBean("jsonMapperName").toString());
+	private static JsonMapper jsonMapper = (JsonMapper)SpringUtils.getBean(PropertiesUtils.getStringContextValue("json.jsonMapperName"));
 	
 	/**
 	 * 将对象转为json字符串

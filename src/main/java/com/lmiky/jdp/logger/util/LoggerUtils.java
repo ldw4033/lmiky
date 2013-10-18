@@ -8,7 +8,7 @@ import org.apache.commons.logging.LogFactory;
 import com.lmiky.jdp.logger.pojo.Logger;
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.service.exception.ServiceException;
-import com.lmiky.jdp.util.SpringUtils;
+import com.lmiky.jdp.util.PropertiesUtils;
 
 /**
  * 日志工具
@@ -16,10 +16,10 @@ import com.lmiky.jdp.util.SpringUtils;
  * @date 2013-5-10
  */
 public class LoggerUtils {
-	private static Integer exceptionStackLogNum;
+	private static int exceptionStackLogNum;
 	private static final Log log = LogFactory.getLog("com.lmiky");
 	static {
-		exceptionStackLogNum = (Integer) SpringUtils.getBean("exceptionStackLogNum");
+		exceptionStackLogNum = PropertiesUtils.getIntContextValue("system.exceptionStackLogNum");
 	}
 
 	/**

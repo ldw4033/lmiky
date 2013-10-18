@@ -7,36 +7,6 @@
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-    <!-- 是否开启初始化功能 -->
-	<bean id="allowInit" class="java.lang.Boolean">
-		<constructor-arg value="true"/>
-	</bean>
-    
-	<!-- 最近操作菜单树 -->
-	<bean id="latelyOperateMenuNum" class="java.lang.Integer">
-		<constructor-arg value="5"/>
-	</bean>
-
-	<!-- 错误跟踪栈日志记录行数 -->
-	<bean id="exceptionStackLogNum" class="java.lang.Integer">
-		<constructor-arg value="10"/>
-	</bean>
-	
-	<!-- 视图类别 -->
-	<bean id="viewType" class="java.lang.String">
-		<constructor-arg value=".jsp"/>
-	</bean>
-
-	<!-- 登陆地址 -->
-	<bean id="loginUrl" class="java.lang.String">
-		<constructor-arg value="/sso/login/load.shtml"/>
-	</bean>
-	
-	<!-- json转换实现类名 -->
-	<bean id="jsonMapperName" class="java.lang.String">
-		<constructor-arg value="jacksonJsonMapperImpl"/>
-	</bean>
-
 	<!-- ehCache缓存工厂 -->
 	<bean id="ehCacheFactory" class="com.lmiky.jdp.cache.ehcache.CacheFactoryImpl" init-method="init" destroy-method="destory">
 		<property name="configPath" value="config/ehcache.xml"/> <!-- 配置文件路径 -->

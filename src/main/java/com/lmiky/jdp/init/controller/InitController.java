@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lmiky.jdp.base.controller.BaseController;
 import com.lmiky.jdp.init.service.InitService;
+import com.lmiky.jdp.util.PropertiesUtils;
 
 /**
  * 初始化控制器
@@ -21,7 +22,7 @@ import com.lmiky.jdp.init.service.InitService;
 @RequestMapping("/init")
 public class InitController extends BaseController {
 	private InitService initService;
-	private Boolean allowInit;
+	private Boolean allowInit = PropertiesUtils.getBooleanContextValue("system.allowInit");
 	
 	/**
 	 * 加载
@@ -80,13 +81,5 @@ public class InitController extends BaseController {
 	 */
 	public Boolean getAllowInit() {
 		return allowInit;
-	}
-
-	/**
-	 * @param allowInit the allowInit to set
-	 */
-	@Resource(name="allowInit")
-	public void setAllowInit(Boolean allowInit) {
-		this.allowInit = allowInit;
 	}
 }

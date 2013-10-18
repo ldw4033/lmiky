@@ -68,6 +68,17 @@ public class PropertiesUtils {
     }
 
     /**
+     * @author lmiky
+     * @date 2013-10-18
+     * @param file
+     * @param key
+     * @return
+     */
+    public static boolean getBooleanValue(String file, String key) {
+        return Boolean.parseBoolean(getStringValue(file, key));
+    }
+    
+    /**
      * 获取环境配置文件
      * @author lmiky
      * @date 2013-4-16
@@ -120,6 +131,17 @@ public class PropertiesUtils {
      */
     public static String getStringContextValue(String key) {
         return getStringValue(Constants.PROPERTIES_KEY_CONTEXT_FILE, key);
+    }
+    
+    /**
+     * 获取环境配置文件
+     * @author lmiky
+     * @date 2013-10-18
+     * @param key
+     * @return
+     */
+    public static boolean getBooleanContextValue(String key) {
+        return getBooleanValue(Constants.PROPERTIES_KEY_CONTEXT_FILE, key);
     }
 
 }

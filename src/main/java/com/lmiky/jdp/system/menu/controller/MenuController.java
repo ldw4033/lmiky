@@ -24,6 +24,7 @@ import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.system.menu.model.SubMenu;
 import com.lmiky.jdp.system.menu.pojo.MyFavoriteMenu;
 import com.lmiky.jdp.system.menu.service.MenuService;
+import com.lmiky.jdp.util.PropertiesUtils;
 import com.lmiky.jdp.web.util.ResponseUtils;
 
 /**
@@ -38,8 +39,8 @@ public class MenuController extends BaseController {
 	public static final String CODE_FAIL = "-1";
 	
 	private MenuService menuService;
-	private Integer latelyOperateMenuNum;
-	
+	private Integer latelyOperateMenuNum = PropertiesUtils.getIntContextValue("menu.latelyOperateMenuNum");
+
 	/**
 	 * 加载菜单列表
 	 * @author lmiky
@@ -182,12 +183,4 @@ public class MenuController extends BaseController {
 		return latelyOperateMenuNum;
 	}
 
-	/**
-	 * @param latelyOperateMenuNum the latelyOperateMenuNum to set
-	 */
-	@Resource(name="latelyOperateMenuNum")
-	public void setLatelyOperateMenuNum(Integer latelyOperateMenuNum) {
-		this.latelyOperateMenuNum = latelyOperateMenuNum;
-	}
-	
 }
