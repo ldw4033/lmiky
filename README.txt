@@ -12,4 +12,4 @@
 3、根据“docs\设计”中的pdm文件创建数据库，数据库名称为“lmiky”，如果要自定义数据库名称，一并修改“src\main\resources\config\applicationContext-database.xml”中的值
 4、执行分别ant(build.xml)命令：attack、maven
 5、配置到web服务器中
-6、检查“src\main\resources\config\applicationContext-bean.xml”文件中的allowInit值是否为true，如果不是，改为true，执行“你的项目地址/init/load.shtml”，在界面上输入管理员信息，点击提交初始化系统，完成之后如果要关闭初始化功能，将allowInit值设为false
+6、检查“src\main\resources\config\context.properties”文件中的allowInit值是否为true，如果不是，改为true，执行“你的项目地址/init/load.shtml”，在界面上输入管理员信息，点击提交初始化系统，完成之后如果要关闭初始化功能，将allowInit值设为false
