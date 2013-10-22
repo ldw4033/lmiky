@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menus>
+	<topmenu id="tiger" label="网上商城">
+		<leftmenu id="tiger" label="网上商城">
+			<submenu>
+				<id>tiger_goods_load</id>
+				<label>商品管理</label>
+				<url>/tiger/goods/list.shtml</url>
+				<type>link</type>
+				<modulePath>tiger/goods</modulePath>
+				<authority>load</authority>
+			</submenu>
+		</leftmenu>
+	</topmenu>
+	<topmenu id="system" label="系统设置">
+		<leftmenu id="systemSetting" label="系统设置">
+			<submenu>
+				<id>jdp_user_user_load</id>
+				<label>用户管理</label>
+				<url>/user/list.shtml</url>
+				<type>link</type>
+				<modulePath>jdp/user/user</modulePath>
+				<authority>load</authority>
+			</submenu>
+			<submenu>
+				<id>jdp_user_usergroup_load</id>
+				<label>用户组管理</label>
+				<url>/usergroup/list.shtml</url>
+				<type>link</type>
+				<modulePath>jdp/user/usergroup</modulePath>
+				<authority>load</authority>
+			</submenu>
+			<submenu>
+				<id>jdp_user_role_load</id>
+				<label>角色管理</label>
+				<url>/role/list.shtml</url>
+				<type>link</type>
+				<modulePath>jdp/user/role</modulePath>
+				<authority>load</authority>
+			</submenu>
+			<submenu>
+				<id>jdp_user_user_modifyPassword</id>
+				<label>修改密码</label>
+				<url>/user/toModifyPassword.shtml</url>
+				<type>dialog</type>
+				<modulePath>jdp/user/user</modulePath>
+				<authority></authority>
+			</submenu>
+			<submenu>
+				<id>jdp_authority_load</id>
+				<label>权限管理</label>
+				<url>/authority/load.shtml</url>
+				<type>dialog</type>
+				<modulePath>jdp/authority</modulePath>
+				<authority>load</authority>
+			</submenu>
+			<submenu>
+				<id>jdp_area_load</id>
+				<label>地区管理</label>
+				<url>/area/load.shtml</url>
+				<type>dialog</type>
+				<modulePath>jdp/area</modulePath>
+				<authority>load</authority>
+			</submenu>
+		</leftmenu>
+	</topmenu>
+</menus>
