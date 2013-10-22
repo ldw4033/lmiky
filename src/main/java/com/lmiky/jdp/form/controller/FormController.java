@@ -105,7 +105,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			appendLoadAttribute(modelMap, request, resopnse, openMode, pojo);
 			String modulePath = getModulePath(modelMap, request);
 			modelMap.put(Constants.HTTP_PARAM_MODULE_PATH, modulePath);
-			return getExecuteLoadRet(request, modulePath);
+			return getExecuteLoadRet(modelMap, request, modulePath);
 		} catch(Exception e) {
 			return transactException(e, modelMap, request, resopnse);
 		}
@@ -179,9 +179,9 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			openMode = OPEN_MODE_READ;
 		}
 		if(OPEN_MODE_READ.equals(openMode)) {
-			return getControllerName(request) + SUB_FORM_READ + getViewType();
+			return getControllerName(modelMap, request) + SUB_FORM_READ + getViewType();
 		} else {
-			return getControllerName(request) + SUB_FORM_EDIT + getViewType();
+			return getControllerName(modelMap, request) + SUB_FORM_EDIT + getViewType();
 		}
 	}
 	
@@ -255,12 +255,13 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * 获取加载查询结果
 	 * @author
 	 * @date 2013-4-19
+	 * @param modelMap
 	 * @param request
 	 * @param modulePath
 	 * @return
 	 */
-	public String getExecuteLoadRet(HttpServletRequest request, String modulePath) {
-		return getViewNamePrefix(request, modulePath) + "Form";
+	public String getExecuteLoadRet(ModelMap modelMap, HttpServletRequest request, String modulePath) {
+		return getViewNamePrefix(modelMap, request, modulePath) + "Form";
 	}
 	
 	/**
@@ -337,7 +338,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			String modulePath = getModulePath(modelMap, request);
 			modelMap.put(Constants.HTTP_PARAM_MODULE_PATH, modulePath);
 			appendLoadAttribute(modelMap, request, resopnse, openMode, pojo);
-			return getExecuteSaveRet(request, modulePath);
+			return getExecuteSaveRet(modelMap, request, modulePath);
 		} catch(Exception e) {
 			return transactException(e, modelMap, request, resopnse);
 		}
@@ -371,7 +372,9 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @return 如果输入没有异常,则回复空链表或者null
 	 * @throws Exception
 	 */
-	public abstract List<ValidateError> validateInput(T pojo, String openMode, ModelMap modelMap, HttpServletRequest request) throws Exception;
+	public List<ValidateError> validateInput(T pojo, String openMode, ModelMap modelMap, HttpServletRequest request) throws Exception {
+		return new ArrayList<ValidateError>();
+	}
 	
 	/**
 	 * 设置实体对象属性
@@ -487,12 +490,13 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * 获取保存查询结果
 	 * @author
 	 * @date 2013-4-19
+	 * @param modelMap
 	 * @param request
 	 * @param modulePath
 	 * @return
 	 */
-	protected String getExecuteSaveRet(HttpServletRequest request, String modulePath) {
-		return getViewNamePrefix(request, modulePath) + "Form";
+	protected String getExecuteSaveRet(ModelMap modelMap, HttpServletRequest request, String modulePath) {
+		return getViewNamePrefix(modelMap, request, modulePath) + "Form";
 	}
 	
 	/**

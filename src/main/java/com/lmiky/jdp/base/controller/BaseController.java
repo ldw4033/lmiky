@@ -5,6 +5,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import com.lmiky.jdp.authority.exception.AuthorityException;
 import com.lmiky.jdp.authority.service.AuthorityService;
 import com.lmiky.jdp.constants.Constants;
 import com.lmiky.jdp.logger.util.LoggerUtils;
+import com.lmiky.jdp.module.pojo.Function;
 import com.lmiky.jdp.module.pojo.Module;
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.service.exception.ServiceException;
@@ -79,6 +81,60 @@ public abstract class BaseController {
 			modelMap.put(ERROR_INFO_KEY, errorInfos);
 		}
 		errorInfos.add(error);
+	}
+	
+	/**
+	 * 方加载
+	 * @author lmiky
+	 * @date 2013-10-22
+	 * @param modelMap
+	 * @param request
+	 * @param resopnse
+	 * @return
+	 * @throws Exception
+	 */
+	public String executeLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse) throws Exception {
+		try {
+			//判断是否有登陆
+			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
+			//检查单点登陆
+			checkSso(sessionInfo, modelMap, request);
+			//检查权限
+			checkAuthority(modelMap, request, sessionInfo, getModule(modelMap, request), Function.DEFAULT_FUNCTIONID_LOAD);
+			Map<String, Object> loadParams = new HashMap<String, Object>();
+			setLoadPrams(modelMap, request, resopnse, loadParams);
+			return processLoad(modelMap, request, resopnse, loadParams);
+		} catch(Exception e) {
+			return transactException(e, modelMap, request, resopnse);
+		}
+	}
+	
+	/**
+	 * 设置加载参数
+	 * @author lmiky
+	 * @date 2013-10-22
+	 * @param modelMap
+	 * @param request
+	 * @param resopnse
+	 * @param loadParams
+	 * @throws Exception
+	 */
+	protected void setLoadPrams(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Map<String, Object> loadParams) throws Exception {
+	}
+	
+	/**
+	 * 处理加载过程
+	 * @author lmiky
+	 * @date 2013-10-22
+	 * @param modelMap
+	 * @param request
+	 * @param resopnse
+	 * @param loadParams
+	 * @return
+	 * @throws Exception
+	 */
+	protected String processLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Map<String, Object> loadParams) throws Exception {
+		return "";
 	}
 	
 	/**

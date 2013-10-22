@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 import com.lmiky.jdp.database.pojo.BasePojo;
+import com.lmiky.jdp.util.StringUtils;
+
 
 /**
  * 地区父类
@@ -29,6 +31,7 @@ public class BaseAreaPojo extends BasePojo {
 	 */
 	public void setName(String name) {
 		this.name = name;
+		setPhoneticAlphabet(StringUtils.getChineseFirstLetterl(name));
 	}
 	/**
 	 * @return the phoneticAlphabet

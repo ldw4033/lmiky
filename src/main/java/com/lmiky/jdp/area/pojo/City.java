@@ -1,8 +1,10 @@
 package com.lmiky.jdp.area.pojo;
 
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 
 /**
@@ -10,6 +12,8 @@ import javax.persistence.ManyToOne;
  * @author lmiky
  * @date 2013-10-21
  */
+@Entity
+@Table(name="city")
 public class City extends BaseAreaPojo {
 	private static final long serialVersionUID = 1206169788541078983L;
 	private Province province;

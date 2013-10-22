@@ -124,7 +124,7 @@ public class UserController extends FormController<User> {
 	 */
 	@Override
 	public List<ValidateError> validateInput(User pojo, String openMode, ModelMap modelMap, HttpServletRequest request) throws Exception {
-		List<ValidateError> validateErrors = new ArrayList<ValidateError>();
+		List<ValidateError> validateErrors = super.validateInput(pojo, openMode, modelMap, request);
 		ValidateUtils.validateRequired(request, "name", "姓名", validateErrors);
 		if(ValidateUtils.validateRequired(request, "loginName", "登陆账号", validateErrors)) {
 			List<PropertyFilter> propertyFilters = new ArrayList<PropertyFilter>();

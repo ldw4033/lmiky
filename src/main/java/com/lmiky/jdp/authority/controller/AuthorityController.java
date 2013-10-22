@@ -2,6 +2,7 @@ package com.lmiky.jdp.authority.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,21 +40,26 @@ public class AuthorityController extends BaseController {
 	@RequestMapping("/load.shtml")
 	public String load(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse) throws Exception {
 		try {
-			//判断是否有登陆
-			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
-			//检查单点登陆
-			checkSso(sessionInfo, modelMap, request);
-			//检查权限
-			checkAuthority(modelMap, request, sessionInfo, getModule(modelMap, request), Function.DEFAULT_FUNCTIONID_LOAD);
-			//获取模块组
-			List<ModuleGroup> moduleGroups = service.list(ModuleGroup.class);
-			modelMap.put("moduleGroups", moduleGroups);
-			return "jdp/authority/load";
+			return executeLoad(modelMap, request, resopnse);
 		} catch(Exception e) {
 			return transactException(e, modelMap, request, resopnse);
 		}
 	}
 	
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.base.controller.BaseController#processLoad(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.util.Map)
+	 */
+	@Override
+	protected String processLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Map<String, Object> loadParams) throws Exception {
+		super.processLoad(modelMap, request, resopnse, loadParams);
+		//获取模块组
+		List<ModuleGroup> moduleGroups = service.list(ModuleGroup.class);
+		modelMap.put("moduleGroups", moduleGroups);
+		return "jdp/authority/load";
+	}
+
+
 	/**
 	 * 获取授权用户
 	 * @author lmiky

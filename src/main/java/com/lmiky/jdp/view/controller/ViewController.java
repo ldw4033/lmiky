@@ -73,7 +73,7 @@ public abstract class ViewController<T extends BasePojo> extends BaseController 
 			appendListAttribute(modelMap, request, resopnse);
 			String modulePath = getModulePath(modelMap, request);
 			modelMap.put(Constants.HTTP_PARAM_MODULE_PATH, modulePath);
-			return getExecuteListRet(request, modulePath);
+			return getExecuteListRet(modelMap, request, modulePath);
 		} catch(Exception e) {
 			return transactException(e, modelMap, request, resopnse);
 		}
@@ -189,29 +189,31 @@ public abstract class ViewController<T extends BasePojo> extends BaseController 
 	 * 获取列表查询返回结果
 	 * @author lmiky
 	 * @date 2013-4-19
+	 * @param modelMap
 	 * @param request
 	 * @param modulePath
 	 * @return
 	 */
-	public String getExecuteListRet(HttpServletRequest request, String modulePath) {
-		return getViewNamePrefix(request, modulePath) + "List";
+	public String getExecuteListRet(ModelMap modelMap, HttpServletRequest request, String modulePath) {
+		return getViewNamePrefix(modelMap, request, modulePath) + "List";
 	}
 	
 	/**
 	 * 获取视图前缀
 	 * @author lmiky
 	 * @date 2013-4-15
+	 * @param modelMap
 	 * @param request
 	 * @param modulePath
 	 * @return
 	 */
-	protected String getViewNamePrefix(HttpServletRequest request, String modulePath) {
+	protected String getViewNamePrefix(ModelMap modelMap, HttpServletRequest request, String modulePath) {
 		if(!StringUtils.isBlank(modulePath)) {
 			modulePath = modulePath + "/";
 		} else {
 			modulePath = "";
 		}
-		String controllerName = getControllerName(request);
+		String controllerName = getControllerName(modelMap, request);
 		return modulePath + controllerName;
 	}
 	
@@ -219,10 +221,11 @@ public abstract class ViewController<T extends BasePojo> extends BaseController 
 	 * 获取视图名
 	 * @author lmiky
 	 * @date 2013-5-8
+	 * @param modelMap
 	 * @param request
 	 * @return
 	 */
-	public String getControllerName(HttpServletRequest request) {
+	public String getControllerName(ModelMap modelMap, HttpServletRequest request) {
 		return this.getClass().getSimpleName().toLowerCase().replace("controller", "");
 	}
 	

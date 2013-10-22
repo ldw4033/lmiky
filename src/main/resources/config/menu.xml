@@ -54,6 +54,14 @@
 				<modulePath>jdp/authority</modulePath>
 				<authority>load</authority>
 			</submenu>
+			<submenu>
+				<id>jdp_area_load</id>
+				<label>地区管理</label>
+				<url>/area/load.shtml</url>
+				<type>dialog</type>
+				<modulePath>jdp/area</modulePath>
+				<authority>load</authority>
+			</submenu>
 		</leftmenu>
 	</topmenu>
 </menus>

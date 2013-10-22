@@ -19,6 +19,9 @@
 		<module name="权限管理" path="jdp/authority">
 			<function name="授权" authorityCode="jdp_authority" sort="0"/>
 		</module>
+		<module name="地区管理" path="jdp/area">
+			<function name="管理" authorityCode="jdp_area_manage" sort="0"/>
+		</module>
 	</moduleGroup>
 	<moduleGroup name="网络商城">
 		<module name="商品管理" path="tiger/goods">

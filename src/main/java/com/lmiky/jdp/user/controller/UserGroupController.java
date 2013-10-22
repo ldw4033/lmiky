@@ -99,8 +99,8 @@ public class UserGroupController extends FormController<UserGroup> {
 	 * @see com.lmiky.jdp.form.controller.FormController#validateInput(com.lmiky.jdp.database.pojo.BasePojo, java.lang.String, org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	public List<ValidateError> validateInput(UserGroup pojo, String openMode, ModelMap modelMap, HttpServletRequest request) {
-		List<ValidateError> errors = new ArrayList<ValidateError>();
+	public List<ValidateError> validateInput(UserGroup pojo, String openMode, ModelMap modelMap, HttpServletRequest request) throws Exception {
+		List<ValidateError> errors = super.validateInput(pojo, openMode, modelMap, request);
 		ValidateUtils.validateRequired(request, "name", "名称", errors);
 		return errors;
 	}
