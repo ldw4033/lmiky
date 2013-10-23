@@ -4,6 +4,7 @@
 <script src="${script }/common.js" type="text/javascript"></script>
 <script type="text/javascript">
 	var MESSAGE_FAILURE = "操作失败！";
+	var MESSAGE_OPERATE_CONFIRM = "您确定要执行该操作？";
 	var MESSAGE_DELETE_CONFIRM = "您确定要删除该记录？";
 	var MESSAGE_BATCHDELETE_CONFIRM = "您确定要批量删除所选记录？";
 	var MESSAGE_DELETE_IMG_CONFIRM = "您确定要删除该图片？";

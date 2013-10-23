@@ -15,6 +15,25 @@ $(document).keyup(function(event){
 	}
 });
 
+//提交表单动作
+//clearParams：要清除的参数，以“,”分隔
+//comfirm：是否询问
+function actionForm(actionUrl, clearParams, comfirm) {
+	if(comfirm == true) {
+		if(!confirm(MESSAGE_OPERATE_CONFIRM)) {
+			return;
+		}
+	}
+	if(clearParams != null && clearParams != undefined && clearParams != '') {
+		var clearParam = clearParams.split(",");
+		for(var i=0; i<clearParam.length; i++) {
+			$("[name='" + clearParam[i] + "']").val("");
+		}
+	}
+	$("#mainForm").prop("action", actionUrl);
+	document.getElementById("mainForm").submit();
+}
+
 //删除记录
 function deletePojo(deleteUrl) {
 	if(confirm(MESSAGE_DELETE_CONFIRM)) {

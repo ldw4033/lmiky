@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="/jdp/common/taglibs.jsp" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page import="com.lmiky.jdp.user.pojo.User" %>
+<%@ page import="com.lmiky.jdp.area.controller.AreaController" %>
 <script type="text/javascript">
 	<!--
 		function beforeSubmitForm() {
@@ -11,9 +10,14 @@
 			}
 			return true;
 		}
+	
+		$(document).ready(function() {
+			if('${flag}' == 'refresh') {
+				parent.reAsyncChildNodes('${param.parentId}');
+			}
+		});
 	//-->
 </script>
-
 <tr>
 	<th width="20%" align="right" class="bg02">
 		<label>名称<span class="req">*</span></label>
@@ -24,6 +28,6 @@
 </tr>
 <tr>
 	<td colspan="4" align="center">
-		<input type="submit" class="btnClass" style="cursor: pointer;" value="提交" />
+		<input type="submit" class="btnClass" style="cursor: pointer;" value="<c:choose><c:when test="${openMode == 'edit'}">修改</c:when><c:otherwise>添加</c:otherwise></c:choose>" />
 	</td>
 </tr>

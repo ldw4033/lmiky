@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="${script }/plugins/ztree/jquery.ztree.core-3.5.min.js"></script>
 	<script type="text/javascript">
 		var zTreeObj;
+		var selectedNodeId = '0';
 		var treeSetting = {
 			treeId: 'areaTree',
 			view: {
@@ -27,24 +28,65 @@
 				autoParam: ["id", "areaType"]
 			},
 			callback: {
-				onClick: zTreeOnClick
+				onClick: zTreeOnClick,
+				onAsyncSuccess: zTreeOnAsyncSuccess
 			}
 		};
 		function zTreeOnClick(event, treeId, treeNode) {
-			if(treeId == 0) {
-				return;
+			setSelectedNodeId(treeNode);
+			var areaId = treeNode.realId;
+			if(treeNode.id == 0) {
+				areaId = '';
 			}
 			var areaType = treeNode.areaType;
-			if("<%=AreaController.AREA_TYPE_COUNTRY %>" == areaType) {
-				$("#contentForm").attr("src", "<c:url value="/country/load.shtml"/>?modulePath=${param.modulePath }&id=" + treeNode.realId + "&<%=FormController.HTTP_PARAM_FORM_OEPNMODE%>=<%=FormController.OPEN_MODE_EDIT%>");
+			var url = "";
+			var parentRealId = "0";
+			if(treeNode.id == 0 || "<%=AreaController.AREA_TYPE_COUNTRY %>" == areaType) {
+				url = "country";
+				parentRealId = "0";
+			} else if("<%=AreaController.AREA_TYPE_PROVINCE %>" == areaType) {
+				url = "province";
+				parentRealId = treeNode.getParentNode().realId;
 			}
+			$("#contentForm").attr("src", "<c:url value="/"/>" + url + "/load.shtml?modulePath=${param.modulePath }&id=" + areaId + "&parentId=" + parentRealId + "&<%=FormController.HTTP_PARAM_FORM_OEPNMODE%>=<%=FormController.OPEN_MODE_EDIT%>");
 		}  
+		
+		function zTreeOnAsyncSuccess(event, treeId, treeNode, msg) {
+		    if(treeNode.areaType == "<%=AreaController.AREA_TYPE_ROOT%>") {
+		    	var nodes = zTreeObj.getNodes()[0].children;
+				for(var i=0; i<nodes.length; i++) {
+					var node = nodes[i];
+					node.icon = "${css}/plugins/ztree/img/diy/1_close.png";
+					zTreeObj.updateNode(node);
+				}
+		    } else if(treeNode.areaType == "<%=AreaController.AREA_TYPE_COUNTRY%>") {
+		    	var nodes = treeNode.children;
+				for(var i=0; i<nodes.length; i++) {
+					var node = nodes[i];
+					node.icon = "${css}/plugins/ztree/img/diy/8.png";
+					zTreeObj.updateNode(node);
+				}
+		    }
+		    var selectedNode = zTreeObj.getNodeByParam("id", selectedNodeId, null);
+			if(selectedNode != null) {
+				zTreeObj.selectNode(selectedNode);
+			} else {
+				zTreeObj.selectNode(treeNode);
+			}
+		};
+		
+		/*
 		var zTreeNodes = [  
-        	{id:"0", name:"地区", icon:"${css}/plugins/ztree/img/diy/1_open.png", "areaType":"<%=AreaController.AREA_TYPE_ROOT%>", open:true, children: [  
+        	{id:"0", name:"地区", icon:"${css}/plugins/ztree/img/diy/1_open.png", "areaType":"<%=AreaController.AREA_TYPE_ROOT%>", isParent: "true", open:true, children: [  
         	     <c:forEach items="${countries}" var="country" varStatus="status">
         	    	 {id:"<%=AreaController.AREA_TYPE_COUNTRY%>${country.id}", name:"${country.name}", "areaType":"<%=AreaController.AREA_TYPE_COUNTRY%>", icon:"${css}/plugins/ztree/img/diy/8.png", realId: "${country.id}", isParent: "true"}<c:if test="${!status.last}">,</c:if>
         	     </c:forEach>
              ]}  
+        ]  
+		*/
+
+		var zTreeNodes = [  
+        	{id:"0", name:"地区", icon:"${css}/plugins/ztree/img/diy/1_open.png", "areaType":"<%=AreaController.AREA_TYPE_ROOT%>", isParent: "true"}  
         ]  
 		$(document).ready(function() {
 			zTreeObj = $.fn.zTree.init($("#ztree"), treeSetting, zTreeNodes);
@@ -52,8 +94,22 @@
 			if (nodes.length>0) {
 				var node = nodes[0];
 				zTreeObj.selectNode(node);
+				reAsyncChildNodes(node.id);
+				zTreeOnClick(null, treeSetting.treeId, node);
 			}
 		});
+		
+		function reAsyncChildNodes(nodeId) {
+			var node = null;
+			if(nodeId != null && nodeId != undefined && nodeId != '') {
+				node = zTreeObj.getNodeByParam("id", nodeId, null);
+			}
+			zTreeObj.reAsyncChildNodes(node, "refresh", false);
+		}
+		
+		function setSelectedNodeId(node) {
+			selectedNodeId = node.id;
+		}
 		
 	</script>
 </head>

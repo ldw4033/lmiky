@@ -58,7 +58,7 @@ public class AreaController extends BaseController {
 	protected String processLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Map<String, Object> loadParams)
 			throws Exception {
 		super.processLoad(modelMap, request, resopnse, loadParams);
-		modelMap.put("countries", service.list(Country.class, new Sort("phoneticAlphabet", Sort.SORT_TYPE_ASC, Country.class), new Sort("id", Sort.SORT_TYPE_ASC, Country.class)));
+		//modelMap.put("countries", service.list(Country.class, new Sort("phoneticAlphabet", Sort.SORT_TYPE_ASC, Country.class), new Sort("id", Sort.SORT_TYPE_ASC, Country.class)));
 		return "jdp/area/load";
 	}
 

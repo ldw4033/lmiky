@@ -53,6 +53,7 @@ public class CountryController extends FormController<Country> {
 	@RequestMapping("/save.shtml")
 	public String save(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,
 			@RequestParam(value = "id", required = false) Long id) throws Exception {
+		modelMap.put("flag", "refresh");
 		return executeSave(modelMap, request, resopnse, id, "jdp_area_manage", "jdp_area_manage");
 	}
 
@@ -64,5 +65,23 @@ public class CountryController extends FormController<Country> {
 		List<ValidateError> validateErrors = super.validateInput(pojo, openMode, modelMap, request);
 		ValidateUtils.validateRequired(request, "name", "名称", validateErrors);
 		return validateErrors;
+	}
+	
+	/**
+	 * 删除
+	 * @author lmiky
+	 * @date 2013-10-23
+	 * @param modelMap
+	 * @param request
+	 * @param resopnse
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/delete.shtml")
+	public String delete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, @RequestParam(value = "id", required = false) Long id) throws Exception {
+		modelMap.put("flag", "refresh");
+		executeDelete(modelMap, request, resopnse, id, "jdp_area_manage");
+		return executeLoad(modelMap, request, resopnse, null, "jdp_area_manage", "jdp_area_manage");
 	}
 }

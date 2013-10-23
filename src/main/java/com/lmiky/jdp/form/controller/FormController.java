@@ -20,6 +20,7 @@ import com.lmiky.jdp.lock.service.LockService;
 import com.lmiky.jdp.logger.pojo.Logger;
 import com.lmiky.jdp.logger.util.LoggerUtils;
 import com.lmiky.jdp.module.pojo.Function;
+import com.lmiky.jdp.module.pojo.Module;
 import com.lmiky.jdp.service.exception.ServiceException;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.view.controller.ViewController;
@@ -513,6 +514,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 */
 	public String executeDelete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,  Long id, String deleteAuthorityCode) throws Exception {
 		try {
+			Module module = null;
 			//检查ID
 			if(id == null) {
 				putError(modelMap, "请选择要删除的记录！");
@@ -522,7 +524,8 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 				//检查单点登陆
 				checkSso(sessionInfo, modelMap, request);
 				//判断权限
-				checkAuthority(modelMap, request, sessionInfo, getModule(modelMap, request), deleteAuthorityCode);
+				module = getModule(modelMap, request);
+				checkAuthority(modelMap, request, sessionInfo, module, deleteAuthorityCode);
 				boolean hasLock = true;
 				//检查记录锁
 				try {
@@ -545,10 +548,25 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 					logOpe(pojo, modelMap, request, sessionInfo, Logger.OPE_TYPE_DELETE);
 				}
 			}
-			return executeList(modelMap, request, resopnse);
+			return getExecuteDeleteRet(modelMap, request, resopnse, module.getPath());
 		} catch(Exception e) {
 			return transactException(e, modelMap, request, resopnse);
 		}
+	}
+	
+	/**
+	 * 获取删除结果
+	 * @author lmiky
+	 * @date 2013-10-23
+	 * @param modelMap
+	 * @param request
+	 * @param resopnse
+	 * @param modulePath
+	 * @return
+	 * @throws Exception
+	 */
+	protected String getExecuteDeleteRet(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, String modulePath) throws Exception {
+		return executeList(modelMap, request, resopnse);
 	}
 	
 	/**
