@@ -13,7 +13,14 @@
 	
 		$(document).ready(function() {
 			if('${flag}' == 'refresh') {
-				parent.reAsyncChildNodes('<%=AreaController.AREA_TYPE_COUNTRY%>${param.parentId}');
+				<c:choose>
+					<c:when test="${openMode == 'edit'}">
+						parent.reAsyncChildNodes('<%=AreaController.AREA_TYPE_COUNTRY%>${param.parentId}', '<%=AreaController.AREA_TYPE_PROVINCE%>${pojo.id}');
+					</c:when>
+					<c:otherwise>
+						parent.reAsyncChildNodes('<%=AreaController.AREA_TYPE_COUNTRY%>${param.parentId}');
+					</c:otherwise>
+				</c:choose>
 			}
 		});
 	//-->

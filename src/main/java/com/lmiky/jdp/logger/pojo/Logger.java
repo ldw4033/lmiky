@@ -2,6 +2,7 @@ package com.lmiky.jdp.logger.pojo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -32,6 +33,7 @@ public class Logger extends BasePojo {
 	/**
 	 * @return the pojoName
 	 */
+	@Column(name="pojoName")
 	public String getPojoName() {
 		return pojoName;
 	}
@@ -44,6 +46,7 @@ public class Logger extends BasePojo {
 	/**
 	 * @return the pojoId
 	 */
+	@Column(name="pojoId")
 	public Long getPojoId() {
 		return pojoId;
 	}
@@ -56,6 +59,7 @@ public class Logger extends BasePojo {
 	/**
 	 * @return the userId
 	 */
+	@Column(name="userId")
 	public Long getUserId() {
 		return userId;
 	}
@@ -68,6 +72,7 @@ public class Logger extends BasePojo {
 	/**
 	 * @return the userName
 	 */
+	@Column(name="userName")
 	public String getUserName() {
 		return userName;
 	}
@@ -80,6 +85,7 @@ public class Logger extends BasePojo {
 	/**
 	 * @return the logTime
 	 */
+	@Column(name="logTime")
 	public Date getLogTime() {
 		return logTime;
 	}
@@ -92,6 +98,7 @@ public class Logger extends BasePojo {
 	/**
 	 * @return the opeType
 	 */
+	@Column(name="opeType")
 	public String getOpeType() {
 		return opeType;
 	}
@@ -104,6 +111,7 @@ public class Logger extends BasePojo {
 	/**
 	 * @return the opeClassName
 	 */
+	@Column(name="opeClassName")
 	public String getOpeClassName() {
 		return opeClassName;
 	}
@@ -116,6 +124,7 @@ public class Logger extends BasePojo {
 	/**
 	 * @return the logDesc
 	 */
+	@Column(name="logDesc")
 	public String getLogDesc() {
 		return logDesc;
 	}

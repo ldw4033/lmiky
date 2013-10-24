@@ -37,7 +37,7 @@
 											<td align="center">
 												<table>
 													<tr>
-														<td align="center" class="btn_menu btnClass_td" onClick="addProvince()">添加</td>
+														<td align="center" class="btn_menu btnClass_td" onClick="addProvince()">添加子省份</td>
 													</tr>
 												</table>
 											</td>

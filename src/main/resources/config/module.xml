@@ -30,4 +30,16 @@
 			<function name="删除" authorityCode="tiger_goods_delete" sort="2"/>
 		</module>
 	</moduleGroup>
+	<moduleGroup name="情缘">
+		<module name="民族管理" path="love/nation">
+			<function name="添加" authorityCode="love_nation_add" sort="0"/>
+			<function name="修改" authorityCode="love_nation_modify" sort="1"/>
+			<function name="删除" authorityCode="love_nation_delete" sort="2"/>
+		</module>
+		<module name="宗教管理" path="love/faith">
+			<function name="添加" authorityCode="love_faith_add" sort="0"/>
+			<function name="修改" authorityCode="love_faith_modify" sort="1"/>
+			<function name="删除" authorityCode="love_faith_delete" sort="2"/>
+		</module>
+	</moduleGroup>
 </moduleGroups>

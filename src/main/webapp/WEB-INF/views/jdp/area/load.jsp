@@ -47,6 +47,9 @@
 			} else if("<%=AreaController.AREA_TYPE_PROVINCE %>" == areaType) {
 				url = "province";
 				parentRealId = treeNode.getParentNode().realId;
+			} else if("<%=AreaController.AREA_TYPE_CITY %>" == areaType) {
+				url = "city";
+				parentRealId = treeNode.getParentNode().realId;
 			}
 			$("#contentForm").attr("src", "<c:url value="/"/>" + url + "/load.shtml?modulePath=${param.modulePath }&id=" + areaId + "&parentId=" + parentRealId + "&<%=FormController.HTTP_PARAM_FORM_OEPNMODE%>=<%=FormController.OPEN_MODE_EDIT%>");
 		}  
@@ -59,20 +62,29 @@
 					node.icon = "${css}/plugins/ztree/img/diy/1_close.png";
 					zTreeObj.updateNode(node);
 				}
-		    } else if(treeNode.areaType == "<%=AreaController.AREA_TYPE_COUNTRY%>") {
+		    } else {
 		    	var nodes = treeNode.children;
-				for(var i=0; i<nodes.length; i++) {
-					var node = nodes[i];
-					node.icon = "${css}/plugins/ztree/img/diy/8.png";
-					zTreeObj.updateNode(node);
-				}
+		    	if(treeNode.children.length == 0) {
+			    	treeNode.isParent = false;
+			    	zTreeObj.updateNode(treeNode);
+			    } else if(treeNode.areaType == "<%=AreaController.AREA_TYPE_COUNTRY%>") { 
+					for(var i=0; i<nodes.length; i++) {
+						var node = nodes[i];
+						node.icon = "${css}/plugins/ztree/img/diy/8.png";
+						zTreeObj.updateNode(node);
+					}
+			    }
 		    }
-		    var selectedNode = zTreeObj.getNodeByParam("id", selectedNodeId, null);
-			if(selectedNode != null) {
-				zTreeObj.selectNode(selectedNode);
-			} else {
-				zTreeObj.selectNode(treeNode);
-			}
+		    if(treeNode.isParent == true) {
+		    	var selectedNode = zTreeObj.getNodeByParam("id", selectedNodeId, null);
+				if(selectedNode != null) {
+					zTreeObj.selectNode(selectedNode);
+				} else {
+					zTreeObj.selectNode(treeNode);
+				}
+		    } else {
+		    	zTreeObj.selectNode(treeNode);
+		    }
 		};
 		
 		/*
@@ -99,16 +111,27 @@
 			}
 		});
 		
-		function reAsyncChildNodes(nodeId) {
+		function reAsyncChildNodes(nodeId, reSelectedNodeId) {
 			var node = null;
 			if(nodeId != null && nodeId != undefined && nodeId != '') {
 				node = zTreeObj.getNodeByParam("id", nodeId, null);
+			}
+			//如果isParent=false,则reAsyncChildNodes不会执行
+			if(node != null && node.isParent == false) {
+				node.isParent = true;
+			}
+			if(reSelectedNodeId != null && reSelectedNodeId != undefined && reSelectedNodeId != '') {
+				setSelectedNodeIdById(reSelectedNodeId);
 			}
 			zTreeObj.reAsyncChildNodes(node, "refresh", false);
 		}
 		
 		function setSelectedNodeId(node) {
 			selectedNodeId = node.id;
+		}
+		
+		function setSelectedNodeIdById(nodeId) {
+			selectedNodeId = nodeId;
 		}
 		
 	</script>

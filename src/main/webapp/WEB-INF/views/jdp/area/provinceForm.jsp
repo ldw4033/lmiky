@@ -5,6 +5,12 @@
 <head>
 	<%@ include file="/jdp/form/header.jsp" %>
 	<link rel="stylesheet" type="text/css" href="${css}/view.css" />
+	<script type="text/javascript">
+		function addCity() {
+			$("[name='parentId']").val("${pojo.id}");
+			actionForm('<c:url value="/city/load.shtml"/>', 'id');
+		}
+	</script>
 </head>
 <body>
 	<%@ include file="/jdp/form/messages.jsp" %>
@@ -29,6 +35,13 @@
 								<tr>
 									<c:if test="${openMode == 'edit'}">
 										<lauthority:checkAuthority authorityCode="jdp_area_manage" modulePath="jdp/area">
+											<td align="center">
+												<table>
+													<tr>
+														<td align="center" class="btn_menu btnClass_td" onClick="addCity()">添加子地市</td>
+													</tr>
+												</table>
+											</td>
 											<td align="center">
 												<table>
 													<tr>
