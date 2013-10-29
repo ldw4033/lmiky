@@ -74,6 +74,7 @@ public class CookieUtils {
 	 */
 	public static void removeCookie(HttpServletResponse response, String name) {
 		removeCookie(response, name, "/", null);
+		removeCookie(response, name, "", null);	//chrome浏览器
 	}
 	
 	/**

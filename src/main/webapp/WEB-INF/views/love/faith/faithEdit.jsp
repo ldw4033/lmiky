@@ -5,7 +5,7 @@
 	<!--
 		function beforeSubmitForm() {
 			if($("input[name='name']").val() == "") {
-				alert("姓名不能为空!");
+				alert("名称不能为空!");
 				return false;
 			}
 			return true;

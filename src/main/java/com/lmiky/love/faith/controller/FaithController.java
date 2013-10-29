@@ -76,7 +76,7 @@ public class FaithController extends FormController<Faith> {
 	@Override
 	public List<ValidateError> validateInput(Faith pojo, String openMode, ModelMap modelMap, HttpServletRequest request) throws Exception {
 		List<ValidateError> validateErrors = super.validateInput(pojo, openMode, modelMap, request);
-		ValidateUtils.validateRequired(request, "name", "姓名", validateErrors);
+		ValidateUtils.validateRequired(request, "name", "名称", validateErrors);
 		return validateErrors;
 	}
 	

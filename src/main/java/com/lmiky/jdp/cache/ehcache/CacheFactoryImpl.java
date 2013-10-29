@@ -25,6 +25,13 @@ public class CacheFactoryImpl implements CacheFactory {
 	}
 	
 	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.cache.CacheFactory#clearAll()
+	 */
+	public void clearAll() {
+		cacheManager.clearAll();
+	}
+	
+	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.cache.CacheFactory#init()
 	 */
 	public void init() {

@@ -31,6 +31,14 @@
 				return true;
 			}
 			
+			$(document).ready(function() {
+				var loginName = $("[name='loginName']").val();
+				if(loginName == '') {
+					$("[name='loginName']").focus();
+				} else {
+					$("[name='password']").focus();
+				}
+			});
 		</script>
 	</head>
 	<body>

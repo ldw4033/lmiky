@@ -76,7 +76,7 @@ public class NationController extends FormController<Nation> {
 	@Override
 	public List<ValidateError> validateInput(Nation pojo, String openMode, ModelMap modelMap, HttpServletRequest request) throws Exception {
 		List<ValidateError> validateErrors = super.validateInput(pojo, openMode, modelMap, request);
-		ValidateUtils.validateRequired(request, "name", "姓名", validateErrors);
+		ValidateUtils.validateRequired(request, "name", "名称", validateErrors);
 		return validateErrors;
 	}
 	

@@ -41,5 +41,15 @@
 			<function name="修改" authorityCode="love_faith_modify" sort="1"/>
 			<function name="删除" authorityCode="love_faith_delete" sort="2"/>
 		</module>
+		<module name="公司行业管理" path="love/company/profession">
+			<function name="添加" authorityCode="love_company_profession_add" sort="0"/>
+			<function name="修改" authorityCode="love_company_profession_modify" sort="1"/>
+			<function name="删除" authorityCode="love_company_profession_delete" sort="2"/>
+		</module>
+		<module name="工作职位管理" path="love/job/position">
+			<function name="添加" authorityCode="love_job_position_add" sort="0"/>
+			<function name="修改" authorityCode="love_job_position_modify" sort="1"/>
+			<function name="删除" authorityCode="love_job_position_delete" sort="2"/>
+		</module>
 	</moduleGroup>
 </moduleGroups>

@@ -30,6 +30,22 @@
 				<modulePath>love/faith</modulePath>
 				<authority>load</authority>
 			</submenu>
+			<submenu>
+				<id>love_company_profession_load</id>
+				<label>公司行业管理</label>
+				<url>/love/company/profession/list.shtml</url>
+				<type>link</type>
+				<modulePath>love/company/profession</modulePath>
+				<authority>load</authority>
+			</submenu>
+			<submenu>
+				<id>love_job_position_load</id>
+				<label>工作职位管理</label>
+				<url>/love/job/position/list.shtml</url>
+				<type>link</type>
+				<modulePath>love/job/position</modulePath>
+				<authority>load</authority>
+			</submenu>
 		</leftmenu>
 	</topmenu>
 	<topmenu id="system" label="系统设置">
