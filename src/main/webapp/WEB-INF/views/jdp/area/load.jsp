@@ -7,8 +7,7 @@
 <head>
 	<base target="_self"/>
 	<%@ include file="/jdp/form/header.jsp" %>
-	<link rel="stylesheet" href="${css}/plugins/ztree/zTreeStyle.css" type="text/css">
-	<script type="text/javascript" src="${script }/plugins/ztree/jquery.ztree.core-3.5.min.js"></script>
+	<%@ include file="/jdp/common/tree.jsp" %>
 	<script type="text/javascript">
 		var zTreeObj;
 		var selectedNodeId = '0';
