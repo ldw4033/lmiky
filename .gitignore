@@ -3,8 +3,4 @@ target/**/*
 .project
 .settings/
 src/main/webapp/WEB-INF/lib/
-<<<<<<< HEAD
 src/main/webapp/logs/
-=======
-src/main/webapp/logs/
->>>>>>> 4660f088e843d8e6e1aea336baf0fbc465bae724
