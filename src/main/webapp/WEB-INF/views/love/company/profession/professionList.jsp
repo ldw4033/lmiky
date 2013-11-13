@@ -71,7 +71,7 @@
 														<c:set var="isFavorited" value="${false}" />
 														<favorite:inMyMenu menuId="love_company_profession_load">
 															<c:set var="isFavorited" value="${true}" />
-															<td align="center" class="btn_menu btnClass_td" onClick="removeMyFavoriteMenu(love_company_profession_load', this)">取消收藏</td>
+															<td align="center" class="btn_menu btnClass_td" onClick="removeMyFavoriteMenu('love_company_profession_load', this)">取消收藏</td>
 														</favorite:inMyMenu>
 														<c:if test="${!isFavorited }">
 															<td align="center" class="btn_menu btnClass_td" onClick="addMyFavoriteMenu('love_company_profession_load', this)">添加到收藏夹</td>

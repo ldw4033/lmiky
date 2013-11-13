@@ -12,6 +12,18 @@
 			</submenu>
 		</leftmenu>
 	</topmenu>
+	<topmenu id="capture" label="抓取">
+		<leftmenu id="capture" label="抓取">
+			<submenu>
+				<id>capture_task_load</id>
+				<label>抓取任务管理</label>
+				<url>/capture/task/list.shtml</url>
+				<type>link</type>
+				<modulePath>capture/task</modulePath>
+				<authority>load</authority>
+			</submenu>
+		</leftmenu>
+	</topmenu>
 	<topmenu id="love" label="情缘">
 		<leftmenu id="love" label="情缘">
 			<submenu>

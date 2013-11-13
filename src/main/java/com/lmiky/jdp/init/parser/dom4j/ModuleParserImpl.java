@@ -63,6 +63,7 @@ public class ModuleParserImpl implements ModuleParser {
 						function.setSort(Integer.parseInt(functionElement.attributeValue("sort")));
 						function.setModule(module);
 						functions.add(function);
+						System.out.println(function.getName() + "-" + function.getAuthorityCode());
 					}
 					modules.add(module);
 				}

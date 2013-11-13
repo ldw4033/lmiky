@@ -3,12 +3,13 @@ package com.lmiky.capture.task.pojo;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-import com.lmiky.capture.resource.pojo.CaptureResource;
 import com.lmiky.jdp.database.pojo.BasePojo;
 
 /**
@@ -16,13 +17,23 @@ import com.lmiky.jdp.database.pojo.BasePojo;
  * @author lmiky
  * @date 2013-11-6
  */
+@Entity
+@Table(name="capture_task")
 public class CaptureTask extends BasePojo {
+	private static final long serialVersionUID = 4738636498170998167L;
+	
+	//状态
+	public static final int STATE_STOP = 0;				//停止
+	public static final int STATE_START = 1;				//启动
+	public static final int STATE_CAPTURING = 2;		//抓取中
+	
 	private String name;
 	private Date createTime;
 	private Date startTime;
 	private Integer executeInterval = 0;
 	private Date lastExecuteTime;
 	private String captureUrl;
+	private Integer state = STATE_STOP;
 	private String pagination;
 	private String titleStartPoint;
 	private String titleEndPoint;
@@ -34,7 +45,7 @@ public class CaptureTask extends BasePojo {
 	private String pubtimeEndPoint;
 	private String contentStartPoint;
 	private String contentEndPoint;
-	private Set<CaptureResource> resource;
+	private Set<CaptureTaskToResource> resource;
 	
 	/**
 	 * @return the name
@@ -113,6 +124,19 @@ public class CaptureTask extends BasePojo {
 	 */
 	public void setCaptureUrl(String captureUrl) {
 		this.captureUrl = captureUrl;
+	}
+	/**
+	 * @return the state
+	 */
+	@Column(name="state")
+	public Integer getState() {
+		return state;
+	}
+	/**
+	 * @param state the state to set
+	 */
+	public void setState(Integer state) {
+		this.state = state;
 	}
 	/**
 	 * @return the pagination
@@ -260,15 +284,14 @@ public class CaptureTask extends BasePojo {
 	/**
 	 * @return the resource
 	 */
-	@OneToMany(fetch=FetchType.LAZY)
-	@JoinTable
-	public Set<CaptureResource> getResource() {
+	@OneToMany(mappedBy="task", fetch=FetchType.LAZY, cascade={CascadeType.ALL})
+	public Set<CaptureTaskToResource> getResource() {
 		return resource;
 	}
 	/**
 	 * @param resource the resource to set
 	 */
-	public void setResource(Set<CaptureResource> resource) {
+	public void setResource(Set<CaptureTaskToResource> resource) {
 		this.resource = resource;
 	}
 }

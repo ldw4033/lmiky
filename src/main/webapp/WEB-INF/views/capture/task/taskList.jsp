@@ -7,7 +7,7 @@
 		<%@ include file="/jdp/view/header.jsp"%>
 	</head>
 	<body>
-		<form id="mainForm" action="<c:url value="/love/job/position/list.shtml"/>" method="post">
+		<form id="mainForm" action="<c:url value="/capture/task/list.shtml"/>" method="post">
 			<input type="hidden" name="modulePath" value="${modulePath }"/>
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
@@ -15,7 +15,7 @@
 						<table width="98%" height="30" border="0" cellpadding="0" cellspacing="0">
 							<tr>
 								<td align="center" class="listTitle">
-									&nbsp;<img src="${images }/jt-5.gif" width="16" height="16" align="absmiddle" />&nbsp;工作职位管理
+									&nbsp;<img src="${images }/jt-5.gif" width="16" height="16" align="absmiddle" />&nbsp;抓取任务管理
 								</td>
 							</tr>
 						</table>
@@ -47,20 +47,20 @@
 								<td align="left" valign="bottom" class="listMenu">
 									<table border="0" cellpadding="0" cellspacing="0">
 										<tr>
-											<lauthority:checkAuthority authorityCode="love_job_position_add" modulePath="love/job/position">
+											<lauthority:checkAuthority authorityCode="capture_task_add" modulePath="capture/task">
 												<td align="center">
 													<table>
 														<tr>
-															<td align="center" class="btn_menu btnClass_td" onClick="openDialog('<c:url value="/love/job/position/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }"/>', 800, 600)">添加</td>
+															<td align="center" class="btn_menu btnClass_td" onClick="openDialog('<c:url value="/capture/task/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }"/>', 800, 600)">添加</td>
 														</tr>
 													</table>
 												</td>
 											</lauthority:checkAuthority>
-											<lauthority:checkAuthority authorityCode="love_job_position_delete" modulePath="love/job/position">
+											<lauthority:checkAuthority authorityCode="capture_task_delete" modulePath="capture/task">
 												<td align="center">
 													<table>
 														<tr>
-															<td align="center" class="btn_menu btnClass_td" onClick="batchDelete('<c:url value="/love/job/position/batchDelete.shtml"/>')">批量删除</td>
+															<td align="center" class="btn_menu btnClass_td" onClick="batchDelete('<c:url value="/capture/task/batchDelete.shtml"/>')">批量删除</td>
 														</tr>
 													</table>
 												</td>
@@ -69,12 +69,12 @@
 												<table>
 													<tr>
 														<c:set var="isFavorited" value="${false}" />
-														<favorite:inMyMenu menuId="love_job_position_load">
+														<favorite:inMyMenu menuId="capture_task_load">
 															<c:set var="isFavorited" value="${true}" />
-															<td align="center" class="btn_menu btnClass_td" onClick="removeMyFavoriteMenu('love_job_position_load', this)">取消收藏</td>
+															<td align="center" class="btn_menu btnClass_td" onClick="removeMyFavoriteMenu('capture_task_load', this)">取消收藏</td>
 														</favorite:inMyMenu>
 														<c:if test="${!isFavorited }">
-															<td align="center" class="btn_menu btnClass_td" onClick="addMyFavoriteMenu('love_job_position_load', this)">添加到收藏夹</td>
+															<td align="center" class="btn_menu btnClass_td" onClick="addMyFavoriteMenu('capture_task_load', this)">添加到收藏夹</td>
 														</c:if>
 													</tr>
 												</table>
@@ -97,7 +97,7 @@
 									<th class="no">&nbsp;</th>
 									<th class="sortable sorted_name"><a href="javascript:pageSort('name')">姓名</a></th>
 									<th>操作</th>
-									<lauthority:checkAuthority authorityCode="love_job_position_delete" modulePath="love/job/position">
+									<lauthority:checkAuthority authorityCode="capture_task_delete" modulePath="capture/task">
 										<th>
 											<input type="checkbox" name="batctSelectDelete"  id="batctSelectDelete" class="bian" value="" onclick="batchSelectDelete()"/>
 										</th>
@@ -112,28 +112,28 @@
 										<td>${status.count + (page.currentPage - 1) * page.pageSize}</td>
 										<td>${item.name}</td>
 										<td>
-											<lauthority:checkAuthority authorityCode="love_job_position_modify" modulePath="love/job/position">
+											<lauthority:checkAuthority authorityCode="capture_task_modify" modulePath="capture/task">
 												<a href="javascript:void(0)" class="td_2"
-														onclick="openDialog('<c:url value="/love/job/position/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }"/>', 800, 600)">
+														onclick="openDialog('<c:url value="/capture/task/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }"/>', 800, 600)">
 													修改
 												</a>
 											</lauthority:checkAuthority>
-											<lauthority:checkAuthority authorityCode="<%=com.lmiky.jdp.module.pojo.Function.DEFAULT_AUTHORITYCODE_LOAD %>" modulePath="love/job/position">
+											<lauthority:checkAuthority authorityCode="<%=com.lmiky.jdp.module.pojo.Function.DEFAULT_AUTHORITYCODE_LOAD %>" modulePath="capture/task">
 												&nbsp;
 												<a href="javascript:void(0)" class="td_2"
-														onclick="openDialog('<c:url value="/love/job/position/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
+														onclick="openDialog('<c:url value="/capture/task/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
 													查看
 												</a>
 											</lauthority:checkAuthority>
-											<lauthority:checkAuthority authorityCode="love_job_position_delete" modulePath="love/job/position">
+											<lauthority:checkAuthority authorityCode="capture_task_delete" modulePath="capture/task">
 												&nbsp;
 												<a href="javascript:void(0)" class="td_2"
-														onclick="deletePojo('<c:url value="/love/job/position/delete.shtml?id=${item.id}"/>')">
+														onclick="deletePojo('<c:url value="/capture/task/delete.shtml?id=${item.id}"/>')">
 													删除
 												</a>
 											</lauthority:checkAuthority>
 										</td>
-										<lauthority:checkAuthority authorityCode="love_job_position_delete" modulePath="love/job/position">
+										<lauthority:checkAuthority authorityCode="capture_task_delete" modulePath="capture/task">
 											<td>
 												<input type="checkbox" name="batchDeleteId" class="bian" value="${item.id}" />
 											</td>

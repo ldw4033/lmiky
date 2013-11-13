@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.lmiky.jdp.database.pojo.BasePojo;
 
@@ -101,6 +102,7 @@ public class CaptureResource extends BasePojo {
 	 * @date 2013-11-6
 	 * @return
 	 */
+	@Transient
 	public String getContentBody() {
 		if(content != null) {
 			return content.getContent();

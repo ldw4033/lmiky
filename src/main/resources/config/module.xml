@@ -30,6 +30,13 @@
 			<function name="删除" authorityCode="tiger_goods_delete" sort="2"/>
 		</module>
 	</moduleGroup>
+	<moduleGroup name="抓取">
+		<module name="抓取任务管理" path="capture/task">
+			<function name="添加" authorityCode="capture_task_add" sort="0"/>
+			<function name="修改" authorityCode="capture_task_modify" sort="1"/>
+			<function name="删除" authorityCode="capture_task_delete" sort="2"/>
+		</module>
+	</moduleGroup>
 	<moduleGroup name="情缘">
 		<module name="民族管理" path="love/nation">
 			<function name="添加" authorityCode="love_nation_add" sort="0"/>
