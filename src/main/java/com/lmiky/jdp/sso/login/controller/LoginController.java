@@ -107,6 +107,8 @@ public class LoginController extends BaseController {
 					error = "用户名不存在";
 				} else if(LoginException.PASSWORD_ERROR.equals(error)) {
 					error = "密码错误";
+				}else if(LoginException.VALID_NO.equals(error)) {
+					error = "用户不可用";
 				}
 				putError(modelMap, error);
 			} else {

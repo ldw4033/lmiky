@@ -12,6 +12,7 @@ public class LoginException extends Exception {
 	public static final String USERNAME_NOTEXIST = "userNameIsNotExist"; // 用户名不存在
 	public static final String PASSWORD_NULL = "passwordIsNull";
 	public static final String PASSWORD_ERROR = "passwordError";
+	public static final String VALID_NO = "notValid";
 
 	/**
 	 * 

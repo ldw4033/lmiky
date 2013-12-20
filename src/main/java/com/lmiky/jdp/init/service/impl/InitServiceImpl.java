@@ -1,7 +1,9 @@
 package com.lmiky.jdp.init.service.impl;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -15,6 +17,9 @@ import com.lmiky.jdp.module.pojo.Function;
 import com.lmiky.jdp.module.pojo.Module;
 import com.lmiky.jdp.module.pojo.ModuleGroup;
 import com.lmiky.jdp.service.impl.BaseServiceImpl;
+import com.lmiky.jdp.system.menu.pojo.LatelyOperateMenu;
+import com.lmiky.jdp.system.menu.pojo.MyFavoriteMenu;
+import com.lmiky.jdp.user.pojo.Role;
 import com.lmiky.jdp.user.pojo.User;
 import com.lmiky.jdp.util.Encoder;
 
@@ -26,13 +31,25 @@ import com.lmiky.jdp.util.Encoder;
 @Service("initService")
 public class InitServiceImpl extends BaseServiceImpl implements InitService {
 	private ModuleParser moduleParser;
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.init.service.InitService#init(java.lang.String, java.lang.String, java.lang.String)
 	 */
-	@Transactional(rollbackFor={Exception.class})
+	@Transactional(rollbackFor = { Exception.class })
 	public void init(String adminName, String adminLoginName, String adminPassword) throws Exception {
-		//用户
+		// 最近操作菜单
+		delete(LatelyOperateMenu.class);
+		// 收藏夹
+		delete(MyFavoriteMenu.class);
+
+		//角色
+		delete(Role.class);
+		Role role = new Role();
+		role.setName(adminName);
+		save(role);
+		
+		// 用户
 		User user = new User();
 		user.setName(adminName);
 		user.setLoginName(adminLoginName);
@@ -41,23 +58,27 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 		Date currentDate = new Date();
 		user.setCreateTime(currentDate);
 		user.setLastSetPasswordTime(currentDate);
+		Set<Role> roles = new HashSet<Role>();
+		roles.add(role);
+		user.setRoles(roles);
 		delete(User.class);
 		save(user);
 		
-		//权限：拥有系统管理员的权限
+		// 权限：拥有系统管理员的权限
 		Authority authority = new Authority();
 		authority.setFunctionId(new Integer(Function.DEFAULT_FUNCTIONID_ADMIN).longValue());
 		authority.setModuleId(Module.MODULE_ID_SYSTEM);
 		authority.setModuleType(Authority.MODULETYPE_SYSTEM);
-		authority.setOperator(user.getId());
-		authority.setOperatorType(Authority.OPERATORTYPE_USER);
+		authority.setOperator(role.getId());
+		authority.setOperatorType(Authority.OPERATORTYPE_ROLE);
 		delete(Authority.class);
 		save(authority);
-		
-		//模块
+
+		// 模块
 		List<ModuleGroup> moduleGroups = moduleParser.parse();
 		delete(ModuleGroup.class);
 		save(moduleGroups);
+
 	}
 
 	/**
@@ -70,7 +91,7 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 	/**
 	 * @param moduleParser the moduleParser to set
 	 */
-	@Resource(name="moduleParser")
+	@Resource(name = "moduleParser")
 	public void setModuleParser(ModuleParser moduleParser) {
 		this.moduleParser = moduleParser;
 	}

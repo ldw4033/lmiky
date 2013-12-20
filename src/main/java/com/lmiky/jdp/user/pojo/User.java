@@ -3,9 +3,12 @@ package com.lmiky.jdp.user.pojo;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -35,7 +38,6 @@ public class User extends BasePojo {
 	private Integer valid;
 	private String description;
 	private Set<Role> roles;
-	private Set<UserGroup> groups;
 
 	/**
 	 * @return the loginName
@@ -190,7 +192,8 @@ public class User extends BasePojo {
 	/**
 	 * @return the roles
 	 */
-	@ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, cascade ={CascadeType.PERSIST})
+	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "userId", updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "roleId", updatable = false) })
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -200,20 +203,5 @@ public class User extends BasePojo {
 	 */
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
-	}
-
-	/**
-	 * @return the groups
-	 */
-	@ManyToMany(mappedBy="users", fetch=FetchType.LAZY)
-	public Set<UserGroup> getGroups() {
-		return groups;
-	}
-
-	/**
-	 * @param groups the groups to set
-	 */
-	public void setGroups(Set<UserGroup> groups) {
-		this.groups = groups;
 	}
 }

@@ -2,12 +2,9 @@ package com.lmiky.jdp.user.pojo;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -43,8 +40,7 @@ public class Role extends BasePojo {
 	/**
 	 * @return the users
 	 */
-	@ManyToMany(fetch = FetchType.LAZY, cascade ={CascadeType.PERSIST})
-	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "roleId", updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "userId", updatable = false) })
+	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
 	public Set<User> getUsers() {
 		return users;
 	}

@@ -98,13 +98,7 @@ public class AuthorityController extends BaseController {
 				authorityFunctionId = Long.parseLong(functionId.substring(ModuleController.TREE_LIST_ID_PREFIX_FUNCTION.length()));
 			}
 			String operatorType = request.getParameter("operatorType");
-			if(Authority.OPERATORTYPE_USER.equals(operatorType)) {
-				modelMap.put("authorizedList", authorityService.listAuthorizedUser(moduleType, authorityModuleId, authorityFunctionId));
-				modelMap.put("unauthorizedList", authorityService.listUnauthorizedUser(moduleType, authorityModuleId, authorityFunctionId));
-			} else if(Authority.OPERATORTYPE_USERGROUP.equals(operatorType)) {
-				modelMap.put("authorizedList", authorityService.listAuthorizedUserGroup(moduleType, authorityModuleId, authorityFunctionId));
-				modelMap.put("unauthorizedList", authorityService.listUnauthorizedUserGroup(moduleType, authorityModuleId, authorityFunctionId));
-			} else if(Authority.OPERATORTYPE_ROLE.equals(operatorType)) {
+			if(Authority.OPERATORTYPE_ROLE.equals(operatorType)) {
 				modelMap.put("authorizedList", authorityService.listAuthorizedRole(moduleType, authorityModuleId, authorityFunctionId));
 				modelMap.put("unauthorizedList", authorityService.listUnauthorizedRole(moduleType, authorityModuleId, authorityFunctionId));
 			}
@@ -164,13 +158,7 @@ public class AuthorityController extends BaseController {
 			}
 			
 			
-			if(Authority.OPERATORTYPE_USER.equals(operatorType)) {
-				modelMap.put("authorizedList", authorityService.listAuthorizedUser(moduleType, moduleId, functionId));
-				modelMap.put("unauthorizedList", authorityService.listUnauthorizedUser(moduleType, moduleId, functionId));
-			} else if(Authority.OPERATORTYPE_USERGROUP.equals(operatorType)) {
-				modelMap.put("authorizedList", authorityService.listAuthorizedUserGroup(moduleType, moduleId, functionId));
-				modelMap.put("unauthorizedList", authorityService.listUnauthorizedUserGroup(moduleType, moduleId, functionId));
-			} else if(Authority.OPERATORTYPE_ROLE.equals(operatorType)) {
+			if(Authority.OPERATORTYPE_ROLE.equals(operatorType)) {
 				modelMap.put("authorizedList", authorityService.listAuthorizedRole(moduleType, moduleId, functionId));
 				modelMap.put("unauthorizedList", authorityService.listUnauthorizedRole(moduleType, moduleId, functionId));
 			}

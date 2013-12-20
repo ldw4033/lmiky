@@ -144,14 +144,14 @@
 							<td height="31" colspan="2" align="center" background="${images}/top1.gif">
 								<table width="98%" border="0" cellspacing="0" cellpadding="0">
 									<tr>
-										<td width="260" class="STYLE1" id="jnkc">今天是&nbsp;<%=DateUtils.format(new Date(), "yyyy年M月d日") %></td>
+										<td width="190" class="STYLE1" id="jnkc">今天是&nbsp;<%=DateUtils.format(new Date(), "yyyy年M月d日") %></td>
 										<td align="left">
 											<table width="100%" border="0" cellspacing="0" cellpadding="0">
 												<tr>
-													<td>
+													<td align="left">
 														<ul id="nav">
 															<li style="width: 2px;"><img src="${images}/meun_xian.gif" width="2" height="29" align="absmiddle" /></li>
-															<li class="top_dh"><a  href="javascript:void(0)" onclick="selectTopMenu(this, 'index')"><strong>首页</strong></a></li>
+															<li class="top_dh"><a  href="javascript:void(0)" onclick="selectTopMenu(this, 'index')"><strong>个人主页</strong></a></li>
 															<li style="width: 2px;"><img src="${images}/meun_xian.gif" width="2" height="29" align="absmiddle" /></li>
 															<c:forEach items="${menus }" var="topMenu">
 																<li class="top_dh"><a  href="javascript:void(0)" onclick="selectTopMenu(this, '${topMenu.id }')"><strong>${topMenu.label }</strong></a></li>

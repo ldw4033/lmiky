@@ -17,6 +17,7 @@ public class SessionInfo implements Serializable {
 	private String password; //密码
 	private String userName;	//用户姓名
 	private Map<String, Boolean> authoritys = new HashMap<String, Boolean>();
+	private Map<String, Boolean> menuFavoriteInfo = new HashMap<String, Boolean>();
 	
 	/**
 	 * @return the sessionId
@@ -105,5 +106,32 @@ public class SessionInfo implements Serializable {
 	 */
 	public void setAuthority(String authorityKey, boolean isAuthority) {
 		authoritys.put(authorityKey, isAuthority);
+	}
+	/**
+	 * @return the menuFavoriteInfo
+	 */
+	public Map<String, Boolean> getMenuFavoriteInfo() {
+		return menuFavoriteInfo;
+	}
+	/**
+	 * 是否在收藏夹中
+	 * @author lmiky
+	 * @date 2013-12-8
+	 * @param key
+	 * @return 如果未设值，则返回null
+	 */
+	public Boolean isInMenuFavorite(String key) {
+		return menuFavoriteInfo.get(key);
+	}
+	
+	/**
+	 * 设置收藏信息
+	 * @author lmiky
+	 * @date 2013-12-8
+	 * @param key
+	 * @param value
+	 */
+	public void setMenuFavoriteInfo(String key, Boolean value) {
+		menuFavoriteInfo.put(key, value);
 	}
 }

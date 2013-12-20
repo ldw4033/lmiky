@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="/jdp/common/taglibs.jsp" %>
 <tr>
 	<th width="17%" align="right" class="bg02">
 		<label>名称</label>
@@ -25,6 +26,16 @@
 	</th>
 	<td>
 		${pojo.email}
+	</td>
+</tr>
+<tr>
+	<th align="right" class="bg02">
+		<label>所属角色</label>
+	</th>
+	<td colspan="3">
+		<c:forEach items="${userRoles }" var="userRole">
+			${userRole.name }&nbsp;
+		</c:forEach>
 	</td>
 </tr>
 <tr>

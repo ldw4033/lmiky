@@ -57,6 +57,9 @@ public class SsoServiceImpl implements SsoService {
 			if(!user.getPassword().equals(password)) {
 				throw new LoginException(LoginException.PASSWORD_ERROR);
 			}
+			if(user.getValid() != User.VALID_YES) {
+				throw new LoginException(LoginException.VALID_NO);
+			}
 		} catch (Exception e) {
 			throw new LoginException(e.getMessage());
 		}

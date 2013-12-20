@@ -71,14 +71,6 @@
 				<authority>load</authority>
 			</submenu>
 			<submenu>
-				<id>jdp_user_usergroup_load</id>
-				<label>用户组管理</label>
-				<url>/usergroup/list.shtml</url>
-				<type>link</type>
-				<modulePath>jdp/user/usergroup</modulePath>
-				<authority>load</authority>
-			</submenu>
-			<submenu>
 				<id>jdp_user_role_load</id>
 				<label>角色管理</label>
 				<url>/role/list.shtml</url>

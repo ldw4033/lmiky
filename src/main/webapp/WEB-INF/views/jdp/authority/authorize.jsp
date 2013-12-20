@@ -37,7 +37,7 @@
 				<tr>
 					<td valign="top" align="left">
 						<div style="float: left;">
-							<div style="line-height: 25px;">未选中用户：</div>
+							<div style="line-height: 25px;">未选中角色：</div>
 							<div>
 								<select id="unselected" multiple="multiple" style="height: 450px; width: 250px;" class="bian">
 									<c:forEach items="${unauthorizedList }" var="unauthorizedUser">
@@ -57,7 +57,7 @@
 							<div>&nbsp;<input type="button" id="removeAllSelect" value="<=" class="btnClass2" style="width: 30px;"/>&nbsp;</div>
 						</div>
 						<div style="float: left;">
-							<div style="line-height: 25px;">已选中用户：</div>
+							<div style="line-height: 25px;">已选中角色：</div>
 							<div>
 								<select id="selected" multiple="multiple" style="height: 450px; width: 250px;" class="bian">
 									<c:forEach items="${authorizedList }" var="authorizedUser">

@@ -2,8 +2,11 @@ package com.lmiky.jdp.user.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,13 +18,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
+import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.form.controller.FormController;
 import com.lmiky.jdp.form.model.ValidateError;
 import com.lmiky.jdp.form.util.ValidateUtils;
+import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.user.pojo.Role;
 import com.lmiky.jdp.user.pojo.User;
-import com.lmiky.jdp.user.pojo.UserGroup;
+import com.lmiky.jdp.user.service.UserService;
 import com.lmiky.jdp.util.Encoder;
 
 /**
@@ -55,7 +60,6 @@ public class UserController extends FormController<User> {
 	@Override
 	protected void appendListAttribute(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse) throws Exception {
 		super.appendListAttribute(modelMap, request, resopnse);
-		modelMap.put("groups", service.list(UserGroup.class));
 		modelMap.put("roles", service.list(Role.class));
 	}
 
@@ -77,6 +81,25 @@ public class UserController extends FormController<User> {
 		return executeLoad(modelMap, request, resopnse, id, "jdp_user_user_add", "jdp_user_user_modify");
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#appendLoadAttribute(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.String, com.lmiky.jdp.database.pojo.BasePojo)
+	 */
+	@Override
+	protected void appendLoadAttribute(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, String openMode, User pojo) throws Exception {
+		super.appendLoadAttribute(modelMap, request, resopnse, openMode, pojo);
+		UserService userService = (UserService)service;
+		if(OPEN_MODE_EDIT.equals(openMode) || OPEN_MODE_READ.equals(openMode)) {
+			modelMap.put("userRoles", userService.listUserRoles(pojo.getId()));
+		}
+		if(OPEN_MODE_EDIT.equals(openMode)) {
+			modelMap.put("noUserRoles", userService.listNoUserRoles(pojo.getId()));
+		} else if(OPEN_MODE_CTEATE.equals(openMode)) {
+			List<Sort> sorts = new ArrayList<Sort>();
+			sorts.add(new Sort("name", Sort.SORT_TYPE_ASC, User.class));
+			modelMap.put("noUserRoles", userService.list(Role.class, null, sorts));
+		}
+	}
+	
 	/**
 	 * @author lmiky
 	 * @date 2013-5-7
@@ -117,8 +140,18 @@ public class UserController extends FormController<User> {
 			pojo.setPassword(Encoder.md5(pojo.getPassword()));
 			pojo.setLastSetPasswordTime(new Date());
 		}
+		String[] selectedRoles = request.getParameterValues("selectedRoles");
+		Set<Role> roles = new HashSet<Role>();
+		if(selectedRoles != null && selectedRoles.length > 0) {
+			for(String roleId : selectedRoles) {
+				Role role = new Role();
+				role.setId(Long.parseLong(roleId));
+				roles.add(role);
+			}
+		}
+		pojo.setRoles(roles);
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.form.controller.FormController#validateInput(com.lmiky.jdp.database.pojo.BasePojo, java.lang.String, org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
@@ -263,5 +296,13 @@ public class UserController extends FormController<User> {
 			}
 		}
 		return validateErrors;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.base.controller.BaseController#getService()
+	 */
+	@Resource(name="userService")
+	public void setService(BaseService service) {
+		this.service = service;
 	}
 }

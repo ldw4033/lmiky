@@ -138,6 +138,8 @@
 
 /*TOP导航 三级菜单样式  开始*/
 #nav, #nav ul {
+	padding: 0px;	/*chrom默认会-webkit-padding-start: 40px;*/
+	padding-left:7px;
 	float:left; /* 菜单总体水平位置 */
 	clear:right;
 	list-style:none;

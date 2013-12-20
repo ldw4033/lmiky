@@ -6,11 +6,6 @@
 			<function name="修改" authorityCode="jdp_user_user_modify" sort="1"/>
 			<function name="删除" authorityCode="jdp_user_user_delete" sort="2"/>
 		</module>
-		<module name="用户组管理" path="jdp/user/usergroup">
-			<function name="添加" authorityCode="jdp_user_usergroup_add" sort="0"/>
-			<function name="修改" authorityCode="jdp_user_usergroup_modify" sort="1"/>
-			<function name="删除" authorityCode="jdp_user_usergroup_delete" sort="2"/>
-		</module>
 		<module name="角色管理" path="jdp/user/role">
 			<function name="添加" authorityCode="jdp_user_role_add" sort="0"/>
 			<function name="修改" authorityCode="jdp_user_role_modify" sort="1"/>

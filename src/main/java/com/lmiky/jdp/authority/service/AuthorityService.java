@@ -5,8 +5,6 @@ import java.util.List;
 import com.lmiky.jdp.authority.pojo.Authority;
 import com.lmiky.jdp.service.exception.ServiceException;
 import com.lmiky.jdp.user.pojo.Role;
-import com.lmiky.jdp.user.pojo.User;
-import com.lmiky.jdp.user.pojo.UserGroup;
 
 /**
  * 权限业务
@@ -16,55 +14,7 @@ import com.lmiky.jdp.user.pojo.UserGroup;
 public interface AuthorityService {
 
 	/**
-	 * 获取已授权用户
-	 * @author lmiky
-	 * @date 2013-5-20
-	 * @param moduleType	模块类别，详情值参考com.lmiky.jdp.authority.pojo.Authority的模块类别说明
-	 * @param moduleId	模块ID
-	 * @param functionId	功能ID
-	 * @return
-	 * @throws ServiceException
-	 */
-	public List<User> listAuthorizedUser(String moduleType, Long moduleId, Long functionId) throws ServiceException;
-
-	/**
-	 * 获取未授权用户
-	 * @author lmiky
-	 * @date 2013-5-20
-	 * @param moduleType	模块类别，详情值参考com.lmiky.jdp.authority.pojo.Authority的模块类别说明
-	 * @param moduleId	模块ID
-	 * @param functionId	功能ID
-	 * @return
-	 * @throws ServiceException
-	 */
-	public List<User> listUnauthorizedUser(String moduleType, Long moduleId, Long functionId) throws ServiceException;
-
-	/**
-	 * 获取已授权用户
-	 * @author lmiky
-	 * @date 2013-5-20
-	 * @param moduleType	模块类别，详情值参考com.lmiky.jdp.authority.pojo.Authority的模块类别说明
-	 * @param moduleId	模块ID
-	 * @param functionId	功能ID
-	 * @return
-	 * @throws ServiceException
-	 */
-	public List<UserGroup> listAuthorizedUserGroup(String moduleType, Long moduleId, Long functionId) throws ServiceException;
-
-	/**
-	 * 获取未授权用户
-	 * @author lmiky
-	 * @date 2013-5-20
-	 * @param moduleType	模块类别，详情值参考com.lmiky.jdp.authority.pojo.Authority的模块类别说明
-	 * @param moduleId	模块ID
-	 * @param functionId	功能ID
-	 * @return
-	 * @throws ServiceException
-	 */
-	public List<UserGroup> listUnauthorizedUserGroup(String moduleType, Long moduleId, Long functionId) throws ServiceException;
-
-	/**
-	 * 获取已授权用户
+	 * 获取已授权角色
 	 * @author lmiky
 	 * @date 2013-5-20
 	 * @param moduleType	模块类别，详情值参考com.lmiky.jdp.authority.pojo.Authority的模块类别说明
@@ -76,7 +26,7 @@ public interface AuthorityService {
 	public List<Role> listAuthorizedRole(String moduleType, Long moduleId, Long functionId) throws ServiceException;
 
 	/**
-	 * 获取未授权用户
+	 * 获取未授权角色
 	 * @author lmiky
 	 * @date 2013-5-20
 	 * @param moduleType	模块类别，详情值参考com.lmiky.jdp.authority.pojo.Authority的模块类别说明

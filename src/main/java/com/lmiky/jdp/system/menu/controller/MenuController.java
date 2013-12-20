@@ -24,6 +24,7 @@ import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.system.menu.model.SubMenu;
 import com.lmiky.jdp.system.menu.pojo.MyFavoriteMenu;
 import com.lmiky.jdp.system.menu.service.MenuService;
+import com.lmiky.jdp.system.menu.util.MenuUtils;
 import com.lmiky.jdp.util.PropertiesUtils;
 import com.lmiky.jdp.web.util.ResponseUtils;
 
@@ -110,6 +111,7 @@ public class MenuController extends BaseController {
 				myFavoriteMenu.setUserId(sessionInfo.getUserId());
 				myFavoriteMenu.setAddTime(new Date());
 				service.save(myFavoriteMenu);
+				MenuUtils.addMyFavorite(request, sessionInfo, menuId);
 				retMap.put("code", CODE_SUCCESS);
 				retMap.put("msg", "收藏成功！");
 			}
@@ -146,6 +148,7 @@ public class MenuController extends BaseController {
 				retMap.put("msg", "该菜单不在您的收藏夹中！");
 			} else {
 				service.delete(myFavoriteMenu);
+				MenuUtils.removeMyFavorite(request, sessionInfo, menuId);
 				retMap.put("code", CODE_SUCCESS);
 				retMap.put("msg", "取消成功！");
 			}

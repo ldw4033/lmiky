@@ -12,8 +12,26 @@
 			return true;
 		}
 	//-->
+	
+	<c:choose>
+		<c:when test="${empty userRoles}">
+			var userIndex = 0;
+		</c:when>
+		<c:otherwise>
+			var userIndex = ${fn:length(userRoles)};
+		</c:otherwise>
+	</c:choose>
+
+	$(document).ready(function(){
+		initMultipleSelect('groupSpan', 'role_', 'selectedRoles', userIndex);
+	}); 
 </script>
 
+<span id="groupSpan" style="display: none;">
+	<c:forEach items="${userRoles }" var="userRole" varStatus="status">
+		<input type="hidden" id="role_${userRole.id }" name="selectedRoles" value="${userRole.id }"/>
+	</c:forEach>
+</span>
 <tr>
 	<th width="17%" align="right" class="bg02">
 		<label>名称<span class="req">*</span></label>
@@ -66,6 +84,44 @@
 		<form:radiobutton path="valid" cssClass="bian" id="yesValid" value="<%=User.VALID_YES %>"/><label for="yesValid" class="label">是</label>  
 		&nbsp;
     	<form:radiobutton path="valid" cssClass="bian" id="noValid" value="<%=User.VALID_NO %>"/><label for="noValid" class="label">否</label>
+	</td>
+</tr>
+
+<tr>
+	<th align="right" class="bg02">
+		<label>所属角色</label>
+	</th>
+	<td colspan="3">
+		<div style="float: left;">
+		<div style="line-height: 25px;">未选中角色</div>
+			<div>
+				<select id="unselected" multiple="multiple" class="bian" style="height: 300px; width: 269px;">
+					<c:forEach items="${noUserRoles }" var="userRole">
+						<option value="${userRole.id }">${userRole.name }</option>
+					</c:forEach>
+				</select>
+			</div>
+		</div>
+		<div style="float: left; width: 50px; text-align: center;">
+			<div style="height: 100px;"></div>
+			<div>&nbsp;<input type="button" id="addSelect" class="btnClass2" style="width: 30px;" value="-->"/>&nbsp;</div>
+			<div style="height: 20px;"></div>
+			<div>&nbsp;<input type="button" id="addAllSelect" class="btnClass2" style="width: 30px;" value="=>"/>&nbsp;</div>
+			<div style="height: 20px;"></div>
+			<div>&nbsp;<input type="button" id="removeSelect" class="btnClass2" style="width: 30px;" value="<--"/>&nbsp;</div>
+				<div style="height: 20px;"></div>
+			<div>&nbsp;<input type="button" id="removeAllSelect" class="btnClass2" style="width: 30px;" value="<="/>&nbsp;</div>
+		</div>
+		<div style="float: left;">
+			<div style="line-height: 25px;">已选中角色</div>
+			<div>
+				<select id="selected" multiple="multiple" class="bian" style="height: 300px; width: 269px;">
+					<c:forEach items="${userRoles }" var="userRole">
+						<option value="${userRole.id }">${userRole.name }</option>
+					</c:forEach>
+				</select>
+			</div>
+		</div>
 	</td>
 </tr>
 <tr>

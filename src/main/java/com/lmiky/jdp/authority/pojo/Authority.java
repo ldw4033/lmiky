@@ -17,8 +17,6 @@ public class Authority extends BasePojo {
 	private static final long serialVersionUID = 3538567387722410381L;
 	//操作员类别
 	public static final String OPERATORTYPE_ROLE = "role";							//角色
-	public static final String OPERATORTYPE_USERGROUP = "usergroup";		//用户组
-	public static final String OPERATORTYPE_USER = "user";							//用户
 	
 	//模块类别
 	public static final String MODULETYPE_SYSTEM= "system";			//系统

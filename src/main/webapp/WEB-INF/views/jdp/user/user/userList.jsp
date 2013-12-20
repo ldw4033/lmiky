@@ -46,16 +46,6 @@
 			            				</c:if>
 			            			</lhtml:propertyFilter>
 			            			&nbsp;
-									用户组：
-									<lhtml:propertyFilter inputType="select" compareType="EQ" propertyName="groups.id"  styleClass="bian medium">
-			            				<option value="">请选择</option>
-			            				<c:if test="${not empty groups }">
-			            					<c:forEach items="${groups }" var="group">
-			            						<option value="${group.id }">${group.name }</option>
-			            					</c:forEach>
-			            				</c:if>
-			            			</lhtml:propertyFilter>
-			            			&nbsp;
 			            			是否有效：
 			            			<lhtml:propertyFilter inputType="radio" compareType="EQ" propertyName="valid"  styleClass="bian" label="全部" labelStyle="width: 30px;"  labelClass="label" value=""/>&nbsp;
 									<lhtml:propertyFilter inputType="radio" compareType="EQ" propertyName="valid"  styleClass="bian" label="是" labelStyle="width: 30px;" labelClass="label" value="<%=String.valueOf(User.VALID_YES) %>"/>&nbsp;

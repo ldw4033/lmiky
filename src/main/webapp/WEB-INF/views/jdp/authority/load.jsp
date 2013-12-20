@@ -75,25 +75,20 @@
 				<ul id="ztree" class="ztree" style="overflow:auto;"></ul>
 			</td>
 			<td valign="top" >
-				<table style="width: 100%; height:100%; border-left-width: 0px; border-left-style: none;">
+				<table style="width: 100%; height:100%; border-left-width: 0px; border-left-style: none; display: none;">
 					<tr>
 						<td height="30">
-							<input type="radio" name="userType" id="type_user" value="<%=Authority.OPERATORTYPE_USER %>" checked="checked" onclick="changeUserType(this.value)"/>
-							<label for="type_user" >用户</label>
-							&nbsp;&nbsp;
-							<input type="radio" name="userType" id="type_usergroup" value="<%=Authority.OPERATORTYPE_USERGROUP %>" onclick="changeUserType(this.value)"/>
-							<label for="type_usergroup" >用户组</label>
-							&nbsp;&nbsp;
-							<input type="radio" name="userType" id="type_role" value="<%=Authority.OPERATORTYPE_ROLE %>" onclick="changeUserType(this.value)"/>
+							<input type="radio" name="userType" id="type_role" value="<%=Authority.OPERATORTYPE_ROLE %>" checked="checked" onclick="changeUserType(this.value)"/>
 							<label for="type_role" >角色</label>
 						</td>
 					</tr>
 					<tr>
 						<td valign="top">
-							<iframe id="userFrame" style="width: 100%; height: 100%;" frameborder="0" src="" scrolling="no"/>
+							
 						</td>
 					</tr>
 				</table>
+				<iframe id="userFrame" style="width: 100%; height: 100%;" frameborder="0" src="" scrolling="no"/>
 			</td>
 		</tr>
 	</table>

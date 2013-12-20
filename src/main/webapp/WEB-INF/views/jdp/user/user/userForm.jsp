@@ -4,6 +4,7 @@
 <html>
 <head>
 	<%@ include file="/jdp/form/header.jsp" %>
+	<script src="${script }/multipleSelect.js" type="text/javascript"></script>
 </head>
 <body>
 	<%@ include file="/jdp/form/messages.jsp" %>
