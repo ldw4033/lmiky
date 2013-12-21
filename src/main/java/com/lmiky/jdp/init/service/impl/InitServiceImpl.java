@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ import com.lmiky.jdp.module.pojo.ModuleGroup;
 import com.lmiky.jdp.service.impl.BaseServiceImpl;
 import com.lmiky.jdp.system.menu.pojo.LatelyOperateMenu;
 import com.lmiky.jdp.system.menu.pojo.MyFavoriteMenu;
+import com.lmiky.jdp.system.menu.service.MenuService;
 import com.lmiky.jdp.user.pojo.Role;
 import com.lmiky.jdp.user.pojo.User;
 import com.lmiky.jdp.util.Encoder;
@@ -31,6 +33,7 @@ import com.lmiky.jdp.util.Encoder;
 @Service("initService")
 public class InitServiceImpl extends BaseServiceImpl implements InitService {
 	private ModuleParser moduleParser;
+	private MenuService menuService;
 
 	/*
 	 * (non-Javadoc)
@@ -43,12 +46,12 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 		// 收藏夹
 		delete(MyFavoriteMenu.class);
 
-		//角色
+		// 角色
 		delete(Role.class);
 		Role role = new Role();
 		role.setName(adminName);
 		save(role);
-		
+
 		// 用户
 		User user = new User();
 		user.setName(adminName);
@@ -63,7 +66,7 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 		user.setRoles(roles);
 		delete(User.class);
 		save(user);
-		
+
 		// 权限：拥有系统管理员的权限
 		Authority authority = new Authority();
 		authority.setFunctionId(new Integer(Function.DEFAULT_FUNCTIONID_ADMIN).longValue());
@@ -81,6 +84,10 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 
 	}
 
+	@Transactional(rollbackFor = { Exception.class })
+	public void updateModule() throws Exception {
+	}
+
 	/**
 	 * @return the moduleParser
 	 */
@@ -94,5 +101,20 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 	@Resource(name = "moduleParser")
 	public void setModuleParser(ModuleParser moduleParser) {
 		this.moduleParser = moduleParser;
+	}
+
+	/**
+	 * @return the menuService
+	 */
+	public MenuService getMenuService() {
+		return menuService;
+	}
+
+	/**
+	 * @param menuService the menuService to set
+	 */
+	@Resource(name = "menuService")
+	public void setMenuService(MenuService menuService) {
+		this.menuService = menuService;
 	}
 }

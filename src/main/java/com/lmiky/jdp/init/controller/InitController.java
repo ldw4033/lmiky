@@ -60,6 +60,13 @@ public class InitController extends BaseController {
 		putMessage(modelMap, "初始化完成!");
 		return load(modelMap, request, resopnse);
 	}
+	
+	@RequestMapping("/initMenu.shtml")
+	public String initMenu(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, String name, String loginName, String password) throws Exception {
+		initService.init(name, loginName, password);
+		putMessage(modelMap, "初始化菜单完成!");
+		return load(modelMap, request, resopnse);
+	}
 
 	/**
 	 * @return the initService

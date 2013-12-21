@@ -90,19 +90,23 @@ public class AuthorityServiceImpl implements AuthorityService {
 			//检查角色
 			hql.append("select 1 from User User, Authority  Authority join User.roles Role where User.id = ").append(userId).append(" and Role.id = Authority.operator and (");
 			hql.append(" (Authority.moduleType = '").append(Authority.MODULETYPE_SYSTEM).append("' ");
-			hql.append(" and Authority.moduleId = ").append(0).append(" and Authority.operatorType = '").append(Authority.OPERATORTYPE_ROLE).append("' ");
+			hql.append(" and Authority.moduleId = ").append(0);
+			hql.append(" and Authority.operatorType = '").append(Authority.OPERATORTYPE_ROLE).append("' ");
 			hql.append(" and Authority.functionId = ").append(Function.DEFAULT_FUNCTIONID_ADMIN).append(")");
 			hql.append(" or ");
 			hql.append(" (Authority.moduleType = '").append(Authority.MODULETYPE_GROUP).append("' ");
-			hql.append(" and Authority.moduleId = ").append(moduleGroupId).append(" and Authority.operatorType = '").append(Authority.OPERATORTYPE_ROLE).append("' ");
+			hql.append(" and Authority.moduleId = ").append(moduleGroupId);
+			hql.append(" and Authority.operatorType = '").append(Authority.OPERATORTYPE_ROLE).append("' ");
 			hql.append(" and Authority.functionId = ").append(Function.DEFAULT_FUNCTIONID_ADMIN).append(")");
 			hql.append(" or ");
 			hql.append(" ( Authority.moduleType = '").append(Authority.MODULETYPE_MODULE).append("' ");
-			hql.append(" and Authority.moduleId = ").append(moduleId).append(" and Authority.operatorType = '").append(Authority.OPERATORTYPE_ROLE).append("' ");
+			hql.append(" and Authority.moduleId = ").append(moduleId);
+			hql.append(" and Authority.operatorType = '").append(Authority.OPERATORTYPE_ROLE).append("' ");
 			hql.append(" and Authority.functionId = ").append(Function.DEFAULT_FUNCTIONID_ADMIN).append(")");
 			hql.append(" or ");
 			hql.append(" ( Authority.moduleType = '").append(Authority.MODULETYPE_FUNCTION).append("' ");
-			hql.append(" and Authority.moduleId = ").append(moduleId).append(" and Authority.operatorType = '").append(Authority.OPERATORTYPE_ROLE).append("' ");
+			hql.append(" and Authority.moduleId = ").append(moduleId);
+			hql.append(" and Authority.operatorType = '").append(Authority.OPERATORTYPE_ROLE).append("' ");
 			hql.append(" and Authority.functionId = ").append(functionId).append(")");
 			hql.append(") ");
 			List<Object[]> result= baseDAO.executeQuery(hql.toString());

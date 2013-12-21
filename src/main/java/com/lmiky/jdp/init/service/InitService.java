@@ -19,4 +19,12 @@ public interface InitService extends BaseService {
 	 * @throws Exception
 	 */
 	public void init(String adminName, String adminLoginName, String adminPassword) throws Exception;
+	
+	/**
+	 * 初始化功能模块
+	 * @author lmiky
+	 * @date 2013-12-21
+	 * @throws Exception
+	 */
+	public void updateModule() throws Exception;
 }
