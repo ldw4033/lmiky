@@ -2,17 +2,19 @@
 <moduleGroups>
 	<moduleGroup name="系统功能">
 		<module name="用户管理" path="jdp/user/user">
-			<function name="添加" authorityCode="jdp_user_user_add" sort="0"/>
-			<function name="修改" authorityCode="jdp_user_user_modify" sort="1"/>
-			<function name="删除" authorityCode="jdp_user_user_delete" sort="2"/>
+		    <function name="查询" authorityCode="jdp_user_user_load" sort="0"/>
+			<function name="添加" authorityCode="jdp_user_user_add" sort="1"/>
+			<function name="修改" authorityCode="jdp_user_user_modify" sort="2"/>
+			<function name="删除" authorityCode="jdp_user_user_delete" sort="3"/>
 		</module>
 		<module name="角色管理" path="jdp/user/role">
-			<function name="添加" authorityCode="jdp_user_role_add" sort="0"/>
-			<function name="修改" authorityCode="jdp_user_role_modify" sort="1"/>
-			<function name="删除" authorityCode="jdp_user_role_delete" sort="2"/>
+		    <function name="查询" authorityCode="jdp_user_role_load" sort="0"/>
+			<function name="添加" authorityCode="jdp_user_role_add" sort="1"/>
+			<function name="修改" authorityCode="jdp_user_role_modify" sort="2"/>
+			<function name="删除" authorityCode="jdp_user_role_delete" sort="3"/>
 		</module>
 		<module name="权限管理" path="jdp/authority">
-			<function name="授权" authorityCode="jdp_authority" sort="0"/>
+			<function name="授权" authorityCode="jdp_authority_authorize" sort="0"/>
 		</module>
 		<module name="地区管理" path="jdp/area">
 			<function name="管理" authorityCode="jdp_area_manage" sort="0"/>
@@ -20,38 +22,44 @@
 	</moduleGroup>
 	<moduleGroup name="网络商城">
 		<module name="商品管理" path="tiger/goods">
-			<function name="添加" authorityCode="tiger_goods_add" sort="0"/>
-			<function name="修改" authorityCode="tiger_goods_modify" sort="1"/>
-			<function name="删除" authorityCode="tiger_goods_delete" sort="2"/>
+		    <function name="查询" authorityCode="tiger_goods_load" sort="0"/>
+			<function name="添加" authorityCode="tiger_goods_add" sort="1"/>
+			<function name="修改" authorityCode="tiger_goods_modify" sort="2"/>
+			<function name="删除" authorityCode="tiger_goods_delete" sort="3"/>
 		</module>
 	</moduleGroup>
 	<moduleGroup name="抓取">
 		<module name="抓取任务管理" path="capture/task">
-			<function name="添加" authorityCode="capture_task_add" sort="0"/>
-			<function name="修改" authorityCode="capture_task_modify" sort="1"/>
-			<function name="删除" authorityCode="capture_task_delete" sort="2"/>
+		    <function name="查询" authorityCode="capture_task_load" sort="0"/>
+			<function name="添加" authorityCode="capture_task_add" sort="1"/>
+			<function name="修改" authorityCode="capture_task_modify" sort="2"/>
+			<function name="删除" authorityCode="capture_task_delete" sort="3"/>
 		</module>
 	</moduleGroup>
 	<moduleGroup name="情缘">
 		<module name="民族管理" path="love/nation">
-			<function name="添加" authorityCode="love_nation_add" sort="0"/>
-			<function name="修改" authorityCode="love_nation_modify" sort="1"/>
-			<function name="删除" authorityCode="love_nation_delete" sort="2"/>
+		    <function name="查询" authorityCode="love_nation_load" sort="0"/>
+			<function name="添加" authorityCode="love_nation_add" sort="1"/>
+			<function name="修改" authorityCode="love_nation_modify" sort="2"/>
+			<function name="删除" authorityCode="love_nation_delete" sort="3"/>
 		</module>
 		<module name="宗教管理" path="love/faith">
-			<function name="添加" authorityCode="love_faith_add" sort="0"/>
-			<function name="修改" authorityCode="love_faith_modify" sort="1"/>
-			<function name="删除" authorityCode="love_faith_delete" sort="2"/>
+		    <function name="查询" authorityCode="love_faith_load" sort="0"/>
+			<function name="添加" authorityCode="love_faith_add" sort="1"/>
+			<function name="修改" authorityCode="love_faith_modify" sort="2"/>
+			<function name="删除" authorityCode="love_faith_delete" sort="3"/>
 		</module>
 		<module name="公司行业管理" path="love/company/profession">
-			<function name="添加" authorityCode="love_company_profession_add" sort="0"/>
-			<function name="修改" authorityCode="love_company_profession_modify" sort="1"/>
-			<function name="删除" authorityCode="love_company_profession_delete" sort="2"/>
+		    <function name="查询" authorityCode="love_company_profession_load" sort="0"/>
+			<function name="添加" authorityCode="love_company_profession_add" sort="1"/>
+			<function name="修改" authorityCode="love_company_profession_modify" sort="2"/>
+			<function name="删除" authorityCode="love_company_profession_delete" sort="3"/>
 		</module>
 		<module name="工作职位管理" path="love/job/position">
-			<function name="添加" authorityCode="love_job_position_add" sort="0"/>
-			<function name="修改" authorityCode="love_job_position_modify" sort="1"/>
-			<function name="删除" authorityCode="love_job_position_delete" sort="2"/>
+		    <function name="查询" authorityCode="love_job_position_load" sort="0"/>
+			<function name="添加" authorityCode="love_job_position_add" sort="1"/>
+			<function name="修改" authorityCode="love_job_position_modify" sort="2"/>
+			<function name="删除" authorityCode="love_job_position_delete" sort="3"/>
 		</module>
 	</moduleGroup>
 </moduleGroups>

@@ -29,7 +29,6 @@
 			}
 		};
 		function zTreeOnClick(event, treeId, treeNode) {
-			var operatorType = $("input[name='userType']:checked").val();
 			var moduleType = treeNode.moduleType;
 			var moduleId = '';
 			var functionId = '';

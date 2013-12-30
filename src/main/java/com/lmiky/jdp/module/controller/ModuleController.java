@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.lmiky.jdp.authority.pojo.Authority;
 import com.lmiky.jdp.base.controller.BaseController;
 import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
@@ -33,10 +32,10 @@ public class ModuleController extends BaseController {
 	public static final String TREE_LIST_ID_PREFIX_FUNCTION = "f_";
 	
 	//模块类别
-	public static final String MODULE_TYPE_SYSTEM = Authority.MODULETYPE_SYSTEM;
-	public static final String MODULE_TYPE_GROUP = Authority.MODULETYPE_GROUP;
-	public static final String MODULE_TYPE_MODULE = Authority.MODULETYPE_MODULE;
-	public static final String MODULE_TYPE_FUNCTION = Authority.MODULETYPE_FUNCTION;
+	public static final String MODULE_TYPE_SYSTEM = "moduleType_system";
+	public static final String MODULE_TYPE_GROUP = "moduleType_group";
+	public static final String MODULE_TYPE_MODULE = "moduleType_module";
+	public static final String MODULE_TYPE_FUNCTION = "moduleType_function";
 	
 	/**
 	 * 获取树列表
@@ -66,8 +65,9 @@ public class ModuleController extends BaseController {
 				modelMap.put("pojos", modules);
 				return "moduleListJsonView";
 			} else if(MODULE_TYPE_MODULE.equals(moduleType)) {
+				Long mId = Long.parseLong(moduleId.substring(TREE_LIST_ID_PREFIX_MODULE.length()));
 				List<PropertyFilter> filters = new ArrayList<PropertyFilter>();
-				filters.add(new PropertyFilter("module.id", Long.parseLong(moduleId.substring(TREE_LIST_ID_PREFIX_MODULE.length())), PropertyCompareType.EQ, Function.class));
+				filters.add(new PropertyFilter("module.id", mId, PropertyCompareType.EQ, Function.class));
 				List<Function> functions = service.list(Function.class, filters, null);
 				modelMap.put("pojos", functions);
 				return "functionListJsonView";

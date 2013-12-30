@@ -30,18 +30,11 @@ public class FunctionListJsonView extends AbstractView {
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		List<Function> functions = (List<Function>)model.get("pojos");
-		
 		List<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
-		Map<String, Object> dataMap = new HashMap<String, Object>();
-		//默认增加查询功能菜单
-		dataMap.put("id", ModuleController.TREE_LIST_ID_PREFIX_FUNCTION + Function.DEFAULT_FUNCTIONID_LOAD);
-		dataMap.put("name", "查询");
-		dataMap.put("moduleType", ModuleController.MODULE_TYPE_FUNCTION);
-		dataMap.put("isParent", false);
-		dataList.add(dataMap);
+		Map<String, Object> dataMap = null;
 		for(Function function : functions) {
 			dataMap = new HashMap<String, Object>();
-			dataMap.put("id", ModuleController.TREE_LIST_ID_PREFIX_FUNCTION + function.getId());
+			dataMap.put("id", ModuleController.TREE_LIST_ID_PREFIX_FUNCTION + function.getAuthorityCode());
 			dataMap.put("name", function.getName());
 			dataMap.put("moduleType", ModuleController.MODULE_TYPE_FUNCTION);
 			dataMap.put("isParent", false);

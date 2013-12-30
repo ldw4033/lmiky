@@ -8,7 +8,7 @@
 				<url>/tiger/goods/list.shtml</url>
 				<type>link</type>
 				<modulePath>tiger/goods</modulePath>
-				<authority>load</authority>
+				<authority>tiger_goods_load</authority>
 			</submenu>
 		</leftmenu>
 	</topmenu>
@@ -20,7 +20,7 @@
 				<url>/capture/task/list.shtml</url>
 				<type>link</type>
 				<modulePath>capture/task</modulePath>
-				<authority>load</authority>
+				<authority>capture_task_load</authority>
 			</submenu>
 		</leftmenu>
 	</topmenu>
@@ -32,7 +32,7 @@
 				<url>/love/nation/list.shtml</url>
 				<type>link</type>
 				<modulePath>love/nation</modulePath>
-				<authority>load</authority>
+				<authority>love_nation_load</authority>
 			</submenu>
 			<submenu>
 				<id>love_faith_load</id>
@@ -40,7 +40,7 @@
 				<url>/love/faith/list.shtml</url>
 				<type>link</type>
 				<modulePath>love/faith</modulePath>
-				<authority>load</authority>
+				<authority>love_faith_load</authority>
 			</submenu>
 			<submenu>
 				<id>love_company_profession_load</id>
@@ -48,7 +48,7 @@
 				<url>/love/company/profession/list.shtml</url>
 				<type>link</type>
 				<modulePath>love/company/profession</modulePath>
-				<authority>load</authority>
+				<authority>love_company_profession_load</authority>
 			</submenu>
 			<submenu>
 				<id>love_job_position_load</id>
@@ -56,7 +56,7 @@
 				<url>/love/job/position/list.shtml</url>
 				<type>link</type>
 				<modulePath>love/job/position</modulePath>
-				<authority>load</authority>
+				<authority>love_job_position_load</authority>
 			</submenu>
 		</leftmenu>
 	</topmenu>
@@ -68,7 +68,7 @@
 				<url>/user/list.shtml</url>
 				<type>link</type>
 				<modulePath>jdp/user/user</modulePath>
-				<authority>load</authority>
+				<authority>jdp_user_user_load</authority>
 			</submenu>
 			<submenu>
 				<id>jdp_user_role_load</id>
@@ -76,7 +76,7 @@
 				<url>/role/list.shtml</url>
 				<type>link</type>
 				<modulePath>jdp/user/role</modulePath>
-				<authority>load</authority>
+				<authority>jdp_user_role_load</authority>
 			</submenu>
 			<submenu>
 				<id>jdp_user_user_modifyPassword</id>
@@ -92,7 +92,7 @@
 				<url>/authority/load.shtml</url>
 				<type>dialog</type>
 				<modulePath>jdp/authority</modulePath>
-				<authority>load</authority>
+				<authority>jdp_authority_load</authority>
 			</submenu>
 			<submenu>
 				<id>jdp_area_load</id>
@@ -100,7 +100,7 @@
 				<url>/area/load.shtml</url>
 				<type>dialog</type>
 				<modulePath>jdp/area</modulePath>
-				<authority>load</authority>
+				<authority>jdp_area_load</authority>
 			</submenu>
 		</leftmenu>
 	</topmenu>

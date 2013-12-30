@@ -1,5 +1,6 @@
 package com.lmiky.jdp.init.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -14,7 +15,6 @@ import com.lmiky.jdp.authority.pojo.Authority;
 import com.lmiky.jdp.init.parser.ModuleParser;
 import com.lmiky.jdp.init.service.InitService;
 import com.lmiky.jdp.module.pojo.Function;
-import com.lmiky.jdp.module.pojo.Module;
 import com.lmiky.jdp.module.pojo.ModuleGroup;
 import com.lmiky.jdp.service.impl.BaseServiceImpl;
 import com.lmiky.jdp.system.menu.pojo.LatelyOperateMenu;
@@ -66,21 +66,23 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 		delete(User.class);
 		save(user);
 
-		// 权限：拥有系统管理员的权限
-		Authority authority = new Authority();
-		authority.setFunctionId(new Integer(Function.DEFAULT_FUNCTIONID_ADMIN).longValue());
-		authority.setModuleId(Module.MODULE_ID_SYSTEM);
-		authority.setModuleType(Authority.MODULETYPE_SYSTEM);
-		authority.setOperator(role.getId());
-		authority.setOperatorType(Authority.OPERATORTYPE_ROLE);
-		delete(Authority.class);
-		save(authority);
-
 		// 模块
 		List<ModuleGroup> moduleGroups = moduleParser.parse();
 		delete(ModuleGroup.class);
 		save(moduleGroups);
 
+		// 权限：拥有系统管理员的权限
+		List<Function> functions = list(Function.class);
+		List<Authority> authorities = new ArrayList<Authority>();
+		Authority authority = null;
+		for (Function function : functions) {
+			authority = new Authority();
+			authority.setOperator(role.getId());
+			authority.setFunctionPath(function.getAuthorityCode());
+			authorities.add(authority);
+		}
+		delete(Authority.class);
+		save(authorities);
 	}
 
 	/**

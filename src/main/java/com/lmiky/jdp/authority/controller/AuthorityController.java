@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lmiky.jdp.authority.pojo.Authority;
 import com.lmiky.jdp.base.controller.BaseController;
-import com.lmiky.jdp.module.pojo.Function;
 import com.lmiky.jdp.module.pojo.ModuleGroup;
 import com.lmiky.jdp.session.model.SessionInfo;
 
@@ -25,6 +24,16 @@ import com.lmiky.jdp.session.model.SessionInfo;
 @Controller
 @RequestMapping("/authority")
 public class AuthorityController extends BaseController {
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode()
+	 */
+	@Override
+	protected String getLoadAuthorityCode() {
+		return "jdp_authority_authorize";
+	}
+
+
 	/**
 	 * @author lmiky
 	 * @date 2013-5-16
@@ -75,7 +84,7 @@ public class AuthorityController extends BaseController {
 			//检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
 			//检查权限
-			checkAuthority(modelMap, request, sessionInfo, getModule(modelMap, request), Function.DEFAULT_FUNCTIONID_LOAD);
+			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode());
 			String functionPath = request.getParameter("functionPath");
 			modelMap.put("functionPath", functionPath);
 			modelMap.put("authorizedList", authorityService.listAuthorizedOperator(functionPath));
@@ -103,7 +112,7 @@ public class AuthorityController extends BaseController {
 			//检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
 			//检查权限
-			checkAuthority(modelMap, request, sessionInfo, getModule(modelMap, request), "jdp_authority");
+			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode());
 			
 			String functionPath = request.getParameter("functionPath");
 			modelMap.put("functionPath", functionPath);

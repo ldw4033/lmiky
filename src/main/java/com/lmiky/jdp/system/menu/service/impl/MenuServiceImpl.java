@@ -14,10 +14,7 @@ import com.lmiky.jdp.cache.CacheFactory;
 import com.lmiky.jdp.cache.model.ObjectCache;
 import com.lmiky.jdp.cache.model.SimpleCacheData;
 import com.lmiky.jdp.constants.Constants;
-import com.lmiky.jdp.module.pojo.Function;
-import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.session.model.SessionInfo;
-import com.lmiky.jdp.session.service.SessionService;
 import com.lmiky.jdp.system.menu.model.LeftMenu;
 import com.lmiky.jdp.system.menu.model.SubMenu;
 import com.lmiky.jdp.system.menu.model.TopMenu;
@@ -38,8 +35,6 @@ public class MenuServiceImpl implements MenuService {
 	private String cacheName; // 缓存名称
 	private String menuConfigPath;
 	private AuthorityService authorityService;
-	private BaseService baseService;
-	private SessionService sessionService;
 	
 	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.system.menu.service.MenuService#init()
@@ -134,14 +129,8 @@ public class MenuServiceImpl implements MenuService {
 				for(SubMenu subMenu : leftMenu.getSubMenus()) {
 					if(!StringUtils.isBlank(subMenu.getAuthority())) {
 						//检查权限
-						if(Function.DEFAULT_AUTHORITYCODE_LOAD.equals(subMenu.getAuthority())) {
-							if(!WebUtils.checkAuthority(authorityService, sessionInfo, WebUtils.getModule(baseService, subMenu.getModulePath()), Function.DEFAULT_FUNCTIONID_LOAD)) {	//查询
-								continue;
-							}
-						} else {
-							if(!WebUtils.checkAuthority(baseService, authorityService, sessionInfo, WebUtils.getModule(baseService, subMenu.getModulePath()), subMenu.getAuthority())) {	//查询
-								continue;
-							}
+						if(!WebUtils.checkAuthority(authorityService, sessionInfo, subMenu.getAuthority())) {	//查询
+							continue;
 						}
 					}
 					subMenuList.add(subMenu);
@@ -166,10 +155,10 @@ public class MenuServiceImpl implements MenuService {
 	}
 	
 	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.system.menu.service.MenuService#getSubMenus(java.lang.String, com.lmiky.jdp.session.model.SessionInfo)
+	 * @see com.lmiky.jdp.system.menu.service.MenuService#getSubMenu(java.lang.String, com.lmiky.jdp.session.model.SessionInfo)
 	 */
 	@SuppressWarnings("unchecked")
-	public SubMenu getSubMenus(String subMenuId, SessionInfo sessionInfo) throws Exception {
+	public SubMenu getSubMenu(String subMenuId, SessionInfo sessionInfo) throws Exception {
 		SimpleCacheData<SubMenu> cacheData = (SimpleCacheData<SubMenu>)cache.get(CACHE_KEY_SUBMENU_PREFIX + subMenuId);
 		if(cacheData == null) {
 			return null;
@@ -177,14 +166,8 @@ public class MenuServiceImpl implements MenuService {
 		SubMenu subMenu = cacheData.getValue();
 		if(!StringUtils.isBlank(subMenu.getAuthority()) && sessionInfo != null) {
 			//检查权限
-			if(Function.DEFAULT_AUTHORITYCODE_LOAD.equals(subMenu.getAuthority())) {
-				if(!WebUtils.checkAuthority(authorityService, sessionInfo, WebUtils.getModule(baseService, subMenu.getModulePath()), Function.DEFAULT_FUNCTIONID_LOAD)) {	//查询
-					return null;
-				}
-			} else {
-				if(!WebUtils.checkAuthority(baseService, authorityService, sessionInfo, WebUtils.getModule(baseService, subMenu.getModulePath()), subMenu.getAuthority())) {	//查询
-					return null;
-				}
+			if(!WebUtils.checkAuthority(authorityService, sessionInfo, subMenu.getAuthority())) {	//查询
+				return null;
 			}
 		}
 		return subMenu;
@@ -216,34 +199,6 @@ public class MenuServiceImpl implements MenuService {
 	 */
 	public void setAuthorityService(AuthorityService authorityService) {
 		this.authorityService = authorityService;
-	}
-
-	/**
-	 * @return the baseService
-	 */
-	public BaseService getBaseService() {
-		return baseService;
-	}
-
-	/**
-	 * @param baseService the baseService to set
-	 */
-	public void setBaseService(BaseService baseService) {
-		this.baseService = baseService;
-	}
-
-	/**
-	 * @return the sessionService
-	 */
-	public SessionService getSessionService() {
-		return sessionService;
-	}
-
-	/**
-	 * @param sessionService the sessionService to set
-	 */
-	public void setSessionService(SessionService sessionService) {
-		this.sessionService = sessionService;
 	}
 
 	/**

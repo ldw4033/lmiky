@@ -22,6 +22,38 @@ import com.lmiky.jdp.util.HttpUtils;
 @RequestMapping("/capture/task")
 public class TaskController extends FormController<CaptureTask> {
 	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getAddAuthorityCode()
+	 */
+	@Override
+	protected String getAddAuthorityCode() {
+		return "capture_task_add";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getModifyAuthorityCode()
+	 */
+	@Override
+	protected String getModifyAuthorityCode() {
+		return "capture_task_modify";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getDeleteAuthorityCode()
+	 */
+	@Override
+	protected String getDeleteAuthorityCode() {
+		return "capture_task_delete";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode()
+	 */
+	@Override
+	protected String getLoadAuthorityCode() {
+		return "capture_task_load";
+	}
+	
 	/**
 	 * @author lmiky
 	 * @date 2013-11-12
@@ -49,7 +81,7 @@ public class TaskController extends FormController<CaptureTask> {
 	@RequestMapping("/load.shtml")
 	public String load(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,
 			@RequestParam(value = "id", required = false) Long id) throws Exception {
-		return executeLoad(modelMap, request, resopnse, id, "capture_task_add", "capture_task_modify");
+		return executeLoad(modelMap, request, resopnse, id);
 	}
 	
 	/**

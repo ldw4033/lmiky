@@ -17,14 +17,7 @@ import com.lmiky.jdp.database.pojo.BaseSortPojo;
 @Entity
 @Table(name="function")
 public class Function extends BaseSortPojo {
-	private static final long serialVersionUID = 8751708663250893520L;
-	//默认功能ID
-	public static final int DEFAULT_FUNCTIONID_ADMIN = -1;		//管理员
-	public static final int DEFAULT_FUNCTIONID_LOAD = -2;		//查询
-	
-	//默认功能编码
-	public static final String DEFAULT_AUTHORITYCODE_ADMIN = "admin";		//管理员
-	public static final String DEFAULT_AUTHORITYCODE_LOAD = "load";		//查询
+	private static final long serialVersionUID = 6905027190507202928L;
 	
 	private String name;
 	private Module module;

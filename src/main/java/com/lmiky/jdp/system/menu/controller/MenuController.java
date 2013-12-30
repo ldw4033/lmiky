@@ -65,7 +65,7 @@ public class MenuController extends BaseController {
 			List<String> subMenuIds = service.executeQuery("select distinct LatelyOperateMenu.menuId from LatelyOperateMenu LatelyOperateMenu where LatelyOperateMenu.userId = :userId order by LatelyOperateMenu.id desc", params, 0, latelyOperateMenuNum.intValue());
 			List<SubMenu> opeMenus = new ArrayList<SubMenu>();
 			for(String subMenuId : subMenuIds) {
-				SubMenu subMenu = menuService.getSubMenus(subMenuId, sessionInfo);
+				SubMenu subMenu = menuService.getSubMenu(subMenuId, sessionInfo);
 				if(subMenu != null) {
 					opeMenus.add(subMenu);
 				}
@@ -75,7 +75,7 @@ public class MenuController extends BaseController {
 			subMenuIds = service.executeQuery("select distinct MyFavoriteMenu.menuId from MyFavoriteMenu MyFavoriteMenu where MyFavoriteMenu.userId = :userId order by MyFavoriteMenu.id desc", params);
 			List<SubMenu> favoriteMenus = new ArrayList<SubMenu>();
 			for(String subMenuId : subMenuIds) {
-				SubMenu subMenu = menuService.getSubMenus(subMenuId, sessionInfo);
+				SubMenu subMenu = menuService.getSubMenu(subMenuId, sessionInfo);
 				if(subMenu != null) {
 					favoriteMenus.add(subMenu);
 				}

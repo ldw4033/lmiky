@@ -19,8 +19,6 @@ import com.lmiky.jdp.lock.exception.LockException;
 import com.lmiky.jdp.lock.service.LockService;
 import com.lmiky.jdp.logger.pojo.Logger;
 import com.lmiky.jdp.logger.util.LoggerUtils;
-import com.lmiky.jdp.module.pojo.Function;
-import com.lmiky.jdp.module.pojo.Module;
 import com.lmiky.jdp.service.exception.ServiceException;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.view.controller.ViewController;
@@ -50,6 +48,36 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	public static final String LOCK_TARGET_ID_KEY = "lockTargetId";
 	
 	private LockService lockService;
+	
+	/**
+	 * 获取增加权限值，如果返回值为空，表示不需要检查权限
+	 * @author lmiky
+	 * @date 2013-12-30
+	 * @return
+	 */
+	protected String getAddAuthorityCode() {
+		return "";
+	}
+	
+	/**
+	 * 获取修改权限值，如果返回值为空，表示不需要检查权限
+	 * @author lmiky
+	 * @date 2013-12-30
+	 * @return
+	 */
+	protected String getModifyAuthorityCode() {
+		return "";
+	}
+	
+	/**
+	 * 获取删除权限值，如果返回值为空，表示不需要检查权限
+	 * @author lmiky
+	 * @date 2013-12-30
+	 * @return
+	 */
+	protected String getDeleteAuthorityCode() {
+		return "";
+	}
 
 	/**
 	 * 加载
@@ -59,12 +87,10 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @param request
 	 * @param resopnse
 	 * @param id
-	 * @param addAuthorityCode
-	 * @param modifyAuthorityCode
 	 * @return
 	 * @throws Exception 
 	 */
-	public String executeLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Long id, String addAuthorityCode, String modifyAuthorityCode) throws Exception {
+	public String executeLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Long id) throws Exception {
 		try {
 			//判断是否有登陆
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
@@ -75,7 +101,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			//获取记录锁
 			if(OPEN_MODE_EDIT.equals(openMode)) {
 				//检查权限
-				checkAuthority(modelMap, request, sessionInfo, getModule(modelMap, request), modifyAuthorityCode);
+				checkAuthority(modelMap, request, sessionInfo, getModifyAuthorityCode());
 				try {
 					String lockTargetId = getLockTargetId(request, id);
 					lockService.lock(lockTargetId, sessionInfo.getUserId(), sessionInfo.getUserName());
@@ -90,10 +116,10 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 				}
 			} else if(OPEN_MODE_CTEATE.equals(openMode)) {
 				//检查权限
-				checkAuthority(modelMap, request, sessionInfo, getModule(modelMap, request), addAuthorityCode);
+				checkAuthority(modelMap, request, sessionInfo, getAddAuthorityCode());
 			} else {
 				//检查权限
-				checkAuthority(modelMap, request, sessionInfo, getModule(modelMap, request), Function.DEFAULT_FUNCTIONID_LOAD);
+				checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode());
 			}
 			//将打开方式设入页面
 			modelMap.put(HTTP_PARAM_FORM_OEPNMODE, openMode);
@@ -273,12 +299,10 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @param request
 	 * @param resopnse
 	 * @param id
-	 * @param addAuthorityCode
-	 * @param modifyAuthorityCode
 	 * @return
 	 * @throws Exception
 	 */
-	public String executeSave(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,  Long id, String addAuthorityCode, String modifyAuthorityCode) throws Exception {
+	public String executeSave(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,  Long id) throws Exception {
 		try {
 			//判断是否有登陆
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
@@ -292,7 +316,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			//检查记录锁
 			if(OPEN_MODE_EDIT.equals(openMode)) {
 				//检查权限
-				checkAuthority(modelMap, request, sessionInfo, getModule(modelMap, request), modifyAuthorityCode);
+				checkAuthority(modelMap, request, sessionInfo, getModifyAuthorityCode());
 				try {
 					String lockTargetId = getLockTargetId(request, id);
 					lockService.lock(lockTargetId, sessionInfo.getUserId(), sessionInfo.getUserName());
@@ -308,7 +332,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 				}
 			} else {
 				//检查权限
-				checkAuthority(modelMap, request, sessionInfo, getModule(modelMap, request), addAuthorityCode);
+				checkAuthority(modelMap, request, sessionInfo, getAddAuthorityCode());
 			}
 			//设置对象值
 			setPojoProperties(pojo, modelMap, request);
@@ -508,13 +532,11 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @param request
 	 * @param resopnse
 	 * @param id
-	 * @param deleteAuthorityCode
 	 * @return
 	 * @throws Exception
 	 */
-	public String executeDelete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,  Long id, String deleteAuthorityCode) throws Exception {
+	public String executeDelete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Long id) throws Exception {
 		try {
-			Module module = null;
 			//检查ID
 			if(id == null) {
 				putError(modelMap, "请选择要删除的记录！");
@@ -524,8 +546,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 				//检查单点登陆
 				checkSso(sessionInfo, modelMap, request);
 				//判断权限
-				module = getModule(modelMap, request);
-				checkAuthority(modelMap, request, sessionInfo, module, deleteAuthorityCode);
+				checkAuthority(modelMap, request, sessionInfo, getDeleteAuthorityCode());
 				boolean hasLock = true;
 				//检查记录锁
 				try {
@@ -548,7 +569,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 					logOpe(pojo, modelMap, request, sessionInfo, Logger.OPE_TYPE_DELETE);
 				}
 			}
-			return getExecuteDeleteRet(modelMap, request, resopnse, module.getPath());
+			return getExecuteDeleteRet(modelMap, request, resopnse);
 		} catch(Exception e) {
 			return transactException(e, modelMap, request, resopnse);
 		}
@@ -561,11 +582,10 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @param modelMap
 	 * @param request
 	 * @param resopnse
-	 * @param modulePath
 	 * @return
 	 * @throws Exception
 	 */
-	protected String getExecuteDeleteRet(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, String modulePath) throws Exception {
+	protected String getExecuteDeleteRet(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse) throws Exception {
 		return executeList(modelMap, request, resopnse);
 	}
 	
@@ -594,7 +614,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @return
 	 * @throws Exception
 	 */
-	public String executeBatchDelete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,  Long[] ids, String deleteAuthorityCode) throws Exception {
+	public String executeBatchDelete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,  Long[] ids) throws Exception {
 		try {
 			//检查ID
 			if(ids == null || ids.length == 0) {
@@ -605,7 +625,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 				//检查单点登陆
 				checkSso(sessionInfo, modelMap, request);
 				//判断权限
-				checkAuthority(modelMap, request, sessionInfo, getModule(modelMap, request), deleteAuthorityCode);
+				checkAuthority(modelMap, request, sessionInfo, getDeleteAuthorityCode());
 				boolean hasLock = true;
 				//检查记录锁
 				try {
@@ -628,6 +648,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 					}
 					//删除对象
 					batchDeletePojo(modelMap, request, pojos);
+					//TODO 考虑要不要执行“去掉加锁缓存数据”
 					putMessage(modelMap, "删除成功!");
 					//记录日志
 					for(T pojo : pojos) {

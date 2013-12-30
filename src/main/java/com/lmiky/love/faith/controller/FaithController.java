@@ -24,6 +24,38 @@ import com.lmiky.love.faith.pojo.Faith;
 @RequestMapping("/love/faith")
 public class FaithController extends FormController<Faith> {
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getAddAuthorityCode()
+	 */
+	@Override
+	protected String getAddAuthorityCode() {
+		return "love_faith_add";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getModifyAuthorityCode()
+	 */
+	@Override
+	protected String getModifyAuthorityCode() {
+		return "love_faith_modify";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getDeleteAuthorityCode()
+	 */
+	@Override
+	protected String getDeleteAuthorityCode() {
+		return "love_faith_delete";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode()
+	 */
+	@Override
+	protected String getLoadAuthorityCode() {
+		return "love_faith_load";
+	}
+	
 	/**
 	 * @author lmiky
 	 * @date 2013-10-24
@@ -51,7 +83,7 @@ public class FaithController extends FormController<Faith> {
 	@RequestMapping("/load.shtml")
 	public String load(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,
 			@RequestParam(value = "id", required = false) Long id) throws Exception {
-		return executeLoad(modelMap, request, resopnse, id, "jdp_user_user_add", "jdp_user_user_modify");
+		return executeLoad(modelMap, request, resopnse, id);
 	}
 
 	/**
@@ -67,7 +99,7 @@ public class FaithController extends FormController<Faith> {
 	@RequestMapping("/save.shtml")
 	public String save(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,
 			@RequestParam(value = "id", required = false) Long id) throws Exception {
-		return executeSave(modelMap, request, resopnse, id, "jdp_user_user_add", "jdp_user_user_modify");
+		return executeSave(modelMap, request, resopnse, id);
 	}
 
 	/* (non-Javadoc)
@@ -93,7 +125,7 @@ public class FaithController extends FormController<Faith> {
 	 */
 	@RequestMapping("/delete.shtml")
 	public String delete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, @RequestParam(value = "id", required = false) Long id) throws Exception {
-		return executeDelete(modelMap, request, resopnse, id, "jdp_user_user_delete");
+		return executeDelete(modelMap, request, resopnse, id);
 	}
 	
 	/**
@@ -109,7 +141,7 @@ public class FaithController extends FormController<Faith> {
 	 */
 	@RequestMapping("/batchDelete.shtml")
 	public String batchDelete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, @RequestParam(value = "batchDeleteId", required = false) Long[] ids) throws Exception {
-		return executeBatchDelete(modelMap, request, resopnse, ids, "jdp_user_user_delete");
+		return executeBatchDelete(modelMap, request, resopnse, ids);
 	}
 	
 }

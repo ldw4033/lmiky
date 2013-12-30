@@ -19,7 +19,6 @@ import com.lmiky.jdp.authority.exception.AuthorityException;
 import com.lmiky.jdp.authority.service.AuthorityService;
 import com.lmiky.jdp.constants.Constants;
 import com.lmiky.jdp.logger.util.LoggerUtils;
-import com.lmiky.jdp.module.pojo.Function;
 import com.lmiky.jdp.module.pojo.Module;
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.service.exception.ServiceException;
@@ -48,6 +47,16 @@ public abstract class BaseController {
 	protected AuthorityService authorityService;
 	private String viewType = PropertiesUtils.getStringContextValue("system.viewType");
 	protected String loginUrl = PropertiesUtils.getStringContextValue("system.loginUrl");
+	
+	/**
+	 * 获取加载权限值，如果返回值为空，表示不需要检查权限
+	 * @author lmiky
+	 * @date 2013-12-30
+	 * @return
+	 */
+	protected String getLoadAuthorityCode() {
+		return "";
+	}
 	
 	/**
 	 * 设入提示信息
@@ -100,7 +109,7 @@ public abstract class BaseController {
 			//检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
 			//检查权限
-			checkAuthority(modelMap, request, sessionInfo, getModule(modelMap, request), Function.DEFAULT_FUNCTIONID_LOAD);
+			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode());
 			Map<String, Object> loadParams = new HashMap<String, Object>();
 			setLoadPrams(modelMap, request, resopnse, loadParams);
 			return processLoad(modelMap, request, resopnse, loadParams);
@@ -273,31 +282,12 @@ public abstract class BaseController {
 	 * @param modelMap
 	 * @param request
 	 * @param sessionInfo
-	 * @param module
 	 * @param authorityCode
 	 * @throws ServiceException
 	 * @throws AuthorityException
 	 */
-	public void checkAuthority(ModelMap modelMap, HttpServletRequest request, SessionInfo sessionInfo, Module module, String authorityCode) throws ServiceException, AuthorityException {
-		if(!WebUtils.checkAuthority(service, authorityService, sessionInfo, module, authorityCode)) {
-			throw new AuthorityException("no authority");
-		}
-	}
-	
-	/**
-	 * 检查权限，如果没有权限，则抛出权限异常
-	 * @author lmiky
-	 * @date 2013-5-24
-	 * @param modelMap
-	 * @param request
-	 * @param sessionInfo
-	 * @param module
-	 * @param functionId
-	 * @throws ServiceException
-	 * @throws AuthorityException
-	 */
-	public void checkAuthority(ModelMap modelMap, HttpServletRequest request, SessionInfo sessionInfo, Module module, long functionId) throws ServiceException, AuthorityException {
-		if(!WebUtils.checkAuthority(authorityService, sessionInfo, module, functionId)) {
+	public void checkAuthority(ModelMap modelMap, HttpServletRequest request, SessionInfo sessionInfo, String authorityCode) throws ServiceException, AuthorityException {
+		if(!StringUtils.isBlank(authorityCode) && !WebUtils.checkAuthority(authorityService, sessionInfo, authorityCode)) {
 			throw new AuthorityException("no authority");
 		}
 	}

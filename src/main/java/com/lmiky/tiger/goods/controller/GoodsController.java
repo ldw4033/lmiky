@@ -28,6 +28,38 @@ import com.lmiky.tiger.goods.pojo.Goods;
 @RequestMapping("/tiger/goods")
 public class GoodsController extends TigerController<Goods> {
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getAddAuthorityCode()
+	 */
+	@Override
+	protected String getAddAuthorityCode() {
+		return "tiger_goods_add";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getModifyAuthorityCode()
+	 */
+	@Override
+	protected String getModifyAuthorityCode() {
+		return "tiger_goods_modify";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getDeleteAuthorityCode()
+	 */
+	@Override
+	protected String getDeleteAuthorityCode() {
+		return "tiger_goods_delete";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode()
+	 */
+	@Override
+	protected String getLoadAuthorityCode() {
+		return "tiger_goods_load";
+	}
+	
 	/**
 	 * @author lmiky
 	 * @date 2013-4-17
@@ -65,7 +97,7 @@ public class GoodsController extends TigerController<Goods> {
 	 */
 	@RequestMapping("/load.shtml")
 	public String load(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, @RequestParam(value = "id", required = false) Long id) throws Exception {
-		return executeLoad(modelMap, request, resopnse, id, "tiger_goods_add", "tiger_goods_modify");
+		return executeLoad(modelMap, request, resopnse, id);
 	}
 	
 	/* (non-Javadoc)
@@ -95,7 +127,7 @@ public class GoodsController extends TigerController<Goods> {
 	 */
 	@RequestMapping("/save.shtml")
 	public String save(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, @RequestParam(value = "id", required = false) Long id) throws Exception {
-		return executeSave(modelMap, request, resopnse, id, "tiger_goods_add", "tiger_goods_modify");
+		return executeSave(modelMap, request, resopnse, id);
 	}
 
 	/* (non-Javadoc)
@@ -135,7 +167,7 @@ public class GoodsController extends TigerController<Goods> {
 	 */
 	@RequestMapping("/delete.shtml")
 	public String delete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, @RequestParam(value = "id", required = false) Long id) throws Exception {
-		return executeDelete(modelMap, request, resopnse, id, "tiger_goods_delete");
+		return executeDelete(modelMap, request, resopnse, id);
 	}
 	
 	/**
@@ -151,6 +183,6 @@ public class GoodsController extends TigerController<Goods> {
 	 */
 	@RequestMapping("/batchDelete.shtml")
 	public String batchDelete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, @RequestParam(value = "batchDeleteId", required = false) Long[] ids) throws Exception {
-		return executeBatchDelete(modelMap, request, resopnse, ids, "tiger_goods_delete");
+		return executeBatchDelete(modelMap, request, resopnse, ids);
 	}
 }

@@ -25,6 +25,38 @@ import com.lmiky.jdp.form.util.ValidateUtils;
 @RequestMapping("/city")
 public class CityController extends FormController<City> {
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getAddAuthorityCode()
+	 */
+	@Override
+	protected String getAddAuthorityCode() {
+		return "jdp_area_manage";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getModifyAuthorityCode()
+	 */
+	@Override
+	protected String getModifyAuthorityCode() {
+		return "jdp_area_manage";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getDeleteAuthorityCode()
+	 */
+	@Override
+	protected String getDeleteAuthorityCode() {
+		return "jdp_area_manage";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode()
+	 */
+	@Override
+	protected String getLoadAuthorityCode() {
+		return "jdp_area_manage";
+	}
+	
 	/**
 	 * @author lmiky
 	 * @date 2013-10-24
@@ -37,7 +69,7 @@ public class CityController extends FormController<City> {
 	 */
 	@RequestMapping("/load.shtml")
 	public String load(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, @RequestParam(value = "id", required = false) Long id) throws Exception {
-		return executeLoad(modelMap, request, resopnse, id, "jdp_area_manage", "jdp_area_manage");
+		return executeLoad(modelMap, request, resopnse, id);
 	}
 	
 	/**
@@ -54,7 +86,7 @@ public class CityController extends FormController<City> {
 	public String save(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,
 			@RequestParam(value = "id", required = false) Long id) throws Exception {
 		modelMap.put("flag", "refresh");
-		return executeSave(modelMap, request, resopnse, id, "jdp_area_manage", "jdp_area_manage");
+		return executeSave(modelMap, request, resopnse, id);
 	}
 	
 	/* (non-Javadoc)
@@ -93,7 +125,7 @@ public class CityController extends FormController<City> {
 	@RequestMapping("/delete.shtml")
 	public String delete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, @RequestParam(value = "id", required = false) Long id) throws Exception {
 		modelMap.put("flag", "refresh");
-		executeDelete(modelMap, request, resopnse, id, "jdp_area_manage");
-		return executeLoad(modelMap, request, resopnse, null, "jdp_area_manage", "jdp_area_manage");
+		executeDelete(modelMap, request, resopnse, id);
+		return executeLoad(modelMap, request, resopnse, null);
 	}
 }

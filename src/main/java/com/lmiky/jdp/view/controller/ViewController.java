@@ -18,7 +18,6 @@ import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.database.pojo.BasePojo;
 import com.lmiky.jdp.database.util.PropertyFilterUtils;
 import com.lmiky.jdp.database.util.SortUtils;
-import com.lmiky.jdp.module.pojo.Function;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.web.page.model.Page;
 import com.lmiky.jdp.web.page.service.PageService;
@@ -57,7 +56,7 @@ public abstract class ViewController<T extends BasePojo> extends BaseController 
 			//检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
 			//检查权限
-			checkAuthority(modelMap, request, sessionInfo, getModule(modelMap, request), Function.DEFAULT_FUNCTIONID_LOAD);
+			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode());
 			//生成分页信息
 			Page<T> page = generatePage(modelMap, request);
 			resetPage(page, modelMap, request);

@@ -20,8 +20,10 @@ import com.lmiky.jdp.database.pojo.BasePojo;
 @Entity
 @Table(name="module_group")
 public class ModuleGroup extends BasePojo {
-	private static final long serialVersionUID = 1705712097333979440L;
+	private static final long serialVersionUID = -1308605978031590177L;
+	
 	private String name;
+	private String path;
 	private Set<Module> modules;
 
 	/**
@@ -37,6 +39,21 @@ public class ModuleGroup extends BasePojo {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	/**
+	 * @return the path
+	 */
+	@Column(name="path")
+	public String getPath() {
+		return path;
+	}
+
+	/**
+	 * @param path the path to set
+	 */
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 	/**

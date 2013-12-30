@@ -39,5 +39,5 @@ public interface MenuService {
 	 * @return
 	 * @throws Exception
 	 */
-	public SubMenu getSubMenus(String subMenuId, SessionInfo sessionInfo) throws Exception;
+	public SubMenu getSubMenu(String subMenuId, SessionInfo sessionInfo) throws Exception;
 }

@@ -31,6 +31,14 @@ public class AreaController extends BaseController {
 	public static final String AREA_TYPE_PROVINCE = "province";
 	public static final String AREA_TYPE_CITY = "city";
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode()
+	 */
+	@Override
+	protected String getLoadAuthorityCode() {
+		return "jdp_area_manage";
+	}
+	
 	/**
 	 * 加载
 	 * @author lmiky
