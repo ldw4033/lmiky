@@ -14,49 +14,44 @@ import com.lmiky.jdp.user.pojo.Role;
 public interface AuthorityService {
 
 	/**
-	 * 获取已授权角色
+	 * 获取已授权操作员
 	 * @author lmiky
 	 * @date 2013-5-20
-	 * @param moduleType	模块类别，详情值参考com.lmiky.jdp.authority.pojo.Authority的模块类别说明
-	 * @param moduleId	模块ID
-	 * @param functionId	功能ID
+	 * @param functionPath	功能路径
 	 * @return
 	 * @throws ServiceException
 	 */
-	public List<Role> listAuthorizedRole(String moduleType, Long moduleId, Long functionId) throws ServiceException;
+	public List<Role> listAuthorizedOperator(String functionPath) throws ServiceException;
 
 	/**
-	 * 获取未授权角色
+	 * 获取未授权操作员
 	 * @author lmiky
 	 * @date 2013-5-20
-	 * @param moduleType	模块类别，详情值参考com.lmiky.jdp.authority.pojo.Authority的模块类别说明
-	 * @param moduleId	模块ID
-	 * @param functionId	功能ID
+	 * @param functionPath	功能路径
 	 * @return
 	 * @throws ServiceException
 	 */
-	public List<Role> listUnauthorizedRole(String moduleType, Long moduleId, Long functionId) throws ServiceException;
+	public List<Role> listUnauthorizedOperator(String functionPath) throws ServiceException;
 	
 	/**
-	 * 保存授权列表
+	 * 授权
 	 * @author lmiky
-	 * @date 2013-5-20
+	 * @date 2013-12-29
+	 * @param functionPath 功能路径
 	 * @param authorities
 	 * @throws ServiceException
 	 */
-	public void save(List<Authority> authorities) throws ServiceException;
+	public void authorize(String functionPath, List<Authority> authorities) throws ServiceException;
 	
 	/**
 	 * 检查是否拥有权限
 	 * @author lmiky
 	 * @date 2013-5-24
-	 * @param moduleGroupId 模块组ID
-	 * @param moduleId	模块ID
-	 * @param functionId 方法ID
+	 * @param functionPath	功能路径
 	 * @param userId 用户ID
 	 * @return
 	 * @throws ServiceException
 	 */
-	public boolean checkAuthority(Long moduleGroupId, Long moduleId, Long functionId, Long userId) throws ServiceException;
+	public boolean checkAuthority(String functionPath, Long userId) throws ServiceException;
 
 }

@@ -95,7 +95,7 @@ public class UserController extends FormController<User> {
 			modelMap.put("noUserRoles", userService.listNoUserRoles(pojo.getId()));
 		} else if(OPEN_MODE_CTEATE.equals(openMode)) {
 			List<Sort> sorts = new ArrayList<Sort>();
-			sorts.add(new Sort("name", Sort.SORT_TYPE_ASC, User.class));
+			sorts.add(new Sort("name", Sort.SORT_TYPE_ASC, Role.class));
 			modelMap.put("noUserRoles", userService.list(Role.class, null, sorts));
 		}
 	}

@@ -7,7 +7,6 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -82,10 +81,6 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 		delete(ModuleGroup.class);
 		save(moduleGroups);
 
-	}
-
-	@Transactional(rollbackFor = { Exception.class })
-	public void updateModule() throws Exception {
 	}
 
 	/**

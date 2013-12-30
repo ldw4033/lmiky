@@ -146,13 +146,20 @@ public class MenuServiceImpl implements MenuService {
 					}
 					subMenuList.add(subMenu);
 				}
-				leftMenu.setSubMenus(subMenuList);
 				if(!subMenuList.isEmpty()) {
-					leftMenuList.add(leftMenu);
+					LeftMenu lm = new LeftMenu();
+					lm.setId(leftMenu.getId());
+					lm.setLabel(leftMenu.getLabel());
+					lm.setSubMenus(subMenuList);
+					leftMenuList.add(lm);
 				}
 			}
 			if(!leftMenuList.isEmpty()) {
-				topMenuList.add(topMenu);
+				TopMenu tm = new TopMenu();
+				tm.setId(topMenu.getId());
+				tm.setLabel(topMenu.getLabel());
+				tm.setLeftMenus(leftMenuList);
+				topMenuList.add(tm);
 			}
 		}
 		return topMenuList;

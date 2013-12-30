@@ -14,21 +14,10 @@ import com.lmiky.jdp.database.pojo.BasePojo;
 @Entity
 @Table(name="authority")
 public class Authority extends BasePojo {
-	private static final long serialVersionUID = 3538567387722410381L;
-	//操作员类别
-	public static final String OPERATORTYPE_ROLE = "role";							//角色
-	
-	//模块类别
-	public static final String MODULETYPE_SYSTEM= "system";			//系统
-	public static final String MODULETYPE_GROUP= "group";			//模块组
-	public static final String MODULETYPE_MODULE = "module";		//模块
-	public static final String MODULETYPE_FUNCTION = "function";	//功能
+	private static final long serialVersionUID = 7444847264582278124L;
 	
 	private Long operator;
-	private String operatorType;
-	private Long moduleId;
-	private String moduleType;
-	private Long functionId;
+	private String functionPath;
 	
 	/**
 	 * @return the operator
@@ -44,55 +33,16 @@ public class Authority extends BasePojo {
 		this.operator = operator;
 	}
 	/**
-	 * @return the operatorType
+	 * @return the functionPath
 	 */
-	@Column(name="operatorType")
-	public String getOperatorType() {
-		return operatorType;
+	@Column(name="function_path")
+	public String getFunctionPath() {
+		return functionPath;
 	}
 	/**
-	 * @param operatorType the operatorType to set
+	 * @param functionPath the functionPath to set
 	 */
-	public void setOperatorType(String operatorType) {
-		this.operatorType = operatorType;
-	}
-	/**
-	 * @return the moduleId
-	 */
-	@Column(name="moduleId")
-	public Long getModuleId() {
-		return moduleId;
-	}
-	/**
-	 * @param moduleId the moduleId to set
-	 */
-	public void setModuleId(Long moduleId) {
-		this.moduleId = moduleId;
-	}
-	/**
-	 * @return the moduleType
-	 */
-	@Column(name="moduleType")
-	public String getModuleType() {
-		return moduleType;
-	}
-	/**
-	 * @param moduleType the moduleType to set
-	 */
-	public void setModuleType(String moduleType) {
-		this.moduleType = moduleType;
-	}
-	/**
-	 * @return the functionId
-	 */
-	@Column(name="functionId")
-	public Long getFunctionId() {
-		return functionId;
-	}
-	/**
-	 * @param functionId the functionId to set
-	 */
-	public void setFunctionId(Long functionId) {
-		this.functionId = functionId;
+	public void setFunctionPath(String functionPath) {
+		this.functionPath = functionPath;
 	}
 }
