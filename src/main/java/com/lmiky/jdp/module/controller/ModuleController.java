@@ -31,12 +31,6 @@ public class ModuleController extends BaseController {
 	public static final String TREE_LIST_ID_PREFIX_MODULE = "m_";
 	public static final String TREE_LIST_ID_PREFIX_FUNCTION = "f_";
 	
-	//模块类别
-	public static final String MODULE_TYPE_SYSTEM = "moduleType_system";
-	public static final String MODULE_TYPE_GROUP = "moduleType_group";
-	public static final String MODULE_TYPE_MODULE = "moduleType_module";
-	public static final String MODULE_TYPE_FUNCTION = "moduleType_function";
-	
 	/**
 	 * 获取树列表
 	 * @author lmiky
@@ -58,13 +52,13 @@ public class ModuleController extends BaseController {
 			//获取类别
 			String moduleType = request.getParameter("moduleType");
 			String moduleId = request.getParameter("id");
-			if(MODULE_TYPE_GROUP.equals(moduleType)) {
+			if(Module.MODULE_TYPE_GROUP.equals(moduleType)) {
 				List<PropertyFilter> filters = new ArrayList<PropertyFilter>();
 				filters.add(new PropertyFilter("group.id", Long.parseLong(moduleId.substring(TREE_LIST_ID_PREFIX_GROUP.length())), PropertyCompareType.EQ, Module.class));
 				List<Module> modules = service.list(Module.class, filters, null);
 				modelMap.put("pojos", modules);
 				return "moduleListJsonView";
-			} else if(MODULE_TYPE_MODULE.equals(moduleType)) {
+			} else if(Module.MODULE_TYPE_MODULE.equals(moduleType)) {
 				Long mId = Long.parseLong(moduleId.substring(TREE_LIST_ID_PREFIX_MODULE.length()));
 				List<PropertyFilter> filters = new ArrayList<PropertyFilter>();
 				filters.add(new PropertyFilter("module.id", mId, PropertyCompareType.EQ, Function.class));

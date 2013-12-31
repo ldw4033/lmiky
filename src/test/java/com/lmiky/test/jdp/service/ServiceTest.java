@@ -14,6 +14,7 @@ import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.module.pojo.Module;
+import com.lmiky.jdp.module.pojo.ModuleGroup;
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.service.exception.ServiceException;
 import com.lmiky.test.BaseTest;
@@ -185,6 +186,11 @@ public class ServiceTest extends BaseTest {
 			ids[i] = (long) (i+1);
 		}
 		baseService.delete(Goods.class, ids);
+	}
+	
+	@Test
+	public void testDeleteCascade() throws ServiceException {
+		baseService.delete(ModuleGroup.class);
 	}
 	
 	@Test

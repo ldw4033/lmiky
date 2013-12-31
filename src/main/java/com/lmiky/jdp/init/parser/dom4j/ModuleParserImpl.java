@@ -43,6 +43,7 @@ public class ModuleParserImpl implements ModuleParser {
 				Element moduleGroupElement = (Element) groups.next();
 				ModuleGroup moduleGroup = new ModuleGroup();
 				moduleGroup.setName(moduleGroupElement.attributeValue("name"));
+				moduleGroup.setPath(moduleGroupElement.attributeValue("path"));
 				Set<Module> modules = new HashSet<Module>();
 				moduleGroup.setModules(modules);
 				//模块

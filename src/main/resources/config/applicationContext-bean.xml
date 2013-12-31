@@ -29,9 +29,7 @@
 	<!-- 菜单业务 -->
 	<bean id="menuService" class="com.lmiky.jdp.system.menu.service.impl.MenuServiceImpl" init-method="init">
 		<property name="menuConfigPath" value="config/menu.xml"/> <!-- 配置文件路径 -->
-		<property name="baseService" ref="baseService" />
 		<property name="authorityService" ref="authorityService" />
-		<property name="sessionService" ref="sessionService" />
 		<property name="cacheFactory" ref="ehCacheFactory"/>
 		<property name="cacheName" value="menuCache"/>
 	</bean>

@@ -20,66 +20,78 @@ import com.lmiky.jdp.database.pojo.BasePojo;
  * @date 2013-5-12
  */
 @Entity
-@Table(name="module")
+@Table(name = "module")
 public class Module extends BasePojo {
-	private static final long serialVersionUID = 4577156136611973962L;
+	private static final long serialVersionUID = -3173260146797921645L;
 
-	//系统ID
-	public static final Long MODULE_ID_SYSTEM = 0l;
-	
+	public static final String MODULE_PATH_SYSTEM = "system";
+
+	// 模块类别
+	public static final String MODULE_TYPE_SYSTEM = "moduleType_system";
+	public static final String MODULE_TYPE_GROUP = "moduleType_group";
+	public static final String MODULE_TYPE_MODULE = "moduleType_module";
+	public static final String MODULE_TYPE_FUNCTION = "moduleType_function";
+
 	private String name;
 	private String path;
 	private ModuleGroup group;
 	private Set<Function> functions;
-	
+
 	/**
 	 * @return the name
 	 */
-	@Column(name="name")
+	@Column(name = "name")
 	public String getName() {
 		return name;
 	}
+
 	/**
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	/**
 	 * @return the path
 	 */
-	@Column(name="path")
+	@Column(name = "path")
 	public String getPath() {
 		return path;
 	}
+
 	/**
 	 * @param path the path to set
 	 */
 	public void setPath(String path) {
 		this.path = path;
 	}
+
 	/**
 	 * @return the group
 	 */
-	@ManyToOne(fetch=FetchType.LAZY)  
-    @JoinColumn(name="groupId", updatable = false) 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "groupId", updatable = false)
 	public ModuleGroup getGroup() {
 		return group;
 	}
+
 	/**
 	 * @param group the group to set
 	 */
 	public void setGroup(ModuleGroup group) {
 		this.group = group;
 	}
+
 	/**
 	 * @return the functions
 	 */
-	@OneToMany(mappedBy="module", fetch=FetchType.LAZY, cascade={CascadeType.ALL})
+	@OneToMany(mappedBy = "module", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@OrderBy("sort asc, id asc")
 	public Set<Function> getFunctions() {
 		return functions;
 	}
+
 	/**
 	 * @param functions the functions to set
 	 */

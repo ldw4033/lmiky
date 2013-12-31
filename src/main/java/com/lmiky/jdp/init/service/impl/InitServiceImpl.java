@@ -1,6 +1,5 @@
 package com.lmiky.jdp.init.service.impl;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -12,9 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lmiky.jdp.authority.pojo.Authority;
+import com.lmiky.jdp.authority.service.AuthorityService;
 import com.lmiky.jdp.init.parser.ModuleParser;
 import com.lmiky.jdp.init.service.InitService;
 import com.lmiky.jdp.module.pojo.Function;
+import com.lmiky.jdp.module.pojo.Module;
 import com.lmiky.jdp.module.pojo.ModuleGroup;
 import com.lmiky.jdp.service.impl.BaseServiceImpl;
 import com.lmiky.jdp.system.menu.pojo.LatelyOperateMenu;
@@ -33,6 +34,7 @@ import com.lmiky.jdp.util.Encoder;
 public class InitServiceImpl extends BaseServiceImpl implements InitService {
 	private ModuleParser moduleParser;
 	private MenuService menuService;
+	private AuthorityService authorityService;
 
 	/*
 	 * (non-Javadoc)
@@ -68,21 +70,14 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 
 		// 模块
 		List<ModuleGroup> moduleGroups = moduleParser.parse();
+		delete(Function.class);
+		delete(Module.class);
 		delete(ModuleGroup.class);
 		save(moduleGroups);
 
 		// 权限：拥有系统管理员的权限
-		List<Function> functions = list(Function.class);
-		List<Authority> authorities = new ArrayList<Authority>();
-		Authority authority = null;
-		for (Function function : functions) {
-			authority = new Authority();
-			authority.setOperator(role.getId());
-			authority.setFunctionPath(function.getAuthorityCode());
-			authorities.add(authority);
-		}
 		delete(Authority.class);
-		save(authorities);
+		authorityService.authorize(Module.MODULE_PATH_SYSTEM, Module.MODULE_TYPE_SYSTEM, new String[]{role.getId() + ""});
 	}
 
 	/**
@@ -113,5 +108,20 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 	@Resource(name = "menuService")
 	public void setMenuService(MenuService menuService) {
 		this.menuService = menuService;
+	}
+
+	/**
+	 * @return the authorityService
+	 */
+	public AuthorityService getAuthorityService() {
+		return authorityService;
+	}
+
+	/**
+	 * @param authorityService the authorityService to set
+	 */
+	@Resource(name = "authorityService")
+	public void setAuthorityService(AuthorityService authorityService) {
+		this.authorityService = authorityService;
 	}
 }

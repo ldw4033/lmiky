@@ -17,7 +17,7 @@ public class AuthorityServiceTest extends BaseTest {
 	@Test
 	public void testCheckAuthority() {
 		try {
-			System.out.println(authorityService.checkAuthority(1l, 1l, -2l, 1l));
+			System.out.println(authorityService.checkAuthority("jdp_authorize", 1l));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

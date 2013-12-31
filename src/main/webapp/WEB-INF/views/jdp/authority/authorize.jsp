@@ -24,9 +24,6 @@
 	<%@ include file="/jdp/common/messageAlter.jsp" %>
 	<form id="mainForm" action="<c:url value="/authority/authorize.shtml"/>" method="post">
 			<input type="hidden" name="moduleType" value="${moduleType }"/>
-			<input type="hidden" name="moduleId" value="${moduleId }"/>
-			<input type="hidden" name="functionId" value="${functionId }"/>
-			<input type="hidden" name="operatorType" value="${operatorType }"/>
 			<input type="hidden" name="modulePath" value="${param.modulePath }"/>
 			<span id="groupSpan" style="display: none;">
 				<c:forEach items="${authorizedList }" var="authorizedUser" varStatus="status">

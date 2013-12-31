@@ -14,10 +14,11 @@ import com.lmiky.jdp.database.pojo.BasePojo;
 @Entity
 @Table(name="authority")
 public class Authority extends BasePojo {
-	private static final long serialVersionUID = 7444847264582278124L;
+	private static final long serialVersionUID = -3394086011235457556L;
 	
 	private Long operator;
-	private String functionPath;
+	private String modulePath;
+	private String authorityCode;
 	
 	/**
 	 * @return the operator
@@ -33,16 +34,29 @@ public class Authority extends BasePojo {
 		this.operator = operator;
 	}
 	/**
-	 * @return the functionPath
+	 * @return the modulePath
 	 */
-	@Column(name="function_path")
-	public String getFunctionPath() {
-		return functionPath;
+	@Column(name="module_path")
+	public String getModulePath() {
+		return modulePath;
 	}
 	/**
-	 * @param functionPath the functionPath to set
+	 * @param modulePath the modulePath to set
 	 */
-	public void setFunctionPath(String functionPath) {
-		this.functionPath = functionPath;
+	public void setModulePath(String modulePath) {
+		this.modulePath = modulePath;
+	}
+	/**
+	 * @return the authorityCode
+	 */
+	@Column(name="authority_code")
+	public String getAuthorityCode() {
+		return authorityCode;
+	}
+	/**
+	 * @param authorityCode the authorityCode to set
+	 */
+	public void setAuthorityCode(String authorityCode) {
+		this.authorityCode = authorityCode;
 	}
 }

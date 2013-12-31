@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.AbstractView;
 import com.lmiky.jdp.json.util.JsonUtils;
 import com.lmiky.jdp.module.controller.ModuleController;
 import com.lmiky.jdp.module.pojo.Function;
+import com.lmiky.jdp.module.pojo.Module;
 
 /**
  * 模块列表
@@ -36,7 +37,8 @@ public class FunctionListJsonView extends AbstractView {
 			dataMap = new HashMap<String, Object>();
 			dataMap.put("id", ModuleController.TREE_LIST_ID_PREFIX_FUNCTION + function.getAuthorityCode());
 			dataMap.put("name", function.getName());
-			dataMap.put("moduleType", ModuleController.MODULE_TYPE_FUNCTION);
+			dataMap.put("moduleType", Module.MODULE_TYPE_FUNCTION);
+			dataMap.put("modulePath", function.getAuthorityCode());
 			dataMap.put("isParent", false);
 			dataList.add(dataMap);
 		}

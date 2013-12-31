@@ -1,6 +1,5 @@
 package com.lmiky.jdp.authority.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.lmiky.jdp.authority.pojo.Authority;
 import com.lmiky.jdp.base.controller.BaseController;
 import com.lmiky.jdp.module.pojo.ModuleGroup;
 import com.lmiky.jdp.session.model.SessionInfo;
@@ -85,10 +83,10 @@ public class AuthorityController extends BaseController {
 			checkSso(sessionInfo, modelMap, request);
 			//检查权限
 			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode());
-			String functionPath = request.getParameter("functionPath");
-			modelMap.put("functionPath", functionPath);
-			modelMap.put("authorizedList", authorityService.listAuthorizedOperator(functionPath));
-			modelMap.put("unauthorizedList", authorityService.listUnauthorizedOperator(functionPath));
+			String modulePath = request.getParameter("modulePath");
+			modelMap.put("modulePath", modulePath);
+			modelMap.put("authorizedList", authorityService.listAuthorizedOperator(modulePath));
+			modelMap.put("unauthorizedList", authorityService.listUnauthorizedOperator(modulePath));
 			return "jdp/authority/authorize";
 		} catch(Exception e) {
 			return transactException(e, modelMap, request, resopnse);
@@ -114,23 +112,18 @@ public class AuthorityController extends BaseController {
 			//检查权限
 			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode());
 			
-			String functionPath = request.getParameter("functionPath");
-			modelMap.put("functionPath", functionPath);
+			String modulePath = request.getParameter("modulePath");
+			String moduleType = request.getParameter("moduleType");
 			
 			String[] selectOperators = request.getParameterValues("selectedOperators");
-			List<Authority> authorities = new ArrayList<Authority>();
-			if(selectOperators != null && selectOperators.length > 0) {
-				for(String operatorId : selectOperators) {
-					Authority authority = new Authority();
-					authority.setOperator(Long.parseLong(operatorId));
-					authority.setFunctionPath(functionPath);
-					authorities.add(authority);
-				}
-			}
-			authorityService.authorize(functionPath, authorities);
+			authorityService.authorize(modulePath, moduleType, selectOperators);
 			
-			modelMap.put("authorizedList", authorityService.listAuthorizedOperator(functionPath));
-			modelMap.put("unauthorizedList", authorityService.listUnauthorizedOperator(functionPath));
+			//重新获取操作员列表
+			modelMap.put("authorizedList", authorityService.listAuthorizedOperator(modulePath));
+			modelMap.put("unauthorizedList", authorityService.listUnauthorizedOperator(modulePath));
+
+			modelMap.put("modulePath", modulePath);
+			modelMap.put("moduleType", moduleType);
 			
 			putMessage(modelMap, "保存成功!");
 			return "jdp/authority/authorize";

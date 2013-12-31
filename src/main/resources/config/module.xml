@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- path不能用system -->
 <moduleGroups>
-	<moduleGroup name="系统功能">
+	<moduleGroup name="系统配置" path="config">
 		<module name="用户管理" path="jdp/user/user">
 		    <function name="查询" authorityCode="jdp_user_user_load" sort="0"/>
 			<function name="添加" authorityCode="jdp_user_user_add" sort="1"/>
@@ -20,7 +21,7 @@
 			<function name="管理" authorityCode="jdp_area_manage" sort="0"/>
 		</module>
 	</moduleGroup>
-	<moduleGroup name="网络商城">
+	<moduleGroup name="网络商城" path="mall">
 		<module name="商品管理" path="tiger/goods">
 		    <function name="查询" authorityCode="tiger_goods_load" sort="0"/>
 			<function name="添加" authorityCode="tiger_goods_add" sort="1"/>
@@ -28,7 +29,7 @@
 			<function name="删除" authorityCode="tiger_goods_delete" sort="3"/>
 		</module>
 	</moduleGroup>
-	<moduleGroup name="抓取">
+	<moduleGroup name="抓取" path="capture">
 		<module name="抓取任务管理" path="capture/task">
 		    <function name="查询" authorityCode="capture_task_load" sort="0"/>
 			<function name="添加" authorityCode="capture_task_add" sort="1"/>
@@ -36,7 +37,7 @@
 			<function name="删除" authorityCode="capture_task_delete" sort="3"/>
 		</module>
 	</moduleGroup>
-	<moduleGroup name="情缘">
+	<moduleGroup name="情缘" path="love">
 		<module name="民族管理" path="love/nation">
 		    <function name="查询" authorityCode="love_nation_load" sort="0"/>
 			<function name="添加" authorityCode="love_nation_add" sort="1"/>

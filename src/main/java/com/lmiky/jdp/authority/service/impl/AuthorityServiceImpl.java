@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lmiky.jdp.authority.pojo.Authority;
-import com.lmiky.jdp.authority.pojo.AuthorityConfig;
 import com.lmiky.jdp.authority.service.AuthorityService;
 import com.lmiky.jdp.database.dao.BaseDAO;
 import com.lmiky.jdp.database.exception.DatabaseException;
 import com.lmiky.jdp.module.pojo.Function;
+import com.lmiky.jdp.module.service.ModuleService;
 import com.lmiky.jdp.service.exception.ServiceException;
 import com.lmiky.jdp.user.pojo.Role;
 
@@ -23,16 +23,17 @@ import com.lmiky.jdp.user.pojo.Role;
  */
 @Service("authorityService")
 public class AuthorityServiceImpl implements AuthorityService {
-	private BaseDAO baseDAO;
+	private BaseDAO baseDAO; 
+	private ModuleService moduleService;
 
 	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.authority.service.AuthorityService#listAuthorizedOperator(java.lang.String)
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<Role> listAuthorizedOperator(String authorityCode) throws ServiceException {
+	public List<Role> listAuthorizedOperator(String modulePath) throws ServiceException {
 		try {
-			String hql = "from Role Role where exists (select 1 from Authority Authority where Authority.authorityCode = '" + authorityCode
+			String hql = "select distinct Role from Role Role where exists (select 1 from Authority Authority where Authority.modulePath = '" + modulePath
 					+ "' and Authority.operator = Role.id)";
 			return baseDAO.list(hql);
 		} catch (Exception e) {
@@ -45,9 +46,9 @@ public class AuthorityServiceImpl implements AuthorityService {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<Role> listUnauthorizedOperator(String authorityCode) throws ServiceException {
+	public List<Role> listUnauthorizedOperator(String modulePath) throws ServiceException {
 		try {
-			String hql = "from Role Role where not exists (select 1 from Authority Authority where Authority.authorityCode = '" + authorityCode
+			String hql = "select distinct Role from Role Role where not exists (select 1 from Authority Authority where Authority.modulePath = '" + modulePath
 					+ "' and Authority.operator = Role.id)";
 			return baseDAO.list(hql);
 		} catch (Exception e) {
@@ -56,99 +57,39 @@ public class AuthorityServiceImpl implements AuthorityService {
 	}
 	
 	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.authority.service.AuthorityService#listAuthorizedOperator(java.lang.String, java.lang.String)
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public List<Role> listAuthorizedOperator(String moduleType, String moduleCode) throws ServiceException {
-		try {
-			String hql = "from Role Role where exists (select 1 from AuthorityConfig AuthorityConfig where AuthorityConfig.moduleType = '" + moduleType + "' and AuthorityConfig.moduleCode='" + moduleCode
-					+ "' and AuthorityConfig.operator = Role.id)";
-			return baseDAO.list(hql);
-		} catch (Exception e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-
-	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.authority.service.AuthorityService#listUnauthorizedOperator(java.lang.String, java.lang.String)
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public List<Role> listUnauthorizedOperator(String moduleType, String moduleCode) throws ServiceException {
-		try {
-			String hql = "from Role Role where not exists (select 1 from AuthorityConfig AuthorityConfig where AuthorityConfig.moduleType = '" + moduleType + "' and AuthorityConfig.moduleCode='" + moduleCode
-					+ "' and AuthorityConfig.operator = Role.id)";
-			return baseDAO.list(hql);
-		} catch (Exception e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-
-	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.authority.service.AuthorityService#authorize(java.lang.String, java.util.List)
 	 */
 	@Override
 	@Transactional(rollbackFor = { Exception.class })
-	public void authorize(String authorityCode, List<Authority> authorities) throws ServiceException {
+	public void authorize(String modulePath, String moduleType, String[] operatorIds) throws ServiceException {
 		try {
 			// 删除旧的数据
-			String hql = "delete from Authority Authority  where Authority.authorityCode = '" + authorityCode + "'";
+			String hql = "delete from Authority Authority  where Authority.modulePath = '" + modulePath + "'";
 			baseDAO.delete(hql);
-			if (authorities == null || authorities.isEmpty()) {
+			if (operatorIds == null || operatorIds.length == 0) {
 				return;
 			}
-			for (Authority a : authorities) {
-				baseDAO.save(a);
+			//获取所包含的功能列表
+			List<Function> functions = moduleService.listFunctionByModulePath(modulePath, moduleType);
+			if(functions.size() > 0) {
+				List<Authority> authorities = new ArrayList<Authority>();
+				Authority authority = null;
+				for (String idStr: operatorIds) {
+					for(Function function : functions) {
+						authority = new Authority();
+						authority.setAuthorityCode(function.getAuthorityCode());
+						authority.setModulePath(modulePath);
+						authority.setOperator(Long.parseLong(idStr));
+						authorities.add(authority);
+					}
+				}
+				baseDAO.save(authorities);
 			}
 		} catch (Exception e) {
 			throw new ServiceException(e.getMessage());
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.authority.service.AuthorityService#authorize(java.util.List, java.lang.String)
-	 */
-	@Override
-	@Transactional(rollbackFor = { Exception.class })
-	public void authorize(List<AuthorityConfig> authorityConfigs, String authorityCode) throws ServiceException {
-		//删除配置
-		String hql = "delete from  AuthorityConfig AuthorityConfig";
-		AuthorityConfig authorityConfig = null;
-		if(!authorityConfigs.isEmpty()) {
-			authorityConfig = authorityConfigs.get(0);
-			hql += " where AuthorityConfig.moduleType = '" + authorityConfig.getModuleType() + "' and AuthorityConfig.moduleCode='" + authorityConfig.getModuleCode() + "'";
-		}
-		baseDAO.delete(hql);
-		baseDAO.save(authorityConfigs);
-		
-		//修改配置
-		//hql = "delete from Authority Authority  where Authority.authorityCode = '" + authorityCode + "'";
-		//baseDAO.delete(hql);
-		if(authorityConfig != null) {
-			String moduleType = authorityConfig.getModuleType();
-			String moduleCode = authorityConfig.getModuleCode();
-			List<Function> functions = new ArrayList<Function>();
-			//选择整个系统
-			if(AuthorityConfig.MODULETYPE_SYSTEM.equals(moduleType)) {
-				functions = baseDAO.list(Function.class);
-			} else if(AuthorityConfig.MODULETYPE_GROUP.equals(moduleType)) {
-				functions = baseDAO.list("select Function from Function Function join Function.modules module join module.group group where group.path = '" + moduleCode + "'");
-			}
-			//授权
-			List<Authority> authorities = new ArrayList<Authority>();
-			Authority authority = null;
-			for(AuthorityConfig ac : authorityConfigs) {
-				for(Function function : functions) {
-					authority = new Authority();
-					authority.setFunctionPath(function.getAuthorityCode());
-					authority.setOperator(ac.getOperator());
-					authorities.add(authority);
-				}
-			}
-		}
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.authority.service.AuthorityService#checkAuthority(java.lang.String, java.lang.Long)
@@ -181,4 +122,18 @@ public class AuthorityServiceImpl implements AuthorityService {
 		this.baseDAO = dao;
 	}
 
+	/**
+	 * @return the moduleService
+	 */
+	public ModuleService getModuleService() {
+		return moduleService;
+	}
+
+	/**
+	 * @param moduleService the moduleService to set
+	 */
+	@Resource(name = "moduleService")
+	public void setModuleService(ModuleService moduleService) {
+		this.moduleService = moduleService;
+	}
 }
