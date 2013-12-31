@@ -34,9 +34,9 @@
 			$("#userFrame").attr("src", "<c:url value="/authority/listOperator.shtml"/>?modulePath=" + modulePath + "&moduleType=" + moduleType);
 		}  
 		var zTreeNodes = [  
-        	{id:"<%=ModuleController.TREE_LIST_ID_PREFIX_SYSTEM + 0%>", name:"系统", icon:"${css}/plugins/ztree/img/diy/1_open.png", "moduleType":"<%=Module.MODULE_TYPE_SYSTEM%>", open:true, children: [  
+        	{id:"<%=ModuleController.TREE_LIST_ID_PREFIX_SYSTEM + 0%>", name:"系统", icon:"${css}/plugins/ztree/img/diy/1_open.png", "moduleType":"<%=Module.MODULE_TYPE_SYSTEM%>", "modulePath":"<%=Module.MODULE_PATH_SYSTEM%>", open:true, children: [  
         	     <c:forEach items="${moduleGroups}" var="moduleGroup" varStatus="status">
-        	    	 {id:"<%=ModuleController.TREE_LIST_ID_PREFIX_GROUP%>${moduleGroup.id}", name:"${moduleGroup.name}", "moduleType":"<%=Module.MODULE_TYPE_GROUP%>", "modulePah":"${moduleGroup.path}", icon:"${css}/plugins/ztree/img/diy/8.png", isParent: "true"}<c:if test="${!status.last}">,</c:if>
+        	    	 {id:"<%=ModuleController.TREE_LIST_ID_PREFIX_GROUP%>${moduleGroup.id}", name:"${moduleGroup.name}", "moduleType":"<%=Module.MODULE_TYPE_GROUP%>", "modulePath":"${moduleGroup.path}", icon:"${css}/plugins/ztree/img/diy/8.png", isParent: "true"}<c:if test="${!status.last}">,</c:if>
         	     </c:forEach>
              ]}  
         ]  

@@ -69,17 +69,26 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 		save(user);
 
 		// 模块
-		List<ModuleGroup> moduleGroups = moduleParser.parse();
-		delete(Function.class);
-		delete(Module.class);
-		delete(ModuleGroup.class);
-		save(moduleGroups);
+		updateModule();
 
 		// 权限：拥有系统管理员的权限
 		delete(Authority.class);
 		authorityService.authorize(Module.MODULE_PATH_SYSTEM, Module.MODULE_TYPE_SYSTEM, new String[]{role.getId() + ""});
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.init.service.InitService#updateModule()
+	 */
+	@Transactional(rollbackFor = { Exception.class })
+	public void updateModule() throws Exception {
+		List<ModuleGroup> moduleGroups = moduleParser.parse();
+		delete(Function.class);
+		delete(Module.class);
+		delete(ModuleGroup.class);
+		save(moduleGroups);
+		menuService.parse();
+	}
+	
 	/**
 	 * @return the moduleParser
 	 */

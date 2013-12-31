@@ -13,20 +13,20 @@ import javax.persistence.MappedSuperclass;
 public class BaseSortPojo extends BasePojo {
 	public static int DEFAULT_SORT = 0;
 	
-	private Integer Sort = DEFAULT_SORT;
+	private Integer sort = DEFAULT_SORT;
 
 	/**
 	 * @return the sort
 	 */
-	@Column(name="Sort")
+	@Column(name="sort")
 	public Integer getSort() {
-		return Sort;
+		return sort;
 	}
 
 	/**
 	 * @param sort the sort to set
 	 */
 	public void setSort(Integer sort) {
-		Sort = sort;
+		this.sort = sort;
 	}
 }

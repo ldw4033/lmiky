@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.lmiky.jdp.base.controller.BaseController;
 import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
+import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.module.pojo.Function;
 import com.lmiky.jdp.module.pojo.Module;
 import com.lmiky.jdp.session.model.SessionInfo;
@@ -62,7 +63,9 @@ public class ModuleController extends BaseController {
 				Long mId = Long.parseLong(moduleId.substring(TREE_LIST_ID_PREFIX_MODULE.length()));
 				List<PropertyFilter> filters = new ArrayList<PropertyFilter>();
 				filters.add(new PropertyFilter("module.id", mId, PropertyCompareType.EQ, Function.class));
-				List<Function> functions = service.list(Function.class, filters, null);
+				List<Sort> sorts = new ArrayList<Sort>();
+				sorts.add(new Sort("sort", Sort.SORT_TYPE_ASC, Function.class));
+				List<Function> functions = service.list(Function.class, filters, sorts);
 				modelMap.put("pojos", functions);
 				return "functionListJsonView";
 			}

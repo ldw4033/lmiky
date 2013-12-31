@@ -35,9 +35,10 @@ public class ModuleListJsonView extends AbstractView {
 		Map<String, Object> dataMap = null;
 		for(Module module : modules) {
 			dataMap = new HashMap<String, Object>();
-			dataMap.put("id", ModuleController.TREE_LIST_ID_PREFIX_MODULE + module.getPath());
+			dataMap.put("id", ModuleController.TREE_LIST_ID_PREFIX_MODULE + module.getId());
 			dataMap.put("name", module.getName());
 			dataMap.put("moduleType", Module.MODULE_TYPE_MODULE);
+			dataMap.put("modulePath", module.getPath());
 			dataMap.put("isParent", true);
 			dataList.add(dataMap);
 		}

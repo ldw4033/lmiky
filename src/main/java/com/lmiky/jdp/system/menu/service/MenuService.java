@@ -21,6 +21,14 @@ public interface MenuService {
 	public void init() throws Exception;
 	
 	/**
+	 * 解析菜单
+	 * @author lmiky
+	 * @date 2013-12-31
+	 * @throws Exception
+	 */
+	public void parse() throws Exception;
+	
+	/**
 	 * 解析获取拥有权限的菜单列表
 	 * @author lmiky
 	 * @date 2013-6-16

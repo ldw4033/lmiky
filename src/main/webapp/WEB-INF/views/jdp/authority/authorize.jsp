@@ -16,18 +16,18 @@
 			</c:choose>
 			
 			$(document).ready(function(){
-				initMultipleSelect('groupSpan', 'user_', 'selectedUsers', userIndex);
+				initMultipleSelect('groupSpan', 'user_', 'selectedOperators', userIndex);
 			}); 
 			</script>
 </head>
 <body>
 	<%@ include file="/jdp/common/messageAlter.jsp" %>
 	<form id="mainForm" action="<c:url value="/authority/authorize.shtml"/>" method="post">
-			<input type="hidden" name="moduleType" value="${moduleType }"/>
+			<input type="hidden" name="moduleType" value="${param.moduleType }"/>
 			<input type="hidden" name="modulePath" value="${param.modulePath }"/>
 			<span id="groupSpan" style="display: none;">
 				<c:forEach items="${authorizedList }" var="authorizedUser" varStatus="status">
-					<input type="hidden" id="user_${authorizedUser.id }" name="selectedUsers" value="${authorizedUser.id }"/>
+					<input type="hidden" id="user_${authorizedUser.id }" name="selectedOperators" value="${authorizedUser.id }"/>
 				</c:forEach>
 			</span>
 			<table style="width: 100%; height: 100%;">

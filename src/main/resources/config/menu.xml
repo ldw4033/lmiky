@@ -92,7 +92,7 @@
 				<url>/authority/load.shtml</url>
 				<type>dialog</type>
 				<modulePath>jdp/authority</modulePath>
-				<authority>jdp_authority_load</authority>
+				<authority>jdp_authority_authorize</authority>
 			</submenu>
 			<submenu>
 				<id>jdp_area_load</id>
@@ -100,7 +100,7 @@
 				<url>/area/load.shtml</url>
 				<type>dialog</type>
 				<modulePath>jdp/area</modulePath>
-				<authority>jdp_area_load</authority>
+				<authority>jdp_area_manage</authority>
 			</submenu>
 		</leftmenu>
 	</topmenu>

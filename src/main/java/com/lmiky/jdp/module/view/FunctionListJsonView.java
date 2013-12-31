@@ -35,7 +35,7 @@ public class FunctionListJsonView extends AbstractView {
 		Map<String, Object> dataMap = null;
 		for(Function function : functions) {
 			dataMap = new HashMap<String, Object>();
-			dataMap.put("id", ModuleController.TREE_LIST_ID_PREFIX_FUNCTION + function.getAuthorityCode());
+			dataMap.put("id", ModuleController.TREE_LIST_ID_PREFIX_FUNCTION + function.getId());
 			dataMap.put("name", function.getName());
 			dataMap.put("moduleType", Module.MODULE_TYPE_FUNCTION);
 			dataMap.put("modulePath", function.getAuthorityCode());

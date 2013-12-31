@@ -44,14 +44,11 @@ public class MenuServiceImpl implements MenuService {
 		parse();
 	}
 	
-	/**
-	 * 解析菜单文件
-	 * @author lmiky
-	 * @date 2013-6-16
-	 * @throws Exception
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.system.menu.service.MenuService#parse()
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void parse() throws Exception {
+	public void parse() throws Exception {
 		List<TopMenu> topMenuList = new ArrayList<TopMenu>();
 		
 		SAXReader reader = new SAXReader();

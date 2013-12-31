@@ -1,7 +1,10 @@
 package com.lmiky.jdp.web.util;
 
+import java.io.IOException;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.lmiky.jdp.authority.service.AuthorityService;
 import com.lmiky.jdp.database.model.PropertyCompareType;
@@ -12,6 +15,7 @@ import com.lmiky.jdp.service.exception.ServiceException;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.session.service.SessionService;
 import com.lmiky.jdp.util.Environment;
+import com.lmiky.jdp.util.PropertiesUtils;
 
 /**
  * web工具
@@ -80,4 +84,16 @@ public class WebUtils {
 		return sessionService.getSessionInfo(request);
 	}
 	
+	/**
+	 * response写入内容
+	 * @author lmiky
+	 * @date 2014-1-1
+	 * @param response
+	 * @param content
+	 * @throws IOException
+	 */
+	public static void responseWrite(HttpServletResponse response, String content) throws IOException {
+		response.setContentType("text/html;charset=" + PropertiesUtils.getStringContextValue("system.encode"));
+		response.getWriter().write(content);
+	}
 }

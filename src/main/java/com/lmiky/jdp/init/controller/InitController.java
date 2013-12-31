@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.lmiky.jdp.base.controller.BaseController;
 import com.lmiky.jdp.init.service.InitService;
 import com.lmiky.jdp.util.PropertiesUtils;
+import com.lmiky.jdp.web.util.WebUtils;
 
 /**
  * 初始化控制器
@@ -30,12 +31,12 @@ public class InitController extends BaseController {
 	 * @date 2013-10-14
 	 * @param modelMap
 	 * @param request
-	 * @param resopnse
+	 * @param response
 	 * @return
 	 * @throws Exception
 	 */
 	@RequestMapping("/load.shtml")
-	public String load(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse) throws Exception {
+	public String load(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		if(!allowInit) {
 			return null;
 		}
@@ -48,17 +49,34 @@ public class InitController extends BaseController {
 	 * @date 2013-10-13
 	 * @param modelMap
 	 * @param request
-	 * @param resopnse
+	 * @param response
 	 * @param name	管理员用户名
 	 * @param password	管理员密码
 	 * @return
 	 * @throws Exception
 	 */
 	@RequestMapping("/init.shtml")
-	public String init(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, String name, String loginName, String password) throws Exception {
+	public String init(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, String name, String loginName, String password) throws Exception {
 		initService.init(name, loginName, password);
 		putMessage(modelMap, "初始化完成!");
-		return load(modelMap, request, resopnse);
+		return load(modelMap, request, response);
+	}
+	
+	/**
+	 * 修改模块
+	 * @author lmiky
+	 * @date 2013-12-31
+	 * @param modelMap
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/updateModule.shtml")
+	public String updateModule(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		initService.updateModule();
+		WebUtils.responseWrite(response, "更新功能完成!");
+		return null;
 	}
 	
 	/**
