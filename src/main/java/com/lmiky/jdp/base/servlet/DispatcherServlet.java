@@ -68,14 +68,21 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 			}
 		} else {	//非继续登录之前的操作，防止重复记录
 			String subMenuId = request.getParameter(Constants.HTTP_PARAM_SUBMENU_ID);
-			SessionInfo sessionInfo = sessionService.getSessionInfo(request);
-			//记录最近操作
-			if(!StringUtils.isBlank(subMenuId) && sessionInfo != null && sessionInfo.getUserId() != null) {
-				LatelyOperateMenu latelyOperateMenu = new LatelyOperateMenu();
-				latelyOperateMenu.setMenuId(subMenuId);
-				latelyOperateMenu.setUserId(sessionInfo.getUserId());
-				latelyOperateMenu.setOpeTime(new Date());
-				baseService.save(latelyOperateMenu);
+			if(!StringUtils.isBlank(subMenuId)) {
+				SessionInfo sessionInfo = sessionService.getSessionInfo(request);
+				//记录最近操作
+				if(sessionInfo != null && sessionInfo.getUserId() != null) {
+					String latelyOperateMenuId = sessionInfo.getLatelyOperateMenuId();
+					//如果跟上次操作一样，就不重复记录
+					if(StringUtils.isBlank(latelyOperateMenuId) ||  !subMenuId.equals(latelyOperateMenuId)) {
+						LatelyOperateMenu latelyOperateMenu = new LatelyOperateMenu();
+						latelyOperateMenu.setMenuId(subMenuId);
+						latelyOperateMenu.setUserId(sessionInfo.getUserId());
+						latelyOperateMenu.setOpeTime(new Date());
+						baseService.save(latelyOperateMenu);
+						sessionInfo.setLatelyOperateMenuId(subMenuId);
+					}
+				}
 			}
 		}
 		super.doService(request, response);

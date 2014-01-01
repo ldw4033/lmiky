@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.lmiky.jdp.base.controller.BaseController;
 import com.lmiky.jdp.init.service.InitService;
 import com.lmiky.jdp.util.PropertiesUtils;
-import com.lmiky.jdp.web.util.WebUtils;
+import com.lmiky.jdp.web.util.ResponseUtils;
 
 /**
  * 初始化控制器
@@ -75,7 +75,7 @@ public class InitController extends BaseController {
 	@RequestMapping("/updateModule.shtml")
 	public String updateModule(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		initService.updateModule();
-		WebUtils.responseWrite(response, "更新功能完成!");
+		ResponseUtils.write(response, "更新功能完成!");
 		return null;
 	}
 	

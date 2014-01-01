@@ -5,13 +5,15 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.lmiky.jdp.util.PropertiesUtils;
+
 /**
  * response工具
  * @author lmiky
  * @date 2013-6-18
  */
 public class ResponseUtils {
-	public static final String DEFAULT_CODE = "UTF-8";
+	public static final String DEFAULT_CODE = PropertiesUtils.getStringContextValue("system.encode");
 
 	/**
 	 * 初始化response头部
@@ -22,6 +24,8 @@ public class ResponseUtils {
 	private static void initResponseHeader(HttpServletResponse response) {
 		// 编码
 		response.setCharacterEncoding(DEFAULT_CODE);
+		//内容格式
+		response.setContentType("text/html;charset=" + DEFAULT_CODE);
 		// 无缓存
 		// Http 1.0 header
 		response.setDateHeader("Expires", 1L);

@@ -10,7 +10,8 @@ import java.util.Map;
  * @date 2013-4-24
  */
 public class SessionInfo implements Serializable {
-	private static final long serialVersionUID = 6373381257099639245L;
+	private static final long serialVersionUID = -8619159895800318250L;
+	
 	private String sessionId;
 	private Long userId; //用户ID
 	private String loginName; //登录用户名
@@ -18,6 +19,7 @@ public class SessionInfo implements Serializable {
 	private String userName;	//用户姓名
 	private Map<String, Boolean> authoritys = new HashMap<String, Boolean>();
 	private Map<String, Boolean> menuFavoriteInfo = new HashMap<String, Boolean>();
+	private String latelyOperateMenuId;	//最后操作的菜单ID
 	
 	/**
 	 * @return the sessionId
@@ -133,5 +135,17 @@ public class SessionInfo implements Serializable {
 	 */
 	public void setMenuFavoriteInfo(String key, Boolean value) {
 		menuFavoriteInfo.put(key, value);
+	}
+	/**
+	 * @return the latelyOperateMenuId
+	 */
+	public String getLatelyOperateMenuId() {
+		return latelyOperateMenuId;
+	}
+	/**
+	 * @param latelyOperateMenuId the latelyOperateMenuId to set
+	 */
+	public void setLatelyOperateMenuId(String latelyOperateMenuId) {
+		this.latelyOperateMenuId = latelyOperateMenuId;
 	}
 }
