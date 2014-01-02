@@ -47,7 +47,7 @@
 								<td align="left" valign="bottom" class="listMenu">
 									<table border="0" cellpadding="0" cellspacing="0">
 										<tr>
-											<lauthority:checkAuthority authorityCode="tiger_goods_add" modulePath="tiger/goods">
+											<lauthority:checkAuthority authorityCode="tiger_goods_add">
 												<td align="center">
 														<table>
 															<tr>
@@ -56,7 +56,7 @@
 														</table>
 												</td>
 											</lauthority:checkAuthority>
-											<lauthority:checkAuthority authorityCode="tiger_goods_delete" modulePath="tiger/goods">
+											<lauthority:checkAuthority authorityCode="tiger_goods_delete">
 												<td align="center">
 													<table>
 														<tr>
@@ -100,7 +100,7 @@
 									<th>市场价</th>
 									<th>优惠券折扣</th>
 									<th>操作</th>
-									<lauthority:checkAuthority authorityCode="tiger_goods_delete" modulePath="tiger/goods">
+									<lauthority:checkAuthority authorityCode="tiger_goods_delete">
 										<th>
 											<input type="checkbox" name="batctSelectDelete"  id="batctSelectDelete" class="bian" value="" onclick="batchSelectDelete()"/>
 										</th>
@@ -118,25 +118,25 @@
 										<td>${item.marketPrice}</td>
 										<td>${item.couponDiscount}</td>
 										<td>
-											<lauthority:checkAuthority authorityCode="tiger_goods_modify" modulePath="tiger/goods">
+											<lauthority:checkAuthority authorityCode="tiger_goods_modify">
 												<a href="javascript:void(0)" class="td_2" onclick="openDialog('<c:url value="/tiger/goods/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
 													修改
 												</a>
 											</lauthority:checkAuthority>
-											<lauthority:checkAuthority authorityCode="<%=com.lmiky.jdp.module.pojo.Function.DEFAULT_AUTHORITYCODE_LOAD %>" modulePath="tiger/goods">
+											<lauthority:checkAuthority authorityCode="tiger_goods_load">
 												&nbsp;
 												<a href="javascript:void(0)" class="td_2" onclick="openDialog('<c:url value="/tiger/goods/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
 													查看
 												</a>
 											</lauthority:checkAuthority>
-											<lauthority:checkAuthority authorityCode="tiger_goods_delete" modulePath="tiger/goods">
+											<lauthority:checkAuthority authorityCode="tiger_goods_delete">
 												&nbsp;
 												<a href="javascript:void(0)" onclick="deletePojo('<c:url value="/tiger/goods/delete.shtml?id=${item.id}"/>')" class="td_2">
 													删除
 												</a>
 											</lauthority:checkAuthority>
 										</td>
-										<lauthority:checkAuthority authorityCode="tiger_goods_delete" modulePath="tiger/goods">
+										<lauthority:checkAuthority authorityCode="tiger_goods_delete">
 											<td>
 												<input type="checkbox" name="batchDeleteId" class="bian" value="${item.id}" />
 											</td>

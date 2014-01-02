@@ -12,11 +12,6 @@
 		</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
-			<name>modulePath</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
 			<name>authorityCode</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>

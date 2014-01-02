@@ -14,10 +14,9 @@ import com.lmiky.jdp.web.util.WebUtils;
  * @date 2013-6-6
  */
 public class CheckAuthorityTag extends BaseTag {
-	private static final long serialVersionUID = 24362296371705163L;
+	private static final long serialVersionUID = 4389490262671734934L;
 	
 	private AuthorityService authorityService;
-	private String modulePath;
 	private String authorityCode;
 
 	public CheckAuthorityTag() {
@@ -43,20 +42,6 @@ public class CheckAuthorityTag extends BaseTag {
 		} catch (Exception e) {
 			throw new JspException(e.getMessage());
 		}
-	}
-
-	/**
-	 * @return the modulePath
-	 */
-	public String getModulePath() {
-		return modulePath;
-	}
-
-	/**
-	 * @param modulePath the modulePath to set
-	 */
-	public void setModulePath(String modulePath) {
-		this.modulePath = modulePath;
 	}
 
 	/**

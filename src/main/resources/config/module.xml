@@ -37,30 +37,4 @@
 			<function name="删除" authorityCode="capture_task_delete" sort="3"/>
 		</module>
 	</moduleGroup>
-	<moduleGroup name="情缘" path="love">
-		<module name="民族管理" path="love/nation">
-		    <function name="查询" authorityCode="love_nation_load" sort="0"/>
-			<function name="添加" authorityCode="love_nation_add" sort="1"/>
-			<function name="修改" authorityCode="love_nation_modify" sort="2"/>
-			<function name="删除" authorityCode="love_nation_delete" sort="3"/>
-		</module>
-		<module name="宗教管理" path="love/faith">
-		    <function name="查询" authorityCode="love_faith_load" sort="0"/>
-			<function name="添加" authorityCode="love_faith_add" sort="1"/>
-			<function name="修改" authorityCode="love_faith_modify" sort="2"/>
-			<function name="删除" authorityCode="love_faith_delete" sort="3"/>
-		</module>
-		<module name="公司行业管理" path="love/company/profession">
-		    <function name="查询" authorityCode="love_company_profession_load" sort="0"/>
-			<function name="添加" authorityCode="love_company_profession_add" sort="1"/>
-			<function name="修改" authorityCode="love_company_profession_modify" sort="2"/>
-			<function name="删除" authorityCode="love_company_profession_delete" sort="3"/>
-		</module>
-		<module name="工作职位管理" path="love/job/position">
-		    <function name="查询" authorityCode="love_job_position_load" sort="0"/>
-			<function name="添加" authorityCode="love_job_position_add" sort="1"/>
-			<function name="修改" authorityCode="love_job_position_modify" sort="2"/>
-			<function name="删除" authorityCode="love_job_position_delete" sort="3"/>
-		</module>
-	</moduleGroup>
 </moduleGroups>

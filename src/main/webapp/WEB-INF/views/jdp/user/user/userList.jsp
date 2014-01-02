@@ -67,7 +67,7 @@
 								<td align="left" valign="bottom" class="listMenu">
 									<table border="0" cellpadding="0" cellspacing="0">
 										<tr>
-											<lauthority:checkAuthority authorityCode="jdp_user_user_add" modulePath="jdp/user/user">
+											<lauthority:checkAuthority authorityCode="jdp_user_user_add">
 												<td align="center">
 													<table>
 														<tr>
@@ -76,7 +76,7 @@
 													</table>
 												</td>
 											</lauthority:checkAuthority>
-											<lauthority:checkAuthority authorityCode="jdp_user_user_delete" modulePath="jdp/user/user">
+											<lauthority:checkAuthority authorityCode="jdp_user_user_delete">
 												<td align="center">
 													<table>
 														<tr>
@@ -122,7 +122,7 @@
 									<th class="sortable sorted_createTime"><a href="javascript:pageSort('createTime')">添加时间</a></th>
 									<th>是否有效</th>
 									<th>操作</th>
-									<lauthority:checkAuthority authorityCode="jdp_user_user_delete" modulePath="jdp/user/user">
+									<lauthority:checkAuthority authorityCode="jdp_user_user_delete">
 										<th>
 											<input type="checkbox" name="batctSelectDelete"  id="batctSelectDelete" class="bian" value="" onclick="batchSelectDelete()"/>
 										</th>
@@ -149,20 +149,20 @@
 											</c:choose>
 										</td>
 										<td>
-											<lauthority:checkAuthority authorityCode="jdp_user_user_modify" modulePath="jdp/user/user">
+											<lauthority:checkAuthority authorityCode="jdp_user_user_modify">
 												<a href="javascript:void(0)" class="td_2"
 														onclick="openDialog('<c:url value="/user/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }"/>', 800, 600)">
 													修改
 												</a>
 											</lauthority:checkAuthority>
-											<lauthority:checkAuthority authorityCode="<%=com.lmiky.jdp.module.pojo.Function.DEFAULT_AUTHORITYCODE_LOAD %>" modulePath="jdp/user/user">
+											<lauthority:checkAuthority authorityCode="jdp_user_user_load">
 												&nbsp;
 												<a href="javascript:void(0)" class="td_2"
 														onclick="openDialog('<c:url value="/user/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
 													查看
 												</a>
 											</lauthority:checkAuthority>
-											<lauthority:checkAuthority authorityCode="jdp_user_user_delete" modulePath="jdp/user/user">
+											<lauthority:checkAuthority authorityCode="jdp_user_user_delete">
 												&nbsp;
 												<a href="javascript:void(0)" class="td_2"
 														onclick="deletePojo('<c:url value="/user/delete.shtml?id=${item.id}"/>')">
@@ -170,7 +170,7 @@
 												</a>
 											</lauthority:checkAuthority>
 										</td>
-										<lauthority:checkAuthority authorityCode="jdp_user_user_delete" modulePath="jdp/user/user">
+										<lauthority:checkAuthority authorityCode="jdp_user_user_delete">
 											<td>
 												<input type="checkbox" name="batchDeleteId" class="bian" value="${item.id}" />
 											</td>

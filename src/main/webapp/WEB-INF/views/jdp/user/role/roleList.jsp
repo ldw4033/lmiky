@@ -47,7 +47,7 @@
 								<td align="left" valign="bottom" class="listMenu">
 									<table border="0" cellpadding="0" cellspacing="0">
 										<tr>
-											<lauthority:checkAuthority authorityCode="jdp_user_role_add" modulePath="jdp/user/role">
+											<lauthority:checkAuthority authorityCode="jdp_user_role_add">
 											<td align="center">
 												<table>
 													<tr>
@@ -56,7 +56,7 @@
 												</table>
 											</td>
 											</lauthority:checkAuthority>
-											<lauthority:checkAuthority authorityCode="jdp_user_role_delete" modulePath="jdp/user/role">
+											<lauthority:checkAuthority authorityCode="jdp_user_role_delete">
 												<td align="center">
 													<table>
 														<tr>
@@ -97,7 +97,7 @@
 									<th class="no">&nbsp;</th>
 									<th class="sortable sorted_name"><a href="javascript:pageSort('name')">名称</a></th>
 									<th>操作</th>
-									<lauthority:checkAuthority authorityCode="jdp_user_role_delete" modulePath="jdp/user/role">
+									<lauthority:checkAuthority authorityCode="jdp_user_role_delete">
 										<th>
 											<input type="checkbox" name="batctSelectDelete"  id="batctSelectDelete" class="bian" value="" onclick="batchSelectDelete()"/>
 										</th>
@@ -112,20 +112,20 @@
 										<td>${status.count + (page.currentPage - 1) * page.pageSize}</td>
 										<td>${item.name}</td>
 										<td>
-											<lauthority:checkAuthority authorityCode="jdp_user_role_modify" modulePath="jdp/user/role">
+											<lauthority:checkAuthority authorityCode="jdp_user_role_modify">
 												<a href="javascript:void(0)" class="td_2"
 														onclick="openDialog('<c:url value="/role/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }"/>', 800, 600)">
 													修改
 												</a>
 											</lauthority:checkAuthority>
-											<lauthority:checkAuthority authorityCode="<%=com.lmiky.jdp.module.pojo.Function.DEFAULT_AUTHORITYCODE_LOAD %>" modulePath="jdp/user/role">
+											<lauthority:checkAuthority authorityCode="jdp_user_role_load">
 												&nbsp;
 												<a href="javascript:void(0)" class="td_2"
 														onclick="openDialog('<c:url value="/role/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
 													查看
 												</a>
 											</lauthority:checkAuthority>
-											<lauthority:checkAuthority authorityCode="jdp_user_role_delete" modulePath="jdp/user/role">
+											<lauthority:checkAuthority authorityCode="jdp_user_role_delete">
 												&nbsp;
 												<a href="javascript:void(0)" class="td_2"
 														onclick="deletePojo('<c:url value="/role/delete.shtml?id=${item.id}"/>')">
@@ -133,7 +133,7 @@
 												</a>
 											</lauthority:checkAuthority>
 										</td>
-										<lauthority:checkAuthority authorityCode="jdp_user_role_delete" modulePath="jdp/user/role">
+										<lauthority:checkAuthority authorityCode="jdp_user_role_delete">
 											<td>
 												<input type="checkbox" name="batchDeleteId" class="bian" value="${item.id}" />
 											</td>

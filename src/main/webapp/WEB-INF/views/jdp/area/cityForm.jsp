@@ -28,7 +28,7 @@
 						<table border="0" cellpadding="0" cellspacing="0">
 								<tr>
 									<c:if test="${openMode == 'edit'}">
-										<lauthority:checkAuthority authorityCode="jdp_area_manage" modulePath="jdp/area">
+										<lauthority:checkAuthority authorityCode="jdp_area_manage">
 											<td align="center">
 												<table>
 													<tr>

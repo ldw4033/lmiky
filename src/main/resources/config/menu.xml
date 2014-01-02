@@ -24,42 +24,6 @@
 			</submenu>
 		</leftmenu>
 	</topmenu>
-	<topmenu id="love" label="情缘">
-		<leftmenu id="love" label="情缘">
-			<submenu>
-				<id>love_nation_load</id>
-				<label>民族管理</label>
-				<url>/love/nation/list.shtml</url>
-				<type>link</type>
-				<modulePath>love/nation</modulePath>
-				<authority>love_nation_load</authority>
-			</submenu>
-			<submenu>
-				<id>love_faith_load</id>
-				<label>宗教管理</label>
-				<url>/love/faith/list.shtml</url>
-				<type>link</type>
-				<modulePath>love/faith</modulePath>
-				<authority>love_faith_load</authority>
-			</submenu>
-			<submenu>
-				<id>love_company_profession_load</id>
-				<label>公司行业管理</label>
-				<url>/love/company/profession/list.shtml</url>
-				<type>link</type>
-				<modulePath>love/company/profession</modulePath>
-				<authority>love_company_profession_load</authority>
-			</submenu>
-			<submenu>
-				<id>love_job_position_load</id>
-				<label>工作职位管理</label>
-				<url>/love/job/position/list.shtml</url>
-				<type>link</type>
-				<modulePath>love/job/position</modulePath>
-				<authority>love_job_position_load</authority>
-			</submenu>
-		</leftmenu>
-	</topmenu>
 	<topmenu id="system" label="系统设置">
 		<leftmenu id="systemSetting" label="系统设置">
 			<submenu>
