@@ -1,6 +1,5 @@
 package com.lmiky.jdp.view.controller;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.ui.ModelMap;
 
-import com.lmiky.jdp.base.controller.BaseController;
+import com.lmiky.jdp.base.controller.BasePojoController;
 import com.lmiky.jdp.constants.Constants;
 import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.database.model.Sort;
@@ -28,18 +27,9 @@ import com.lmiky.jdp.web.page.util.PageUtils;
  * @author lmiky
  * @date 2013-4-15
  */
-public abstract class ViewController<T extends BasePojo> extends BaseController {
-	protected Class<T> pojoClass;
+public abstract class ViewController<T extends BasePojo> extends BasePojoController<T> {
 	protected PageService pageService;
 
-	/**
-	 * 
-	 */
-	@SuppressWarnings("unchecked")
-	public ViewController() {
-		this.pojoClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-	}
-	
 	/**
 	 * 列表查询
 	 * @author lmiky
