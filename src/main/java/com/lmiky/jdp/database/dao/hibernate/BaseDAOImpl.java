@@ -220,16 +220,25 @@ public class BaseDAOImpl implements BaseDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#list(java.lang.Class, com.lmiky.jdp.database.model.PropertyFilter, com.lmiky.jdp.database.model.Sort)
+	 */
+	public <T extends BasePojo> List<T> list(Class<T> pojoClass, PropertyFilter propertyFilter, Sort sort) throws DatabaseException {
+		List<PropertyFilter> propertyFilters = new ArrayList<PropertyFilter>();
+		if(propertyFilter != null) {
+			propertyFilters.add(propertyFilter);
+		}
+		List<Sort> sorts = new ArrayList<Sort>();
+		sorts.add(sort);
+		return list(pojoClass, propertyFilters, sorts);
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#list(java.lang.Class, java.util.List, java.util.List)
 	 */
 	public <T extends BasePojo> List<T> list(Class<T> pojoClass, List<PropertyFilter> propertyFilters, List<Sort> sorts) throws DatabaseException {
-		try {
-			return list(pojoClass, propertyFilters, sorts, 0, 0);
-		} catch (Exception e) {
-			throw new DatabaseException(e.getMessage());
-		}
+		return list(pojoClass, propertyFilters, sorts, 0, 0);
 	}
 
 	/* (non-Javadoc)

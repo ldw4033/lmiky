@@ -48,7 +48,7 @@ public class MenuServiceImpl implements MenuService {
 	 * @see com.lmiky.jdp.system.menu.service.MenuService#parse()
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public void parse() throws Exception {
+	public synchronized void parse() throws Exception {
 		List<TopMenu> topMenuList = new ArrayList<TopMenu>();
 		
 		SAXReader reader = new SAXReader();

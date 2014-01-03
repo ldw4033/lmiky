@@ -2,10 +2,13 @@ package com.lmiky.jdp.tree.pojo;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
 
 import com.lmiky.jdp.database.pojo.BaseSortPojo;
 
@@ -15,14 +18,30 @@ import com.lmiky.jdp.database.pojo.BaseSortPojo;
  * @date 2014-1-2
  */
 @SuppressWarnings("serial")
-@MappedSuperclass
-public abstract class BaseTreePojo extends BaseSortPojo {
+@Entity 
+@Table(name="tree")
+@Inheritance(strategy=InheritanceType.JOINED) 
+public class BaseTreePojo extends BaseSortPojo {
 	public static final int LEAF_YES = 0;
 	public static final int LEAF_NO = 1;
 	
+	private String name;
 	private BaseTreePojo parent;
 	private Integer leaf = LEAF_YES;
 	
+	/**
+	 * @return the name
+	 */
+	@Column(name="name")
+	public String getName() {
+		return name;
+	}
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
 	/**
 	 * @return the parent
 	 */

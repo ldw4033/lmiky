@@ -227,6 +227,18 @@ public class BaseServiceImpl implements BaseService {
 			throw new ServiceException(e.getMessage());
 		}
 	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.service.BaseService#list(java.lang.Class, com.lmiky.jdp.database.model.PropertyFilter, com.lmiky.jdp.database.model.Sort)
+	 */
+	@Transactional(readOnly=true)
+	public <T extends BasePojo> List<T> list(Class<T> pojoClass, PropertyFilter propertyFilter, Sort sort) throws ServiceException {
+		try {
+			return getDAO().list(pojoClass, propertyFilter, sort);
+		} catch (DatabaseException e) {
+			throw new ServiceException(e.getMessage());
+		}
+	}
 
 	/*
 	 * (non-Javadoc)

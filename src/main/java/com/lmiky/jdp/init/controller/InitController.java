@@ -80,6 +80,23 @@ public class InitController extends BaseController {
 	}
 	
 	/**
+	 * 修改菜单
+	 * @author lmiky
+	 * @date 2014-1-3
+	 * @param modelMap
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/updateMenu.shtml")
+	public String updateMenu(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		initService.updateMenu();
+		ResponseUtils.write(response, "更新菜单完成!");
+		return null;
+	}
+	
+	/**
 	 * @return the initService
 	 */
 	public InitService getInitService() {

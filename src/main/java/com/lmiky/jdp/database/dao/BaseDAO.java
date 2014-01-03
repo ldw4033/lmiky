@@ -181,6 +181,18 @@ public interface BaseDAO {
 	/**
 	 * 查询对象列表
 	 * @author lmiky
+	 * @date 2014-1-3
+	 * @param pojoClass
+	 * @param propertyFilter
+	 * @param sort
+	 * @return
+	 * @throws DatabaseException
+	 */
+	public <T extends BasePojo> List<T> list(Class<T> pojoClass, PropertyFilter propertyFilter, Sort sort) throws DatabaseException;
+	
+	/**
+	 * 查询对象列表
+	 * @author lmiky
 	 * @date 2013-4-16
 	 * @param pojoClass
 	 * @param propertyFilters	过滤条件

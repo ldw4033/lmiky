@@ -11,6 +11,8 @@ import javax.persistence.MappedSuperclass;
 @SuppressWarnings("serial")
 @MappedSuperclass
 public class BaseSortPojo extends BasePojo {
+	public static final String POJO_FIELD_NAME_SORT = "sort";
+	
 	public static int DEFAULT_SORT = 0;
 	
 	private Integer sort = DEFAULT_SORT;

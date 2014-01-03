@@ -1,5 +1,9 @@
 package com.lmiky.cms.directory.pojo;
 
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
 import com.lmiky.jdp.tree.pojo.BaseTreePojo;
 
 /**
@@ -7,22 +11,10 @@ import com.lmiky.jdp.tree.pojo.BaseTreePojo;
  * @author lmiky
  * @date 2014-1-2
  */
+@Entity
+@Table(name="directory")
+@PrimaryKeyJoinColumn(name="id")
 public class Directory extends BaseTreePojo {
-	private static final long serialVersionUID = 4386184813739538591L;
+	private static final long serialVersionUID = -9175148643428532655L;
 	
-	private String name;
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
 }

@@ -181,6 +181,18 @@ public interface BaseService {
 	/**
 	 * 查询对象列表
 	 * @author lmiky
+	 * @date 2014-1-3
+	 * @param pojoClass
+	 * @param propertyFilter
+	 * @param sort
+	 * @return
+	 * @throws ServiceException
+	 */
+	public <T extends BasePojo> List<T> list(Class<T> pojoClass, PropertyFilter propertyFilter, Sort sort) throws ServiceException;
+	
+	/**
+	 * 查询对象列表
+	 * @author lmiky
 	 * @date 2013-4-16
 	 * @param pojoClass
 	 * @param propertyFilters	过滤条件

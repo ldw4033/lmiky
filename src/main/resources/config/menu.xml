@@ -24,6 +24,18 @@
 			</submenu>
 		</leftmenu>
 	</topmenu>
+	<topmenu id="cms" label="内容管理">
+		<leftmenu id="cms" label="内容管理">
+			<submenu>
+				<id>cms_directory_load</id>
+				<label>栏目管理</label>
+				<url>/cms/directory/loadTree.shtml</url>
+				<type>link</type>
+				<modulePath>cms/directory</modulePath>
+				<authority>cms_directory_load</authority>
+			</submenu>
+		</leftmenu>
+	</topmenu>
 	<topmenu id="system" label="系统设置">
 		<leftmenu id="systemSetting" label="系统设置">
 			<submenu>

@@ -27,4 +27,12 @@ public interface InitService extends BaseService {
 	 * @throws Exception
 	 */
 	public void updateModule() throws Exception;
+	
+	/**
+	 * 更新菜单
+	 * @author lmiky
+	 * @date 2014-1-3
+	 * @throws Exception
+	 */
+	public void updateMenu() throws Exception;
 }

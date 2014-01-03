@@ -86,6 +86,14 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 		delete(Module.class);
 		delete(ModuleGroup.class);
 		save(moduleGroups);
+		//更新菜单
+		updateMenu();
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.init.service.InitService#updateMenu()
+	 */
+	public void updateMenu() throws Exception {
 		menuService.parse();
 	}
 	
