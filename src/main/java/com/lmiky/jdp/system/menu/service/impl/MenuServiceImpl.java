@@ -28,6 +28,7 @@ import com.lmiky.jdp.web.util.WebUtils;
  */
 public class MenuServiceImpl implements MenuService {
 	private static final String CACHE_KEY_TOP = "menuKey_top";
+	private static final String CACHE_KEY_TOPMENU_PREFIX = "menuKey_top_";
 	private static final String CACHE_KEY_SUBMENU_PREFIX = "menuKey_sub_";
 	
 	private CacheFactory cacheFactory;
@@ -98,6 +99,7 @@ public class MenuServiceImpl implements MenuService {
 				continue;
 			}
 			topMenuList.add(topMenu);
+			cache.put(CACHE_KEY_TOPMENU_PREFIX + topMenu.getId(), new SimpleCacheData(topMenu));
 		}
 		//设置缓存
 		cache.put(CACHE_KEY_TOP, new SimpleCacheData(topMenuList));
@@ -149,6 +151,18 @@ public class MenuServiceImpl implements MenuService {
 			}
 		}
 		return topMenuList;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.system.menu.service.MenuService#getTopMenu(java.lang.String, com.lmiky.jdp.session.model.SessionInfo)
+	 */
+	@SuppressWarnings("unchecked")
+	public TopMenu getTopMenu(String topMenuId, SessionInfo sessionInfo) throws Exception {
+		SimpleCacheData<TopMenu> cacheData = (SimpleCacheData<TopMenu>)cache.get(CACHE_KEY_TOPMENU_PREFIX + topMenuId);
+		if(cacheData == null) {
+			return null;
+		}
+		return cacheData.getValue();
 	}
 	
 	/* (non-Javadoc)

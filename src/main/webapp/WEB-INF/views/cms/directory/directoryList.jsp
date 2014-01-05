@@ -11,6 +11,8 @@
 	<%@ include file="/jdp/common/tree.jsp" %>
 	<script type="text/javascript">
 		var zTreeObj;
+		var treeId = "ztree";
+		var selectedNodeId;
 		var treeSetting = {
 			treeId: 'directoryTree',
 			view: {
@@ -31,7 +33,8 @@
 			}
 		};
 		function zTreeOnClick(event, treeId, treeNode) {
-			$("#resourceFrame").attr("src", "<c:url value="/authority/listOperator.shtml"/>?modulePath=" + modulePath + "&moduleType=" + moduleType);
+			setSelectedNodeId(treeNode);
+			$("#resourceFrame").attr("src", "<c:url value="/cms/resource/list.shtml"/>?modulePath=cms/resource&directoryId=" + treeNode.id);
 		}  
 		var zTreeNodes = [  
         	<c:forEach items="${roots}" var="node" varStatus="status">
@@ -44,32 +47,64 @@
         	</c:forEach>
         ]  
 		$(document).ready(function() {
-			zTreeObj = $.fn.zTree.init($("#ztree"), treeSetting, zTreeNodes);
-			//var nodes = zTreeObj.getNodes();
-			//if (nodes.length>0) {
-			//	var node = nodes[0];
-			//	zTreeObj.selectNode(node);
-			//	changeUserType($("input[name='userType']:checked").val());
-			//}
+			zTreeObj = $.fn.zTree.init($("#" + treeId), treeSetting, zTreeNodes);
+			var nodes = zTreeObj.getNodes();
+			if (nodes.length>0) {
+				var node = nodes[0];
+				zTreeObj.selectNode(node);
+				zTreeOnClick(event, treeId, node);
+				setSelectedNodeId(node);
+			}
 		});
 		
-		function changeUserType(userType) {
-			var nodes = zTreeObj.getSelectedNodes();
-			if(nodes.length > 0) {
-				zTreeOnClick(null, treeSetting.treeId, nodes[0]);
-			}
+		function setSelectedNodeId(node) {
+			selectedNodeId = node.id;
 		}
 		
+		function addDirectory() {
+			var parentId = '';
+			if(selectedNodeId != null) {
+				parentId = selectedNodeId;
+			}
+			openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }&parentId=' + parentId + '"/>', 600, 400);
+		}
+		
+		//重载
+		function reloadPage() {
+			reAsyncChildNodes();
+		}
+		
+		function reAsyncChildNodes() {
+			var node = null;
+			if(selectedNodeId != null && selectedNodeId != undefined && selectedNodeId != '') {
+				node = zTreeObj.getNodeByParam("id", selectedNodeId, null);
+			}
+			//如果isParent=false,则reAsyncChildNodes不会执行
+			if(node != null && node.isParent == false) {
+				node.isParent = true;
+			}
+			//parentNode = null 时，相当于从根节点 Root 进行异步加载
+			zTreeObj.reAsyncChildNodes(node, "refresh", false);
+		}
 	</script>
 </head>
 <body scroll="no">
 	<table class="table-form"  cellpadding="0" cellspacing="0" border="0" style="width: 100%; height:100%;">
 		<tr>
-			<td width="150" valign="top">
+			<td width="150" valign="top" rowspan="2">
 				<ul id="ztree" class="ztree" style="overflow:auto;"></ul>
 			</td>
+			<td height="50" valign="middle">
+				<input class="btnClass" type="submit" value="添加" onClick="addDirectory()"/>
+				&nbsp;
+				<input class="btnClass" type="submit" value="修改" />
+				&nbsp;
+				<input class="btnClass" type="submit" value="删除" />
+			</td>
+		</tr>
+		<tr>
 			<td valign="top">
-				<iframe id="resourceFrame" style="width: 100%; height: 100%;" frameborder="0" src="" scrolling="no"/>
+				<iframe id="resourceFrame" style="width: 100%; height: 100%;" frameborder="0" src=""/>
 			</td>
 		</tr>
 	</table>
