@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.lmiky.jdp.tree.controller.TreeController,com.lmiky.jdp.tree.pojo.BaseTreePojo" %>
 <%@ include file="/jdp/common/common.jsp"%>
 <c:set var="tree_leaf_yes" value="<%=BaseTreePojo.LEAF_YES %>"/>
@@ -9,6 +10,7 @@
 	<base target="_self"/>
 	<%@ include file="/jdp/form/header.jsp" %>
 	<%@ include file="/jdp/common/tree.jsp" %>
+	<link rel="stylesheet" type="text/css" href="${css}/view.css" />
 	<script type="text/javascript">
 		var zTreeObj;
 		var treeId = "ztree";
@@ -94,12 +96,21 @@
 			<td width="150" valign="top" rowspan="2">
 				<ul id="ztree" class="ztree" style="overflow:auto;"></ul>
 			</td>
-			<td height="50" valign="middle">
-				<input class="btnClass" type="submit" value="添加" onClick="addDirectory()"/>
+			<td valign="middle" class="listTitle2">
+				<input class="btnClass" type="button" value="添加" onClick="addDirectory()"/>
 				&nbsp;
-				<input class="btnClass" type="submit" value="修改" />
+				<input class="btnClass" type="button" value="修改" />
 				&nbsp;
-				<input class="btnClass" type="submit" value="删除" />
+				<input class="btnClass" type="button" value="删除" />
+				&nbsp;
+				<c:set var="isFavorited" value="${false}" />
+				<favorite:inMyMenu menuId="cms_directory_load">
+				<c:set var="isFavorited" value="${true}" />
+					<input class="btnClass1" type="button" onClick="removeMyFavoriteMenu('cms_directory_load', this)" value="取消收藏" />
+				</favorite:inMyMenu>
+				<c:if test="${!isFavorited }">
+					<input class="btnClass1" type="button" onClick="addMyFavoriteMenu('cms_directory_load', this)" value="添加到收藏夹" />
+				</c:if>
 			</td>
 		</tr>
 		<tr>
