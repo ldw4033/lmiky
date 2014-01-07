@@ -30,11 +30,17 @@
 		</module>
 	</moduleGroup>
 	<moduleGroup name="内容管理" path="cms">
-		<module name="内容管理" path="cms/directory">
+		<module name="栏目管理" path="cms/directory">
 		    <function name="查询" authorityCode="cms_directory_load" sort="0"/>
 			<function name="添加" authorityCode="cms_directory_add" sort="1"/>
 			<function name="修改" authorityCode="cms_directory_modify" sort="2"/>
 			<function name="删除" authorityCode="cms_directory_delete" sort="3"/>
+		</module>
+		<module name="文章管理" path="cms/resource">
+		    <function name="查询" authorityCode="cms_resource_load" sort="0"/>
+			<function name="添加" authorityCode="cms_resource_add" sort="1"/>
+			<function name="修改" authorityCode="cms_resource_modify" sort="2"/>
+			<function name="删除" authorityCode="cms_resource_delete" sort="3"/>
 		</module>
 	</moduleGroup>
 	<moduleGroup name="抓取" path="capture">

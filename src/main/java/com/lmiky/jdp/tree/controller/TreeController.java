@@ -1,17 +1,24 @@
 package com.lmiky.jdp.tree.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.ui.ModelMap;
 
+import com.lmiky.cms.resource.pojo.CmsResource;
 import com.lmiky.jdp.constants.Constants;
 import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.database.pojo.BaseSortPojo;
 import com.lmiky.jdp.form.controller.FormController;
+import com.lmiky.jdp.form.model.ValidateError;
+import com.lmiky.jdp.form.util.ValidateUtils;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.tree.pojo.BaseTreePojo;
 
@@ -39,13 +46,85 @@ public abstract class TreeController<T extends BaseTreePojo> extends FormControl
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
 			// 检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
-			modelMap.put("nodes", service.list(pojoClass, new PropertyFilter("parent.id", null, PropertyCompareType.NULL, pojoClass), new Sort(BaseSortPojo.POJO_FIELD_NAME_SORT, Sort.SORT_TYPE_ASC, pojoClass)));
+			//检查权限
+			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode());
+			modelMap.put("roots", service.list(pojoClass, new PropertyFilter("parent.id", null, PropertyCompareType.NULL, pojoClass), new Sort(BaseSortPojo.POJO_FIELD_NAME_SORT, Sort.SORT_TYPE_ASC, pojoClass)));
 			appendListAttribute(modelMap, request, resopnse);
 			String modulePath = getModulePath(modelMap, request);
 			modelMap.put(Constants.HTTP_PARAM_MODULE_PATH, modulePath);
 			return getExecuteListRet(modelMap, request, modulePath);
 		} catch (Exception e) {
 			return transactException(e, modelMap, request, resopnse);
+		}
+	}
+	
+	/**
+	 * 执行树列表加载
+	 * @author lmiky
+	 * @date 2014-1-4
+	 * @param modelMap
+	 * @param request
+	 * @param resopnse
+	 * @param parentId
+	 * @return
+	 * @throws Exception
+	 */
+	public String executeTreeList(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Long parentId) throws Exception {
+		try {
+			// 判断是否有登陆
+			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
+			// 检查单点登陆
+			checkSso(sessionInfo, modelMap, request);
+			//检查权限
+			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode());
+			if(parentId == null) {
+				modelMap.put("nodes", service.list(pojoClass, new PropertyFilter("parent.id", null, PropertyCompareType.NULL, pojoClass), new Sort(BaseSortPojo.POJO_FIELD_NAME_SORT, Sort.SORT_TYPE_ASC, pojoClass)));
+			} else {
+				modelMap.put("nodes", service.list(pojoClass, new PropertyFilter("parent.id", parentId, PropertyCompareType.EQ, pojoClass), new Sort(BaseSortPojo.POJO_FIELD_NAME_SORT, Sort.SORT_TYPE_ASC, pojoClass)));
+			}
+			return "treeListJsonView";
+		} catch (Exception e) {
+			logException(e, modelMap, request, resopnse);
+		}
+		return null;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#validateInput(com.lmiky.jdp.database.pojo.BasePojo, java.lang.String, org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
+	 */
+	public List<ValidateError> validateInput(CmsResource pojo, String openMode, ModelMap modelMap, HttpServletRequest request) throws Exception {
+		List<ValidateError> validateErrors = new ArrayList<ValidateError>();
+		ValidateUtils.validateRequired(request, "name", "名称", validateErrors);
+		return validateErrors;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#appendLoadAttribute(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.String, com.lmiky.jdp.database.pojo.BasePojo)
+	 */
+	@Override
+	protected void appendLoadAttribute(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, String openMode, T pojo)
+			throws Exception {
+		super.appendLoadAttribute(modelMap, request, resopnse, openMode, pojo);
+		String parentId = request.getParameter("parentId");
+		if(!StringUtils.isBlank(parentId)) {
+			modelMap.put("parentId", parentId);
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#setPojoProperties(com.lmiky.jdp.database.pojo.BasePojo, org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
+	 */
+	@Override
+	protected void setPojoProperties(T pojo, ModelMap modelMap, HttpServletRequest request) throws Exception {
+		super.setPojoProperties(pojo, modelMap, request);
+		String parentIdStr = request.getParameter("parentId");
+		//非顶层节点
+		if(!StringUtils.isBlank(parentIdStr)) {
+			Long parentId = Long.parseLong(parentIdStr);
+			T parent = service.find(pojoClass, parentId);
+			pojo.setParent(parent);
 		}
 	}
 }
