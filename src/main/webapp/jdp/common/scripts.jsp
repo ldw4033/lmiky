@@ -16,8 +16,12 @@
 		$.getJSON("<c:url value="/sso/system/menu/addMyFavorite.shtml"/>", { menuId: menuId, uncacheParam: uncacheParam}, function(json){
 			alert(json.msg);
 			if(json.code == '<%=MenuController.CODE_SUCCESS%>' && obj != null && obj != undefined) {
-				$(obj).text("取消收藏");
-				$(obj).val("取消收藏");
+				if($(obj).text() != '') {
+					$(obj).text("取消收藏");
+				}
+				if($(obj).val() != '') {
+					$(obj).val("取消收藏");
+				}
 				$(obj).removeAttr('onclick').unbind('click').click(function(){
 					removeMyFavoriteMenu(menuId, obj);
 			    });
@@ -30,8 +34,12 @@
 		$.getJSON("<c:url value="/sso/system/menu/removeMyFavorite.shtml"/>", { menuId: menuId, uncacheParam: uncacheParam}, function(json){
 			alert(json.msg);
 			if(json.code == '<%=MenuController.CODE_SUCCESS%>' && obj != null && obj != undefined) {
-				$(obj).text("添加到收藏夹");
-				$(obj).val("添加到收藏夹");
+				if($(obj).text() != '') {
+					$(obj).text("添加到收藏夹");
+				}
+				if($(obj).val() != '') {
+					$(obj).val("添加到收藏夹");
+				}
 				$(obj).removeAttr('onclick').unbind('click').click(function(){
 					addMyFavoriteMenu(menuId, obj);
 			    });

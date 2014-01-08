@@ -71,6 +71,15 @@
 			openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }&parentId=' + parentId + '"/>', 600, 400);
 		}
 		
+		function updateDirectory() {
+			if(selectedNodeId != null) {
+				openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }&id=' + selectedNodeId + '"/>', 600, 400);
+			} else {
+				alert('请选择要修改的目录');
+			}
+			
+		}
+		
 		//重载
 		function reloadPage() {
 			reAsyncChildNodes();
@@ -99,7 +108,7 @@
 			<td valign="middle" class="listTitle2">
 				<input class="btnClass" type="button" value="添加" onClick="addDirectory()"/>
 				&nbsp;
-				<input class="btnClass" type="button" value="修改" />
+				<input class="btnClass" type="button" value="修改" onclick="updateDirectory()"/>
 				&nbsp;
 				<input class="btnClass" type="button" value="删除" />
 				&nbsp;

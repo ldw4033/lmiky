@@ -140,7 +140,6 @@ public class DirectoryController extends TreeController<CmsDirectory> {
 	 */
 	@Resource(name="treeService")
 	public void setService(BaseService service) {
-		// TODO Auto-generated method stub
 		super.setService(service);
 	}
 }
