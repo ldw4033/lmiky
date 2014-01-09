@@ -43,14 +43,18 @@ function deletePojo(deleteUrl) {
 }
 
 //打开模态窗口
-function openDialog(url, width, height, parameters) {
+function openDialog(url, width, height, parameters, openDialogCallback) {
 	var x = parseInt((screen.width / 2) - (width / 2));
 	var y = parseInt((screen.height / 2) - (height / 2));
 	parameters = 'dialogWidth=' + width + 'px;dialogHeight=' + height + 'px;dialogLeft:' + x + 'px;dialogTop:' + y + 'px;' + parameters;
 
 	var result = window.showModalDialog(url, window, parameters);
-	if (typeof(reloadPage) == "function" && (result == undefined || result == null || result[DIALOG_RETURN_REFRESH_KEY] != DIALOG_RETURN_REFRESH_VALUE_NO)) {
-		reloadPage();
+	if(openDialogCallback && typeof(openDialogCallback) == "function") {
+		openDialogCallback();
+	} else {
+		if (typeof(reloadPage) == "function" && (result == undefined || result == null || result[DIALOG_RETURN_REFRESH_KEY] != DIALOG_RETURN_REFRESH_VALUE_NO)) {
+			reloadPage();
+		}
 	}
 }
 //打开新窗口
