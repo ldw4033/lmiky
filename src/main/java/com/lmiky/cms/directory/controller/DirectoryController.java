@@ -131,7 +131,7 @@ public class DirectoryController extends TreeController<CmsDirectory> {
 	 */
 	@RequestMapping("/delete.shtml")
 	public String delete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,
-			@RequestParam(value = "id", required = false) Long id) throws Exception {
+			@RequestParam(value = "id", required = true) Long id) throws Exception {
 		return executeDelete(modelMap, request, resopnse, id);
 	}
 

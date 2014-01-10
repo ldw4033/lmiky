@@ -16,7 +16,7 @@
 						<table width="98%" height="30" border="0" cellpadding="0" cellspacing="0">
 							<tr>
 								<td align="center" class="listTitle">
-									&nbsp;<img src="${images }/jt-5.gif" width="16" height="16" align="absmiddle" />&nbsp;文章管理
+									&nbsp;<img src="${images }/jt-5.gif" width="16" height="16" align="absmiddle" />${directory.name }&nbsp;文章管理
 								</td>
 							</tr>
 						</table>

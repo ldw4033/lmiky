@@ -31,13 +31,22 @@
 				autoParam: ["id"]
 			},
 			callback: {
-				onClick: zTreeOnClick
+				onClick: zTreeOnClick,
+				onAsyncSuccess: zTreeOnAsyncSuccess
 			}
 		};
 		function zTreeOnClick(event, treeId, treeNode) {
 			setSelectedNodeId(treeNode);
 			$("#resourceFrame").attr("src", "<c:url value="/cms/resource/list.shtml"/>?modulePath=cms/resource&directoryId=" + treeNode.id);
 		}  
+		
+		function zTreeOnAsyncSuccess(event, treeId, treeNode, msg) {
+			if(selectedNodeId != null && selectedNodeId != undefined && selectedNodeId != '') {
+				var node = zTreeObj.getNodeByParam("id", selectedNodeId, null);
+				zTreeObj.selectNode(node);
+			}
+		}
+		
 		var zTreeNodes = [  
         	<c:forEach items="${roots}" var="node" varStatus="status">
         		{id:"${node.id}", name:"${node.name}", "modulePath":"${param.modulePath}",
@@ -55,7 +64,6 @@
 				var node = nodes[0];
 				zTreeObj.selectNode(node);
 				zTreeOnClick(event, treeId, node);
-				setSelectedNodeId(node);
 			}
 		});
 		
@@ -68,27 +76,49 @@
 			if(selectedNodeId != null) {
 				parentId = selectedNodeId;
 			}
-			openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }&parentId=' + parentId + '"/>', 600, 400);
+			openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }&parentId=' + parentId + '"/>', 600, 400, '', reAsyncNode);
 		}
 		
 		function updateDirectory() {
 			if(selectedNodeId != null) {
-				openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }&id=' + selectedNodeId + '"/>', 600, 400);
+				openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }&id=' + selectedNodeId + '"/>', 600, 400, '', reAsyncParentNode);
 			} else {
 				alert('请选择要修改的目录');
 			}
-			
 		}
 		
-		//重载
-		function reloadPage() {
-			reAsyncChildNodes();
+		function deleteDirectory() {
+			if(selectedNodeId != null) {
+				if(confirm(MESSAGE_DELETE_CONFIRM)) {
+					$("#mainForm").prop("action", deleteUrl);
+					document.getElementById("mainForm").submit();
+				}
+			} else {
+				alert('请选择要删除的目录');
+			}
 		}
 		
-		function reAsyncChildNodes() {
+		function reAsyncNode() {
+			reAsyncChildNodes(selectedNodeId);
+		}
+		
+		function reAsyncParentNode() {
 			var node = null;
 			if(selectedNodeId != null && selectedNodeId != undefined && selectedNodeId != '') {
 				node = zTreeObj.getNodeByParam("id", selectedNodeId, null);
+				var parentNode = node.getParentNode();
+				var refreshId = null;
+				if(parentNode != null) {
+					refreshId = parentNode.id;
+				}
+				reAsyncChildNodes(refreshId);
+			}
+		}
+		
+		function reAsyncChildNodes(nodeId) {
+			var node = null;
+			if(nodeId != null && nodeId != undefined && nodeId != '') {
+				node = zTreeObj.getNodeByParam("id", nodeId, null);
 			}
 			//如果isParent=false,则reAsyncChildNodes不会执行
 			if(node != null && node.isParent == false) {
@@ -106,12 +136,18 @@
 				<ul id="ztree" class="ztree" style="overflow:auto;"></ul>
 			</td>
 			<td valign="middle" class="listTitle2">
-				<input class="btnClass" type="button" value="添加" onClick="addDirectory()"/>
-				&nbsp;
-				<input class="btnClass" type="button" value="修改" onclick="updateDirectory()"/>
-				&nbsp;
-				<input class="btnClass" type="button" value="删除" />
-				&nbsp;
+				<lauthority:checkAuthority authorityCode="cms_directory_add">
+					<input class="btnClass" type="button" value="添加" onClick="addDirectory()"/>
+					&nbsp;
+				</lauthority:checkAuthority>
+				<lauthority:checkAuthority authorityCode="cms_directory_modify">
+					<input class="btnClass" type="button" value="修改" onclick="updateDirectory()"/>
+					&nbsp;
+				</lauthority:checkAuthority>
+				<lauthority:checkAuthority authorityCode="cms_directory_delete">
+					<input class="btnClass" type="button" value="删除" />
+					&nbsp;
+				</lauthority:checkAuthority>
 				<c:set var="isFavorited" value="${false}" />
 				<favorite:inMyMenu menuId="cms_directory_load">
 				<c:set var="isFavorited" value="${true}" />
