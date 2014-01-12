@@ -17,6 +17,8 @@ import org.springframework.ui.ModelMap;
 
 import com.lmiky.jdp.authority.exception.AuthorityException;
 import com.lmiky.jdp.authority.service.AuthorityService;
+import com.lmiky.jdp.base.view.BaseCode;
+import com.lmiky.jdp.base.view.BaseInfoCodeJsonView;
 import com.lmiky.jdp.constants.Constants;
 import com.lmiky.jdp.logger.util.LoggerUtils;
 import com.lmiky.jdp.module.pojo.Module;
@@ -27,6 +29,7 @@ import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.session.service.SessionService;
 import com.lmiky.jdp.sso.exception.SsoException;
 import com.lmiky.jdp.sso.service.SsoService;
+import com.lmiky.jdp.user.pojo.User;
 import com.lmiky.jdp.util.PropertiesUtils;
 import com.lmiky.jdp.util.UUIDGenerator;
 import com.lmiky.jdp.web.util.WebUtils;
@@ -41,6 +44,11 @@ public abstract class BaseController {
 	public static final String MESSAGE_INFO_KEY = "messageInfos";
 	public static final String ERROR_INFO_KEY = "errorInfos";
 	public static final String REDIRECT_TO_LOGIN_REASON_KEY = "redirectToLoginReason";	//跳转到登陆页面重新登陆原因
+	
+	//请求方式
+	public static final String REQUESTTYPE_NORMAL = "normal";	//普通方式
+	public static final String REQUESTTYPE_AJAX = "ajax";		//ajax方式
+	
 	protected BaseService service;
 	protected SessionService sessionService;
 	protected SsoService ssoService;
@@ -99,10 +107,11 @@ public abstract class BaseController {
 	 * @param modelMap
 	 * @param request
 	 * @param resopnse
+	 * @param requestTyps 请求方式
 	 * @return
 	 * @throws Exception
 	 */
-	public String executeLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse) throws Exception {
+	public String executeBaseLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, String... requestTyps) throws Exception {
 		try {
 			//判断是否有登陆
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
@@ -114,7 +123,7 @@ public abstract class BaseController {
 			setLoadPrams(modelMap, request, resopnse, loadParams);
 			return processLoad(modelMap, request, resopnse, loadParams);
 		} catch(Exception e) {
-			return transactException(e, modelMap, request, resopnse);
+			return transactException(e, modelMap, request, resopnse, requestTyps);
 		}
 	}
 	
@@ -154,23 +163,77 @@ public abstract class BaseController {
 	 * @param modelMap
 	 * @param request
 	 * @param response
+	 * @param requestTyps 请求方式
 	 * @return
 	 * @throws Exception
 	 */
-	public String transactException(Exception e, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String transactException(Exception e, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, String... requestTyps) throws Exception {
 		logException(e, modelMap, request, response);
 		if(e instanceof SessionException) {
-			return redirectToLogin(modelMap, request, response, "登陆超时！");
+			putError(modelMap, "登陆超时！");
+			if(isRedirectRequestType(requestTyps)) {
+				return redirectToLogin(modelMap, request, response, "登陆超时！");
+			} else {
+				return getUnRedirectRequestTypeExceptionReturn(e, modelMap, request, response, requestTyps);
+			}
 		}
 		if(e instanceof SsoException) {
 			sessionService.removeSessionInfo(request);	//清除SessionInfo，如果是在别处登录，即使别处已经下线，还是强制必须得重新登录
-			return redirectToLogin(modelMap, request, response, "当前账号在别处登陆！");
+			putError(modelMap, "当前账号在别处登陆！");
+			if(isRedirectRequestType(requestTyps)) {
+				return redirectToLogin(modelMap, request, response, "当前账号在别处登陆！");
+			} else {
+				return getUnRedirectRequestTypeExceptionReturn(e, modelMap, request, response, requestTyps);
+			}
 		}
 		if(e instanceof AuthorityException) {
-			return redirectToLogin(modelMap, request, response, "没有权限！");
+			putError(modelMap, "没有权限！");
+			if(isRedirectRequestType(requestTyps)) {
+				return redirectToLogin(modelMap, request, response, "没有权限！");
+			} else {
+				return getUnRedirectRequestTypeExceptionReturn(e, modelMap, request, response, requestTyps);
+			}
 		}
 		putError(modelMap, e.getMessage());
-		throw e;
+		if(isRedirectRequestType(requestTyps)) {
+			throw e;
+		}
+		return getUnRedirectRequestTypeExceptionReturn(e, modelMap, request, response, requestTyps);
+	}
+	
+	/**
+	 * 非调整请求方式异常返回结果
+	 * @author lmiky
+	 * @date 2014-1-11
+	 * @param e
+	 * @param modelMap
+	 * @param request
+	 * @param response
+	 * @param requestTyps 请求方式
+	 * @return
+	 */
+	public String getUnRedirectRequestTypeExceptionReturn(Exception e, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, String... requestTyps) {
+		modelMap.put(BaseInfoCodeJsonView.KEY_CODE_NAME, BaseCode.CODE_EXCEPTION);
+		return "baseInfoCodeJsonView";
+	}
+	
+	/**
+	 * 是否调整方式请求
+	 * @author lmiky
+	 * @date 2014-1-11
+	 * @param requestTyps
+	 * @return
+	 */
+	protected boolean isRedirectRequestType(String... requestTyps) {
+		if(requestTyps == null || requestTyps.length == 0) {
+			return true;
+		}
+		for(String requestTyp : requestTyps) {
+			if(REQUESTTYPE_AJAX.equals(requestTyp)) {	//ajax方式
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	/**
@@ -290,6 +353,38 @@ public abstract class BaseController {
 		if(!StringUtils.isBlank(authorityCode) && !WebUtils.checkAuthority(authorityService, sessionInfo, authorityCode)) {
 			throw new AuthorityException("no authority");
 		}
+	}
+	
+	/**
+	 * 获取当前登录用户ID
+	 * @author lmiky
+	 * @date 2014-1-12
+	 * @param modelMap
+	 * @param request
+	 * @throws Exception
+	 * @return
+	 */
+	public Long getLoginUserId(ModelMap modelMap, HttpServletRequest request) throws Exception {
+		SessionInfo sessionInfo = sessionService.getSessionInfo(request);
+		return sessionInfo == null ? null : sessionInfo.getUserId();
+	}
+	
+	/**
+	 * 获取当前登录用户
+	 * @author lmiky
+	 * @date 2014-1-12
+	 * @param modelMap
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	public User getLoginUser(ModelMap modelMap, HttpServletRequest request) throws Exception {
+		SessionInfo sessionInfo = sessionService.getSessionInfo(request);
+		if(sessionInfo == null) {
+			return null;
+		}
+		Long userId = sessionInfo.getUserId();
+		return userId == null ? null : service.find(User.class, userId);
 	}
 	
 	/**

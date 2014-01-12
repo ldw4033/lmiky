@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <tr>
-	<th align="right" class="bg02">
+	<th align="right" class="bg02" width="17%">
 		<label>标题</label>
 	</th>
-	<td>
+	<td colspan="3">
 		${pojo.title}
 	</td>
 </tr>
@@ -11,23 +12,26 @@
 	<th align="right" class="bg02">
 		<label>副标题</label>
 	</th>
-	<td>
+	<td colspan="3">
 		${pojo.subtitle}
 	</td>
 </tr>
 <tr>
-	<th align="right" class="bg02">
-		<label>作者 </label>
+	<th align="right" class="bg02" width="17%">
+		<label>作者</label>
 	</th>
-	<td>
+	<td width="33%">
 		${pojo.author}
+	</td>
+	<th align="right" class="bg02" width="17%">
+		<label>来源</label>
+	</th>
+	<td width="33%">
+		${pojo.source}
 	</td>
 </tr>
 <tr>
-	<th width="17%" align="right" class="bg02">
-		<label>内容 </label>
-	</th>
-	<td>
+	<td colspan="4" valign="top">
 		${pojo.content}
 	</td>
 </tr>

@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.lmiky.jdp.tree.controller.TreeController,com.lmiky.jdp.tree.pojo.BaseTreePojo" %>
+<%@page import="com.lmiky.jdp.base.view.BaseInfoCodeJsonView"%>
+<%@page import="com.lmiky.jdp.base.view.BaseCode"%>
 <%@ include file="/jdp/common/common.jsp"%>
-<c:set var="tree_leaf_yes" value="<%=BaseTreePojo.LEAF_YES %>"/>
-<c:set var="tree_leaf_no" value="<%=BaseTreePojo.LEAF_NO %>"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -45,6 +45,11 @@
 				var node = zTreeObj.getNodeByParam("id", selectedNodeId, null);
 				zTreeObj.selectNode(node);
 			}
+			var nodes = treeNode.children;
+	    	if(treeNode.children.length == 0) {
+		    	treeNode.isParent = false;
+		    	zTreeObj.updateNode(treeNode);
+		    }
 		}
 		
 		var zTreeNodes = [  
@@ -83,18 +88,39 @@
 			if(selectedNodeId != null) {
 				openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }&id=' + selectedNodeId + '"/>', 600, 400, '', reAsyncParentNode);
 			} else {
-				alert('请选择要修改的目录');
+				alert('请选择要修改的目录！');
 			}
 		}
 		
 		function deleteDirectory() {
 			if(selectedNodeId != null) {
-				if(confirm(MESSAGE_DELETE_CONFIRM)) {
-					$("#mainForm").prop("action", deleteUrl);
-					document.getElementById("mainForm").submit();
+				if(confirm('删除目录将一并删除所属文章列表，您确定要删除该目录？')) {
+					$.getJSON('<c:url value="/cms/directory/delete.shtml"/>?id=' + selectedNodeId, function(json){
+						if(json.errorInfos) {
+							$.each(json.errorInfos, function(i, item) {
+								alert(item);
+							});	
+						}
+						if(json.messageInfos) {
+							$.each(json.messageInfos, function(i, item) {
+								alert(item);
+							});	
+						}
+						if(json.<%=BaseInfoCodeJsonView.KEY_CODE_NAME%> == <%=BaseCode.CODE_SUCCESS%>) {
+							var node = zTreeObj.getNodeByParam("id", selectedNodeId, null);
+							var parentNode = node.getParentNode();
+							var refreshId = null;
+							if(parentNode != null) {
+								refreshId = parentNode.id;
+								selectedNodeId = refreshId;
+								zTreeOnClick(event, treeId, parentNode)
+							}
+							reAsyncChildNodes(refreshId);
+						}
+					}); 	
 				}
 			} else {
-				alert('请选择要删除的目录');
+				alert('请选择要删除的目录！');
 			}
 		}
 		
@@ -145,7 +171,7 @@
 					&nbsp;
 				</lauthority:checkAuthority>
 				<lauthority:checkAuthority authorityCode="cms_directory_delete">
-					<input class="btnClass" type="button" value="删除" />
+					<input class="btnClass" type="button" value="删除" onclick="deleteDirectory()"/>
 					&nbsp;
 				</lauthority:checkAuthority>
 				<c:set var="isFavorited" value="${false}" />

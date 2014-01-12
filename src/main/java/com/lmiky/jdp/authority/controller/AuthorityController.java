@@ -44,7 +44,7 @@ public class AuthorityController extends BaseController {
 	@RequestMapping("/load.shtml")
 	public String load(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse) throws Exception {
 		try {
-			return executeLoad(modelMap, request, resopnse);
+			return executeBaseLoad(modelMap, request, resopnse);
 		} catch(Exception e) {
 			return transactException(e, modelMap, request, resopnse);
 		}

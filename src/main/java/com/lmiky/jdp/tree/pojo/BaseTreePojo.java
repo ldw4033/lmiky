@@ -1,6 +1,5 @@
 package com.lmiky.jdp.tree.pojo;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,12 +21,10 @@ import com.lmiky.jdp.database.pojo.BaseSortPojo;
 @Table(name="tree")
 @Inheritance(strategy=InheritanceType.JOINED) 
 public class BaseTreePojo extends BaseSortPojo {
-	public static final int LEAF_YES = 0;
-	public static final int LEAF_NO = 1;
 	
 	private String name;
 	private BaseTreePojo parent;
-	private Integer leaf = LEAF_YES;
+	private Integer leaf = 0;
 	
 	/**
 	 * @return the name
@@ -45,7 +42,7 @@ public class BaseTreePojo extends BaseSortPojo {
 	/**
 	 * @return the parent
 	 */
-	@ManyToOne(fetch=FetchType.LAZY , cascade={CascadeType.ALL} )  
+	@ManyToOne(fetch=FetchType.LAZY)  
     @JoinColumn(name="parent_id")
 	public BaseTreePojo getParent() {
 		return parent;

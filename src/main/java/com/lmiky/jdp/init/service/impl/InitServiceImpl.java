@@ -68,11 +68,12 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 		delete(User.class);
 		save(user);
 
+		//放在初始化模块之前，是因为修改模块中也要授权，先删除，修改模块就不需要浪费时间授权之后还要再删除
+		delete(Authority.class);
 		// 模块
 		updateModule();
 
 		// 权限：拥有系统管理员的权限
-		delete(Authority.class);
 		authorityService.authorize(Module.MODULE_PATH_SYSTEM, Module.MODULE_TYPE_SYSTEM, new String[]{role.getId() + ""});
 	}
 
@@ -86,6 +87,41 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 		delete(Module.class);
 		delete(ModuleGroup.class);
 		save(moduleGroups);
+		//重新授权，防止出现类似“权限管理里面看到是整个系统的管理员，而实际有某个模块是没有权限”的情况
+		for(ModuleGroup moduleGroup : moduleGroups) {
+			for(Module module : moduleGroup.getModules()) {
+				for(Function function : module.getFunctions()) {
+					String hql = "select distinct Role from Role Role, Authority Authority where Role.id = Authority.operator and Authority.modulePath = '" + function.getAuthorityCode()+ "'";
+					List<Role> roles = getDAO().list(hql);
+					String[] roleStrs = new String[roles.size()];
+					for(int i=0; i<roles.size(); i++) {
+						roleStrs[i] = roles.get(i).getId().toString();
+					}
+					authorityService.authorize(function.getAuthorityCode(), Module.MODULE_TYPE_FUNCTION, roleStrs);
+				}
+				String hql = "select distinct Role from Role Role, Authority Authority where Role.id = Authority.operator and Authority.modulePath = '" + module.getPath() + "'";
+				List<Role> roles = getDAO().list(hql);
+				String[] roleStrs = new String[roles.size()];
+				for(int i=0; i<roles.size(); i++) {
+					roleStrs[i] = roles.get(i).getId().toString();
+				}
+				authorityService.authorize(module.getPath(), Module.MODULE_TYPE_MODULE, roleStrs);
+			}
+			String hql = "select distinct Role from Role Role, Authority Authority where Role.id = Authority.operator and Authority.modulePath = '" + moduleGroup.getPath() + "'";
+			List<Role> roles = getDAO().list(hql);
+			String[] roleStrs = new String[roles.size()];
+			for(int i=0; i<roles.size(); i++) {
+				roleStrs[i] = roles.get(i).getId().toString();
+			}
+			authorityService.authorize(moduleGroup.getPath(), Module.MODULE_TYPE_GROUP, roleStrs);
+		}
+		String hql = "select distinct Role from Role Role, Authority Authority where Role.id = Authority.operator and Authority.modulePath = '" + Module.MODULE_PATH_SYSTEM + "'";
+		List<Role> roles = getDAO().list(hql);
+		String[] roleStrs = new String[roles.size()];
+		for(int i=0; i<roles.size(); i++) {
+			roleStrs[i] = roles.get(i).getId().toString();
+		}
+		authorityService.authorize(Module.MODULE_PATH_SYSTEM, Module.MODULE_TYPE_SYSTEM, roleStrs);
 		//更新菜单
 		updateMenu();
 	}

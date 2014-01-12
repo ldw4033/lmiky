@@ -1,6 +1,7 @@
 package com.lmiky.cms.resource.pojo;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,12 +9,13 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.lmiky.cms.directory.pojo.CmsDirectory;
 import com.lmiky.jdp.database.pojo.BasePojo;
+import com.lmiky.jdp.user.pojo.User;
 
 /**
  * 资源
@@ -23,13 +25,21 @@ import com.lmiky.jdp.database.pojo.BasePojo;
 @Entity
 @Table(name="cms_resource")
 public class CmsResource extends BasePojo {
-	private static final long serialVersionUID = 7980282407055179730L;
+	private static final long serialVersionUID = -5493636462667145928L;
+	
+	public static final int STATE_CREATE = 0;
+	public static final int STATE_PUBLISH = 1;
+	public static final int STATE_UNPUBLISH = 2;
 	private String title;
 	private String subtitle;
 	private String author;
+	private User creator;
 	private Date createTime;
+	private User publisher;
 	private Date pubTime;
-	private CmsResourceContent resourceContent;
+	private String source;
+	private Integer state = STATE_CREATE;
+	private Set<CmsResourceContent> resourceContents;
 	private CmsDirectory directory;
 	
 	/**
@@ -97,19 +107,74 @@ public class CmsResource extends BasePojo {
 	public void setPubTime(Date pubTime) {
 		this.pubTime = pubTime;
 	}
+	
 	/**
-	 * @return the resourceContent
+	 * @return the creator
 	 */
-	@OneToOne(fetch = FetchType.LAZY, cascade={CascadeType.ALL})
-	@JoinColumn(name="content_id")
-	public CmsResourceContent getResourceContent() {
-		return resourceContent;
+	@ManyToOne(fetch=FetchType.LAZY)  
+    @JoinColumn(name="creator") 
+	public User getCreator() {
+		return creator;
 	}
 	/**
-	 * @param resourceContent the resourceContent to set
+	 * @param creator the creator to set
 	 */
-	public void setResourceContent(CmsResourceContent resourceContent) {
-		this.resourceContent = resourceContent;
+	public void setCreator(User creator) {
+		this.creator = creator;
+	}
+	/**
+	 * @return the publisher
+	 */
+	@ManyToOne(fetch=FetchType.LAZY)  
+    @JoinColumn(name="publisher") 
+	public User getPublisher() {
+		return publisher;
+	}
+	/**
+	 * @param publisher the publisher to set
+	 */
+	public void setPublisher(User publisher) {
+		this.publisher = publisher;
+	}
+	/**
+	 * @return the source
+	 */
+	@Column(name="source")
+	public String getSource() {
+		return source;
+	}
+	/**
+	 * @param source the source to set
+	 */
+	public void setSource(String source) {
+		this.source = source;
+	}
+	/**
+	 * @return the state
+	 */
+	@Column(name="state")
+	public Integer getState() {
+		return state;
+	}
+	/**
+	 * @param state the state to set
+	 */
+	public void setState(Integer state) {
+		this.state = state;
+	}
+	
+	/**
+	 * @return the resourceContents
+	 */
+	@OneToMany(mappedBy="cmsResource", fetch=FetchType.LAZY, cascade={CascadeType.ALL})
+	public Set<CmsResourceContent> getResourceContents() {
+		return resourceContents;
+	}
+	/**
+	 * @param resourceContents the resourceContents to set
+	 */
+	public void setResourceContents(Set<CmsResourceContent> resourceContents) {
+		this.resourceContents = resourceContents;
 	}
 	
 	/**
@@ -120,10 +185,11 @@ public class CmsResource extends BasePojo {
 	 */
 	@Transient
 	public String getContent() {
-		if(resourceContent != null) {
-			return resourceContent.getContent();
+		Set<CmsResourceContent> rcs = getResourceContents();
+		if(rcs == null || rcs.isEmpty()) {
+			return "";
 		}
-		return "";
+		return rcs.iterator().next().getContent();
 	}
 	/**
 	 * @return the directory

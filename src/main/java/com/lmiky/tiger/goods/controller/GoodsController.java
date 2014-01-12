@@ -104,8 +104,7 @@ public class GoodsController extends TigerController<Goods> {
 	 * @see com.lmiky.jdp.form.controller.FormController#generateNewPojo(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected Goods generateNewPojo(ModelMap modelMap, HttpServletRequest request) throws InstantiationException,
-			IllegalAccessException {
+	protected Goods generateNewPojo(ModelMap modelMap, HttpServletRequest request) throws Exception {
 		Goods goods = super.generateNewPojo(modelMap, request);
 		Date date = new Date();
 		goods.setCreateTime(date);

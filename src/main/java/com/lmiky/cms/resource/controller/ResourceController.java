@@ -2,7 +2,9 @@ package com.lmiky.cms.resource.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.lmiky.cms.directory.pojo.CmsDirectory;
 import com.lmiky.cms.resource.pojo.CmsResource;
 import com.lmiky.cms.resource.pojo.CmsResourceContent;
+import com.lmiky.jdp.database.model.PropertyCompareType;
+import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.form.controller.FormController;
 import com.lmiky.jdp.form.model.ValidateError;
 import com.lmiky.jdp.form.util.ValidateUtils;
+import com.lmiky.jdp.user.pojo.User;
 
 /**
  * 资源
@@ -90,6 +95,18 @@ public class ResourceController extends FormController<CmsResource> {
 		return sorts;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.view.controller.ViewController#generatePropertyFilters(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
+	 */
+	protected List<PropertyFilter> generatePropertyFilters(ModelMap modelMap, HttpServletRequest request) {
+		List<PropertyFilter> filters = super.generatePropertyFilters(modelMap, request);
+		Long directoryId = Long.parseLong(request.getParameter("directoryId"));
+		if(directoryId != null) {
+			filters.add(new PropertyFilter("directory.id", directoryId, PropertyCompareType.EQ, CmsResource.class));
+		}
+		return filters;
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.view.controller.ViewController#appendListAttribute(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
@@ -127,9 +144,12 @@ public class ResourceController extends FormController<CmsResource> {
 	 * @see com.lmiky.jdp.form.controller.FormController#generateNewPojo(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected CmsResource generateNewPojo(ModelMap modelMap, HttpServletRequest request) throws InstantiationException, IllegalAccessException {
+	protected CmsResource generateNewPojo(ModelMap modelMap, HttpServletRequest request) throws Exception {
 		CmsResource resource = super.generateNewPojo(modelMap, request);
 		resource.setCreateTime(new Date());
+		User user = new User();
+		user.setId(getLoginUserId(modelMap, request));
+		resource.setCreator(user);
 		return resource;
 	}
 
@@ -141,12 +161,18 @@ public class ResourceController extends FormController<CmsResource> {
 	protected void setPojoProperties(CmsResource pojo, ModelMap modelMap, HttpServletRequest request) throws Exception {
 		super.setPojoProperties(pojo, modelMap, request);
 		// 文章内容
-		CmsResourceContent content = pojo.getResourceContent();
-		if (content == null) {
+		Set<CmsResourceContent> contents = pojo.getResourceContents();
+		CmsResourceContent content = null;
+		if (contents == null) {
+			contents = new HashSet<CmsResourceContent>();
 			content = new CmsResourceContent();
+			contents.add(content);
+		} else {
+			content = contents.iterator().next();
 		}
 		content.setContent(request.getParameter("content"));
-		pojo.setResourceContent(content);
+		content.setCmsResource(pojo);
+		pojo.setResourceContents(contents);
 		CmsDirectory directory = new CmsDirectory();
 		directory.setId(Long.parseLong(request.getParameter("directoryId")));
 		pojo.setDirectory(directory);

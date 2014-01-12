@@ -16,10 +16,8 @@ import com.lmiky.jdp.util.UUIDGenerator;
  */
 public class HtmlPropertyFilterTag extends BaseHtmlTag {
 	private static final long serialVersionUID = 941091266114250144L;
-	
 	public static final String INPUT_TYPE_DATE = "date";
 	public static final String INPUT_TYPE_DATETIME = "dateTime";
-
 	// 日期格式
 	private String datePattern;
 	private String dateTimePattern;
@@ -61,7 +59,9 @@ public class HtmlPropertyFilterTag extends BaseHtmlTag {
 			setType(null);
 		} else if (INPUT_TYPE_RADIO.equals(inputType)) {
 			setType(inputType);
-		} else { // 默认
+		} else if (INPUT_TYPE_HIDDEN.equals(inputType)) {
+			setType(inputType);
+		}else { // 默认
 			setType(INPUT_TYPE_TEXT);
 		}
 		if (INPUT_TYPE_RADIO.equals(inputType) && StringUtils.isBlank(getId())) {
