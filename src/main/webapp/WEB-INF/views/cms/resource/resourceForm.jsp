@@ -4,16 +4,7 @@
 <html>
 <head>
 	<%@ include file="/jdp/form/header.jsp" %>
-	<link rel="stylesheet" href="${scriptPlugin }/kindeditor/themes/default/default.css" />
-	<script charset="utf-8" src="${scriptPlugin }/kindeditor/kindeditor-min.js"></script>
-	<script charset="utf-8" src="${scriptPlugin }/kindeditor/lang/zh_CN.js"></script>
-	<script type="text/javascript">
-		KindEditor.ready(function(K) {
-			editor = K.create('textarea[name="content"]', {
-				allowFileManager : true
-			});
-		});
-	</script>
+	<link rel="stylesheet" href="${scriptPlugin }/ckeditor/ckeditor.js" />
 </head>
 <body>
 	<%@ include file="/jdp/form/messages.jsp" %>
