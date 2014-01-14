@@ -31,7 +31,7 @@
 </tr>
 <tr>
 	<td colspan="4">
-		<textarea rows="25" class="full" name="content" class="ckeditor" >${pojo.content}</textarea>
+		<textarea rows="25" name="content" class="ckeditor full" >${pojo.content}</textarea>
 	</td>
 </tr>
 <tr>

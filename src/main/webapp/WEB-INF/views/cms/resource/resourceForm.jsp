@@ -4,7 +4,7 @@
 <html>
 <head>
 	<%@ include file="/jdp/form/header.jsp" %>
-	<link rel="stylesheet" href="${scriptPlugin }/ckeditor/ckeditor.js" />
+	<script src="${scriptPlugin }/ckeditor/ckeditor.js" ></script>
 </head>
 <body>
 	<%@ include file="/jdp/form/messages.jsp" %>
