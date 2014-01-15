@@ -29,7 +29,7 @@
 			<function name="删除" authorityCode="tiger_goods_delete" sort="3"/>
 		</module>
 	</moduleGroup>
-	<moduleGroup name="内容管理" path="cms">
+	<moduleGroup name="信息管理" path="cms">
 		<module name="栏目管理" path="cms/directory">
 		    <function name="查询" authorityCode="cms_directory_load" sort="0"/>
 			<function name="添加" authorityCode="cms_directory_add" sort="1"/>

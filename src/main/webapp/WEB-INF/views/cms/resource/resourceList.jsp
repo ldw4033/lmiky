@@ -52,7 +52,7 @@
 												<td align="center">
 														<table>
 															<tr>
-																<td align="center" class="btn_menu btnClass_td" onClick="openDialog('<c:url value="/cms/resource/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }&directoryId=${directory.id }"/>', 800, 600)">添加</td>
+																<td align="center" class="btn_menu btnClass_td" onClick="openDialog('<c:url value="/cms/resource/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }&directoryId=${directory.id }"/>', 1000, 600)">添加</td>
 															</tr>
 														</table>
 												</td>
@@ -66,20 +66,6 @@
 													</table>
 												</td>
 											</lauthority:checkAuthority>
-											<td align="center">
-												<table>
-													<tr>
-														<c:set var="isFavorited" value="${false}" />
-														<favorite:inMyMenu menuId="cms_resource_load">
-															<c:set var="isFavorited" value="${true}" />
-															<td align="center" class="btn_menu btnClass_td" onClick="removeMyFavoriteMenu('cms_resource_load', this)">取消收藏</td>
-														</favorite:inMyMenu>
-														<c:if test="${!isFavorited }">
-															<td align="center" class="btn_menu btnClass_td" onClick="addMyFavoriteMenu('cms_resource_load', this)">添加到收藏夹</td>
-														</c:if>
-													</tr>
-												</table>
-											</td>
 										</tr>
 									</table>
 								</td>
@@ -120,19 +106,19 @@
 										<td>${item.pubTime}</td>
 										<td>
 											<lauthority:checkAuthority authorityCode="cms_resource_modify">
-												<a href="javascript:void(0)" class="td_2" onclick="openDialog('<c:url value="/cms/resource/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
+												<a href="javascript:void(0)" class="td_2" onclick="openDialog('<c:url value="/cms/resource/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }"/>&modulePath=${modulePath }&directoryId=${directory.id }', 1000, 600)">
 													修改
 												</a>
 											</lauthority:checkAuthority>
 											<lauthority:checkAuthority authorityCode="cms_resource_load">
 												&nbsp;
-												<a href="javascript:void(0)" class="td_2" onclick="openDialog('<c:url value="/cms/resource/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
+												<a href="javascript:void(0)" class="td_2" onclick="openDialog('<c:url value="/cms/resource/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }&directoryId=${directory.id }', 1000, 600)">
 													查看
 												</a>
 											</lauthority:checkAuthority>
 											<lauthority:checkAuthority authorityCode="cms_resource_delete">
 												&nbsp;
-												<a href="javascript:void(0)" onclick="deletePojo('<c:url value="/cms/resource/delete.shtml?id=${item.id}"/>')" class="td_2">
+												<a href="javascript:void(0)" onclick="deletePojo('<c:url value="/cms/resource/delete.shtml?id=${item.id}&directoryId=${directory.id }"/>')" class="td_2">
 													删除
 												</a>
 											</lauthority:checkAuthority>

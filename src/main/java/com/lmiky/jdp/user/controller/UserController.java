@@ -153,7 +153,7 @@ public class UserController extends FormController<User> {
 	 * @see com.lmiky.jdp.form.controller.FormController#generateNewPojo(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected User generateNewPojo(ModelMap modelMap, HttpServletRequest request) throws InstantiationException, IllegalAccessException {
+	protected User generateNewPojo(ModelMap modelMap, HttpServletRequest request) throws Exception {
 		User user = super.generateNewPojo(modelMap, request);
 		Date date = new Date();
 		user.setCreateTime(date);

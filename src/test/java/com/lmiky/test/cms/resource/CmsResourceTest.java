@@ -2,6 +2,8 @@ package com.lmiky.test.cms.resource;
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -30,7 +32,8 @@ public class CmsResourceTest extends BaseTest {
 		resource.setCreateTime(new Date());
 		CmsResourceContent cmsResourceContent = new CmsResourceContent();
 		cmsResourceContent.setContent("内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容");
-		resource.setResourceContent(cmsResourceContent);
+		Set<CmsResourceContent> contents = new HashSet<CmsResourceContent>();
+		resource.setResourceContents(contents);
 		CmsDirectory directory = new CmsDirectory();
 		directory.setId(1l);
 		resource.setDirectory(directory);

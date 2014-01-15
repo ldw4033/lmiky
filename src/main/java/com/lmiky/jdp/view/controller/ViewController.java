@@ -37,9 +37,10 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 	 * @param modelMap
 	 * @param request
 	 * @param resopnse
+	 * @param requestTyps 请求方式
 	 * @return
 	 */
-	public String executeList(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse) throws Exception {
+	public String executeList(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, String... requestTyps) throws Exception {
 		try {
 			//判断是否有登陆
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
@@ -64,7 +65,7 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 			modelMap.put(Constants.HTTP_PARAM_MODULE_PATH, modulePath);
 			return getExecuteListRet(modelMap, request, modulePath);
 		} catch(Exception e) {
-			return transactException(e, modelMap, request, resopnse);
+			return transactException(e, modelMap, request, resopnse, requestTyps);
 		}
 	}
 	

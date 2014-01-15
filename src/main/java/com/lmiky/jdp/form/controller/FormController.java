@@ -87,10 +87,11 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @param request
 	 * @param resopnse
 	 * @param id
+	 * @param requestTyps 请求方式
 	 * @return
 	 * @throws Exception 
 	 */
-	public String executeLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Long id) throws Exception {
+	public String executeLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Long id, String... requestTyps) throws Exception {
 		try {
 			//判断是否有登陆
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
@@ -134,7 +135,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			modelMap.put(Constants.HTTP_PARAM_MODULE_PATH, modulePath);
 			return getExecuteLoadRet(modelMap, request, modulePath);
 		} catch(Exception e) {
-			return transactException(e, modelMap, request, resopnse);
+			return transactException(e, modelMap, request, resopnse, requestTyps);
 		}
 	}
 	
@@ -220,11 +221,9 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @param request
 	 * @param id
 	 * @return
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
-	 * @throws ServiceException 
+	 * @throws Exception
 	 */
-	protected T generatePojo(ModelMap modelMap, HttpServletRequest request, Long id) throws InstantiationException, IllegalAccessException, ServiceException {
+	protected T generatePojo(ModelMap modelMap, HttpServletRequest request, Long id) throws Exception {
 		T pojo = null;
 		if(id != null) {
 			pojo = loadPojo(modelMap, request, id);
@@ -242,10 +241,9 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @param modelMap
 	 * @param request
 	 * @return
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
+	 * @throws Exception
 	 */
-	protected T generateNewPojo(ModelMap modelMap, HttpServletRequest request) throws InstantiationException, IllegalAccessException {
+	protected T generateNewPojo(ModelMap modelMap, HttpServletRequest request) throws Exception {
 		return pojoClass.newInstance();
 	}
 	
@@ -299,10 +297,11 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @param request
 	 * @param resopnse
 	 * @param id
+	 * @param requestTyps 请求方式
 	 * @return
 	 * @throws Exception
 	 */
-	public String executeSave(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,  Long id) throws Exception {
+	public String executeSave(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,  Long id, String... requestTyps) throws Exception {
 		try {
 			//判断是否有登陆
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
@@ -365,7 +364,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			appendLoadAttribute(modelMap, request, resopnse, openMode, pojo);
 			return getExecuteSaveRet(modelMap, request, modulePath);
 		} catch(Exception e) {
-			return transactException(e, modelMap, request, resopnse);
+			return transactException(e, modelMap, request, resopnse, requestTyps);
 		}
 	}
 	
@@ -532,10 +531,11 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @param request
 	 * @param resopnse
 	 * @param id
+	 * @param requestTyps 请求方式
 	 * @return
 	 * @throws Exception
 	 */
-	public String executeDelete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Long id) throws Exception {
+	public String executeDelete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Long id, String... requestTyps) throws Exception {
 		try {
 			//检查ID
 			if(id == null) {
@@ -571,7 +571,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			}
 			return getExecuteDeleteRet(modelMap, request, resopnse);
 		} catch(Exception e) {
-			return transactException(e, modelMap, request, resopnse);
+			return transactException(e, modelMap, request, resopnse, requestTyps);
 		}
 	}
 	
@@ -610,11 +610,11 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @param request
 	 * @param resopnse
 	 * @param ids
-	 * @param deleteAuthorityCode
+	 * @param requestTyps 请求方式
 	 * @return
 	 * @throws Exception
 	 */
-	public String executeBatchDelete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,  Long[] ids) throws Exception {
+	public String executeBatchDelete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,  Long[] ids, String... requestTyps) throws Exception {
 		try {
 			//检查ID
 			if(ids == null || ids.length == 0) {
@@ -658,7 +658,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			}
 			return executeList(modelMap, request, resopnse);
 		} catch(Exception e) {
-			return transactException(e, modelMap, request, resopnse);
+			return transactException(e, modelMap, request, resopnse, requestTyps);
 		}
 	}
 	

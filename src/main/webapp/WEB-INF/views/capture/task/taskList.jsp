@@ -66,18 +66,9 @@
 												</td>
 											</lauthority:checkAuthority>
 											<td align="center">
-												<table>
-													<tr>
-														<c:set var="isFavorited" value="${false}" />
-														<favorite:inMyMenu menuId="capture_task_load">
-															<c:set var="isFavorited" value="${true}" />
-															<td align="center" class="btn_menu btnClass_td" onClick="removeMyFavoriteMenu('capture_task_load', this)">取消收藏</td>
-														</favorite:inMyMenu>
-														<c:if test="${!isFavorited }">
-															<td align="center" class="btn_menu btnClass_td" onClick="addMyFavoriteMenu('capture_task_load', this)">添加到收藏夹</td>
-														</c:if>
-													</tr>
-												</table>
+												<jsp:include page="/jdp/include/favoriteMenu.jsp">
+													<jsp:param value="capture_task_load" name="authorityCode"/>
+												</jsp:include>
 											</td>
 										</tr>
 									</table>

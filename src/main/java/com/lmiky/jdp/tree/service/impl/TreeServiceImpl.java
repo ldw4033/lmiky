@@ -27,14 +27,32 @@ public class TreeServiceImpl extends BaseServiceImpl {
 			BaseTreePojo parent = ((BaseTreePojo) pojo).getParent();
 			//非顶层
 			if(parent != null) {
-				//修改父节点叶子状态
-				if(parent.getLeaf() == BaseTreePojo.LEAF_YES) {
-					parent.setLeaf(BaseTreePojo.LEAF_NO);
-					super.save(parent);
-				}
+				//修改父节点叶子数
+				parent.setLeaf(parent.getLeaf() + 1);
+				super.save(parent);
 			}
 		}
 		super.save(pojo);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.service.impl.BaseServiceImpl#delete(com.lmiky.jdp.database.pojo.BasePojo)
+	 */
+	@Override
+	public <T extends BasePojo> void delete(T pojo) throws ServiceException {
+		if(pojo instanceof BaseTreePojo) {
+			BaseTreePojo pojoTree = (BaseTreePojo) pojo;
+			if(pojoTree.getLeaf() > 0) {
+				throw new ServiceException("无法删除，该节点下有子节点！");
+			}
+			BaseTreePojo parent = pojoTree.getParent();
+			//非顶层
+			if(parent != null) {
+				//修改父节点叶子数
+				parent.setLeaf(parent.getLeaf() - 1);
+				super.save(parent);
+			}
+		}
+		super.delete(pojo);
+	}
 }

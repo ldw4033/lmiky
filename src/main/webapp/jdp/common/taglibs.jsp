@@ -9,5 +9,6 @@
 <%@ taglib uri="/WEB-INF/tld/lmiky-favorite.tld" prefix="favorite" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <c:set var="script" value="${ctx}/jdp/scripts"/>
+<c:set var="scriptPlugin" value="${script}/plugins"/>
 <c:set var="css" value="${ctx}/jdp/themes/default/styles"/>
 <c:set var="images" value="${ctx}/jdp/themes/default/images"/>

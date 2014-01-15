@@ -9,15 +9,16 @@ import org.apache.commons.lang3.StringUtils;
  * @author lmiky
  * @date 2013-4-18
  */
+@SuppressWarnings("serial")
 public abstract class BaseHtmlTag extends BaseTag {
-	private static final long serialVersionUID = 959125813788617704L;
-
 	//选中状态
 	public static final String CHECKED_VALUE = "checked";
 	
 	public static final String INPUT_TYPE_TEXT = "text";
 	public static final String INPUT_TYPE_SELECT = "select";
 	public static final String INPUT_TYPE_RADIO = "radio";
+	public static final String INPUT_TYPE_HIDDEN = "hidden";
+
 	
 	// 属性
 	private String id;

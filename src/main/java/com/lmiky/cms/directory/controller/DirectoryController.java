@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lmiky.cms.directory.pojo.CmsDirectory;
+import com.lmiky.jdp.base.controller.BaseController;
+import com.lmiky.jdp.base.view.BaseCode;
+import com.lmiky.jdp.base.view.BaseInfoCodeJsonView;
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.tree.controller.TreeController;
 
@@ -132,13 +135,22 @@ public class DirectoryController extends TreeController<CmsDirectory> {
 	@RequestMapping("/delete.shtml")
 	public String delete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,
 			@RequestParam(value = "id", required = true) Long id) throws Exception {
-		return executeDelete(modelMap, request, resopnse, id);
+		return executeDelete(modelMap, request, resopnse, id, BaseController.REQUESTTYPE_AJAX);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getExecuteDeleteRet(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
+	@Override
+	protected String getExecuteDeleteRet(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse) throws Exception {
+		modelMap.put(BaseInfoCodeJsonView.KEY_CODE_NAME, BaseCode.CODE_SUCCESS);
+		return "baseInfoCodeJsonView";
 	}
 
 	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.base.controller.BaseController#setService(com.lmiky.jdp.service.BaseService)
 	 */
-	@Resource(name="treeService")
+	@Resource(name="cmsDirectoryService")
 	public void setService(BaseService service) {
 		super.setService(service);
 	}

@@ -49,7 +49,7 @@ public class TreeListJsonView extends AbstractView {
 			dataMap = new HashMap<String, Object>();
 			dataMap.put("id", treeNode.getId());
 			dataMap.put("name", treeNode.getName());
-			dataMap.put("isParent", treeNode.getLeaf() == BaseTreePojo.LEAF_NO);
+			dataMap.put("isParent", treeNode.getLeaf() > 0);
 			fillOtherDate(model, request, dataMap, treeNode);
 			dataList.add(dataMap);
 		}

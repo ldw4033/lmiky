@@ -1,6 +1,6 @@
 package com.lmiky.jdp.service.exception;
 /**
- * 类说明
+ * 业务异常
  * @author lmiky
  * @date 2013-4-15
  */
