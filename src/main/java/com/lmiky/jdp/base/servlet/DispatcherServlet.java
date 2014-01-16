@@ -1,6 +1,7 @@
 package com.lmiky.jdp.base.servlet;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletConfig;
@@ -19,7 +20,9 @@ import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.session.service.SessionService;
 import com.lmiky.jdp.system.menu.pojo.LatelyOperateMenu;
+import com.lmiky.jdp.util.CookieUtils;
 import com.lmiky.jdp.util.Environment;
+import com.lmiky.jdp.util.ObjectUtils;
 import com.lmiky.jdp.util.PropertiesUtils;
 import com.lmiky.jdp.web.model.ContinuationRequest;
 
@@ -28,7 +31,7 @@ import com.lmiky.jdp.web.model.ContinuationRequest;
  * @date 2013-4-25
  */
 public class DispatcherServlet extends org.springframework.web.servlet.DispatcherServlet {
-	private static final long serialVersionUID = -4059059731809837012L;
+	private static final long serialVersionUID = 8851136668309720276L;
 	private BaseService baseService;
 	private SessionService sessionService;
 	
@@ -55,7 +58,7 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 	/* (non-Javadoc)
 	 * @see org.springframework.web.servlet.DispatcherServlet#doService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	protected void doService(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String continuationId = request.getParameter(Constants.HTTP_PARAM_LOGIN_CONTINUATION);
@@ -84,6 +87,8 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 					}
 				}
 			}
+			//保存参数
+			CookieUtils.addCookie(response, request.getRequestURI(), ObjectUtils.serializeHexString(new HashMap(request.getParameterMap())));
 		}
 		super.doService(request, response);
 	}

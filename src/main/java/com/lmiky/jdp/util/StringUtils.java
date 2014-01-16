@@ -1,5 +1,7 @@
 package com.lmiky.jdp.util;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,6 +42,53 @@ public class StringUtils {
 		}
 		url += parameterName + "=" + parameterValue;
 		return url;
+	}
+	
+	/**
+	 * 获取请求地址URI
+	 * @author lmiky
+	 * @date 2014-1-15
+	 * @param url
+	 * @return
+	 */
+	public static String getRequestURI(String url) {
+		if(url.indexOf("?") == -1) {
+			return url;
+		}
+		return url.substring(0, url.indexOf("?"));
+	}
+	
+	/**
+	 * 获取URL地址参数
+	 * @author lmiky
+	 * @date 2014-1-15
+	 * @param url
+	 * @return
+	 */
+	public static Map<String, String[]> getUrlParameters(String url) {
+		Map<String, String[]> parameterMap = new HashMap<String, String[]>();
+		if(url.indexOf("?") != -1) {
+			url = url.substring(url.indexOf("?") + 1);
+		}
+		String[] params = url.split("&");
+		for(String param : params) {
+			String[] keyAndValues = param.split("=");
+			String key = keyAndValues[0];
+			String value = keyAndValues[1];
+			String[] values = parameterMap.get(key);
+			if(values == null) {
+				values = new String[]{value};
+			} else {
+				String[] newValues = new String[values.length + 1];
+				for(int i=0; i<values.length - 1; i++) { 
+					newValues[i] = values[i];
+				}
+				newValues[values.length] = value;
+				values = newValues;
+			}
+			parameterMap.put(keyAndValues[0], new String[]{keyAndValues[1]});
+		}
+		return parameterMap;
 	}
 	
 	/**

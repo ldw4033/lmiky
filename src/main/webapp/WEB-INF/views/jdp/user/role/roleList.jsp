@@ -5,6 +5,11 @@
 	<head>
 		<%@ include file="/jdp/common/header.jsp"%>
 		<%@ include file="/jdp/view/header.jsp"%>
+		<script type="text/javascript">
+			function redirectPage(url) {
+				window.location.href = url;
+			}
+		</script>
 	</head>
 	<body>
 		<form id="mainForm" action="<c:url value="/role/list.shtml"/>" method="post">
@@ -51,7 +56,8 @@
 											<td align="center">
 												<table>
 													<tr>
-														<td align="center" class="btn_menu btnClass_td" onClick="openDialog('<c:url value="/role/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }"/>', 800, 600)">添加</td>
+														<!-- td align="center" class="btn_menu btnClass_td" onClick="openDialog('<c:url value="/role/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }"/>', 800, 600)">添加</td-->
+														<td align="center" class="btn_menu btnClass_td" onClick="redirectPage('<c:url value="/role/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }"/>')">添加</td>
 													</tr>
 												</table>
 											</td>

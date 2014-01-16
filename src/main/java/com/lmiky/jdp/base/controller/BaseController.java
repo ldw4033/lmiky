@@ -106,12 +106,12 @@ public abstract class BaseController {
 	 * @date 2013-10-22
 	 * @param modelMap
 	 * @param request
-	 * @param resopnse
+	 * @param response
 	 * @param requestTyps 请求方式
 	 * @return
 	 * @throws Exception
 	 */
-	public String executeBaseLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, String... requestTyps) throws Exception {
+	public String executeBaseLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, String... requestTyps) throws Exception {
 		try {
 			//判断是否有登陆
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
@@ -120,10 +120,10 @@ public abstract class BaseController {
 			//检查权限
 			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode());
 			Map<String, Object> loadParams = new HashMap<String, Object>();
-			setLoadPrams(modelMap, request, resopnse, loadParams);
-			return processLoad(modelMap, request, resopnse, loadParams);
+			setLoadPrams(modelMap, request, response, loadParams);
+			return processLoad(modelMap, request, response, loadParams);
 		} catch(Exception e) {
-			return transactException(e, modelMap, request, resopnse, requestTyps);
+			return transactException(e, modelMap, request, response, requestTyps);
 		}
 	}
 	
@@ -133,11 +133,11 @@ public abstract class BaseController {
 	 * @date 2013-10-22
 	 * @param modelMap
 	 * @param request
-	 * @param resopnse
+	 * @param response
 	 * @param loadParams
 	 * @throws Exception
 	 */
-	protected void setLoadPrams(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Map<String, Object> loadParams) throws Exception {
+	protected void setLoadPrams(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, Map<String, Object> loadParams) throws Exception {
 	}
 	
 	/**
@@ -146,12 +146,12 @@ public abstract class BaseController {
 	 * @date 2013-10-22
 	 * @param modelMap
 	 * @param request
-	 * @param resopnse
+	 * @param response
 	 * @param loadParams
 	 * @return
 	 * @throws Exception
 	 */
-	protected String processLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Map<String, Object> loadParams) throws Exception {
+	protected String processLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, Map<String, Object> loadParams) throws Exception {
 		return "";
 	}
 	

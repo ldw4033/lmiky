@@ -5,7 +5,7 @@
 			<submenu>
 				<id>tiger_goods_load</id>
 				<label>商品管理</label>
-				<url>/tiger/goods/list.shtml</url>
+				<url>tiger/goods/list.shtml</url>
 				<type>link</type>
 				<modulePath>tiger/goods</modulePath>
 				<authority>tiger_goods_load</authority>
@@ -17,7 +17,7 @@
 			<submenu>
 				<id>capture_task_load</id>
 				<label>抓取任务管理</label>
-				<url>/capture/task/list.shtml</url>
+				<url>capture/task/list.shtml</url>
 				<type>link</type>
 				<modulePath>capture/task</modulePath>
 				<authority>capture_task_load</authority>
@@ -29,7 +29,7 @@
 			<submenu>
 				<id>cms_directory_load</id>
 				<label>栏目管理</label>
-				<url>/cms/directory/loadTree.shtml</url>
+				<url>cms/directory/loadTree.shtml</url>
 				<type>link</type>
 				<modulePath>cms/directory</modulePath>
 				<authority>cms_directory_load</authority>
@@ -41,7 +41,7 @@
 			<submenu>
 				<id>jdp_user_user_load</id>
 				<label>用户管理</label>
-				<url>/user/list.shtml</url>
+				<url>user/list.shtml</url>
 				<type>link</type>
 				<modulePath>jdp/user/user</modulePath>
 				<authority>jdp_user_user_load</authority>
@@ -49,7 +49,7 @@
 			<submenu>
 				<id>jdp_user_role_load</id>
 				<label>角色管理</label>
-				<url>/role/list.shtml</url>
+				<url>role/list.shtml</url>
 				<type>link</type>
 				<modulePath>jdp/user/role</modulePath>
 				<authority>jdp_user_role_load</authority>
@@ -57,7 +57,7 @@
 			<submenu>
 				<id>jdp_user_user_modifyPassword</id>
 				<label>修改密码</label>
-				<url>/user/toModifyPassword.shtml</url>
+				<url>user/toModifyPassword.shtml</url>
 				<type>dialog</type>
 				<modulePath>jdp/user/user</modulePath>
 				<authority></authority>
@@ -65,7 +65,7 @@
 			<submenu>
 				<id>jdp_authority_load</id>
 				<label>权限管理</label>
-				<url>/authority/load.shtml</url>
+				<url>authority/load.shtml</url>
 				<type>dialog</type>
 				<modulePath>jdp/authority</modulePath>
 				<authority>jdp_authority_authorize</authority>
@@ -73,7 +73,7 @@
 			<submenu>
 				<id>jdp_area_load</id>
 				<label>地区管理</label>
-				<url>/area/load.shtml</url>
+				<url>area/load.shtml</url>
 				<type>dialog</type>
 				<modulePath>jdp/area</modulePath>
 				<authority>jdp_area_manage</authority>

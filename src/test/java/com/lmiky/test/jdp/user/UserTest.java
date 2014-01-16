@@ -6,13 +6,13 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
 
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.service.exception.ServiceException;
 import com.lmiky.jdp.user.pojo.Role;
 import com.lmiky.jdp.user.pojo.User;
-import com.lmiky.jdp.util.Encoder;
 import com.lmiky.test.BaseTest;
 
 /**
@@ -35,7 +35,7 @@ public class UserTest extends BaseTest {
 		user.setLastSetPasswordTime(new Date());
 		user.setName("测试");
 		user.setLoginName("test" + Math.random());
-		user.setPassword(Encoder.md5(Math.random() + ""));
+		user.setPassword(DigestUtils.md5Hex(Math.random() + ""));
 		user.setValid(User.VALID_YES);
 		baseService.save(user);
 	}

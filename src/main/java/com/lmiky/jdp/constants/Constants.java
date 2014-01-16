@@ -45,7 +45,7 @@ public class Constants {
 	
 	public static final String SESSION_ATTR_CONTINUATION_URL_SUFFIX = ".url";
 	public static final String SESSION_ATTR_CONTINUATION_PARAM_SUFFIX = ".parameters";
-			
+	
 	//**********************************************session属性**********************************************//
 	
 }
