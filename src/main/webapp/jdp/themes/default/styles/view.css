@@ -7,36 +7,6 @@
 	BORDER-BOTTOM: #FF2A00 1px solid;
 }
 
-.listTitle {
-	text-align: LEFT ;
-	border-top:2px solid #E31613;
-	 FONT-SIZE: 14px; 
-	 COLOR: #333333;
-	 font-weight: bold; 
-	 background-image:url(../images/bt_di.gif);
-	 height:30px;
-}
-
-.listTitle1 {
-	text-align: LEFT ;
-	border-top:2px solid #E31613;
-	 FONT-SIZE: 14px; 
-	 COLOR: #333333;
-	 font-weight: bold; 
-	 background-image:url(../images/lanmu-a.gif);
-	 height:50px;
-}
-
-.listTitle2 {
-	 background-image:url(../images/lanmu-b.gif);
-	 height:50px;
-}
-
-.listTitle3 {
-	 background-image:url(../images/lanmu-c.gif);
-	 height:50px;
-}
-
 .listContent {
     border-collapse: collapse;
     border: 1px solid #BABABA;
