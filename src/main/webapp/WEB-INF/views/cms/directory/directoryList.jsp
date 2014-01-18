@@ -1,3 +1,4 @@
+<%@page import="com.lmiky.cms.directory.pojo.CmsDirectory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.lmiky.jdp.tree.controller.TreeController,com.lmiky.jdp.tree.pojo.BaseTreePojo" %>
@@ -92,6 +93,14 @@
 			}
 		}
 		
+		function sortDirectory() {
+			if(selectedNodeId != null) {
+				openDialog('<c:url value="/sort/load.shtml" />?propertyFilter_parent.id_EQ=' + selectedNodeId + '&className=<%=CmsDirectory.class.getName() %>&showName=name', 650, 600, '', reAsyncNode);
+			} else {
+				alert('请选择要删除的父目录！');
+			}
+		}
+		
 		function deleteDirectory() {
 			if(selectedNodeId != null) {
 				if(confirm('删除目录将一并删除所属文章列表，您确定要删除该目录？')) {
@@ -168,6 +177,10 @@
 				</lauthority:checkAuthority>
 				<lauthority:checkAuthority authorityCode="cms_directory_modify">
 					<input class="btnClass" type="button" value="修改" onclick="updateDirectory()"/>
+					&nbsp;
+				</lauthority:checkAuthority>
+				<lauthority:checkAuthority authorityCode="cms_directory_modify">
+					<input class="btnClass" type="button" value="排序" onclick="sortDirectory()"/>
 					&nbsp;
 				</lauthority:checkAuthority>
 				<lauthority:checkAuthority authorityCode="cms_directory_delete">

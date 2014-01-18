@@ -23,7 +23,7 @@ import com.lmiky.jdp.service.exception.ServiceException;
  */
 @Service("baseService")
 public class BaseServiceImpl implements BaseService {
-	private BaseDAO baseDAO;
+	protected BaseDAO baseDAO;
 
 	/*
 	 * (non-Javadoc)

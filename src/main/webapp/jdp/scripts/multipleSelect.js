@@ -34,6 +34,7 @@ function initMultipleSelect(selectedItemsGroupId, selectedItemInputIdPrefix, sel
             $(this).appendTo("#selected");  
     	});
     });  
+    //全部移到左边
     $("#removeAllSelect").click(function () {  
         $.each($("#selected option"), function() {
         	$("#" + selectedItemsGroupId + " #" + selectedItemInputIdPrefix + $(this).val()).remove();

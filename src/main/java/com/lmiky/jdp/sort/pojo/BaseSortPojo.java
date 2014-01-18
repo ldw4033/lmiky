@@ -1,7 +1,9 @@
-package com.lmiky.jdp.database.pojo;
+package com.lmiky.jdp.sort.pojo;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+
+import com.lmiky.jdp.database.pojo.BasePojo;
 
 /**
  * 基本排序实体类

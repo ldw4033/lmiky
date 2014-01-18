@@ -15,6 +15,8 @@ import javax.persistence.MappedSuperclass;
 @SuppressWarnings("serial")
 @MappedSuperclass
 public abstract class BasePojo implements Serializable {
+	public static final String POJO_FIELD_NAME_ID = "id";
+	
 	private Long id;
 
 	/**

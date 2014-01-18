@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.lmiky.jdp.base.converter.DateConverter;
 import com.lmiky.jdp.constants.Constants;
+import com.lmiky.jdp.logger.util.LoggerUtils;
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.session.service.SessionService;
@@ -88,7 +89,11 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 				}
 			}
 			//保存参数
-			CookieUtils.addCookie(response, request.getRequestURI(), ObjectUtils.serializeHexString(new HashMap(request.getParameterMap())));
+			try {
+				CookieUtils.addCookie(response, request.getRequestURI(), ObjectUtils.serializeHexString(new HashMap(request.getParameterMap())));
+			} catch(Exception e) {
+				LoggerUtils.logException(e);
+			}
 		}
 		super.doService(request, response);
 	}

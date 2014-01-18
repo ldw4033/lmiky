@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.lmiky.jdp.database.pojo.BaseSortPojo;
+import com.lmiky.jdp.sort.pojo.BaseSortPojo;
 
 /**
  * 树
