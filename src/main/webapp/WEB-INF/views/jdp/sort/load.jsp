@@ -101,10 +101,10 @@
 		<form id="mainForm" action="<c:url value="/sort/save.shtml"/>" method="post" onsubmit="return setSelected()">
 		<input type="hidden" name="className" value="${className }"/>
 		<input type="hidden" name="showName" value="${showName }"/>
+		<jsp:include page="/jdp/include/propertyFilter.jsp">
+			<jsp:param value="${className }" name="pojoClassName"/>
+		</jsp:include>
 		<span id="groupSpan" style="display: none;">
-			<c:forEach items="${pojos }" var="pojo" varStatus="status">
-				<input type="hidden" id="pojo_${pojo[0] }" name="selectedPojos" value="${pojo[0] }"/>
-			</c:forEach>
 		</span>
 		<table class="table-form full" >
 	       	<tr>
