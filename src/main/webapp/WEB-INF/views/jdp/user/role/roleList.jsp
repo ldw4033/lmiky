@@ -5,11 +5,6 @@
 	<head>
 		<%@ include file="/jdp/common/header.jsp"%>
 		<%@ include file="/jdp/view/header.jsp"%>
-		<script type="text/javascript">
-			function redirectPage(url) {
-				window.location.href = url;
-			}
-		</script>
 	</head>
 	<body>
 		<form id="mainForm" action="<c:url value="/role/list.shtml"/>" method="post">
@@ -111,14 +106,14 @@
 										<td>
 											<lauthority:checkAuthority authorityCode="jdp_user_role_modify">
 												<a href="javascript:void(0)" class="td_2"
-														onclick="openDialog('<c:url value="/role/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }"/>', 800, 600)">
+														onclick="redirectPage('<c:url value="/role/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }"/>', 800, 600)">
 													修改
 												</a>
 											</lauthority:checkAuthority>
 											<lauthority:checkAuthority authorityCode="jdp_user_role_load">
 												&nbsp;
 												<a href="javascript:void(0)" class="td_2"
-														onclick="openDialog('<c:url value="/role/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
+														onclick="redirectPage('<c:url value="/role/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
 													查看
 												</a>
 											</lauthority:checkAuthority>

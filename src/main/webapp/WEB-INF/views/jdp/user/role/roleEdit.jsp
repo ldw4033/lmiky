@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="/jdp/common/common.jsp"%>
 <tr>
-	<th width="17%" align="right" class="bg02">
+	<th width="70" align="right" class="bg02">
 		<label>名称<span class="req">*</span></label>
 	</th>
 	<td>

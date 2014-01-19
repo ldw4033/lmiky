@@ -32,7 +32,8 @@ import com.lmiky.jdp.web.model.ContinuationRequest;
  * @date 2013-4-25
  */
 public class DispatcherServlet extends org.springframework.web.servlet.DispatcherServlet {
-	private static final long serialVersionUID = 8851136668309720276L;
+	private static final long serialVersionUID = 9105109559508219288L;
+	public static final String uriPattern = PropertiesUtils.getStringContextValue("system.url.pattern");
 	private BaseService baseService;
 	private SessionService sessionService;
 	
@@ -90,7 +91,12 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 			}
 			//保存参数
 			try {
-				CookieUtils.addCookie(response, request.getRequestURI(), ObjectUtils.serializeHexString(new HashMap(request.getParameterMap())));
+				//只截取界面的请求地址
+				String uri = request.getRequestURI();
+				//截取掉诸如以下信息*.shtml;jsessionid=FDSAGDF43ASFSD654AF
+				uri = uri.substring(0, uri.lastIndexOf(uriPattern) + uriPattern.length());
+				//保存一天
+				CookieUtils.addCookie(response, uri, ObjectUtils.serializeHexString(new HashMap(request.getParameterMap())), 24*60*60, "/", null, null);
 			} catch(Exception e) {
 				LoggerUtils.logException(e);
 			}

@@ -12,15 +12,15 @@
 </script>
 
 <tr>
-	<th width="20%" align="right" class="bg02">
+	<th width="100" align="right" class="bg02">
 		<label>名称<span class="req">*</span></label>
 	</th>
-	<td>
+	<td width="500">
 		<input name="name" type="text" class="large bian" value="${pojo.name}"/>
 	</td>
 </tr>
 <tr>
-	<th width="20%" align="right" class="bg02">
+	<th align="right" class="bg02">
 		<label>抓取地址<span class="req">*</span></label>
 	</th>
 	<td>
@@ -34,6 +34,8 @@
 </tr>
 <tr>
 	<td colspan="2" align="center">
+		<input type="button" class="btnClass" style="cursor: pointer;" value="返回" onclick="back('/capture/task/list.shtml?modulePath=${modulePath }')"/>
+		&nbsp;&nbsp;
 		<input type="submit" class="btnClass" style="cursor: pointer;" value="提交" />
 	</td>
 </tr>

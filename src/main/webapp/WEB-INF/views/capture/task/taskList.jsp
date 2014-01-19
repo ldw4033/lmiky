@@ -51,7 +51,7 @@
 												<td align="center">
 													<table>
 														<tr>
-															<td align="center" class="btn_menu btnClass_td" onClick="openDialog('<c:url value="/capture/task/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }"/>', 800, 600)">添加</td>
+															<td align="center" class="btn_menu btnClass_td" onClick="redirectPage('<c:url value="/capture/task/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }"/>', 800, 600)">添加</td>
 														</tr>
 													</table>
 												</td>
@@ -105,14 +105,14 @@
 										<td>
 											<lauthority:checkAuthority authorityCode="capture_task_modify">
 												<a href="javascript:void(0)" class="td_2"
-														onclick="openDialog('<c:url value="/capture/task/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }"/>', 800, 600)">
+														onclick="redirectPage('<c:url value="/capture/task/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }"/>', 800, 600)">
 													修改
 												</a>
 											</lauthority:checkAuthority>
 											<lauthority:checkAuthority authorityCode="capture_task_load">
 												&nbsp;
 												<a href="javascript:void(0)" class="td_2"
-														onclick="openDialog('<c:url value="/capture/task/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
+														onclick="redirectPage('<c:url value="/capture/task/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
 													查看
 												</a>
 											</lauthority:checkAuthority>

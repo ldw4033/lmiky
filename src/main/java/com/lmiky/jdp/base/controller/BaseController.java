@@ -168,7 +168,6 @@ public abstract class BaseController {
 	 * @throws Exception
 	 */
 	public String transactException(Exception e, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, String... requestTyps) throws Exception {
-		logException(e, modelMap, request, response);
 		if(e instanceof SessionException) {
 			putError(modelMap, "登陆超时！");
 			if(isRedirectRequestType(requestTyps)) {
@@ -194,6 +193,7 @@ public abstract class BaseController {
 				return getUnRedirectRequestTypeExceptionReturn(e, modelMap, request, response, requestTyps);
 			}
 		}
+		logException(e, modelMap, request, response);
 		putError(modelMap, e.getMessage());
 		if(isRedirectRequestType(requestTyps)) {
 			throw e;

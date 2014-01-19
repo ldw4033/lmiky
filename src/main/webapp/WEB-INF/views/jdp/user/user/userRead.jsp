@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="/jdp/common/taglibs.jsp" %>
 <tr>
-	<th width="17%" align="right" class="bg02">
+	<th width="100" align="right" class="bg02">
 		<label>名称</label>
 	</th>
-	<td>
+	<td class="large">
 		${pojo.name}
 	</td>
-	<th width="17%" align="right" class="bg02">
+	<th width="100" align="right" class="bg02">
 		<label>登陆账号</label>
 	</th>
-	<td>
+	<td class="large">
 		${pojo.loginName}
 	</td>
 </tr>
@@ -44,5 +44,10 @@
 	</th>
 	<td colspan="3">
 		${pojo.description}
+	</td>
+</tr>
+<tr>
+	<td colspan="4" align="center">
+		<input type="button" class="btnClass" style="cursor: pointer;" value="返回" onclick="back('/user/list.shtml?modulePath=${modulePath }')"/>
 	</td>
 </tr>

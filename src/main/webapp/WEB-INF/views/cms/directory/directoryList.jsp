@@ -38,7 +38,9 @@
 		};
 		function zTreeOnClick(event, treeId, treeNode) {
 			setSelectedNodeId(treeNode);
-			$("#resourceFrame").attr("src", "<c:url value="/cms/resource/list.shtml"/>?modulePath=cms/resource&directoryId=" + treeNode.id);
+			<lauthority:checkAuthority authorityCode="cms_resource_load">
+				$("#resourceFrame").attr("src", "<c:url value="/cms/resource/list.shtml"/>?modulePath=cms/resource&directoryId=" + treeNode.id);
+			</lauthority:checkAuthority>
 		}  
 		
 		function zTreeOnAsyncSuccess(event, treeId, treeNode, msg) {

@@ -141,6 +141,7 @@ public class LoginController extends BaseController {
 		}
 		sessionService.removeSessionInfo(request);
 		request.getSession().invalidate();
+		CookieUtils.removeAllCookies(request, response);
 		return load(modelMap, request, response);
 	}
 }

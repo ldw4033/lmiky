@@ -117,7 +117,7 @@
 					<div style="float: left;">
 					<div style="line-height: 25px;">排序前</div>
 						<div>
-							<select id="unselected" multiple="multiple" class="bian" style="height: 470px; width: 275px;">
+							<select id="unselected" multiple="multiple" class="bian" style="height: 470px; width: 273px;">
 								<c:forEach items="${pojos }" var="pojo">
 									<option value="${pojo[0] }">${pojo[1] }</option>
 								</c:forEach>
@@ -141,7 +141,7 @@
 					<div style="float: left;">
 						<div style="line-height: 25px;">排序后</div>
 						<div>
-							<select id="selected" multiple="multiple" class="bian" style="height: 470px; width: 275px;">
+							<select id="selected" multiple="multiple" class="bian" style="height: 470px; width: 273px;">
 							</select>
 						</div>
 					</div>

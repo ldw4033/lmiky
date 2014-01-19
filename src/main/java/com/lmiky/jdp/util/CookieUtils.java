@@ -89,4 +89,18 @@ public class CookieUtils {
 	public static void removeCookie(HttpServletResponse response, String name, String path, String domain) {
 		addCookie(response, name, "", 0, path, domain, null);
 	}
+	
+	/**
+	 * 删除所有cookie值
+	 * @author lmiky
+	 * @date 2014-1-19
+	 * @param request
+	 * @param response
+	 */
+	public static void removeAllCookies(HttpServletRequest request, HttpServletResponse response) {
+		Cookie[] cookies = request.getCookies();
+    	for(int i = (cookies==null ? -1 : cookies.length-1); i>=0; i--) {
+    		removeCookie(response, cookies[i].getName());
+    	}
+	}
 }

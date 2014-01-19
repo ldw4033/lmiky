@@ -46,4 +46,14 @@
 			}
 		});
 	}
+	
+	//页面跳转
+	function redirectPage(url) {
+		window.location.href = url;
+	}
+
+	//回退
+	function back(url) {
+		window.location.href = '<c:url value="/common/back.shtml"/>?url=' + encodeURI(url);
+	}
 </script>

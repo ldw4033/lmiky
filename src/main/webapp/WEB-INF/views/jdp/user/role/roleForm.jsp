@@ -5,11 +5,6 @@
 	<head>
 		<%@ include file="/jdp/form/header.jsp" %>
 		<script src="${script }/multipleSelect.js" type="text/javascript"></script>
-		<script type="text/javascript">
-				function back(url) {
-					window.location.href = '<c:url value="/common/back.shtml"/>?url=' + encodeURI(url);
-				}
-			</script>
 	</head>
 	<body>
 		<form id="mainForm" action="<c:url value="/role/save.shtml"/>" method="post">

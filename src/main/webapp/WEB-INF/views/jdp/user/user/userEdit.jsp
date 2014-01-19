@@ -33,13 +33,13 @@
 	</c:forEach>
 </span>
 <tr>
-	<th width="17%" align="right" class="bg02">
+	<th width="100" align="right" class="bg02">
 		<label>名称<span class="req">*</span></label>
 	</th>
 	<td>
 		<input name="name" type="text" class="large bian" value="${pojo.name}"/>
 	</td>
-	<th width="17%" align="right" class="bg02">
+	<th width="100" align="right" class="bg02">
 		<label>登陆账号<span class="req">*</span></label>
 	</th>
 	<td>
@@ -95,7 +95,7 @@
 		<div style="float: left;">
 		<div style="line-height: 25px;">未选中角色</div>
 			<div>
-				<select id="unselected" multiple="multiple" class="bian" style="height: 300px; width: 269px;">
+				<select id="unselected" multiple="multiple" class="bian" style="height: 300px; width: 250px;">
 					<c:forEach items="${noUserRoles }" var="userRole">
 						<option value="${userRole.id }">${userRole.name }</option>
 					</c:forEach>
@@ -115,7 +115,7 @@
 		<div style="float: left;">
 			<div style="line-height: 25px;">已选中角色</div>
 			<div>
-				<select id="selected" multiple="multiple" class="bian" style="height: 300px; width: 269px;">
+				<select id="selected" multiple="multiple" class="bian" style="height: 300px; width: 250px;">
 					<c:forEach items="${userRoles }" var="userRole">
 						<option value="${userRole.id }">${userRole.name }</option>
 					</c:forEach>
@@ -134,6 +134,8 @@
 </tr>
 <tr>
 	<td colspan="4" align="center">
+		<input type="button" class="btnClass" style="cursor: pointer;" value="返回" onclick="back('/user/list.shtml?modulePath=${modulePath }')"/>
+		&nbsp;&nbsp;
 		<input type="submit" class="btnClass" style="cursor: pointer;" value="提交" />
 	</td>
 </tr>
