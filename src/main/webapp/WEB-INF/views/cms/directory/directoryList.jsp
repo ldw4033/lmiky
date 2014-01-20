@@ -1,6 +1,5 @@
 <%@page import="com.lmiky.cms.directory.pojo.CmsDirectory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.lmiky.jdp.tree.controller.TreeController,com.lmiky.jdp.tree.pojo.BaseTreePojo" %>
 <%@page import="com.lmiky.jdp.base.view.BaseInfoCodeJsonView"%>
 <%@page import="com.lmiky.jdp.base.view.BaseCode"%>
@@ -97,7 +96,7 @@
 		
 		function sortDirectory() {
 			if(selectedNodeId != null) {
-				openDialog('<c:url value="/sort/load.shtml" />?propertyFilter_parent.id_EQ=' + selectedNodeId + '&className=<%=CmsDirectory.class.getName() %>&showName=name', 650, 600, '', reAsyncNode);
+				openDialog('<c:url value="/sort/load.shtml" />?<lhtml:propertyFilterNamed compareType="EQ" propertyName="parent.id"/>=' + selectedNodeId + '&className=<%=CmsDirectory.class.getName() %>&showName=name', 650, 600, '', reAsyncNode);
 			} else {
 				alert('请选择要删除的父目录！');
 			}

@@ -101,7 +101,7 @@ public abstract class BaseTag extends BodyTagSupport {
 		try {
 			String content = handlers.toString();
 			if(content != null && !content.isEmpty()) {
-			getPageContext().getOut().write(content);
+				getPageContext().getOut().write(content);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

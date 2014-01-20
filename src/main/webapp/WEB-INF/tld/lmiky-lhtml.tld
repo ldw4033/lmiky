@@ -275,5 +275,20 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
-
+	<tag>
+		<name>propertyFilterNamed</name>
+		<tag-class>com.lmiky.jdp.web.ui.taglib.PropertyFilterNamedTag
+		</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>propertyName</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>compareType</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 </taglib>
