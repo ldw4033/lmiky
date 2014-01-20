@@ -1,5 +1,7 @@
 package com.lmiky.jdp.constants;
 
+import com.lmiky.jdp.util.PropertiesUtils;
+
 /**
  * 常量
  * @author lmiky
@@ -20,6 +22,9 @@ public class Constants {
 
 	// ****************************************properties文件key****************************************//
 
+	
+	public static final String SYSTEM_URI_PATTERN = PropertiesUtils.getStringContextValue("system.url.pattern").toLowerCase();
+	
 	//**********************************************Http参数**********************************************//
 	
 	public static final String HTTP_PARAM_PROPERTYFILTER_NAME_PREFIX = "propertyFilter_";	//过滤条件参数名前缀

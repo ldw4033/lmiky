@@ -21,9 +21,7 @@ import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.session.service.SessionService;
 import com.lmiky.jdp.system.menu.pojo.LatelyOperateMenu;
-import com.lmiky.jdp.util.CookieUtils;
 import com.lmiky.jdp.util.Environment;
-import com.lmiky.jdp.util.ObjectUtils;
 import com.lmiky.jdp.util.PropertiesUtils;
 import com.lmiky.jdp.web.model.ContinuationRequest;
 
@@ -32,8 +30,7 @@ import com.lmiky.jdp.web.model.ContinuationRequest;
  * @date 2013-4-25
  */
 public class DispatcherServlet extends org.springframework.web.servlet.DispatcherServlet {
-	private static final long serialVersionUID = 9105109559508219288L;
-	public static final String uriPattern = PropertiesUtils.getStringContextValue("system.url.pattern");
+	private static final long serialVersionUID = 8851136668309720276L;
 	private BaseService baseService;
 	private SessionService sessionService;
 	
@@ -91,12 +88,10 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 			}
 			//保存参数
 			try {
-				//只截取界面的请求地址
-				String uri = request.getRequestURI();
-				//截取掉诸如以下信息*.shtml;jsessionid=FDSAGDF43ASFSD654AF
-				uri = uri.substring(0, uri.lastIndexOf(uriPattern) + uriPattern.length());
-				//保存一天
-				CookieUtils.addCookie(response, uri, ObjectUtils.serializeHexString(new HashMap(request.getParameterMap())), 24*60*60, "/", null, null);
+				SessionInfo sessionInfo = sessionService.getSessionInfo(request);
+				if(sessionInfo != null) {
+					sessionInfo.AddUrlParamHistory(request.getRequestURI(), new HashMap(request.getParameterMap()));
+				}
 			} catch(Exception e) {
 				LoggerUtils.logException(e);
 			}

@@ -15,8 +15,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.lmiky.jdp.util.CookieUtils;
-import com.lmiky.jdp.util.ObjectUtils;
 import com.lmiky.jdp.util.StringUtils;
 import com.lmiky.jdp.web.model.ContinuationRequest;
 
@@ -46,11 +44,7 @@ public class CommonController extends BaseController {
 			@RequestParam(value = "url", required = true) String url) throws Exception {
 		String decodeUrl = URLDecoder.decode(url, "UTF-8");
 		String uri = request.getContextPath() + StringUtils.getRequestURI(decodeUrl);
-		String parameterSerializeString = CookieUtils.getCookie(request, uri);
-		Map parameters = null;
-		if(parameterSerializeString != null) {
-			parameters = (Map)ObjectUtils.deserializeHexString(parameterSerializeString);
-		}
+		Map parameters = getSessionInfo(modelMap, request).getUrlParamHistory(uri);
 		if (parameters == null) {
 			parameters = new HashMap();
 		}
