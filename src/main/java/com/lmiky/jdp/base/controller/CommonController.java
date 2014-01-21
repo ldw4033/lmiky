@@ -42,24 +42,28 @@ public class CommonController extends BaseController {
 	@RequestMapping("/back.shtml")
 	public String back(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "url", required = true) String url) throws Exception {
-		String decodeUrl = URLDecoder.decode(url, "UTF-8");
-		String uri = request.getContextPath() + StringUtils.getRequestURI(decodeUrl);
-		Map parameters = getSessionInfo(modelMap, request).getUrlParamHistory(uri);
-		if (parameters == null) {
-			parameters = new HashMap();
+		try {
+			String decodeUrl = URLDecoder.decode(url, "UTF-8");
+			String uri = request.getContextPath() + StringUtils.getRequestURI(decodeUrl);
+			Map parameters = getSessionInfo(modelMap, request).getUrlParamHistory(uri);
+			if (parameters == null) {
+				parameters = new HashMap();
+			}
+			//调整地址中的参数
+			Map<String, String[]> urlParameters = StringUtils.getUrlParameters(decodeUrl);
+			Set parameterNames = urlParameters.keySet();
+			Iterator parameterIte = parameterNames.iterator();
+			while(parameterIte.hasNext()) {
+				String parameterName = (String)parameterIte.next();
+				parameters.put(parameterName, urlParameters.get(parameterName));
+			}
+			ContinuationRequest continuationRequest = new ContinuationRequest(request, parameters);
+			RequestDispatcher dispatcher = request.getRequestDispatcher(decodeUrl);
+			dispatcher.forward(continuationRequest, response);
+			return null;
+		} catch(Exception e) {
+			return transactException(e, modelMap, request, response);
 		}
-		//调整地址中的参数
-		Map<String, String[]> urlParameters = StringUtils.getUrlParameters(decodeUrl);
-		Set parameterNames = urlParameters.keySet();
-		Iterator parameterIte = parameterNames.iterator();
-		while(parameterIte.hasNext()) {
-			String parameterName = (String)parameterIte.next();
-			parameters.put(parameterName, urlParameters.get(parameterName));
-		}
-		ContinuationRequest continuationRequest = new ContinuationRequest(request, parameters);
-		RequestDispatcher dispatcher = request.getRequestDispatcher(decodeUrl);
-		dispatcher.forward(continuationRequest, response);
-		return null;
 	}
 
 }

@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -100,9 +101,9 @@ public class ResourceController extends FormController<CmsResource> {
 	 */
 	protected List<PropertyFilter> generatePropertyFilters(ModelMap modelMap, HttpServletRequest request) {
 		List<PropertyFilter> filters = super.generatePropertyFilters(modelMap, request);
-		Long directoryId = Long.parseLong(request.getParameter("directoryId"));
-		if(directoryId != null) {
-			filters.add(new PropertyFilter("directory.id", directoryId, PropertyCompareType.EQ, CmsResource.class));
+		String directoryId = request.getParameter("directoryId");
+		if(!StringUtils.isBlank(directoryId)) {
+			filters.add(new PropertyFilter("directory.id", Long.parseLong(directoryId), PropertyCompareType.EQ, CmsResource.class));
 		}
 		return filters;
 	}

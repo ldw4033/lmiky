@@ -19,6 +19,9 @@ public class Constants {
 
 	// 分页
 	public static final String CONTEXT_KEY_PAGE_PAGESIZE = "page.pageSize";
+	
+	//文件上传路径
+	public static final String SYSTEM_FILE_UPLOAD_PATH = "system.file.upload.path";
 
 	// ****************************************properties文件key****************************************//
 

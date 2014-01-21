@@ -16,8 +16,7 @@ public class UUIDGenerator {
 		 * @return
 		 */
 		public static synchronized String generateString() {
-			String uuid = UUID.randomUUID().toString();
-			return uuid.replace("-", "");
+			return UUID.randomUUID().toString().replace("-", "");
 		}
 		
 }

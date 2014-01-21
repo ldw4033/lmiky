@@ -31,13 +31,13 @@
 </tr>
 <tr>
 	<td colspan="4">
-		<textarea rows="25" name="content" class="full" >${pojo.content}</textarea>
+		<textarea rows="25" name="content" class="full"  id="htmlContent">${pojo.content}</textarea>
 	</td>
 </tr>
 <tr>
 	<td colspan="4" align="center">
-		<input type="button" class="btnClass" style="cursor: pointer;" value="返回" onclick="back('/cms/resource/list.shtml?modulePath=${modulePath }')"/>
-		&nbsp;&nbsp;
 		<input type="submit" class="btnClass" style="cursor: pointer;" value="提交" />
+		&nbsp;&nbsp;
+		<input type="button" class="btnClass" style="cursor: pointer;" value="返回" onclick="back('/cms/resource/list.shtml?modulePath=${modulePath }')"/>
 	</td>
 </tr>
