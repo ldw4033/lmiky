@@ -50,6 +50,16 @@ public interface MenuService {
 	public TopMenu getTopMenu(String topMenuId, SessionInfo sessionInfo) throws Exception;
 	
 	/**
+	 * 根据顶层菜单ID获取左菜单
+	 * @author lmiky
+	 * @date 2014-1-22
+	 * @param topMenuId
+	 * @return
+	 * @throws Exception
+	 */
+	public SubMenu getLeftMenu(String topMenuId) throws Exception;
+	
+	/**
 	 * 根据ID获取子菜单
 	 * @author lmiky
 	 * @date 2013-6-16

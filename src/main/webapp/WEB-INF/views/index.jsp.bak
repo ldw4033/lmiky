@@ -5,7 +5,6 @@
 <%@ include file="/jdp/common/common.jsp" %>
 <c:set var="frameUrl" value=""/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ page import="com.lmiky.jdp.system.menu.controller.MenuController" %>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -17,7 +16,7 @@
 			var selectedSubMenu = null;	//当前选中的菜单
 			
 			//头部导航滑动样式
-			$(document).ready(function() {
+			window.onload = function() {
 				var sfEls = document.getElementById("nav").getElementsByTagName("li"); 
 				for (var i=0; i<sfEls.length; i++) {
 					sfEls[i].onmouseover=function() {
@@ -70,8 +69,7 @@
 					}
 				);
 				
-				selectTopMenu($("#topMenu_a_<%=MenuController.TOP_MENU_ID_MYINDEX%>"), '<%=MenuController.TOP_MENU_ID_MYINDEX%>');
-			});
+			}
 			
 			//左边大菜单点击
 			function selectTopMenu(menuObj, menuDivId) {
@@ -153,10 +151,10 @@
 													<td align="left">
 														<ul id="nav">
 															<li style="width: 2px;"><img src="${images}/meun_xian.gif" width="2" height="29" align="absmiddle" /></li>
-															<li class="top_dh"><a  id="topMenu_a_<%=MenuController.TOP_MENU_ID_MYINDEX%>" href="javascript:void(0)" onclick="selectTopMenu(this, '<%=MenuController.TOP_MENU_ID_MYINDEX%>')"><strong>个人主页</strong></a></li>
+															<li class="top_dh"><a  href="javascript:void(0)" onclick="selectTopMenu(this, 'index')"><strong>个人主页</strong></a></li>
 															<li style="width: 2px;"><img src="${images}/meun_xian.gif" width="2" height="29" align="absmiddle" /></li>
-															<c:forEach items="${menus }" var="topMenu" varStatus="status">
-																<li class="top_dh"><a id="topMenu_a_${topMenu.id }"  href="javascript:void(0)" onclick="selectTopMenu(this, '${topMenu.id }')"><strong>${topMenu.label }</strong></a></li>
+															<c:forEach items="${menus }" var="topMenu">
+																<li class="top_dh"><a  href="javascript:void(0)" onclick="selectTopMenu(this, '${topMenu.id }')"><strong>${topMenu.label }</strong></a></li>
 																<li style="width: 2px;"><img src="${images}/meun_xian.gif" width="2" height="29" align="absmiddle" /></li>
 															</c:forEach>
 															<!-- 
@@ -229,8 +227,130 @@
 							<td height="100%">
 								<table width="100%" height="100%" valign="top" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="bian1">
 									<tr>
-										<td>
-											<iframe src="" id="leftMenu" name="leftMenu" height="100%" frameborder="0" scrolling="auto" width="100%"></iframe>
+										<td align="center" valign="top" bgcolor="#FFFFFF">
+											<div id="topMenu_index" style="margin-left: 0.1px">
+												<table width="100%" border="0" cellspacing="0" cellpadding="0" class="b">
+													<tr>
+														<td height="2"></td>
+													</tr>
+													<tr>
+														<td class="menuCatetory STYLE3" onClick="selectMenu(this, 'latelyOpe')" width="100%" height="50" align="left" valign="middle">
+															&nbsp;<img src="${images}/jt-1.gif" width="16" height="16" align="absmiddle" border="0"> 最近操作
+														</td>
+													</tr>
+													<tr id="subMenu_latelyOpe">
+														<td align="center">
+															<div style="margin-top: 2px; width: 170px;">
+																<c:forEach items="${latelyOperateMenus }" var="subMenu">
+																	<div runat="server">
+																		<c:choose>
+																			<c:when test="${subMenu.type == 'link' }">
+																				<dt class="title_common 
+																				<c:choose>
+																					<c:when test="${empty frameUrl}">
+																						<c:set var="frameUrl" value="${subMenu.url }"/>
+																						title_open
+																					</c:when>
+																					<c:otherwise>
+																						title_close
+																					</c:otherwise>
+																				</c:choose>
+																				" onClick="selectSubMenu(this, '<c:url value="/"/>${subMenu.url }');">${subMenu.label }</dt>
+																			</c:when>
+																			<c:when test="${subMenu.type == 'dialog' }">
+																				<dt class="title_common title_close" onClick="openDialog('<c:url value="/"/>${subMenu.url }', 800, 600)">${subMenu.label }</dt>
+																			</c:when>
+																		</c:choose>
+																	</div>
+																</c:forEach>
+															</div>
+														</td>
+													</tr>
+												</table>
+												<table width="100%" border="0" cellspacing="0" cellpadding="0" class="b">
+													<tr>
+														<td height="2"></td>
+													</tr>
+													<tr>
+														<td class="menuCatetory STYLE3" onClick="selectMenu(this, 'myFavorite')" width="160" height="50" align="left" valign="middle">
+															&nbsp;<img src="${images}/jt-1.gif" width="16" height="16" align="absmiddle" border="0"> 我的收藏
+														</td>
+													</tr>
+													<tr id="subMenu_myFavorite" style="display: none">
+														<td align="center">
+															<div style="margin-top: 2px; width: 170px;">
+																<c:forEach items="${favoriteMenus }" var="subMenu">
+																	<div runat="server">
+																		<c:choose>
+																			<c:when test="${subMenu.type == 'link' }">
+																				<dt class="title_common 
+																				<c:choose>
+																					<c:when test="${empty frameUrl}">
+																						<c:set var="frameUrl" value="${subMenu.url }"/>
+																						title_open
+																					</c:when>
+																					<c:otherwise>
+																						title_close
+																					</c:otherwise>
+																				</c:choose>
+																				" onClick="selectSubMenu(this, '<c:url value="/"/>${subMenu.url }');">${subMenu.label }</dt>
+																			</c:when>
+																			<c:when test="${subMenu.type == 'dialog' }">
+																				<dt class="title_common title_close" onClick="openDialog('<c:url value="/"/>${subMenu.url }', 800, 600)">${subMenu.label }</dt>
+																			</c:when>
+																		</c:choose>
+																	</div>
+																</c:forEach>
+															</div>
+														</td>
+													</tr>
+												</table>
+											</div>
+											<c:forEach items="${menus }" var="topMenu" varStatus="topStatus">
+												<div id="topMenu_${topMenu.id }" style="margin-left: 0.1px; display: none;">
+													<c:forEach items="${topMenu.leftMenus }" var="leftMenu" varStatus="leftStatus">
+														<table width="100%" border="0" cellspacing="0" cellpadding="0" class="b">
+															<tr>
+																<td height="2"></td>
+															</tr>
+															<tr>
+																<td class="menuCatetory STYLE3" onClick="selectMenu(this, '${leftMenu.id }')" width="160" height="50" align="left" valign="middle">
+																	&nbsp;<img src="${images}/jt-1.gif" width="16" height="16" align="absmiddle" border="0"> ${leftMenu.label }
+																</td>
+															</tr>
+															<tr id="subMenu_${leftMenu.id }"  style="display: none">
+																<td align="center">
+																	<div style="margin-top: 2px; width: 170px;">
+																		<!--一级分类-->
+																		<c:forEach items="${leftMenu.subMenus }" var="subMenu">
+																			<div runat="server">
+																			<c:choose>
+																				<c:when test="${subMenu.type == 'link' }">
+																					<dt class="title_common 
+																					<c:choose>
+																						<c:when test="${empty frameUrl}">
+																							<c:set var="frameUrl" value="${subMenu.url }"/>
+																							title_open
+																						</c:when>
+																						<c:otherwise>
+																							title_close
+																						</c:otherwise>
+																					</c:choose>
+																					" onClick="selectSubMenu(this, '<c:url value="/"/>${subMenu.url }');">${subMenu.label }</dt>
+																				</c:when>
+																				<c:when test="${subMenu.type == 'dialog' }">
+																					<dt class="title_common title_close" onClick="openDialog('<c:url value="/"/>${subMenu.url }', 800, 600)">${subMenu.label }</dt>
+																				</c:when>
+																			</c:choose>
+																			</div>
+																		</c:forEach>
+																	</div>
+																</td>
+															</tr>
+														</table>
+													</c:forEach>
+												</div>
+											</c:forEach>
 										</td>
 									</tr>
 								</table>

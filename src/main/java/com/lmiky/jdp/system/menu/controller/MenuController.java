@@ -39,6 +39,8 @@ public class MenuController extends BaseController {
 	public static final String CODE_SUCCESS = "0";
 	public static final String CODE_FAIL = "-1";
 	
+	public static final String TOP_MENU_ID_MYINDEX = "myIndex";
+	
 	private MenuService menuService;
 	private Integer latelyOperateMenuNum = PropertiesUtils.getIntContextValue("menu.latelyOperateMenuNum");
 
@@ -57,6 +59,45 @@ public class MenuController extends BaseController {
 		try {
 			//判断是否有登陆
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
+			//检查单点登陆
+			checkSso(sessionInfo, modelMap, request);
+			modelMap.put("menus", menuService.getTopMenus(sessionInfo));
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("userId", sessionInfo.getUserId());
+			//最近操作菜单
+			//如果按时间降序排序，mysql会被distinct干扰,无法获取想要的结果，只能按id降序排序
+			List<String> subMenuIds = service.executeQuery("select distinct LatelyOperateMenu.menuId from LatelyOperateMenu LatelyOperateMenu where LatelyOperateMenu.userId = :userId order by LatelyOperateMenu.id desc", params, 0, latelyOperateMenuNum.intValue());
+			List<SubMenu> opeMenus = new ArrayList<SubMenu>();
+			for(String subMenuId : subMenuIds) {
+				SubMenu subMenu = menuService.getSubMenu(subMenuId, sessionInfo);
+				if(subMenu != null) {
+					opeMenus.add(subMenu);
+				}
+			}
+			modelMap.put("latelyOperateMenus", opeMenus);
+			//我的收藏菜单
+			subMenuIds = service.executeQuery("select distinct MyFavoriteMenu.menuId from MyFavoriteMenu MyFavoriteMenu where MyFavoriteMenu.userId = :userId order by MyFavoriteMenu.id desc", params);
+			List<SubMenu> favoriteMenus = new ArrayList<SubMenu>();
+			for(String subMenuId : subMenuIds) {
+				SubMenu subMenu = menuService.getSubMenu(subMenuId, sessionInfo);
+				if(subMenu != null) {
+					favoriteMenus.add(subMenu);
+				}
+			}
+			modelMap.put("favoriteMenus", favoriteMenus);
+			return "index";
+		} catch(Exception e) {
+			return transactException(e, modelMap, request, response);
+		}
+	}
+	
+	@RequestMapping("/listLeftMenus.shtml")
+	public String listLeftMenus(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "topMenuId", required = true) String topMenuId) throws Exception {
+		try {
+			//判断是否有登陆
+			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
+			//检查单点登陆
+			checkSso(sessionInfo, modelMap, request);
 			modelMap.put("menus", menuService.getTopMenus(sessionInfo));
 			Map<String, Object> params = new HashMap<String, Object>();
 			params.put("userId", sessionInfo.getUserId());
