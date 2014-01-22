@@ -3,6 +3,7 @@ package com.lmiky.jdp.system.menu.service;
 import java.util.List;
 
 import com.lmiky.jdp.session.model.SessionInfo;
+import com.lmiky.jdp.system.menu.model.LeftMenu;
 import com.lmiky.jdp.system.menu.model.SubMenu;
 import com.lmiky.jdp.system.menu.model.TopMenu;
 
@@ -54,10 +55,11 @@ public interface MenuService {
 	 * @author lmiky
 	 * @date 2014-1-22
 	 * @param topMenuId
+	 * @param sessionInfo 如果不为空，则检查权限，没有权限则返回空值
 	 * @return
 	 * @throws Exception
 	 */
-	public SubMenu getLeftMenu(String topMenuId) throws Exception;
+	public List<LeftMenu> getLeftMenus(String topMenuId, SessionInfo sessionInfo) throws Exception;
 	
 	/**
 	 * 根据ID获取子菜单

@@ -73,11 +73,9 @@
 				selectTopMenu($("#topMenu_a_<%=MenuController.TOP_MENU_ID_MYINDEX%>"), '<%=MenuController.TOP_MENU_ID_MYINDEX%>');
 			});
 			
-			//左边大菜单点击
+			//顶层大菜单点击
 			function selectTopMenu(menuObj, menuDivId) {
-				$("div[id^='" + menuPrefix + "']").fadeOut(500);
-				$("#" + menuPrefix + menuDivId).fadeIn(500);
-				$("#" + menuPrefix + menuDivId).find(".menuCatetory").first().trigger("click");
+				document.getElementById("leftMenu").src = '<c:url value="/sso/system/menu/listLeftMenus.shtml"/>?topMenuId=' + menuDivId;
 			}
 			
 			//左边大菜单点击

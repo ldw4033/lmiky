@@ -21,6 +21,7 @@ import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.json.util.JsonUtils;
 import com.lmiky.jdp.session.exception.SessionException;
 import com.lmiky.jdp.session.model.SessionInfo;
+import com.lmiky.jdp.system.menu.model.LeftMenu;
 import com.lmiky.jdp.system.menu.model.SubMenu;
 import com.lmiky.jdp.system.menu.pojo.MyFavoriteMenu;
 import com.lmiky.jdp.system.menu.service.MenuService;
@@ -43,6 +44,13 @@ public class MenuController extends BaseController {
 	
 	private MenuService menuService;
 	private Integer latelyOperateMenuNum = PropertiesUtils.getIntContextValue("menu.latelyOperateMenuNum");
+	
+	//菜单名称前缀
+	public static final String MENU_LABEL_LEFTMENU_PREFIX = "system.menu.label.leftMenu.";
+	public static final String LEFTMENU_ID_LATELYOPE = "latelyOpe";
+	public static final String LEFTMENU_ID_MYFAVORITE = "myFavorite";
+	public static final String MENU_LABEL_LEFTMENU_LATELYOPE = PropertiesUtils.getStringContextValue(MENU_LABEL_LEFTMENU_PREFIX + LEFTMENU_ID_LATELYOPE);
+	public static final String MENU_LABEL_LEFTMENU_MYFAVORITE = PropertiesUtils.getStringContextValue(MENU_LABEL_LEFTMENU_PREFIX + LEFTMENU_ID_MYFAVORITE);
 
 	/**
 	 * 加载菜单列表
@@ -64,6 +72,7 @@ public class MenuController extends BaseController {
 			modelMap.put("menus", menuService.getTopMenus(sessionInfo));
 			Map<String, Object> params = new HashMap<String, Object>();
 			params.put("userId", sessionInfo.getUserId());
+			/*
 			//最近操作菜单
 			//如果按时间降序排序，mysql会被distinct干扰,无法获取想要的结果，只能按id降序排序
 			List<String> subMenuIds = service.executeQuery("select distinct LatelyOperateMenu.menuId from LatelyOperateMenu LatelyOperateMenu where LatelyOperateMenu.userId = :userId order by LatelyOperateMenu.id desc", params, 0, latelyOperateMenuNum.intValue());
@@ -85,12 +94,24 @@ public class MenuController extends BaseController {
 				}
 			}
 			modelMap.put("favoriteMenus", favoriteMenus);
+			*/
 			return "index";
 		} catch(Exception e) {
 			return transactException(e, modelMap, request, response);
 		}
 	}
 	
+	/**
+	 * 获取左菜单列表
+	 * @author lmiky
+	 * @date 2014-1-22
+	 * @param modelMap
+	 * @param request
+	 * @param response
+	 * @param topMenuId
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/listLeftMenus.shtml")
 	public String listLeftMenus(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "topMenuId", required = true) String topMenuId) throws Exception {
 		try {
@@ -98,31 +119,43 @@ public class MenuController extends BaseController {
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
 			//检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
-			modelMap.put("menus", menuService.getTopMenus(sessionInfo));
 			Map<String, Object> params = new HashMap<String, Object>();
 			params.put("userId", sessionInfo.getUserId());
-			//最近操作菜单
-			//如果按时间降序排序，mysql会被distinct干扰,无法获取想要的结果，只能按id降序排序
-			List<String> subMenuIds = service.executeQuery("select distinct LatelyOperateMenu.menuId from LatelyOperateMenu LatelyOperateMenu where LatelyOperateMenu.userId = :userId order by LatelyOperateMenu.id desc", params, 0, latelyOperateMenuNum.intValue());
-			List<SubMenu> opeMenus = new ArrayList<SubMenu>();
-			for(String subMenuId : subMenuIds) {
-				SubMenu subMenu = menuService.getSubMenu(subMenuId, sessionInfo);
-				if(subMenu != null) {
-					opeMenus.add(subMenu);
+			List<LeftMenu> leftMenuList = new ArrayList<LeftMenu>();
+			if(TOP_MENU_ID_MYINDEX.equals(topMenuId)) {
+				LeftMenu leftMenu = new LeftMenu();
+				leftMenu.setId(LEFTMENU_ID_LATELYOPE);
+				leftMenu.setLabel(MENU_LABEL_LEFTMENU_LATELYOPE);
+				//最近操作菜单
+				//如果按时间降序排序，mysql会被distinct干扰,无法获取想要的结果，只能按id降序排序
+				List<String> subMenuIds = service.executeQuery("select distinct LatelyOperateMenu.menuId from LatelyOperateMenu LatelyOperateMenu where LatelyOperateMenu.userId = :userId order by LatelyOperateMenu.id desc", params, 0, latelyOperateMenuNum.intValue());
+				List<SubMenu> opeMenus = new ArrayList<SubMenu>();
+				for(String subMenuId : subMenuIds) {
+					SubMenu subMenu = menuService.getSubMenu(subMenuId, sessionInfo);
+					if(subMenu != null) {
+						opeMenus.add(subMenu);
+					}
 				}
+				leftMenu.setSubMenus(opeMenus);
+				leftMenuList.add(leftMenu);
+				//我的收藏菜单
+				leftMenu = new LeftMenu();
+				leftMenu.setId(LEFTMENU_ID_MYFAVORITE);
+				leftMenu.setLabel(MENU_LABEL_LEFTMENU_MYFAVORITE);
+				subMenuIds = service.executeQuery("select distinct MyFavoriteMenu.menuId from MyFavoriteMenu MyFavoriteMenu where MyFavoriteMenu.userId = :userId order by MyFavoriteMenu.id desc", params);
+				List<SubMenu> favoriteMenus = new ArrayList<SubMenu>();
+				for(String subMenuId : subMenuIds) {
+					SubMenu subMenu = menuService.getSubMenu(subMenuId, sessionInfo);
+					if(subMenu != null) {
+						favoriteMenus.add(subMenu);
+					}
+				}leftMenu.setSubMenus(favoriteMenus);
+				leftMenuList.add(leftMenu);
+			} else {
+				leftMenuList = menuService.getLeftMenus(topMenuId, sessionInfo);
 			}
-			modelMap.put("latelyOperateMenus", opeMenus);
-			//我的收藏菜单
-			subMenuIds = service.executeQuery("select distinct MyFavoriteMenu.menuId from MyFavoriteMenu MyFavoriteMenu where MyFavoriteMenu.userId = :userId order by MyFavoriteMenu.id desc", params);
-			List<SubMenu> favoriteMenus = new ArrayList<SubMenu>();
-			for(String subMenuId : subMenuIds) {
-				SubMenu subMenu = menuService.getSubMenu(subMenuId, sessionInfo);
-				if(subMenu != null) {
-					favoriteMenus.add(subMenu);
-				}
-			}
-			modelMap.put("favoriteMenus", favoriteMenus);
-			return "index";
+			modelMap.put("leftMenus", leftMenuList);
+			return "leftMenu";
 		} catch(Exception e) {
 			return transactException(e, modelMap, request, response);
 		}
