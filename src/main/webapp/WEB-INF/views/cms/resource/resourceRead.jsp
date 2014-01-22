@@ -31,14 +31,12 @@
 	</td>
 </tr>
 <tr>
-	<td colspan="4" valign="top">
+	<td colspan="4" valign="top" height="300">
 		${pojo.content}
 	</td>
 </tr>
 <tr>
 	<td colspan="4" align="center">
 		<input type="button" class="btnClass" style="cursor: pointer;" value="返回" onclick="back('/cms/resource/list.shtml?modulePath=${modulePath }')"/>
-		&nbsp;&nbsp;
-		<input type="submit" class="btnClass" style="cursor: pointer;" value="提交" />
 	</td>
 </tr>

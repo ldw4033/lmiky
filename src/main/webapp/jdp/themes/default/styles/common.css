@@ -345,6 +345,15 @@ a.td_4:hover {
 	text-decoration:underline;
 }
 
+.messageDiv {
+	margin: 5px;
+	font-size:14px;
+}
+
+.message {
+	color: #FE5230;
+}
+
 .error {
 	color: #ff0000;
 }

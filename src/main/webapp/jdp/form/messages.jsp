@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:if test="${not empty validateErrorInfos}">
 	<c:forEach var="validateErrorInfo" items="${validateErrorInfos}">
-		<div class="message error">
+		<div class="messageDiv">
 			<img src="${images}/iconWarning.gif" class="icon" />
 			<script type="text/javascript">
 				$(document).ready(function() {

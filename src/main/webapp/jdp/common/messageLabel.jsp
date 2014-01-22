@@ -3,7 +3,7 @@
 
 <%-- Error Messages --%>
 <c:if test="${not empty errorInfos}">
-    <div class="message error" id="Info">
+    <div class="messageDiv">
         <c:forEach var="error" items="${errorInfos}">
             <img src="${images}/iconWarning.gif" class="icon" />
             <label class="error"><c:out value="${error}"/></label>
@@ -13,10 +13,10 @@
 
 <%-- Success Messages --%>
 <c:if test="${not empty messageInfos}">
-    <div class="message" id="successMessages">
+    <div class="messageDiv">
         <c:forEach var="msg" items="${messageInfos}">
             <img src="${images}/iconInformation.gif" class="icon" />
-            <label><c:out value="${msg}"/></label>
+            <label class="message"><c:out value="${msg}"/></label>
         </c:forEach>
     </div>
 </c:if>
