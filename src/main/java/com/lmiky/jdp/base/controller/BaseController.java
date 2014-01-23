@@ -60,14 +60,16 @@ public abstract class BaseController {
 	 * 获取加载权限值，如果返回值为空，表示不需要检查权限
 	 * @author lmiky
 	 * @date 2013-12-30
+	 * @param modelMap
+	 * @param request
 	 * @return
 	 */
-	protected String getLoadAuthorityCode() {
+	protected String getLoadAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "";
 	}
 	
 	/**
-	 * 设入提示信息
+	 * 添加提示信息
 	 * @author lmiky
 	 * @date 2013-4-24
 	 * @param modelMap
@@ -84,7 +86,26 @@ public abstract class BaseController {
 	}
 	
 	/**
-	 * 设入错误信息
+	 * 设置提示信息
+	 * @author lmiky
+	 * @date 2014-1-23
+	 * @param modelMap
+	 * @param message
+	 */
+	@SuppressWarnings("unchecked")
+	public void setMessage(ModelMap modelMap, String message) {
+		List<String> messageInfos = (List<String>) modelMap.get(MESSAGE_INFO_KEY);
+		if(messageInfos == null) {
+			messageInfos = new ArrayList<String>();
+			modelMap.put(MESSAGE_INFO_KEY, messageInfos);
+		} else {
+			messageInfos.clear();
+		}
+		messageInfos.add(message);
+	}
+	
+	/**
+	 * 添加错误信息
 	 * @author lmiky
 	 * @date 2013-5-9
 	 * @param modelMap
@@ -101,6 +122,39 @@ public abstract class BaseController {
 	}
 	
 	/**
+	 * 设置错误信息
+	 * @author lmiky
+	 * @date 2014-1-23
+	 * @param modelMap
+	 * @param error
+	 */
+	@SuppressWarnings("unchecked")
+	public void setError(ModelMap modelMap, String error) {
+		List<String> errorInfos = (List<String>) modelMap.get(ERROR_INFO_KEY);
+		if(errorInfos == null) {
+			errorInfos = new ArrayList<String>();
+			modelMap.put(ERROR_INFO_KEY, errorInfos);
+		} else {
+			errorInfos.clear();
+		}
+		errorInfos.add(error);
+	}
+	
+	/**
+	 * 方加载
+	 * @author lmiky
+	 * @date 2013-10-22
+	 * @param modelMap
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public String executeBaseLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return executeBaseLoad(modelMap, request, response, REQUESTTYPE_NORMAL);
+	}
+	
+	/**
 	 * 方加载
 	 * @author lmiky
 	 * @date 2013-10-22
@@ -111,19 +165,19 @@ public abstract class BaseController {
 	 * @return
 	 * @throws Exception
 	 */
-	public String executeBaseLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, String... requestTyps) throws Exception {
+	public String executeBaseLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, String requestTyp) throws Exception {
 		try {
 			//判断是否有登陆
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
 			//检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
 			//检查权限
-			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode());
+			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode(modelMap, request));
 			Map<String, Object> loadParams = new HashMap<String, Object>();
 			setLoadPrams(modelMap, request, response, loadParams);
 			return processLoad(modelMap, request, response, loadParams);
 		} catch(Exception e) {
-			return transactException(e, modelMap, request, response, requestTyps);
+			return transactException(e, modelMap, request, response, requestTyp);
 		}
 	}
 	
@@ -163,42 +217,57 @@ public abstract class BaseController {
 	 * @param modelMap
 	 * @param request
 	 * @param response
-	 * @param requestTyps 请求方式
 	 * @return
 	 * @throws Exception
 	 */
-	public String transactException(Exception e, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, String... requestTyps) throws Exception {
+	public String transactException(Exception e, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return transactException(e, modelMap, request, response, REQUESTTYPE_NORMAL);
+	}
+	
+	/**
+	 * 异常处理
+	 * @author lmiky
+	 * @date 2013-4-24
+	 * @param e
+	 * @param modelMap
+	 * @param request
+	 * @param response
+	 * @param requestTyp 请求方式
+	 * @return
+	 * @throws Exception
+	 */
+	public String transactException(Exception e, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, String requestTyp) throws Exception {
 		if(e instanceof SessionException) {
 			putError(modelMap, "登陆超时！");
-			if(isRedirectRequestType(requestTyps)) {
+			if(isRedirectRequestType(requestTyp)) {
 				return redirectToLogin(modelMap, request, response, "登陆超时！");
 			} else {
-				return getUnRedirectRequestTypeExceptionReturn(e, modelMap, request, response, requestTyps);
+				return getUnRedirectRequestTypeExceptionReturn(e, modelMap, request, response, requestTyp);
 			}
 		}
 		if(e instanceof SsoException) {
 			sessionService.removeSessionInfo(request);	//清除SessionInfo，如果是在别处登录，即使别处已经下线，还是强制必须得重新登录
 			putError(modelMap, "当前账号在别处登陆！");
-			if(isRedirectRequestType(requestTyps)) {
+			if(isRedirectRequestType(requestTyp)) {
 				return redirectToLogin(modelMap, request, response, "当前账号在别处登陆！");
 			} else {
-				return getUnRedirectRequestTypeExceptionReturn(e, modelMap, request, response, requestTyps);
+				return getUnRedirectRequestTypeExceptionReturn(e, modelMap, request, response, requestTyp);
 			}
 		}
 		if(e instanceof AuthorityException) {
 			putError(modelMap, "没有权限！");
-			if(isRedirectRequestType(requestTyps)) {
+			if(isRedirectRequestType(requestTyp)) {
 				return redirectToLogin(modelMap, request, response, "没有权限！");
 			} else {
-				return getUnRedirectRequestTypeExceptionReturn(e, modelMap, request, response, requestTyps);
+				return getUnRedirectRequestTypeExceptionReturn(e, modelMap, request, response, requestTyp);
 			}
 		}
 		logException(e, modelMap, request, response);
 		putError(modelMap, e.getMessage());
-		if(isRedirectRequestType(requestTyps)) {
+		if(isRedirectRequestType(requestTyp)) {
 			throw e;
 		}
-		return getUnRedirectRequestTypeExceptionReturn(e, modelMap, request, response, requestTyps);
+		return getUnRedirectRequestTypeExceptionReturn(e, modelMap, request, response, requestTyp);
 	}
 	
 	/**
@@ -209,10 +278,10 @@ public abstract class BaseController {
 	 * @param modelMap
 	 * @param request
 	 * @param response
-	 * @param requestTyps 请求方式
+	 * @param requestTyp 请求方式
 	 * @return
 	 */
-	public String getUnRedirectRequestTypeExceptionReturn(Exception e, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, String... requestTyps) {
+	public String getUnRedirectRequestTypeExceptionReturn(Exception e, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, String requestTyp) {
 		modelMap.put(BaseInfoCodeJsonView.KEY_CODE_NAME, BaseCode.CODE_EXCEPTION);
 		return "baseInfoCodeJsonView";
 	}
@@ -221,17 +290,15 @@ public abstract class BaseController {
 	 * 是否调整方式请求
 	 * @author lmiky
 	 * @date 2014-1-11
-	 * @param requestTyps
+	 * @param requestTyp
 	 * @return
 	 */
-	protected boolean isRedirectRequestType(String... requestTyps) {
-		if(requestTyps == null || requestTyps.length == 0) {
+	protected boolean isRedirectRequestType(String requestTyp) {
+		if(StringUtils.isBlank(requestTyp)) {
 			return true;
 		}
-		for(String requestTyp : requestTyps) {
-			if(REQUESTTYPE_AJAX.equals(requestTyp)) {	//ajax方式
-				return false;
-			}
+		if(REQUESTTYPE_AJAX.equals(requestTyp)) {	//ajax方式
+			return false;
 		}
 		return true;
 	}

@@ -32,10 +32,10 @@ public class AreaController extends BaseController {
 	public static final String AREA_TYPE_CITY = "city";
 
 	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode()
+	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected String getLoadAuthorityCode() {
+	protected String getLoadAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "jdp_area_manage";
 	}
 	

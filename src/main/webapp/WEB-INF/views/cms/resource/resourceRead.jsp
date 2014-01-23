@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/jdp/common/common.jsp"%>
 <tr>
 	<th align="right" class="bg02" width="17%">
 		<label>标题</label>
@@ -28,6 +28,20 @@
 	</th>
 	<td width="33%">
 		${pojo.source}
+	</td>
+</tr>
+<tr>
+	<th align="right" class="bg02" width="17%">
+		<label>创建时间</label>
+	</th>
+	<td>
+		<fmt:formatDate value="${pojo.createTime}" pattern="${defaultDateTimeFormater }"/>
+	</td>
+	<th align="right" class="bg02" width="17%">
+		<label>发布时间</label>
+	</th>
+	<td>
+		<fmt:formatDate value="${pojo.pubTime}" pattern="${defaultDateTimeFormater }"/>
 	</td>
 </tr>
 <tr>

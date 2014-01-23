@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="${scriptPlugin }/kindeditor/themes/default/default.css" />
 		<script charset="utf-8" src="${scriptPlugin }/kindeditor/kindeditor-min.js" ></script>
 		<script charset="utf-8" src="${scriptPlugin }/kindeditor/lang/zh_CN.js"></script>
+		<script language="javascript" type="text/javascript" src="${scriptPlugin }/My97DatePicker/WdatePicker.js"></script>
 		<script >
 			var editor;
 			KindEditor.ready(function(K) {

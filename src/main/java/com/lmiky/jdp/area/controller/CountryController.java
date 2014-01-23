@@ -25,34 +25,34 @@ import com.lmiky.jdp.form.util.ValidateUtils;
 public class CountryController extends FormController<Country> {
 	
 	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.form.controller.FormController#getAddAuthorityCode()
+	 * @see com.lmiky.jdp.form.controller.FormController#getAddAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected String getAddAuthorityCode() {
+	protected String getAddAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "jdp_area_manage";
 	}
 
 	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.form.controller.FormController#getModifyAuthorityCode()
+	 * @see com.lmiky.jdp.form.controller.FormController#getModifyAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected String getModifyAuthorityCode() {
+	protected String getModifyAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "jdp_area_manage";
 	}
 
 	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.form.controller.FormController#getDeleteAuthorityCode()
+	 * @see com.lmiky.jdp.form.controller.FormController#getDeleteAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected String getDeleteAuthorityCode() {
+	protected String getDeleteAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "jdp_area_manage";
 	}
 
 	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode()
+	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected String getLoadAuthorityCode() {
+	protected String getLoadAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "jdp_area_manage";
 	}
 

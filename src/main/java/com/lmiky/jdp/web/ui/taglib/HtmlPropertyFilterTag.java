@@ -6,7 +6,6 @@ import javax.servlet.jsp.JspException;
 import org.apache.commons.lang3.StringUtils;
 
 import com.lmiky.jdp.constants.Constants;
-import com.lmiky.jdp.util.DateUtils;
 import com.lmiky.jdp.util.UUIDGenerator;
 
 /**
@@ -15,12 +14,9 @@ import com.lmiky.jdp.util.UUIDGenerator;
  * @date 2013-4-18
  */
 public class HtmlPropertyFilterTag extends BaseHtmlTag {
-	private static final long serialVersionUID = 941091266114250144L;
+	private static final long serialVersionUID = 3941115199658816837L;
 	public static final String INPUT_TYPE_DATE = "date";
 	public static final String INPUT_TYPE_DATETIME = "dateTime";
-	// 日期格式
-	private String datePattern;
-	private String dateTimePattern;
 
 	private String inputType; // 输入方式
 	private String propertyName; // 属性名
@@ -32,8 +28,6 @@ public class HtmlPropertyFilterTag extends BaseHtmlTag {
 
 	public HtmlPropertyFilterTag() {
 		super();
-		datePattern = DateUtils.getDefaultDateFormat();
-		dateTimePattern = DateUtils.getDefaultDateTimeFormat();
 	}
 
 	/*
@@ -103,9 +97,9 @@ public class HtmlPropertyFilterTag extends BaseHtmlTag {
 		if (INPUT_TYPE_DATE.equals(inputType) || INPUT_TYPE_DATETIME.equals(inputType)) {
 			inputHtml.append(" onFocus=\"WdatePicker({readOnly:true, dateFmt:'");
 			if (INPUT_TYPE_DATE.equals(inputType)) {
-				inputHtml.append(datePattern);
+				inputHtml.append(Constants.CONTEXT_KEY_FORMAT_DATE_VALUE);
 			} else {
-				inputHtml.append(dateTimePattern);
+				inputHtml.append(Constants.CONTEXT_KEY_FORMAT_DATETIME_VALUE);
 			}
 			inputHtml.append("'})\" ");
 		}

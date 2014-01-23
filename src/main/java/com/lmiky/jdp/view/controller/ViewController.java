@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.ui.ModelMap;
 
+import com.lmiky.jdp.base.controller.BaseController;
 import com.lmiky.jdp.base.controller.BasePojoController;
 import com.lmiky.jdp.constants.Constants;
 import com.lmiky.jdp.database.model.PropertyFilter;
@@ -37,17 +38,30 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 	 * @param modelMap
 	 * @param request
 	 * @param resopnse
-	 * @param requestTyps 请求方式
 	 * @return
 	 */
-	public String executeList(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, String... requestTyps) throws Exception {
+	public String executeList(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse) throws Exception {
+		return executeList(modelMap, request, resopnse, BaseController.REQUESTTYPE_NORMAL);
+	}
+	
+	/**
+	 * 列表查询
+	 * @author lmiky
+	 * @date 2013-4-17
+	 * @param modelMap
+	 * @param request
+	 * @param resopnse
+	 * @param requestTyp 请求方式
+	 * @return
+	 */
+	public String executeList(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, String requestTyp) throws Exception {
 		try {
 			//判断是否有登陆
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
 			//检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
 			//检查权限
-			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode());
+			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode(modelMap, request));
 			//生成分页信息
 			Page<T> page = generatePage(modelMap, request);
 			resetPage(page, modelMap, request);
@@ -65,7 +79,7 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 			modelMap.put(Constants.HTTP_PARAM_MODULE_PATH, modulePath);
 			return getExecuteListRet(modelMap, request, modulePath);
 		} catch(Exception e) {
-			return transactException(e, modelMap, request, resopnse, requestTyps);
+			return transactException(e, modelMap, request, resopnse, requestTyp);
 		}
 	}
 	

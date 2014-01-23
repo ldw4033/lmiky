@@ -102,8 +102,8 @@
 										<td>${status.count + (page.currentPage - 1) * page.pageSize}</td>
 										<td>${item.title}</td>
 										<td>${item.author}</td>
-										<td>${item.createTime}</td>
-										<td>${item.pubTime}</td>
+										<td><fmt:formatDate value="${item.createTime}" pattern="${defaultDateTimeFormater }"/></td>
+										<td><fmt:formatDate value="${item.pubTime}" pattern="${defaultDateTimeFormater }"/></td>
 										<td>
 											<lauthority:checkAuthority authorityCode="cms_resource_modify">
 												<a href="javascript:void(0)" class="td_2" onclick="redirectPage('<c:url value="/cms/resource/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }"/>&modulePath=${modulePath }&directoryId=${directory.id }', 1000, 600)">

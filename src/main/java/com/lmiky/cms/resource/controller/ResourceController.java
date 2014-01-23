@@ -35,39 +35,35 @@ import com.lmiky.jdp.user.pojo.User;
 @RequestMapping("/cms/resource")
 public class ResourceController extends FormController<CmsResource> {
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.form.controller.FormController#getAddAuthorityCode()
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getAddAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected String getAddAuthorityCode() {
+	protected String getAddAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "cms_resource_add";
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.form.controller.FormController#getModifyAuthorityCode()
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getModifyAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected String getModifyAuthorityCode() {
+	protected String getModifyAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "cms_resource_modify";
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.form.controller.FormController#getDeleteAuthorityCode()
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getDeleteAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected String getDeleteAuthorityCode() {
+	protected String getDeleteAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "cms_resource_delete";
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode()
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected String getLoadAuthorityCode() {
+	protected String getLoadAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "cms_resource_load";
 	}
 
@@ -234,7 +230,7 @@ public class ResourceController extends FormController<CmsResource> {
 	 */
 	@RequestMapping("/delete.shtml")
 	public String delete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,
-			@RequestParam(value = "id", required = false) Long id) throws Exception {
+			@RequestParam(value = "id", required = true) Long id) throws Exception {
 		return executeDelete(modelMap, request, resopnse, id);
 	}
 
@@ -252,5 +248,11 @@ public class ResourceController extends FormController<CmsResource> {
 	public String batchDelete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,
 			@RequestParam(value = "batchDeleteId", required = false) Long[] ids) throws Exception {
 		return executeBatchDelete(modelMap, request, resopnse, ids);
+	}
+	
+	@RequestMapping("/publish.shtml")
+	public String publish(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,
+			@RequestParam(value = "id", required = true) Long id) throws Exception {
+		return executeSave(modelMap, request, resopnse, id);
 	}
 }

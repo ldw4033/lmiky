@@ -40,7 +40,8 @@
 		    <function name="查询" authorityCode="cms_resource_load" sort="0"/>
 			<function name="添加" authorityCode="cms_resource_add" sort="1"/>
 			<function name="修改" authorityCode="cms_resource_modify" sort="2"/>
-			<function name="删除" authorityCode="cms_resource_delete" sort="3"/>
+			<function name="发布" authorityCode="cms_resource_publish" sort="3"/>
+			<function name="删除" authorityCode="cms_resource_delete" sort="4"/>
 		</module>
 	</moduleGroup>
 	<moduleGroup name="抓取" path="capture">

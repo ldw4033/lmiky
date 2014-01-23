@@ -24,10 +24,10 @@ import com.lmiky.jdp.session.model.SessionInfo;
 public class AuthorityController extends BaseController {
 	
 	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode()
+	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected String getLoadAuthorityCode() {
+	protected String getLoadAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "jdp_authority_authorize";
 	}
 
@@ -82,7 +82,7 @@ public class AuthorityController extends BaseController {
 			//检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
 			//检查权限
-			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode());
+			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode(modelMap, request));
 			String modulePath = request.getParameter("modulePath");
 			modelMap.put("modulePath", modulePath);
 			modelMap.put("authorizedList", authorityService.listAuthorizedOperator(modulePath));
@@ -110,7 +110,7 @@ public class AuthorityController extends BaseController {
 			//检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
 			//检查权限
-			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode());
+			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode(modelMap, request));
 			
 			String modulePath = request.getParameter("modulePath");
 			String moduleType = request.getParameter("moduleType");

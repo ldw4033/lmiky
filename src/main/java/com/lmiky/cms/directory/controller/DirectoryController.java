@@ -25,38 +25,35 @@ import com.lmiky.jdp.tree.controller.TreeController;
 @RequestMapping("/cms/directory")
 public class DirectoryController extends TreeController<CmsDirectory> {
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.form.controller.FormController#getAddAuthorityCode()
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getAddAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected String getAddAuthorityCode() {
+	protected String getAddAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "cms_directory_add";
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.form.controller.FormController#getModifyAuthorityCode()
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getModifyAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected String getModifyAuthorityCode() {
+	protected String getModifyAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "cms_directory_modify";
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.form.controller.FormController#getDeleteAuthorityCode()
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#getDeleteAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected String getDeleteAuthorityCode() {
+	protected String getDeleteAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "cms_directory_delete";
 	}
 	
 	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode()
+	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected String getLoadAuthorityCode() {
+	protected String getLoadAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "cms_directory_load";
 	}
 

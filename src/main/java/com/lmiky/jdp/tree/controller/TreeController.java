@@ -47,7 +47,7 @@ public abstract class TreeController<T extends BaseTreePojo> extends FormControl
 			// 检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
 			//检查权限
-			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode());
+			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode(modelMap, request));
 			modelMap.put("roots", service.list(pojoClass, new PropertyFilter("parent.id", null, PropertyCompareType.NULL, pojoClass), new Sort(BaseSortPojo.POJO_FIELD_NAME_SORT, Sort.SORT_TYPE_DESC, pojoClass)));
 			appendListAttribute(modelMap, request, resopnse);
 			String modulePath = getModulePath(modelMap, request);
@@ -76,7 +76,7 @@ public abstract class TreeController<T extends BaseTreePojo> extends FormControl
 			// 检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
 			//检查权限
-			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode());
+			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode(modelMap, request));
 			if(parentId == null) {
 				modelMap.put("nodes", service.list(pojoClass, new PropertyFilter("parent.id", null, PropertyCompareType.NULL, pojoClass), new Sort(BaseSortPojo.POJO_FIELD_NAME_SORT, Sort.SORT_TYPE_DESC, pojoClass)));
 			} else {

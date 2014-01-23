@@ -10,7 +10,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -28,6 +27,7 @@ import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.user.pojo.Role;
 import com.lmiky.jdp.user.pojo.User;
 import com.lmiky.jdp.user.service.UserService;
+import com.lmiky.jdp.util.EncoderUtils;
 
 /**
  * 用户
@@ -39,34 +39,34 @@ import com.lmiky.jdp.user.service.UserService;
 public class UserController extends FormController<User> {
 	
 	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.form.controller.FormController#getAddAuthorityCode()
+	 * @see com.lmiky.jdp.form.controller.FormController#getAddAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected String getAddAuthorityCode() {
+	protected String getAddAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "jdp_user_user_add";
 	}
 
 	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.form.controller.FormController#getModifyAuthorityCode()
+	 * @see com.lmiky.jdp.form.controller.FormController#getModifyAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected String getModifyAuthorityCode() {
+	protected String getModifyAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "jdp_user_user_modify";
 	}
 
 	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.form.controller.FormController#getDeleteAuthorityCode()
+	 * @see com.lmiky.jdp.form.controller.FormController#getDeleteAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected String getDeleteAuthorityCode() {
+	protected String getDeleteAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "jdp_user_user_delete";
 	}
 
 	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode()
+	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected String getLoadAuthorityCode() {
+	protected String getLoadAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "jdp_user_user_load";
 	}
 
@@ -169,7 +169,7 @@ public class UserController extends FormController<User> {
 	protected void setPojoProperties(User pojo, ModelMap modelMap, HttpServletRequest request) throws Exception {
 		super.setPojoProperties(pojo, modelMap, request);
 		if(!StringUtils.isBlank(request.getParameter("password"))) {
-			pojo.setPassword(DigestUtils.md5Hex(pojo.getPassword()));
+			pojo.setPassword(EncoderUtils.md5(pojo.getPassword()));
 			pojo.setLastSetPasswordTime(new Date());
 		}
 		String[] selectedRoles = request.getParameterValues("selectedRoles");
@@ -294,7 +294,7 @@ public class UserController extends FormController<User> {
 					putValidateError(modelMap, error);
 				}
 			} else {
-				user.setPassword(DigestUtils.md5Hex(request.getParameter("password")));
+				user.setPassword(EncoderUtils.md5(request.getParameter("password")));
 				service.save(user);
 				//记录日志
 				logOpe(User.class.getName(), sessionInfo.getUserId(), modelMap, request, sessionInfo, OPEN_MODE_EDIT, "修改密码");
@@ -320,7 +320,7 @@ public class UserController extends FormController<User> {
 		List<ValidateError> validateErrors = new ArrayList<ValidateError>();
 		if(ValidateUtils.validateRequired(request, "oldPassword", "旧密码", validateErrors)) {
 			String oldPassword = request.getParameter("oldPassword");
-			ValidateUtils.validateEqualTo("oldPassword", DigestUtils.md5Hex(oldPassword), "旧密码", "password", user.getPassword(), "当前实际密码", validateErrors);
+			ValidateUtils.validateEqualTo("oldPassword", EncoderUtils.md5(oldPassword), "旧密码", "password", user.getPassword(), "当前实际密码", validateErrors);
 		}
 		if(ValidateUtils.validateRequired(request, "password", "新密码", validateErrors)) {
 			if(ValidateUtils.validateRequired(request, "confirmPassword", "确认新密码", validateErrors)) {

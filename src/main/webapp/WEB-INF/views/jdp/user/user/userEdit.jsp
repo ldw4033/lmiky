@@ -134,8 +134,8 @@
 </tr>
 <tr>
 	<td colspan="4" align="center">
-		<input type="button" class="btnClass" style="cursor: pointer;" value="返回" onclick="back('/user/list.shtml?modulePath=${modulePath }')"/>
-		&nbsp;&nbsp;
 		<input type="submit" class="btnClass" style="cursor: pointer;" value="提交" />
+		&nbsp;&nbsp;
+		<input type="button" class="btnClass" style="cursor: pointer;" value="返回" onclick="back('/user/list.shtml?modulePath=${modulePath }')"/>
 	</td>
 </tr>

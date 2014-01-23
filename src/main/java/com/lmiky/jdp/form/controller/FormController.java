@@ -12,6 +12,7 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.ui.ModelMap;
 
+import com.lmiky.jdp.base.controller.BaseController;
 import com.lmiky.jdp.constants.Constants;
 import com.lmiky.jdp.database.pojo.BasePojo;
 import com.lmiky.jdp.form.model.ValidateError;
@@ -53,9 +54,11 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * 获取增加权限值，如果返回值为空，表示不需要检查权限
 	 * @author lmiky
 	 * @date 2013-12-30
+	 * @param modelMap
+	 * @param request
 	 * @return
 	 */
-	protected String getAddAuthorityCode() {
+	protected String getAddAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "";
 	}
 	
@@ -63,9 +66,11 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * 获取修改权限值，如果返回值为空，表示不需要检查权限
 	 * @author lmiky
 	 * @date 2013-12-30
+	 * @param modelMap
+	 * @param request
 	 * @return
 	 */
-	protected String getModifyAuthorityCode() {
+	protected String getModifyAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "";
 	}
 	
@@ -73,10 +78,27 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * 获取删除权限值，如果返回值为空，表示不需要检查权限
 	 * @author lmiky
 	 * @date 2013-12-30
+	 * @param modelMap
+	 * @param request
 	 * @return
 	 */
-	protected String getDeleteAuthorityCode() {
+	protected String getDeleteAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "";
+	}
+	
+	/**
+	 * 加载
+	 * @author lmiky
+	 * @date 2013-4-15
+	 * @param modelMap
+	 * @param request
+	 * @param resopnse
+	 * @param id
+	 * @return
+	 * @throws Exception 
+	 */
+	public String executeLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Long id) throws Exception {
+		return executeLoad(modelMap, request, resopnse, id, BaseController.REQUESTTYPE_NORMAL);
 	}
 
 	/**
@@ -87,11 +109,11 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @param request
 	 * @param resopnse
 	 * @param id
-	 * @param requestTyps 请求方式
+	 * @param requestTyp 请求方式
 	 * @return
 	 * @throws Exception 
 	 */
-	public String executeLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Long id, String... requestTyps) throws Exception {
+	public String executeLoad(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Long id, String requestTyp) throws Exception {
 		try {
 			//判断是否有登陆
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
@@ -102,7 +124,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			//获取记录锁
 			if(OPEN_MODE_EDIT.equals(openMode)) {
 				//检查权限
-				checkAuthority(modelMap, request, sessionInfo, getModifyAuthorityCode());
+				checkAuthority(modelMap, request, sessionInfo, getModifyAuthorityCode(modelMap, request));
 				try {
 					String lockTargetId = getLockTargetId(request, id);
 					lockService.lock(lockTargetId, sessionInfo.getUserId(), sessionInfo.getUserName());
@@ -117,10 +139,10 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 				}
 			} else if(OPEN_MODE_CTEATE.equals(openMode)) {
 				//检查权限
-				checkAuthority(modelMap, request, sessionInfo, getAddAuthorityCode());
+				checkAuthority(modelMap, request, sessionInfo, getAddAuthorityCode(modelMap, request));
 			} else {
 				//检查权限
-				checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode());
+				checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode(modelMap, request));
 			}
 			//将打开方式设入页面
 			modelMap.put(HTTP_PARAM_FORM_OEPNMODE, openMode);
@@ -135,7 +157,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			modelMap.put(Constants.HTTP_PARAM_MODULE_PATH, modulePath);
 			return getExecuteLoadRet(modelMap, request, modulePath);
 		} catch(Exception e) {
-			return transactException(e, modelMap, request, resopnse, requestTyps);
+			return transactException(e, modelMap, request, resopnse, requestTyp);
 		}
 	}
 	
@@ -297,11 +319,26 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @param request
 	 * @param resopnse
 	 * @param id
-	 * @param requestTyps 请求方式
 	 * @return
 	 * @throws Exception
 	 */
-	public String executeSave(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,  Long id, String... requestTyps) throws Exception {
+	public String executeSave(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,  Long id) throws Exception {
+		return executeSave(modelMap, request, resopnse, id, BaseController.REQUESTTYPE_NORMAL);
+	}
+	
+	/**
+	 * 保存
+	 * @author lmiky
+	 * @date 2013-5-6
+	 * @param modelMap
+	 * @param request
+	 * @param resopnse
+	 * @param id
+	 * @param requestTyp 请求方式
+	 * @return
+	 * @throws Exception
+	 */
+	public String executeSave(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,  Long id, String requestTyp) throws Exception {
 		try {
 			//判断是否有登陆
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
@@ -315,7 +352,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			//检查记录锁
 			if(OPEN_MODE_EDIT.equals(openMode)) {
 				//检查权限
-				checkAuthority(modelMap, request, sessionInfo, getModifyAuthorityCode());
+				checkAuthority(modelMap, request, sessionInfo, getModifyAuthorityCode(modelMap, request));
 				try {
 					String lockTargetId = getLockTargetId(request, id);
 					lockService.lock(lockTargetId, sessionInfo.getUserId(), sessionInfo.getUserName());
@@ -331,7 +368,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 				}
 			} else {
 				//检查权限
-				checkAuthority(modelMap, request, sessionInfo, getAddAuthorityCode());
+				checkAuthority(modelMap, request, sessionInfo, getAddAuthorityCode(modelMap, request));
 			}
 			//设置对象值
 			setPojoProperties(pojo, modelMap, request);
@@ -364,7 +401,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			appendLoadAttribute(modelMap, request, resopnse, openMode, pojo);
 			return getExecuteSaveRet(modelMap, request, modulePath);
 		} catch(Exception e) {
-			return transactException(e, modelMap, request, resopnse, requestTyps);
+			return transactException(e, modelMap, request, resopnse, requestTyp);
 		}
 	}
 	
@@ -531,11 +568,26 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @param request
 	 * @param resopnse
 	 * @param id
-	 * @param requestTyps 请求方式
 	 * @return
 	 * @throws Exception
 	 */
-	public String executeDelete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Long id, String... requestTyps) throws Exception {
+	public String executeDelete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Long id) throws Exception {
+		return executeDelete(modelMap, request, resopnse, id, BaseController.REQUESTTYPE_NORMAL);
+	}
+	
+	/**
+	 * 删除
+	 * @author lmiky
+	 * @date 2013-5-10
+	 * @param modelMap
+	 * @param request
+	 * @param resopnse
+	 * @param id
+	 * @param requestTyp 请求方式
+	 * @return
+	 * @throws Exception
+	 */
+	public String executeDelete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Long id, String requestTyp) throws Exception {
 		try {
 			//检查ID
 			if(id == null) {
@@ -546,7 +598,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 				//检查单点登陆
 				checkSso(sessionInfo, modelMap, request);
 				//判断权限
-				checkAuthority(modelMap, request, sessionInfo, getDeleteAuthorityCode());
+				checkAuthority(modelMap, request, sessionInfo, getDeleteAuthorityCode(modelMap, request));
 				boolean hasLock = true;
 				//检查记录锁
 				try {
@@ -564,6 +616,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 					T pojo = loadPojo(modelMap, request, id);
 					//删除对象
 					deletePojo(modelMap, request, pojo);
+					//TODO 考虑要不要执行“去掉加锁缓存数据”
 					putMessage(modelMap, "删除成功!");
 					//记录日志
 					logOpe(pojo, modelMap, request, sessionInfo, Logger.OPE_TYPE_DELETE);
@@ -571,7 +624,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			}
 			return getExecuteDeleteRet(modelMap, request, resopnse);
 		} catch(Exception e) {
-			return transactException(e, modelMap, request, resopnse, requestTyps);
+			return transactException(e, modelMap, request, resopnse, requestTyp);
 		}
 	}
 	
@@ -610,11 +663,26 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @param request
 	 * @param resopnse
 	 * @param ids
-	 * @param requestTyps 请求方式
 	 * @return
 	 * @throws Exception
 	 */
-	public String executeBatchDelete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,  Long[] ids, String... requestTyps) throws Exception {
+	public String executeBatchDelete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,  Long[] ids) throws Exception {
+		return executeBatchDelete(modelMap, request, resopnse, ids, BaseController.REQUESTTYPE_NORMAL);
+	}
+	
+	/**
+	 * 执行批量删除
+	 * @author lmiky
+	 * @date 2013-6-24
+	 * @param modelMap
+	 * @param request
+	 * @param resopnse
+	 * @param ids
+	 * @param requestTyp 请求方式
+	 * @return
+	 * @throws Exception
+	 */
+	public String executeBatchDelete(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,  Long[] ids, String requestTyp) throws Exception {
 		try {
 			//检查ID
 			if(ids == null || ids.length == 0) {
@@ -625,7 +693,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 				//检查单点登陆
 				checkSso(sessionInfo, modelMap, request);
 				//判断权限
-				checkAuthority(modelMap, request, sessionInfo, getDeleteAuthorityCode());
+				checkAuthority(modelMap, request, sessionInfo, getDeleteAuthorityCode(modelMap, request));
 				boolean hasLock = true;
 				//检查记录锁
 				try {
@@ -658,7 +726,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			}
 			return executeList(modelMap, request, resopnse);
 		} catch(Exception e) {
-			return transactException(e, modelMap, request, resopnse, requestTyps);
+			return transactException(e, modelMap, request, resopnse, requestTyp);
 		}
 	}
 	

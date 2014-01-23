@@ -16,6 +16,9 @@ public class Constants {
 	// 格式
 	public static final String CONTEXT_KEY_FORMAT_DATE = "format.date"; // 日期
 	public static final String CONTEXT_KEY_FORMAT_DATETIME = "format.dateTime"; // 时间
+	//日期格式值
+	public static final String CONTEXT_KEY_FORMAT_DATE_VALUE = PropertiesUtils.getStringContextValue(CONTEXT_KEY_FORMAT_DATE); // 日期
+	public static final String CONTEXT_KEY_FORMAT_DATETIME_VALUE = PropertiesUtils.getStringContextValue(CONTEXT_KEY_FORMAT_DATETIME); // 时间
 
 	// 分页
 	public static final String CONTEXT_KEY_PAGE_PAGESIZE = "page.pageSize";

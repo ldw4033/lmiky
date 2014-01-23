@@ -3,7 +3,6 @@
 <%@page import="com.lmiky.jdp.constants.Constants"%>
 <%@page import="com.lmiky.jdp.module.pojo.Function"%>
 <%@ include file="/jdp/common/common.jsp" %>
-<c:set var="frameUrl" value=""/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="com.lmiky.jdp.system.menu.controller.MenuController" %>
 <html>
@@ -13,8 +12,6 @@
 		<link type="text/css" rel="stylesheet" href="${css}/menu.css"/>
 		<script type="text/javascript">
 			var menuPrefix = "topMenu_";	//大菜单TR前缀
-			var subMenuPrefix = "subMenu_";	//子菜单TR前缀
-			var selectedSubMenu = null;	//当前选中的菜单
 			
 			//头部导航滑动样式
 			$(document).ready(function() {
@@ -31,45 +28,6 @@
 				  		this.className=this.className.replace(new RegExp(" top_dhsfhover\\b"), "");	 
 				  	}
 				}
-				
-				selectedSubMenu = $(".title_open")[0];
-				//var oMenu = document.getElementsByTagName("dt");
-				//for(var i = 0; i < oMenu.length; i++)  {
-				//	  if($(oMenu[i]).hasClass("title_open")) {
-				//		  selectedSubMenu = oMenu[i];
-				//		  break;
-				//	  }
-				//}
-				//$(".top_dh a:first-child").trigger("click");
-				
-				//左菜单滑过
-				$("td.menuCatetory").hover(
-					function(){
-						$(this).removeClass("STYLE3");
-						$(this).addClass("STYLE6");
-					},
-					function(){
-						$(this).removeClass("STYLE6");
-						$(this).addClass("STYLE3");
-					}
-				);
-				
-				//子菜单滑过
-				$("dt").hover(
-					function(){
-						if($(this).hasClass("title_close")) {
-							$(this).removeClass("title_close");
-							$(this).addClass("title_hover");
-						}
-					},
-					function(){
-						if($(this).hasClass("title_hover")) {
-							$(this).removeClass("title_hover");
-							$(this).addClass("title_close");
-						}
-					}
-				);
-				
 				selectTopMenu($("#topMenu_a_<%=MenuController.TOP_MENU_ID_MYINDEX%>"), '<%=MenuController.TOP_MENU_ID_MYINDEX%>');
 			});
 			
@@ -77,28 +35,6 @@
 			function selectTopMenu(menuObj, menuDivId) {
 				document.getElementById("leftMenu").src = '<c:url value="/sso/system/menu/listLeftMenus.shtml"/>?topMenuId=' + menuDivId;
 			}
-			
-			//左边大菜单点击
-			function selectMenu(menuObj, subMenuTrId) {
-				$("tr[id^='" + subMenuPrefix + "']").fadeOut(500);
-				$("#" + subMenuPrefix + subMenuTrId).fadeIn(500);
-			}
-			//左边子菜单点击事件
-			function selectSubMenu(oThis, htmlSrc) {
-				 if(oThis) {
-					 if(selectedSubMenu != null) {
-						 selectedSubMenu.className = "title_common title_close";
-					 }
-					 oThis.className = "title_common title_open";
-					 selectedSubMenu = oThis;
-					 //var oMenu = document.getElementsByTagName("dt");
-					 //for(var i = 0; i < oMenu.length; i++)  {
-					//	  oMenu[i].className = "title_common title_close";
-					//}
-					//oThis.className = "title_common title_open";
-				 }
-				 document.getElementById("right").src=htmlSrc;
-			} 
 			
 			//隐藏菜单栏
 			function changImg(obj){
@@ -157,54 +93,6 @@
 																<li class="top_dh"><a id="topMenu_a_${topMenu.id }"  href="javascript:void(0)" onclick="selectTopMenu(this, '${topMenu.id }')"><strong>${topMenu.label }</strong></a></li>
 																<li style="width: 2px;"><img src="${images}/meun_xian.gif" width="2" height="29" align="absmiddle" /></li>
 															</c:forEach>
-															<!-- 
-															<li class="top_dh"><a href="http://zzjs.net/" target="_blank"><strong>两级菜单</strong></a>
-																<ul>
-																	<li><a href="http://zzjs.net/?cat=1">&nbsp;站长特效</a></li>
-																	<li><a href="http://zzjs.net/?cat=2">&nbsp;网页特效</a></li>
-																	<li><a href="http://zzjs.net/?cat=1">&nbsp;广告代码</a></li>
-																	<li><a href="http://zzjs.net/?cat=1">&nbsp;rss订阅</a></li>
-																</ul>
-															</li>
-															<li style="width: 2px;"><img src="${images}/meun_xian.gif" width="2" height="29" align="absmiddle" /></li>
-															<li class="top_dh"><a href="http://zzjs.net/" target="_blank"><strong>三级菜单</strong></a>
-																<ul>
-																	<li><a href="http://zzjs.net/?cat=1">&nbsp;站长特效</a>
-																		<ul>
-																			<li><a href="http://zzjs.net/?cat=1">&nbsp;站长特效</a></li>
-																			<li><a href="http://zzjs.net/?cat=1">&nbsp;整站项目</a></li>
-																			<li><a href="http://zzjs.net/?cat=1">&nbsp;网站分析策划</a></li>
-																			<li><a href="http://zzjs.net/?cat=2" target="_blank">&nbsp;网页设计制作</a></li>
-																			<li><a href="http://zzjs.net/?cat=1">&nbsp;网站flash动画</a></li>
-																			<li><a href="http://zzjs.net/?cat=2">&nbsp;网站服务器</a></li>
-																		</ul>
-																	</li>
-																	<li><a href="http://zzjs.net/?cat=2">&nbsp;网页特效</a>
-																		<ul>
-																			<li><a href="http://zzjs.net/?cat=1">&nbsp;网站项目</a></li>
-																			<li><a href="http://zzjs.net/?cat=2">&nbsp;平面设计</a></li>
-																			<li><a href="http://zzjs.net/?cat=1">&nbsp;CAD工程图设计</a></li>
-																			<li><a href="http://zzjs.net/?cat=1">&nbsp;3D建模与动画</a></li>
-																			<li><a href="http://zzjs.net/?cat=2">&nbsp;音效及音乐</a></li>
-																		</ul>
-																	</li>
-																	<li><a href="http://zzjs.net/?cat=1">&nbsp;广告代码</a>
-																		<ul>
-																			<li><a href="http://zzjs.net/?cat=2">&nbsp;应用软件</a></li>
-																			<li><a href="http://zzjs.net/?cat=2">&nbsp;游戏开发</a></li>
-																			<li><a href="http://zzjs.net/?cat=2">&nbsp;驱动程序</a></li>
-																			<li><a href="http://zzjs.net/?cat=2">&nbsp;嵌入式开发</a></li>
-																			<li><a href="http://zzjs.net/?cat=2">&nbsp;手机开发</a></li>
-																			<li><a href="http://zzjs.net/?cat=2">&nbsp;单片机</a></li>
-																			<li><a href="http://zzjs.net/?cat=2">&nbsp;数据库设计</a></li>
-																			<li><a href="http://zzjs.net/?cat=1">&nbsp;代码移植</a></li>
-																		</ul>
-																	</li>
-																	<li><a href="http://zzjs.net/?cat=1">&nbsp;rss订阅</a></li>
-																</ul>
-															</li>
-															<li style="width: 2px;"><img src="${images}/meun_xian.gif" width="2" height="29" align="absmiddle" /></li>
-															 -->
 														</ul>
 													</td>
 												</tr>
@@ -228,7 +116,7 @@
 								<table width="100%" height="100%" valign="top" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="bian1">
 									<tr>
 										<td>
-											<iframe src="" id="leftMenu" name="leftMenu" height="100%" frameborder="0" scrolling="auto" width="100%"></iframe>
+											<iframe src="" id="leftMenu" name="leftMenu" height="100%" frameborder="0" scrolling="no" width="100%"></iframe>
 										</td>
 									</tr>
 								</table>
@@ -246,11 +134,7 @@
 								<table width="100%" height="100%" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0">
 									<tr>
 										<td valign="top" bgcolor="#FFFFFF">
-											<iframe src="
-												<c:if test="${not empty frameUrl}">
-													<c:url value="/"/>${frameUrl }
-												</c:if>
-											" id="right" name="right" height="100%" frameborder="0" scrolling="auto" width="100%"></iframe>
+											<iframe src="" id="right" name="right" height="100%" frameborder="0" scrolling="auto" width="100%"></iframe>
 										</td>
 									</tr>
 								</table>

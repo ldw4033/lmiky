@@ -26,10 +26,10 @@ import com.lmiky.jdp.user.pojo.User;
 @Table(name="cms_resource")
 public class CmsResource extends BasePojo {
 	private static final long serialVersionUID = -5493636462667145928L;
-	
-	public static final int STATE_CREATE = 0;
-	public static final int STATE_PUBLISH = 1;
-	public static final int STATE_UNPUBLISH = 2;
+	//状态
+	public static final int STATE_CREATE = 0;	//创建
+	public static final int STATE_PUBLISH = 1;	//已发布
+	public static final int STATE_UNPUBLISH = 2;	//取消发布
 	private String title;
 	private String subtitle;
 	private String author;

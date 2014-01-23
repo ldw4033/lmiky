@@ -15,40 +15,6 @@
 			var subMenuPrefix = "subMenu_";	//子菜单TR前缀
 			var selectedSubMenu = null;	//当前选中的菜单
 			
-			//头部导航滑动样式
-			$(document).ready(function() {
-				//默认选择子菜单
-				selectedSubMenu = $(".title_open")[0];
-				//左菜单滑过
-				$("td.menuCatetory").hover(
-					function(){
-						$(this).removeClass("STYLE3");
-						$(this).addClass("STYLE6");
-					},
-					function(){
-						$(this).removeClass("STYLE6");
-						$(this).addClass("STYLE3");
-					}
-				);
-				
-				//子菜单滑过
-				$("dt").hover(
-					function(){
-						if($(this).hasClass("title_close")) {
-							$(this).removeClass("title_close");
-							$(this).addClass("title_hover");
-						}
-					},
-					function(){
-						if($(this).hasClass("title_hover")) {
-							$(this).removeClass("title_hover");
-							$(this).addClass("title_close");
-						}
-					}
-				);
-				
-			});
-			
 			//左边大菜单点击
 			function selectMenu(menuObj, subMenuTrId) {
 				$("tr[id^='" + subMenuPrefix + "']").fadeOut(500);
@@ -63,7 +29,7 @@
 					 oThis.className = "title_common title_open";
 					 selectedSubMenu = oThis;
 				 }
-				 document.getElementById("right").src=htmlSrc;
+				 parent.document.getElementById("right").src = htmlSrc;
 			} 
 			
  	   </script>
@@ -72,8 +38,8 @@
 		<table width="100%" height="100%" valign="top" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="bian1">
 			<tr>
 				<td align="center" valign="top" bgcolor="#FFFFFF">
-					<c:forEach items="${leftMenus }" var="leftMenu" varStatus="leftStatus">
-						<table width="100%" border="0" cellspacing="0" cellpadding="0" class="b">
+					<c:forEach items="${leftMenus }" var="leftMenu" varStatus="status">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" class="b" >
 							<tr>
 								<td height="2"></td>
 							</tr>
@@ -82,7 +48,11 @@
 									&nbsp;<img src="${images}/jt-1.gif" width="16" height="16" align="absmiddle" border="0"> ${leftMenu.label }
 								</td>
 							</tr>
-							<tr id="subMenu_${leftMenu.id }">
+							<tr id="subMenu_${leftMenu.id }"
+								<c:if test="${!status.first }">
+									style="display: none"
+								</c:if>
+							>
 								<td align="center">
 									<div style="margin-top: 2px; width: 170px;">
 										<!--一级分类-->
@@ -118,3 +88,35 @@
 		</table>
 	</body>
 </html>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//左菜单滑过
+		$("td.menuCatetory").hover(
+			function(){
+				$(this).removeClass("STYLE3");
+				$(this).addClass("STYLE6");
+			},
+			function(){
+				$(this).removeClass("STYLE6");
+				$(this).addClass("STYLE3");
+			}
+		);
+		//子菜单滑过
+		$("dt").hover(
+			function(){
+				if($(this).hasClass("title_close")) {
+					$(this).removeClass("title_close");
+					$(this).addClass("title_hover");
+				}
+			},
+			function(){
+				if($(this).hasClass("title_hover")) {
+					$(this).removeClass("title_hover");
+					$(this).addClass("title_close");
+				}
+			}
+		);
+		//默认选择子菜单
+		selectSubMenu($(".title_open")[0], '${frameUrl}');
+	});
+</script>

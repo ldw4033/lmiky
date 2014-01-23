@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="/jdp/common/common.jsp"%>
 <tr>
 	<th align="right" class="bg02">
 		<label>标题<span class="req">*</span></label>
@@ -29,6 +30,22 @@
 		<input name="source" type="text" maxlength="256" class="full bian" value="${pojo.source}"/>
 	</td>
 </tr>
+<c:if test="${param[httpParamOpenMode] == editOpenMode }">
+	<tr>
+		<th align="right" class="bg02">
+			<label>创建时间<span class="req">*</span></label>
+		</th>
+		<td>
+			<input name="createTime" type="text" class="full bian" value="<fmt:formatDate value="${pojo.createTime}" pattern="${defaultDateTimeFormater }"/>" onFocus="WdatePicker({readOnly:true, dateFmt:'${defaultDateTimeFormater}'})"/>
+		</td>
+		<th align="right" class="bg02">
+			<label>发布时间</label>
+		</th>
+		<td>
+			<input name="pubTime" type="text" class="full bian" value="<fmt:formatDate value="${pojo.pubTime}" pattern="${defaultDateTimeFormater }"/>" onFocus="WdatePicker({readOnly:true, dateFmt:'${defaultDateTimeFormater}'})"/>
+		</td>
+	</tr>
+</c:if>
 <tr>
 	<td colspan="4">
 		<textarea rows="30" name="content" class="full"  id="htmlContent">${pojo.content}</textarea>
