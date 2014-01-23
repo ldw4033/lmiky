@@ -48,7 +48,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	//加锁目标ID
 	public static final String LOCK_TARGET_ID_KEY = "lockTargetId";
 	
-	private LockService lockService;
+	protected LockService lockService;
 	
 	/**
 	 * 获取增加权限值，如果返回值为空，表示不需要检查权限
@@ -601,8 +601,8 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 				checkAuthority(modelMap, request, sessionInfo, getDeleteAuthorityCode(modelMap, request));
 				boolean hasLock = true;
 				//检查记录锁
+				String lockTargetId = getLockTargetId(request, id);
 				try {
-					String lockTargetId = getLockTargetId(request, id);
 					lockService.lock(lockTargetId, sessionInfo.getUserId(), sessionInfo.getUserName());
 				} catch(LockException le) {
 					hasLock = false;
@@ -620,6 +620,8 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 					putMessage(modelMap, "删除成功!");
 					//记录日志
 					logOpe(pojo, modelMap, request, sessionInfo, Logger.OPE_TYPE_DELETE);
+					//解锁
+					lockService.unlock(lockTargetId, sessionInfo.getUserId());
 				}
 			}
 			return getExecuteDeleteRet(modelMap, request, resopnse);

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.lmiky.cms.resource.pojo.CmsResource" %>
 <%@ include file="/jdp/common/common.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -108,6 +109,12 @@
 											<lauthority:checkAuthority authorityCode="cms_resource_modify">
 												<a href="javascript:void(0)" class="td_2" onclick="redirectPage('<c:url value="/cms/resource/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }"/>&modulePath=${modulePath }&directoryId=${directory.id }', 1000, 600)">
 													修改
+												</a>
+											</lauthority:checkAuthority>
+											<lauthority:checkAuthority authorityCode="cms_resource_publish">
+												&nbsp;
+												<a href="javascript:void(0)" class="td_2" onclick="executeAction('<c:url value="/cms/resource/state.shtml"/>?id=${item.id}&state=<%=CmsResource.STATE_PUBLISH %>&directoryId=${directory.id }', 1000, 600)">
+													发布
 												</a>
 											</lauthority:checkAuthority>
 											<lauthority:checkAuthority authorityCode="cms_resource_load">

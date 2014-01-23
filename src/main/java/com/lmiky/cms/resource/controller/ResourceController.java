@@ -24,6 +24,9 @@ import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.form.controller.FormController;
 import com.lmiky.jdp.form.model.ValidateError;
 import com.lmiky.jdp.form.util.ValidateUtils;
+import com.lmiky.jdp.lock.exception.LockException;
+import com.lmiky.jdp.logger.pojo.Logger;
+import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.user.pojo.User;
 
 /**
@@ -34,6 +37,8 @@ import com.lmiky.jdp.user.pojo.User;
 @Controller
 @RequestMapping("/cms/resource")
 public class ResourceController extends FormController<CmsResource> {
+	public static final String OPE_TYPE_PUBLISH = "cms_resource_publish";
+	public static final String OPE_TYPE_UNPUBLISH = "cms_resource_unpublish";
 
 	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.form.controller.FormController#getAddAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
@@ -250,9 +255,72 @@ public class ResourceController extends FormController<CmsResource> {
 		return executeBatchDelete(modelMap, request, resopnse, ids);
 	}
 	
-	@RequestMapping("/publish.shtml")
-	public String publish(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,
-			@RequestParam(value = "id", required = true) Long id) throws Exception {
-		return executeSave(modelMap, request, resopnse, id);
+	/**
+	 * 修改状态
+	 * @author lmiky
+	 * @date 2014-1-23
+	 * @param modelMap
+	 * @param request
+	 * @param resopnse
+	 * @param id
+	 * @param state
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/state.shtml")
+	public String state(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,
+			@RequestParam(value = "id", required = true) Long id, @RequestParam(value = "state", required = true) Integer state) throws Exception {
+		try {
+			//判断是否有登陆
+			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
+			//检查单点登陆
+			checkSso(sessionInfo, modelMap, request);
+			//获取实体对象
+			CmsResource pojo =  loadPojo(modelMap, request, id);
+			if(pojo == null) {
+				putError(modelMap, "您要修改的信息不存在！");
+			} else {
+				//检查权限
+				checkAuthority(modelMap, request, sessionInfo, "cms_resource_publish");
+				//检查记录锁
+				boolean hasLock = true;
+				String lockTargetId = getLockTargetId(request, id);
+				try {
+					lockService.lock(lockTargetId, sessionInfo.getUserId(), sessionInfo.getUserName());
+					modelMap.put(LOCK_TARGET_ID_KEY, lockTargetId);
+				} catch(LockException le) {
+					hasLock = false;
+					if(!StringUtils.isBlank(le.getLockUserName())) {
+						putMessage(modelMap, "该记录正被" + le.getLockUserName() + "编辑！");
+					} else {
+						throw le;
+					}
+				}
+				if(hasLock) {
+					//修改状态
+					pojo.setState(state);
+					if(state == CmsResource.STATE_PUBLISH) {
+						pojo.setPubTime(new Date());
+					}
+					//保存对象
+					savePojo(pojo, modelMap, request, resopnse);
+					if(state == CmsResource.STATE_PUBLISH) {
+						putMessage(modelMap, "发布成功!");//记录日志
+						logOpe(pojo, modelMap, request, sessionInfo, OPE_TYPE_PUBLISH);
+					} else if(state == CmsResource.STATE_PUBLISH) {
+						putMessage(modelMap, "取消发布成功!");
+						logOpe(pojo, modelMap, request, sessionInfo, OPE_TYPE_UNPUBLISH);
+					} else {
+						putMessage(modelMap, "修改成功!");
+						logOpe(pojo, modelMap, request, sessionInfo, Logger.OPE_TYPE_UPDATE);
+					}
+					//解锁
+					lockService.unlock(lockTargetId, sessionInfo.getUserId());
+				}
+			}
+			return executeList(modelMap, request, resopnse);
+		} catch(Exception e) {
+			return transactException(e, modelMap, request, resopnse);
+		}
 	}
 }

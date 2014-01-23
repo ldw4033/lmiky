@@ -34,6 +34,14 @@ function actionForm(actionUrl, clearParams, comfirm) {
 	document.getElementById("mainForm").submit();
 }
 
+//执行方法
+function executeAction(actionUrl) {
+	if(confirm(MESSAGE_OPERATE_CONFIRM)) {
+		$("#mainForm").prop("action", actionUrl);
+		document.getElementById("mainForm").submit();
+	}
+}
+
 //删除记录
 function deletePojo(deleteUrl) {
 	if(confirm(MESSAGE_DELETE_CONFIRM)) {
