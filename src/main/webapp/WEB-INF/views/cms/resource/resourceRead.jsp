@@ -45,6 +45,14 @@
 	</td>
 </tr>
 <tr>
+	<th align="right" class="bg02">
+		<label>所属栏目</label>
+	</th>
+	<td colspan="3">
+		${pojo.directory.name}
+	</td>
+</tr>
+<tr>
 	<td colspan="4" valign="top" height="300">
 		${pojo.content}
 	</td>

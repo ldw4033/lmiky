@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.lmiky.cms.resource.pojo.CmsResource" %>
+<%@ page import="com.lmiky.cms.resource.pojo.CmsResource,com.lmiky.cms.resource.controller.ResourceController" %>
 <%@ include file="/jdp/common/common.jsp"%>
+<c:set var="state_create" value="<%=CmsResource.STATE_CREATE %>"/>
+<c:set var="state_publish" value="<%=CmsResource.STATE_PUBLISH %>"/>
+<c:set var="state_unpublish" value="<%=CmsResource.STATE_UNPUBLISH %>"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -11,6 +14,7 @@
 		<form id="mainForm" action="<c:url value="/cms/resource/list.shtml"/>" method="post">
 			<input type="hidden" name="modulePath" value="${modulePath }"/>
 			<input type="hidden" name="directoryId" value="${directory.id }"/>
+			<input type="hidden" name="opeFrom" value="<%=ResourceController.PUBLISH_OPE_FORM_VIEW%>"/>
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td colspan="2" align="center" valign="top">
@@ -106,23 +110,33 @@
 										<td><fmt:formatDate value="${item.createTime}" pattern="${defaultDateTimeFormater }"/></td>
 										<td><fmt:formatDate value="${item.pubTime}" pattern="${defaultDateTimeFormater }"/></td>
 										<td>
-											<lauthority:checkAuthority authorityCode="cms_resource_modify">
-												<a href="javascript:void(0)" class="td_2" onclick="redirectPage('<c:url value="/cms/resource/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }"/>&modulePath=${modulePath }&directoryId=${directory.id }', 1000, 600)">
-													修改
-												</a>
-											</lauthority:checkAuthority>
-											<lauthority:checkAuthority authorityCode="cms_resource_publish">
-												&nbsp;
-												<a href="javascript:void(0)" class="td_2" onclick="executeAction('<c:url value="/cms/resource/state.shtml"/>?id=${item.id}&state=<%=CmsResource.STATE_PUBLISH %>&directoryId=${directory.id }', 1000, 600)">
-													发布
-												</a>
-											</lauthority:checkAuthority>
 											<lauthority:checkAuthority authorityCode="cms_resource_load">
-												&nbsp;
 												<a href="javascript:void(0)" class="td_2" onclick="redirectPage('<c:url value="/cms/resource/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }&directoryId=${directory.id }', 1000, 600)">
 													查看
 												</a>
 											</lauthority:checkAuthority>
+											<lauthority:checkAuthority authorityCode="cms_resource_modify">
+												&nbsp;
+												<a href="javascript:void(0)" class="td_2" onclick="redirectPage('<c:url value="/cms/resource/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }"/>&modulePath=${modulePath }&directoryId=${directory.id }', 1000, 600)">
+													修改
+												</a>
+											</lauthority:checkAuthority>
+											<c:choose>
+												<c:when test="${item.state == state_create || item.state == state_unpublish }">
+													<lauthority:checkAuthority authorityCode="cms_resource_publish">
+														<a href="javascript:void(0)" class="td_2" onclick="executeAction('<c:url value="/cms/resource/publish.shtml"/>?id=${item.id}&directoryId=${directory.id }')">
+															&nbsp;&nbsp;发布&nbsp;&nbsp;
+														</a>
+													</lauthority:checkAuthority>
+												</c:when>
+												<c:when test="${item.state == state_publish }">
+													<lauthority:checkAuthority authorityCode="cms_resource_publish">
+														<a href="javascript:void(0)" class="td_2" onclick="executeAction('<c:url value="/cms/resource/unpublish.shtml"/>?id=${item.id}&directoryId=${directory.id }')">
+															取消发布
+														</a>
+													</lauthority:checkAuthority>
+												</c:when>
+											</c:choose>
 											<lauthority:checkAuthority authorityCode="cms_resource_delete">
 												&nbsp;
 												<a href="javascript:void(0)" onclick="deletePojo('<c:url value="/cms/resource/delete.shtml?id=${item.id}&directoryId=${directory.id }"/>')" class="td_2">

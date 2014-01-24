@@ -1,8 +1,8 @@
 function turnPage(pageNo) {
 	$("#page_currentPage").val(pageNo);
-	$("#mainForm").submit();
+	submitForm();
 }
 
 function reloadPage() {
-	$("#mainForm").submit();
+	submitForm();
 }

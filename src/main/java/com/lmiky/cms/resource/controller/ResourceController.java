@@ -40,7 +40,12 @@ public class ResourceController extends FormController<CmsResource> {
 	public static final String OPE_TYPE_PUBLISH = "cms_resource_publish";
 	public static final String OPE_TYPE_UNPUBLISH = "cms_resource_unpublish";
 
-	/* (non-Javadoc)
+	// 操作来源
+	public static final String PUBLISH_OPE_FORM_VIEW = "view"; // 列表视图
+	public static final String PUBLISH_OPE_FORM_FORM = "form"; // 表单
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.form.controller.FormController#getAddAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
@@ -48,7 +53,8 @@ public class ResourceController extends FormController<CmsResource> {
 		return "cms_resource_add";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.form.controller.FormController#getModifyAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
@@ -56,7 +62,8 @@ public class ResourceController extends FormController<CmsResource> {
 		return "cms_resource_modify";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.form.controller.FormController#getDeleteAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
@@ -64,12 +71,25 @@ public class ResourceController extends FormController<CmsResource> {
 		return "cms_resource_delete";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.base.controller.BaseController#getLoadAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
 	protected String getLoadAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
 		return "cms_resource_load";
+	}
+
+	/**
+	 * 发布权限
+	 * @author lmiky
+	 * @date 2014-1-24
+	 * @param modelMap
+	 * @param request
+	 * @return
+	 */
+	protected String getPublishAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
+		return "cms_resource_publish";
 	}
 
 	/**
@@ -97,18 +117,19 @@ public class ResourceController extends FormController<CmsResource> {
 		return sorts;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.view.controller.ViewController#generatePropertyFilters(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	protected List<PropertyFilter> generatePropertyFilters(ModelMap modelMap, HttpServletRequest request) {
 		List<PropertyFilter> filters = super.generatePropertyFilters(modelMap, request);
 		String directoryId = request.getParameter("directoryId");
-		if(!StringUtils.isBlank(directoryId)) {
+		if (!StringUtils.isBlank(directoryId)) {
 			filters.add(new PropertyFilter("directory.id", Long.parseLong(directoryId), PropertyCompareType.EQ, CmsResource.class));
 		}
 		return filters;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.view.controller.ViewController#appendListAttribute(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
@@ -117,12 +138,14 @@ public class ResourceController extends FormController<CmsResource> {
 	protected void appendListAttribute(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse) throws Exception {
 		super.appendListAttribute(modelMap, request, resopnse);
 		// 获取所属栏目
-		Long directoryId = Long.parseLong(request.getParameter("directoryId"));
-		CmsDirectory directory = service.find(CmsDirectory.class, directoryId);
-		if (directory == null) {
-			throw new Exception(String.format("directory[id: %d] is not found", directoryId));
+		String directoryId = request.getParameter("directoryId");
+		if (!StringUtils.isBlank(directoryId)) {
+			CmsDirectory directory = service.find(CmsDirectory.class, Long.parseLong(directoryId));
+			if (directory == null) {
+				throw new Exception(String.format("directory[id: %d] is not found", directoryId));
+			}
+			modelMap.put("directory", directory);
 		}
-		modelMap.put("directory", directory);
 	}
 
 	/**
@@ -175,9 +198,12 @@ public class ResourceController extends FormController<CmsResource> {
 		content.setContent(request.getParameter("content"));
 		content.setCmsResource(pojo);
 		pojo.setResourceContents(contents);
-		CmsDirectory directory = new CmsDirectory();
-		directory.setId(Long.parseLong(request.getParameter("directoryId")));
-		pojo.setDirectory(directory);
+		String directoryId = request.getParameter("directoryId");
+		if (!StringUtils.isBlank(directoryId)) {
+			CmsDirectory directory = new CmsDirectory();
+			directory.setId(Long.parseLong(directoryId));
+			pojo.setDirectory(directory);
+		}
 	}
 
 	/*
@@ -189,12 +215,14 @@ public class ResourceController extends FormController<CmsResource> {
 			throws Exception {
 		super.appendLoadAttribute(modelMap, request, resopnse, openMode, pojo);
 		// 获取所属栏目
-		Long directoryId = Long.parseLong(request.getParameter("directoryId"));
-		CmsDirectory directory = service.find(CmsDirectory.class, directoryId);
-		if (directory == null) {
-			throw new Exception(String.format("directory[id: %d] is not found", directoryId));
+		String directoryId = request.getParameter("directoryId");
+		if (!StringUtils.isBlank(directoryId)) {
+			CmsDirectory directory = service.find(CmsDirectory.class, Long.parseLong(directoryId));
+			if (directory == null) {
+				throw new Exception(String.format("directory[id: %d] is not found", directoryId));
+			}
+			modelMap.put("directory", directory);
 		}
-		modelMap.put("directory", directory);
 	}
 
 	/**
@@ -254,7 +282,43 @@ public class ResourceController extends FormController<CmsResource> {
 			@RequestParam(value = "batchDeleteId", required = false) Long[] ids) throws Exception {
 		return executeBatchDelete(modelMap, request, resopnse, ids);
 	}
-	
+
+	/**
+	 * 发布
+	 * @author lmiky
+	 * @date 2014-1-24
+	 * @param modelMap
+	 * @param request
+	 * @param resopnse
+	 * @param id
+	 * @opeFrom 操作来源
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/publish.shtml")
+	public String publish(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,
+			@RequestParam(value = "id", required = true) Long id, @RequestParam(value = "opeFrom", required = true) String opeFrom) throws Exception {
+		return state(modelMap, request, resopnse, id, CmsResource.STATE_PUBLISH, opeFrom);
+	}
+
+	/**
+	 * 取消发布
+	 * @author lmiky
+	 * @date 2014-1-24
+	 * @param modelMap
+	 * @param request
+	 * @param resopnse
+	 * @param id
+	 * @opeFrom 操作来源
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/unpublish.shtml")
+	public String unpublish(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,
+			@RequestParam(value = "id", required = true) Long id, @RequestParam(value = "opeFrom", required = true) String opeFrom) throws Exception {
+		return state(modelMap, request, resopnse, id, CmsResource.STATE_UNPUBLISH, opeFrom);
+	}
+
 	/**
 	 * 修改状态
 	 * @author lmiky
@@ -264,62 +328,70 @@ public class ResourceController extends FormController<CmsResource> {
 	 * @param resopnse
 	 * @param id
 	 * @param state
+	 * @opeFrom 操作来源
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/state.shtml")
-	public String state(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse,
-			@RequestParam(value = "id", required = true) Long id, @RequestParam(value = "state", required = true) Integer state) throws Exception {
+	private String state(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, Long id, Integer state, String opeFrom)
+			throws Exception {
 		try {
-			//判断是否有登陆
+			// 判断是否有登陆
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
-			//检查单点登陆
+			// 检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
-			//获取实体对象
-			CmsResource pojo =  loadPojo(modelMap, request, id);
-			if(pojo == null) {
+			// 获取实体对象
+			CmsResource pojo = loadPojo(modelMap, request, id);
+			if (pojo == null) {
 				putError(modelMap, "您要修改的信息不存在！");
 			} else {
-				//检查权限
+				// 检查权限
 				checkAuthority(modelMap, request, sessionInfo, "cms_resource_publish");
-				//检查记录锁
+				// 检查记录锁
 				boolean hasLock = true;
 				String lockTargetId = getLockTargetId(request, id);
 				try {
 					lockService.lock(lockTargetId, sessionInfo.getUserId(), sessionInfo.getUserName());
 					modelMap.put(LOCK_TARGET_ID_KEY, lockTargetId);
-				} catch(LockException le) {
+				} catch (LockException le) {
 					hasLock = false;
-					if(!StringUtils.isBlank(le.getLockUserName())) {
+					if (!StringUtils.isBlank(le.getLockUserName())) {
 						putMessage(modelMap, "该记录正被" + le.getLockUserName() + "编辑！");
 					} else {
 						throw le;
 					}
 				}
-				if(hasLock) {
-					//修改状态
+				if (hasLock) {
+					// 修改状态
 					pojo.setState(state);
-					if(state == CmsResource.STATE_PUBLISH) {
+					if (state == CmsResource.STATE_PUBLISH) {
 						pojo.setPubTime(new Date());
+					} else if (state == CmsResource.STATE_UNPUBLISH) {
+						pojo.setPubTime(null);
 					}
-					//保存对象
+					// 保存对象
 					savePojo(pojo, modelMap, request, resopnse);
-					if(state == CmsResource.STATE_PUBLISH) {
-						putMessage(modelMap, "发布成功!");//记录日志
+					if (state == CmsResource.STATE_PUBLISH) {
+						putMessage(modelMap, "发布成功!");// 记录日志
 						logOpe(pojo, modelMap, request, sessionInfo, OPE_TYPE_PUBLISH);
-					} else if(state == CmsResource.STATE_PUBLISH) {
+					} else if (state == CmsResource.STATE_UNPUBLISH) {
 						putMessage(modelMap, "取消发布成功!");
 						logOpe(pojo, modelMap, request, sessionInfo, OPE_TYPE_UNPUBLISH);
 					} else {
 						putMessage(modelMap, "修改成功!");
 						logOpe(pojo, modelMap, request, sessionInfo, Logger.OPE_TYPE_UPDATE);
 					}
-					//解锁
-					lockService.unlock(lockTargetId, sessionInfo.getUserId());
+					if (!PUBLISH_OPE_FORM_FORM.equals(opeFrom)) {
+						// 解锁
+						lockService.unlock(lockTargetId, sessionInfo.getUserId());
+					}
 				}
 			}
-			return executeList(modelMap, request, resopnse);
-		} catch(Exception e) {
+			if (PUBLISH_OPE_FORM_FORM.equals(opeFrom)) {
+				return executeLoad(modelMap, request, resopnse, id);
+			} else {
+				return executeList(modelMap, request, resopnse);
+			}
+		} catch (Exception e) {
 			return transactException(e, modelMap, request, resopnse);
 		}
 	}

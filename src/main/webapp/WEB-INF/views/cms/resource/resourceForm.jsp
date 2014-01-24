@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="com.lmiky.cms.resource.pojo.CmsResource,com.lmiky.cms.resource.controller.ResourceController" %>
 <%@ include file="/jdp/common/common.jsp"%>
+<c:set var="state_create" value="<%=CmsResource.STATE_CREATE %>"/>
+<c:set var="state_publish" value="<%=CmsResource.STATE_PUBLISH %>"/>
+<c:set var="state_unpublish" value="<%=CmsResource.STATE_UNPUBLISH %>"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -22,6 +26,7 @@
 		<form id="mainForm" action="<c:url value="/cms/resource/save.shtml"/>" method="post">
 			<%@ include file="/jdp/form/field.jsp" %>
 			<input type="hidden" name="directoryId" value="${directory.id }"/>
+			<input type="hidden" name="opeFrom" value="<%=ResourceController.PUBLISH_OPE_FORM_FORM%>"/>
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td align="center" valign="top">

@@ -103,17 +103,17 @@
 										<td>${status.count + (page.currentPage - 1) * page.pageSize}</td>
 										<td>${item.name}</td>
 										<td>
-											<lauthority:checkAuthority authorityCode="capture_task_modify">
-												<a href="javascript:void(0)" class="td_2"
-														onclick="redirectPage('<c:url value="/capture/task/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }"/>', 800, 600)">
-													修改
-												</a>
-											</lauthority:checkAuthority>
 											<lauthority:checkAuthority authorityCode="capture_task_load">
-												&nbsp;
 												<a href="javascript:void(0)" class="td_2"
 														onclick="redirectPage('<c:url value="/capture/task/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
 													查看
+												</a>
+											</lauthority:checkAuthority>
+											<lauthority:checkAuthority authorityCode="capture_task_modify">
+												&nbsp;
+												<a href="javascript:void(0)" class="td_2"
+														onclick="redirectPage('<c:url value="/capture/task/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }"/>', 800, 600)">
+													修改
 												</a>
 											</lauthority:checkAuthority>
 											<lauthority:checkAuthority authorityCode="capture_task_delete">

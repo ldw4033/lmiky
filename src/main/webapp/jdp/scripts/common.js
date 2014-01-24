@@ -10,10 +10,15 @@ $(document).keyup(function(event){
 			return;
 		}
 		if($("#mainForm").length  = 1) {
-			$("#mainForm").submit();
+			submitForm();
 		}
 	}
 });
+
+//提交表单
+function submitForm() {
+	$("#mainForm").trigger("submit");
+}
 
 //提交表单动作
 //clearParams：要清除的参数，以“,”分隔
@@ -31,14 +36,15 @@ function actionForm(actionUrl, clearParams, comfirm) {
 		}
 	}
 	$("#mainForm").prop("action", actionUrl);
-	document.getElementById("mainForm").submit();
+	submitForm();
 }
+
 
 //执行方法
 function executeAction(actionUrl) {
 	if(confirm(MESSAGE_OPERATE_CONFIRM)) {
 		$("#mainForm").prop("action", actionUrl);
-		document.getElementById("mainForm").submit();
+		submitForm();
 	}
 }
 
@@ -46,7 +52,7 @@ function executeAction(actionUrl) {
 function deletePojo(deleteUrl) {
 	if(confirm(MESSAGE_DELETE_CONFIRM)) {
 		$("#mainForm").prop("action", deleteUrl);
-		document.getElementById("mainForm").submit();
+		submitForm();
 	}
 }
 

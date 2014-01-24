@@ -140,17 +140,17 @@
 											</c:choose>
 										</td>
 										<td>
-											<lauthority:checkAuthority authorityCode="jdp_user_user_modify">
-												<a href="javascript:void(0)" class="td_2"
-														onclick="redirectPage('<c:url value="/user/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }"/>', 800, 600)">
-													修改
-												</a>
-											</lauthority:checkAuthority>
 											<lauthority:checkAuthority authorityCode="jdp_user_user_load">
-												&nbsp;
 												<a href="javascript:void(0)" class="td_2"
 														onclick="redirectPage('<c:url value="/user/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
 													查看
+												</a>
+											</lauthority:checkAuthority>
+											<lauthority:checkAuthority authorityCode="jdp_user_user_modify">
+												&nbsp;
+												<a href="javascript:void(0)" class="td_2"
+														onclick="redirectPage('<c:url value="/user/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }"/>', 800, 600)">
+													修改
 												</a>
 											</lauthority:checkAuthority>
 											<lauthority:checkAuthority authorityCode="jdp_user_user_delete">

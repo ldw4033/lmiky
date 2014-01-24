@@ -52,10 +52,23 @@ public abstract class TreeController<T extends BaseTreePojo> extends FormControl
 			appendListAttribute(modelMap, request, resopnse);
 			String modulePath = getModulePath(modelMap, request);
 			modelMap.put(Constants.HTTP_PARAM_MODULE_PATH, modulePath);
-			return getExecuteListRet(modelMap, request, modulePath);
+			return getExecuteTreeListRet(modelMap, request, modulePath);
 		} catch (Exception e) {
 			return transactException(e, modelMap, request, resopnse);
 		}
+	}
+	
+	/**
+	 * 加载树列表返回结果
+	 * @author lmiky
+	 * @date 2014-1-24
+	 * @param modelMap
+	 * @param request
+	 * @param modulePath
+	 * @return
+	 */
+	public String getExecuteTreeListRet(ModelMap modelMap, HttpServletRequest request, String modulePath) {
+		return getExecuteListRet(modelMap, request, modulePath);
 	}
 	
 	/**

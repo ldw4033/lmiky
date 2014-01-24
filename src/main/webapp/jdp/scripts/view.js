@@ -7,6 +7,6 @@ function batchSelectDelete() {
 function batchDelete(deleteUrl) {
 	if(confirm(MESSAGE_BATCHDELETE_CONFIRM)) {
 		$("#mainForm").prop("action", deleteUrl);
-		document.getElementById("mainForm").submit();
+		submitForm();
 	}
 }
