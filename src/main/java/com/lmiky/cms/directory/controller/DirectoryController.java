@@ -14,7 +14,7 @@ import com.lmiky.jdp.base.controller.BaseController;
 import com.lmiky.jdp.base.view.BaseCode;
 import com.lmiky.jdp.base.view.BaseInfoCodeJsonView;
 import com.lmiky.jdp.service.BaseService;
-import com.lmiky.jdp.tree.controller.TreeController;
+import com.lmiky.jdp.tree.controller.BaseTreeController;
 
 /**
  * 栏目
@@ -23,7 +23,7 @@ import com.lmiky.jdp.tree.controller.TreeController;
  */
 @Controller
 @RequestMapping("/cms/directory")
-public class DirectoryController extends TreeController<CmsDirectory> {
+public class DirectoryController extends BaseTreeController<CmsDirectory> {
 
 	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.form.controller.FormController#getAddAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)

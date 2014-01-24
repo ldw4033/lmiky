@@ -277,7 +277,7 @@
 	</tag>
 	<tag>
 		<name>propertyFilterNamed</name>
-		<tag-class>com.lmiky.jdp.web.ui.taglib.PropertyFilterNamedTag
+		<tag-class>com.lmiky.jdp.web.ui.taglib.HtmlPropertyFilterNamedTag
 		</tag-class>
 		<body-content>empty</body-content>
 		<attribute>

@@ -14,9 +14,11 @@ import com.lmiky.jdp.util.UUIDGenerator;
  * @date 2013-4-18
  */
 public class HtmlPropertyFilterTag extends BaseHtmlTag {
-	private static final long serialVersionUID = 3941115199658816837L;
+	private static final long serialVersionUID = -5249478406848045429L;
 	public static final String INPUT_TYPE_DATE = "date";
 	public static final String INPUT_TYPE_DATETIME = "dateTime";
+	public static final String INPUT_TYPE_BEGINDATE = "beginDate";
+	public static final String INPUT_TYPE_ENDDATE = "endDate";
 
 	private String inputType; // 输入方式
 	private String propertyName; // 属性名
@@ -94,14 +96,19 @@ public class HtmlPropertyFilterTag extends BaseHtmlTag {
 	 */
 	private void detailTextType() {
 		StringBuffer inputHtml = new StringBuffer("<input  ");
-		if (INPUT_TYPE_DATE.equals(inputType) || INPUT_TYPE_DATETIME.equals(inputType)) {
+		if (INPUT_TYPE_DATE.equals(inputType) || INPUT_TYPE_BEGINDATE.equals(inputType) || INPUT_TYPE_ENDDATE.equals(inputType) || INPUT_TYPE_DATETIME.equals(inputType)) {
 			inputHtml.append(" onFocus=\"WdatePicker({readOnly:true, dateFmt:'");
-			if (INPUT_TYPE_DATE.equals(inputType)) {
+			if (INPUT_TYPE_DATE.equals(inputType) || INPUT_TYPE_BEGINDATE.equals(inputType) || INPUT_TYPE_ENDDATE.equals(inputType)) {
 				inputHtml.append(Constants.CONTEXT_KEY_FORMAT_DATE_VALUE);
 			} else {
 				inputHtml.append(Constants.CONTEXT_KEY_FORMAT_DATETIME_VALUE);
 			}
 			inputHtml.append("'})\" ");
+			if (INPUT_TYPE_BEGINDATE.equals(inputType)) {
+				inputHtml.append(" onChange=\"buildBeginDate(this)\" ");
+			} else if (INPUT_TYPE_ENDDATE.equals(inputType)) {
+				inputHtml.append(" onChange=\"buildEndDate(this)\" ");
+			}
 		}
 		handlers.insert(0, inputHtml.toString());
 		handlers.append(" />");

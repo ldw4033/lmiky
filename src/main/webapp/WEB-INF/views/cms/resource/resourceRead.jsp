@@ -49,7 +49,7 @@
 		<label>所属栏目</label>
 	</th>
 	<td colspan="3">
-		${pojo.directory.name}
+		${directory.name}
 	</td>
 </tr>
 <tr>

@@ -7,11 +7,13 @@
 <script type="text/javascript">
 <!--
 	//选择树
-	function selectTree(nameFieldId, valueFieldId) {
+	function selectTree(nameFieldId, valueFieldId, className) {
+		var width = 300;
+		var height = 500;
 		var x = parseInt((screen.width / 2) - (width / 2));
 		var y = parseInt((screen.height / 2) - (height / 2));
-		parameters = 'dialogWidth=100px;dialogHeight=300px;dialogLeft:' + x + 'px;dialogTop:' + y + 'px;' + parameters;
-		var result = window.showModalDialog('<c:url value="/tree/selectTree.shtml"/>', window, parameters);
+		var parameters = 'dialogWidth=' + width + 'px;dialogHeight=' + height + 'px;dialogLeft:' + x + 'px;dialogTop:' + y + 'px;';
+		var result = window.showModalDialog('<c:url value="/tree/loadSelectTree.shtml"/>?className=' + className, window, parameters);
 		if (result != undefined && result != null || result != '') {
 			var results = result.split(",");
 			$("#" + nameFieldId).val(results[0]);	//名称
@@ -71,7 +73,7 @@
 		<label>所属栏目</label>
 	</th>
 	<td colspan="3">
-		<input name="directoryName" type="text" maxlength="256" class="full bian" value="${pojo.directory.name}" readonly="readonly" onclick="selectDirectory()"/>
+		<input name="directoryName" id="directoryName" type="text" maxlength="256" class="full bian" value="${directory.name}" readonly="readonly" onclick="selectTree('directoryName', 'directoryId', 'com.lmiky.cms.directory.pojo.CmsDirectory')"/>
 	</td>
 </tr>
 <tr>

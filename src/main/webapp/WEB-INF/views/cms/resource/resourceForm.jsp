@@ -25,7 +25,7 @@
 	<body>
 		<form id="mainForm" action="<c:url value="/cms/resource/save.shtml"/>" method="post">
 			<%@ include file="/jdp/form/field.jsp" %>
-			<input type="hidden" name="directoryId" value="${directory.id }"/>
+			<input type="hidden" id="directoryId" name="directoryId" value="${directory.id }"/>
 			<input type="hidden" name="opeFrom" value="<%=ResourceController.PUBLISH_OPE_FORM_FORM%>"/>
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>

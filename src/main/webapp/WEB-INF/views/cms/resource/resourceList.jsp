@@ -9,6 +9,7 @@
 	<head>
 		<%@ include file="/jdp/common/header.jsp"%>
 		<%@ include file="/jdp/view/header.jsp"%>
+		<%@ include file="/jdp/common/date.jsp"%>
 	</head>
 	<body>
 		<form id="mainForm" action="<c:url value="/cms/resource/list.shtml"/>" method="post">
@@ -36,6 +37,21 @@
 							<tr>
 								<td>
 									标题：<lhtml:propertyFilter inputType="text" compareType="LIKE" propertyName="title" styleClass="bian medium"/>
+									&nbsp;
+									作者：<lhtml:propertyFilter inputType="text" compareType="LIKE" propertyName="author" styleClass="bian medium"/>
+									&nbsp;
+									创建时间：
+									<lhtml:propertyFilter inputType="beginDate" compareType="GE" propertyName="createTime" styleClass="bian medium"/>
+									-
+									<lhtml:propertyFilter inputType="endDate" compareType="LE" propertyName="createTime" styleClass="bian medium"/>
+									&nbsp;
+									状态：
+									<lhtml:propertyFilter inputType="select" compareType="EQ" propertyName="state"  styleClass="bian">
+			            				<option value="">请选择</option>
+			            				<option value="${state_create }">创建</option>
+			            				<option value="${state_publish }">发布</option>
+			            				<option value="${state_unpublish }">取消发布</option>
+			            			</lhtml:propertyFilter>
 									&nbsp;
 									<input class="btnClass" type="submit" value="查询" />
 								</td>
@@ -88,9 +104,10 @@
 								<tr>
 									<th class="no">&nbsp;</th>
 									<th class="sortable sorted_title"><a href="javascript:pageSort('title')">标题</a></th>
-									<th class="sortable sorted_salePrice"><a href="javascript:pageSort('salePrice')">作者</a></th>
+									<th class="sortable sorted_author"><a href="javascript:pageSort('author')">作者</a></th>
 									<th>创建时间</th>
 									<th>发布时间</th>
+									<th>状态</th>
 									<th>操作</th>
 									<lauthority:checkAuthority authorityCode="cms_resource_delete">
 										<th>
@@ -109,6 +126,13 @@
 										<td>${item.author}</td>
 										<td><fmt:formatDate value="${item.createTime}" pattern="${defaultDateTimeFormater }"/></td>
 										<td><fmt:formatDate value="${item.pubTime}" pattern="${defaultDateTimeFormater }"/></td>
+										<td>
+											<c:choose>
+												<c:when test="${item.state == state_create}">创建</c:when>
+												<c:when test="${item.state == state_publish}">发布</c:when>
+												<c:when test="${item.state == state_unpublish}">取消发布</c:when>
+											</c:choose>
+										</td>
 										<td>
 											<lauthority:checkAuthority authorityCode="cms_resource_load">
 												<a href="javascript:void(0)" class="td_2" onclick="redirectPage('<c:url value="/cms/resource/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }&directoryId=${directory.id }', 1000, 600)">

@@ -1,6 +1,6 @@
-<%@page import="com.lmiky.cms.directory.pojo.CmsDirectory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.lmiky.jdp.tree.controller.TreeController,com.lmiky.jdp.tree.pojo.BaseTreePojo" %>
+<%@page import="com.lmiky.cms.directory.pojo.CmsDirectory"%>
 <%@page import="com.lmiky.jdp.base.view.BaseInfoCodeJsonView"%>
 <%@page import="com.lmiky.jdp.base.view.BaseCode"%>
 <%@ include file="/jdp/common/common.jsp"%>
@@ -54,16 +54,43 @@
 		    }
 		}
 		
+		//如果只有一个顶层节点，则展开子节点，否则不展开
 		var zTreeNodes = [  
-        	<c:forEach items="${roots}" var="node" varStatus="status">
-        		{id:"${node.id}", name:"${node.name}", "modulePath":"${param.modulePath}",
-        			<c:choose>
-        				<c:when test="${node.leaf == tree_leaf_yes}">isParent: "false"</c:when>
-        				<c:otherwise>isParent: "true"</c:otherwise>
-        			</c:choose>
-        		}<c:if test="${!status.last}">,</c:if>
-        	</c:forEach>
-        ]  
+			<c:choose>
+				<c:when test="${fn:length(roots) > 1}">
+					<c:forEach items="${roots}" var="node" varStatus="status">
+		        		{id:"${node.id}", name:"${node.name}",
+		        			<c:choose>
+		        				<c:when test="${node.leaf == tree_leaf_yes}">isParent: "false"</c:when>
+		        				<c:otherwise>isParent: "true"</c:otherwise>
+		        			</c:choose>
+		        		}<c:if test="${!status.last}">,</c:if>
+		        	</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${roots}" var="node" varStatus="status">
+						{id:"${node.id}", name:"${node.name}", open:true,
+		        			<c:choose>
+		        				<c:when test="${node.leaf == tree_leaf_yes}">isParent: "false"</c:when>
+		        				<c:otherwise>
+		        					isParent: "true",
+		        					children: [  
+		        				    	<c:forEach items="${node.children}" var="children" varStatus="childStatus">
+			        				    	{id:"${children.id}", name:"${children.name}",
+							        			<c:choose>
+							        				<c:when test="${children.leaf == 0}">isParent: "false"</c:when>
+							        				<c:otherwise>isParent: "true"</c:otherwise>
+							        			</c:choose>
+							        		}<c:if test="${!childStatus.last}">,</c:if>
+		        				    	</c:forEach>
+		        				 	]
+		        				</c:otherwise>
+		        			</c:choose>
+		        		}<c:if test="${!status.last}">,</c:if>
+		        	</c:forEach>
+				</c:otherwise>
+    		</c:choose>
+        ]   
 		$(document).ready(function() {
 			zTreeObj = $.fn.zTree.init($("#" + treeId), treeSetting, zTreeNodes);
 			var nodes = zTreeObj.getNodes();

@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.converters.DateConverter;
 import org.apache.commons.lang3.StringUtils;
 
-import com.lmiky.jdp.base.converter.DateConverter;
 import com.lmiky.jdp.constants.Constants;
 import com.lmiky.jdp.logger.util.LoggerUtils;
 import com.lmiky.jdp.service.BaseService;
@@ -39,8 +39,10 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		// 注册Conveter
-		ConvertUtils.register(new DateConverter(Constants.CONTEXT_KEY_FORMAT_DATE_VALUE), java.util.Date.class);
-		ConvertUtils.register(new DateConverter(Constants.CONTEXT_KEY_FORMAT_DATETIME_VALUE), java.util.Date.class);
+		DateConverter dateConverter = new DateConverter();
+		dateConverter.setUseLocaleFormat(true);
+		dateConverter.setPatterns(new String[]{Constants.CONTEXT_KEY_FORMAT_DATE_VALUE, Constants.CONTEXT_KEY_FORMAT_DATETIME_VALUE});
+        ConvertUtils.register(dateConverter, Date.class);
 		//设置环境
 		ServletContext application = config.getServletContext();
 		Environment.setServletContext(application);

@@ -11,8 +11,8 @@ import com.lmiky.jdp.constants.Constants;
  * @author lmiky
  * @date 2014-1-20
  */ 
-public class PropertyFilterNamedTag extends BaseTag {
-	private static final long serialVersionUID = 5213441336944599788L;
+public class HtmlPropertyFilterNamedTag extends BaseTag {
+	private static final long serialVersionUID = 1036702552299217916L;
 	private String propertyName; // 属性名
 	private String compareType; // 比较方式
 
