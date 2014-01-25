@@ -22,7 +22,7 @@ import com.lmiky.jdp.sort.pojo.BaseSortPojo;
  * @date 2014-1-2
  */
 @Entity 
-@Table(name="tree")
+@Table(name="t_tree")
 @Inheritance(strategy=InheritanceType.JOINED) 
 public class BaseTreePojo extends BaseSortPojo {
 	private static final long serialVersionUID = -6377646923632564066L;

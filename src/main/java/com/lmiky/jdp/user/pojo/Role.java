@@ -16,7 +16,7 @@ import com.lmiky.jdp.database.pojo.BasePojo;
  * @date 2013-5-7
  */
 @Entity
-@Table(name="role")
+@Table(name="t_role")
 public class Role extends BasePojo {
 	private static final long serialVersionUID = -6262397836385864159L;
 	private String name;

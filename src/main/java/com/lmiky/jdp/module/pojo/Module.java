@@ -20,7 +20,7 @@ import com.lmiky.jdp.database.pojo.BasePojo;
  * @date 2013-5-12
  */
 @Entity
-@Table(name = "module")
+@Table(name = "t_module")
 public class Module extends BasePojo {
 	private static final long serialVersionUID = -3173260146797921645L;
 
@@ -71,7 +71,7 @@ public class Module extends BasePojo {
 	 * @return the group
 	 */
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "groupId", updatable = false)
+	@JoinColumn(name = "group_id", updatable = false)
 	public ModuleGroup getGroup() {
 		return group;
 	}

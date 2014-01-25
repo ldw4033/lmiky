@@ -91,3 +91,6 @@ a.unselectedPageIndex:active {
 a.unselectedPageIndex:hover {
     COLOR: #FE5230; TEXT-DECORATION: none
 }
+.filterTd {
+	line-height: 25px;
+}

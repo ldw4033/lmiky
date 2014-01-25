@@ -226,7 +226,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td valign="top">
+			<td valign="top" style="height: 100%">
 				<iframe id="resourceFrame" style="width: 100%; height: 100%;" frameborder="0" src=""/>
 			</td>
 		</tr>

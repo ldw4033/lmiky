@@ -295,6 +295,7 @@ public class UserController extends FormController<User> {
 				}
 			} else {
 				user.setPassword(EncoderUtils.md5(request.getParameter("password")));
+				user.setLastSetPasswordTime(new Date());
 				service.save(user);
 				//记录日志
 				logOpe(User.class.getName(), sessionInfo.getUserId(), modelMap, request, sessionInfo, OPEN_MODE_EDIT, "修改密码");

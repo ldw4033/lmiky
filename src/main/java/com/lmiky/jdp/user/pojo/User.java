@@ -20,7 +20,7 @@ import com.lmiky.jdp.database.pojo.BasePojo;
  * @date 2013-4-23
  */
 @Entity
-@Table(name="user")
+@Table(name="t_user")
 public class User extends BasePojo {
 	private static final long serialVersionUID = 6477794886740573968L;
 	//是否可用
@@ -42,7 +42,7 @@ public class User extends BasePojo {
 	/**
 	 * @return the loginName
 	 */
-	@Column(name = "loginName")
+	@Column(name = "login_name")
 	public String getLoginName() {
 		return loginName;
 	}
@@ -132,7 +132,7 @@ public class User extends BasePojo {
 	/**
 	 * @return the createTime
 	 */
-	@Column(name = "createTime", updatable = false)
+	@Column(name = "create_time", updatable = false)
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -147,7 +147,7 @@ public class User extends BasePojo {
 	/**
 	 * @return the lastSetPasswordTime
 	 */
-	@Column(name = "lastSetPasswordTime")
+	@Column(name = "last_set_password_time")
 	public Date getLastSetPasswordTime() {
 		return lastSetPasswordTime;
 	}
@@ -193,7 +193,7 @@ public class User extends BasePojo {
 	 * @return the roles
 	 */
 	@ManyToMany(fetch = FetchType.LAZY, cascade ={CascadeType.PERSIST})
-	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "userId", updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "roleId", updatable = false) })
+	@JoinTable(name = "t_user_role", joinColumns = { @JoinColumn(name = "user_id", updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "role_id", updatable = false) })
 	public Set<Role> getRoles() {
 		return roles;
 	}

@@ -23,7 +23,7 @@ import com.lmiky.jdp.user.pojo.User;
  * @date 2014-1-5
  */ 
 @Entity
-@Table(name="cms_resource")
+@Table(name="t_cms_resource")
 public class CmsResource extends BasePojo {
 	private static final long serialVersionUID = -5493636462667145928L;
 	//状态

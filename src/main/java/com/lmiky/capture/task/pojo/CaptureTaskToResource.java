@@ -17,7 +17,7 @@ import com.lmiky.jdp.database.pojo.BasePojo;
  * @date 2013-11-12
  */
 @Entity
-@Table(name="capture_task_resource")
+@Table(name="t_capture_task_resource")
 public class CaptureTaskToResource extends BasePojo {
 	private static final long serialVersionUID = -264636793559917662L;
 	private CaptureTask task;

@@ -14,7 +14,7 @@ import com.lmiky.jdp.database.pojo.BasePojo;
  * @date 2013-5-10
  */
 @Entity
-@Table(name="logger")
+@Table(name="t_logger")
 public class Logger extends BasePojo {
 	private static final long serialVersionUID = -424096974521890936L;
 	public static final String OPE_TYPE_ADD = "add";

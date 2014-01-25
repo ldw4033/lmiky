@@ -28,8 +28,9 @@
 					<td colspan="2" align="center" valign="top">
 						<table width="98%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<td>
-									姓名：<lhtml:propertyFilter inputType="text" compareType="LIKE" propertyName="name" styleClass="bian medium"/>
+								<td class="filterTd">
+									<span style="width: 50px;" class="labelSpan_right">姓名：</span>
+									<lhtml:propertyFilter inputType="text" compareType="LIKE" propertyName="name" styleClass="bian medium"/>
 									&nbsp;
 									<input class="btnClass" type="submit" value="查询" style="cursor: pointer;"/>
 								</td>

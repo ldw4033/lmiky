@@ -35,25 +35,32 @@
 					<td colspan="2" align="center" valign="top">
 						<table width="98%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<td>
-									标题：<lhtml:propertyFilter inputType="text" compareType="LIKE" propertyName="title" styleClass="bian medium"/>
-									&nbsp;
-									作者：<lhtml:propertyFilter inputType="text" compareType="LIKE" propertyName="author" styleClass="bian medium"/>
-									&nbsp;
-									创建时间：
-									<lhtml:propertyFilter inputType="beginDate" compareType="GE" propertyName="createTime" styleClass="bian medium"/>
-									-
-									<lhtml:propertyFilter inputType="endDate" compareType="LE" propertyName="createTime" styleClass="bian medium"/>
-									&nbsp;
-									状态：
-									<lhtml:propertyFilter inputType="select" compareType="EQ" propertyName="state"  styleClass="bian">
+								<td class="filterTd">
+									<span style="width: 70px;" class="labelSpan_right">标题：</span>
+									<lhtml:propertyFilter inputType="text" compareType="LIKE" propertyName="title" styleClass="bian medium"/>
+									<span style="width: 50px;" class="labelSpan_right">作者：</span>
+									<lhtml:propertyFilter inputType="text" compareType="LIKE" propertyName="author" styleClass="bian medium"/>
+									<span style="width: 70px;" class="labelSpan_right">状态：</span>
+									<lhtml:propertyFilter inputType="select" compareType="EQ" propertyName="state"  styleClass="bian medium">
 			            				<option value="">请选择</option>
 			            				<option value="${state_create }">创建</option>
 			            				<option value="${state_publish }">发布</option>
 			            				<option value="${state_unpublish }">取消发布</option>
 			            			</lhtml:propertyFilter>
-									&nbsp;
+									<span style="width: 50px;" class="labelSpan_center">&nbsp;</span>
 									<input class="btnClass" type="submit" value="查询" />
+								</td>
+							</tr>
+							<tr>
+								<td class="filterTd">
+									<span style="width: 70px;" class="labelSpan_right">创建时间：</span>
+									<lhtml:propertyFilter inputType="beginDate" compareType="GE" propertyName="createTime" styleClass="bian medium"/>
+									<span style="width: 50px;" class="labelSpan_center">-</span>
+									<lhtml:propertyFilter inputType="endDate" compareType="LE" propertyName="createTime" styleClass="bian medium"/>
+									<span style="width: 70px;" class="labelSpan_right">发布时间：</span>
+									<lhtml:propertyFilter inputType="beginDate" compareType="GE" propertyName="pubTime" styleClass="bian medium"/>
+									<span style="width: 50px;" class="labelSpan_center">-</span>
+									<lhtml:propertyFilter inputType="endDate" compareType="LE" propertyName="pubTime" styleClass="bian medium"/>
 								</td>
 							</tr>
 						</table>

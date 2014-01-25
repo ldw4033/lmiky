@@ -15,7 +15,7 @@ import com.lmiky.jdp.sort.pojo.BaseSortPojo;
  * @date 2013-5-12
  */
 @Entity
-@Table(name="function")
+@Table(name="t_function")
 public class Function extends BaseSortPojo {
 	private static final long serialVersionUID = 6905027190507202928L;
 	
@@ -40,7 +40,7 @@ public class Function extends BaseSortPojo {
 	 * @return the module
 	 */
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="moduleId", updatable = false)
+	@JoinColumn(name="module_id", updatable = false)
 	public Module getModule() {
 		return module;
 	}
@@ -53,7 +53,7 @@ public class Function extends BaseSortPojo {
 	/**
 	 * @return the authorityCode
 	 */
-	@Column(name="authorityCode")
+	@Column(name="authority_code")
 	public String getAuthorityCode() {
 		return authorityCode;
 	}

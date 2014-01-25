@@ -14,7 +14,7 @@ import com.lmiky.jdp.database.pojo.BasePojo;
  * @date 2013-6-16
  */
 @Entity
-@Table(name="lately_operate_menu")
+@Table(name="t_lately_operate_menu")
 public class LatelyOperateMenu extends BasePojo {
 	private static final long serialVersionUID = 1145492069635567005L;
 	private Long userId;
@@ -24,7 +24,7 @@ public class LatelyOperateMenu extends BasePojo {
 	/**
 	 * @return the userId
 	 */
-	@Column(name="userId")
+	@Column(name="user_id")
 	public Long getUserId() {
 		return userId;
 	}
@@ -37,7 +37,7 @@ public class LatelyOperateMenu extends BasePojo {
 	/**
 	 * @return the opeTime
 	 */
-	@Column(name="opeTime")
+	@Column(name="ope_time")
 	public Date getOpeTime() {
 		return opeTime;
 	}
@@ -50,7 +50,7 @@ public class LatelyOperateMenu extends BasePojo {
 	/**
 	 * @return the menuId
 	 */
-	@Column(name="menuId")
+	@Column(name="menu_id")
 	public String getMenuId() {
 		return menuId;
 	}

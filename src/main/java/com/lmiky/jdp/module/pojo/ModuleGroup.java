@@ -18,7 +18,7 @@ import com.lmiky.jdp.database.pojo.BasePojo;
  * @date 2013-5-12
  */
 @Entity
-@Table(name="module_group")
+@Table(name="t_module_group")
 public class ModuleGroup extends BasePojo {
 	private static final long serialVersionUID = -1308605978031590177L;
 	

@@ -13,7 +13,7 @@ import javax.persistence.Table;
  * @date 2013-10-21
  */
 @Entity
-@Table(name="city")
+@Table(name="t_city")
 public class City extends BaseAreaPojo {
 	private static final long serialVersionUID = 1206169788541078983L;
 	private Province province;

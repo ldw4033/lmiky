@@ -12,7 +12,7 @@ import com.lmiky.jdp.tree.pojo.BaseTreePojo;
  * @date 2014-1-2
  */
 @Entity
-@Table(name="cms_directory")
+@Table(name="t_cms_directory")
 @PrimaryKeyJoinColumn(name="id")
 public class CmsDirectory extends BaseTreePojo {
 	private static final long serialVersionUID = -2234133455649348507L;

@@ -17,7 +17,7 @@ import com.lmiky.jdp.database.pojo.BasePojo;
  * @date 2014-1-5
  */ 
 @Entity
-@Table(name="cms_resource_content")
+@Table(name="t_cms_resource_content")
 public class CmsResourceContent extends BasePojo {
 	private static final long serialVersionUID = 6407808893561867426L;
 	private CmsResource cmsResource;

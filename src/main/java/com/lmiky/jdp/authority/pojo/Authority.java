@@ -12,7 +12,7 @@ import com.lmiky.jdp.database.pojo.BasePojo;
  * @date 2013-5-12
  */
 @Entity
-@Table(name="authority")
+@Table(name="t_authority")
 public class Authority extends BasePojo {
 	private static final long serialVersionUID = -3394086011235457556L;
 	

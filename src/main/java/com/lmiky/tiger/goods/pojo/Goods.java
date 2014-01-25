@@ -14,7 +14,7 @@ import com.lmiky.jdp.database.pojo.BasePojo;
  * @date 2013-4-15
  */ 
 @Entity
-@Table(name = "goods")
+@Table(name = "t_goods")
 public class Goods extends BasePojo {
 	private static final long serialVersionUID = 7062654114624646911L;
 	

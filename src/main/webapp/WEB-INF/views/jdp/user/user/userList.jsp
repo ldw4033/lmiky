@@ -31,12 +31,12 @@
 					<td colspan="2" align="center" valign="top">
 						<table width="98%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<td>
-									姓名：<lhtml:propertyFilter inputType="text" compareType="LIKE" propertyName="name" styleClass="bian medium"/>
-									&nbsp;
-									登陆账号：<lhtml:propertyFilter inputType="text" compareType="LIKE" propertyName="loginName"  styleClass="bian medium"/>
-									&nbsp;
-									角色：
+								<td class="filterTd">
+									<span style="width: 50px;" class="labelSpan_right">姓名：</span>
+									<lhtml:propertyFilter inputType="text" compareType="LIKE" propertyName="name" styleClass="bian medium"/>
+									<span style="width: 70px;" class="labelSpan_right">登陆账号：</span>
+									<lhtml:propertyFilter inputType="text" compareType="LIKE" propertyName="loginName"  styleClass="bian medium"/>
+									<span style="width: 50px;" class="labelSpan_right">角色：</span>
 									<lhtml:propertyFilter inputType="select" compareType="EQ" propertyName="roles.id"  styleClass="bian medium">
 			            				<option value="">请选择</option>
 			            				<c:if test="${not empty roles }">

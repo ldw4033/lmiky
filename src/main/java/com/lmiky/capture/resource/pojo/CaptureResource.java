@@ -19,7 +19,7 @@ import com.lmiky.jdp.database.pojo.BasePojo;
  * @date 2013-11-6
  */
 @Entity
-@Table(name="capture_resource")
+@Table(name="t_capture_resource")
 public class CaptureResource extends BasePojo {
 	private static final long serialVersionUID = 8552555711119829436L;
 	

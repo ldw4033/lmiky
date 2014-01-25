@@ -100,15 +100,15 @@ public class HtmlPropertyFilterTag extends BaseHtmlTag {
 			inputHtml.append(" onFocus=\"WdatePicker({readOnly:true, dateFmt:'");
 			if (INPUT_TYPE_DATE.equals(inputType) || INPUT_TYPE_BEGINDATE.equals(inputType) || INPUT_TYPE_ENDDATE.equals(inputType)) {
 				inputHtml.append(Constants.CONTEXT_KEY_FORMAT_DATE_VALUE);
+				if (INPUT_TYPE_BEGINDATE.equals(inputType)) {
+					inputHtml.append(" ").append(Constants.getBeginDateTime());
+				} else if (INPUT_TYPE_ENDDATE.equals(inputType)) {
+					inputHtml.append(" ").append(Constants.getEndDateTime());
+				}
 			} else {
 				inputHtml.append(Constants.CONTEXT_KEY_FORMAT_DATETIME_VALUE);
 			}
 			inputHtml.append("'})\" ");
-			if (INPUT_TYPE_BEGINDATE.equals(inputType)) {
-				inputHtml.append(" onChange=\"buildBeginDate(this)\" ");
-			} else if (INPUT_TYPE_ENDDATE.equals(inputType)) {
-				inputHtml.append(" onChange=\"buildEndDate(this)\" ");
-			}
 		}
 		handlers.insert(0, inputHtml.toString());
 		handlers.append(" />");

@@ -14,7 +14,7 @@ import com.lmiky.jdp.database.pojo.BasePojo;
  * @date 2013-6-17
  */
 @Entity
-@Table(name="my_favorite_menu")
+@Table(name="t_my_favorite_menu")
 public class MyFavoriteMenu extends BasePojo {
 	private static final long serialVersionUID = 7212289860594068144L;
 	
@@ -25,7 +25,7 @@ public class MyFavoriteMenu extends BasePojo {
 	/**
 	 * @return the userId
 	 */
-	@Column(name="userId")
+	@Column(name="user_id")
 	public Long getUserId() {
 		return userId;
 	}
@@ -38,7 +38,7 @@ public class MyFavoriteMenu extends BasePojo {
 	/**
 	 * @return the addTime
 	 */
-	@Column(name="addTime")
+	@Column(name="add_time")
 	public Date getAddTime() {
 		return addTime;
 	}
@@ -51,7 +51,7 @@ public class MyFavoriteMenu extends BasePojo {
 	/**
 	 * @return the menuId
 	 */
-	@Column(name="menuId")
+	@Column(name="menu_id")
 	public String getMenuId() {
 		return menuId;
 	}
