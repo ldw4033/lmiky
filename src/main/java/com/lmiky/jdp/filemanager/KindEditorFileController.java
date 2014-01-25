@@ -24,13 +24,13 @@ import com.lmiky.jdp.util.UUIDGenerator;
 import com.lmiky.jdp.web.util.ResponseUtils;
 
 /**
- * 文件管理
+ * kindEditor文件管理
  * @author lmiky
  * @date 2014-1-21
  */
 @Controller
-@RequestMapping("/file")
-public class FileController extends BaseController {
+@RequestMapping("/kindEditorFile")
+public class KindEditorFileController extends BaseController {
 	//是否成功键名
 	public static final String KEY_NAME_ERROR = "error";
 	//提示
@@ -43,7 +43,7 @@ public class FileController extends BaseController {
 	public static final int VALUE_NAME_ERROR_ERROR = 1;
 
 	/**
-	 * kindEditor上传图片
+	 * 上传文件
 	 * @author lmiky
 	 * @date 2014-1-21
 	 * @param modelMap
@@ -51,8 +51,8 @@ public class FileController extends BaseController {
 	 * @param response
 	 * @throws Exception
 	 */
-	@RequestMapping("/kindEditorAjaxUploadImg.shtml")
-	public void kindEditorAjaxUploadImg(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping("/upload.shtml")
+	public void upload(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put(KEY_NAME_FILE_URL, "");
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;

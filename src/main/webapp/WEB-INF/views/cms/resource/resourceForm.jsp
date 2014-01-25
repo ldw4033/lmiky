@@ -9,18 +9,8 @@
 	<head>
 		<%@ include file="/jdp/form/header.jsp" %>
 		<link rel="stylesheet" href="${scriptPlugin }/kindeditor/themes/default/default.css" />
-		<script charset="utf-8" src="${scriptPlugin }/kindeditor/kindeditor-min.js" ></script>
-		<script charset="utf-8" src="${scriptPlugin }/kindeditor/lang/zh_CN.js"></script>
-		<script language="javascript" type="text/javascript" src="${scriptPlugin }/My97DatePicker/WdatePicker.js"></script>
-		<script >
-			var editor;
-			KindEditor.ready(function(K) {
-				editor = K.create('#htmlContent', {
-					uploadJson : '<c:url value="/file/kindEditorAjaxUploadImg.shtml"/>',
-					allowFileManager : false
-				});
-			});
-		</script>
+		<%@ include file="/jdp/common/date.jsp"%>
+		<%@ include file="/jdp/common/htmlEditor.jsp"%>
 	</head>
 	<body>
 		<form id="mainForm" action="<c:url value="/cms/resource/save.shtml"/>" method="post">
