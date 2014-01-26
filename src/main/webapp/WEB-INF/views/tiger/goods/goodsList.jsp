@@ -93,7 +93,7 @@
 									<th>优惠券折扣</th>
 									<th>操作</th>
 									<lauthority:checkAuthority authorityCode="tiger_goods_delete">
-										<th>
+										<th class="simpleCheckbox">
 											<input type="checkbox" name="batctSelectDelete"  id="batctSelectDelete" class="bian" value="" onclick="batchSelectDelete()"/>
 										</th>
 									</lauthority:checkAuthority>

@@ -114,7 +114,7 @@
 									<th>是否有效</th>
 									<th>操作</th>
 									<lauthority:checkAuthority authorityCode="jdp_user_user_delete">
-										<th>
+										<th class="simpleCheckbox">
 											<input type="checkbox" name="batctSelectDelete"  id="batctSelectDelete" class="bian" value="" onclick="batchSelectDelete()"/>
 										</th>
 									</lauthority:checkAuthority>

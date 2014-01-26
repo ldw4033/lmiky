@@ -2,6 +2,8 @@ package com.lmiky.jdp.database.dao.hibernate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -55,8 +57,9 @@ public class BaseDAOImpl implements BaseDAO {
 			throw new DatabaseException(e.getMessage());
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#find(java.lang.Class, com.lmiky.jdp.database.model.PropertyFilter[])
 	 */
 	public <T extends BasePojo> T find(Class<T> pojoClass, PropertyFilter... propertyFilters) throws DatabaseException {
@@ -75,8 +78,9 @@ public class BaseDAOImpl implements BaseDAO {
 			throw new DatabaseException(e.getMessage());
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#find(java.lang.String, java.util.Map)
 	 */
 	@SuppressWarnings("unchecked")
@@ -99,19 +103,52 @@ public class BaseDAOImpl implements BaseDAO {
 			throw new DatabaseException(e.getMessage());
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#save(java.util.List)
 	 */
 	public <T extends BasePojo> void save(List<T> pojos) throws DatabaseException {
 		try {
 			Session session = getSession();
-			for(T t : pojos) {
+			for (T t : pojos) {
 				session.saveOrUpdate(t);
 			}
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#update(java.lang.Class, java.lang.Long, java.lang.String, java.lang.Object)
+	 */
+	public <T extends BasePojo> boolean update(Class<T> pojoClass, Long id, String propertyName, Object propertyValue) throws DatabaseException {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put(propertyName, propertyValue);
+		return update(pojoClass, id, params);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#update(java.lang.Class, java.lang.Long, java.util.Map)
+	 */
+	public <T extends BasePojo> boolean update(Class<T> pojoClass, Long id, Map<String, Object> params) throws DatabaseException {
+		String pojoSimpleName = pojoClass.getSimpleName();
+		StringBuilder hql = new StringBuilder("update ").append(pojoSimpleName).append(" ").append(pojoSimpleName);//
+		Iterator<String> ite = params.keySet().iterator();
+		boolean isFirst = true;
+		while(ite.hasNext()) {
+			if(isFirst) {
+				hql.append(" set ");
+				isFirst = false;
+			} else {
+				hql.append(", ");
+			}
+			String propertyName = ite.next();
+			hql.append(pojoSimpleName).append(".").append(propertyName).append("=:").append(propertyName);
+		}
+		hql.append(" where ").append(pojoSimpleName).append(".").append(BasePojo.POJO_FIELD_NAME_ID).append("=:").append(BasePojo.POJO_FIELD_NAME_ID);
+		params.put(BasePojo.POJO_FIELD_NAME_ID, id);
+		return executeUpdate(hql.toString(), params) > 0;
 	}
 
 	/*
@@ -125,17 +162,17 @@ public class BaseDAOImpl implements BaseDAO {
 			throw new DatabaseException(e.getMessage());
 		}
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#delete(java.util.List)
 	 */
 	public <T extends BasePojo> void delete(List<T> pojos) throws DatabaseException {
-		for(T pojo : pojos) {
+		for (T pojo : pojos) {
 			delete(pojo);
 		}
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#delete(java.lang.Class, java.io.Serializable)
@@ -148,19 +185,19 @@ public class BaseDAOImpl implements BaseDAO {
 			throw new DatabaseException(e.getMessage());
 		}
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#delete(java.lang.Class, java.lang.Long[])
 	 */
 	public <T extends BasePojo> void delete(Class<T> pojoClass, Long[] ids) throws DatabaseException {
 		try {
-			if(ids == null || ids.length == 0) {
+			if (ids == null || ids.length == 0) {
 				return;
 			}
 			String pojoSimpleName = pojoClass.getSimpleName();
-			StringBuilder hql = new StringBuilder("delete from ").append(pojoSimpleName).append(" ").append(pojoSimpleName) .append(" where 1=2 ");
-			for(Long id : ids) {
+			StringBuilder hql = new StringBuilder("delete from ").append(pojoSimpleName).append(" ").append(pojoSimpleName).append(" where 1=2 ");
+			for (Long id : ids) {
 				hql.append(" or id = ").append(id);
 			}
 			delete(hql.toString());
@@ -181,8 +218,9 @@ public class BaseDAOImpl implements BaseDAO {
 			throw new DatabaseException(e.getMessage());
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#delete(java.lang.Class, com.lmiky.jdp.database.model.PropertyFilter[])
 	 */
 	public <T extends BasePojo> int delete(Class<T> pojoClass, PropertyFilter... propertyFilters) throws DatabaseException {
@@ -196,8 +234,9 @@ public class BaseDAOImpl implements BaseDAO {
 	public int delete(String hql) throws DatabaseException {
 		return delete(hql, null);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#delete(java.lang.String, java.util.Map)
 	 */
 	public int delete(String hql, Map<String, Object> params) throws DatabaseException {
@@ -220,19 +259,20 @@ public class BaseDAOImpl implements BaseDAO {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#list(java.lang.Class, com.lmiky.jdp.database.model.PropertyFilter, com.lmiky.jdp.database.model.Sort)
 	 */
 	public <T extends BasePojo> List<T> list(Class<T> pojoClass, PropertyFilter propertyFilter, Sort sort) throws DatabaseException {
 		List<PropertyFilter> propertyFilters = new ArrayList<PropertyFilter>();
-		if(propertyFilter != null) {
+		if (propertyFilter != null) {
 			propertyFilters.add(propertyFilter);
 		}
 		List<Sort> sorts = new ArrayList<Sort>();
 		sorts.add(sort);
 		return list(pojoClass, propertyFilters, sorts);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#list(java.lang.Class, java.util.List, java.util.List)
@@ -241,20 +281,22 @@ public class BaseDAOImpl implements BaseDAO {
 		return list(pojoClass, propertyFilters, sorts, 0, 0);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#list(java.lang.Class, com.lmiky.jdp.database.model.PropertyFilter[])
 	 */
 	public <T extends BasePojo> List<T> list(Class<T> pojoClass, PropertyFilter... propertyFilters) throws DatabaseException {
 		return list(pojoClass, Arrays.asList(propertyFilters), null);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#list(java.lang.Class, com.lmiky.jdp.database.model.Sort[])
 	 */
 	public <T extends BasePojo> List<T> list(Class<T> pojoClass, Sort... sorts) throws DatabaseException {
 		return list(pojoClass, null, Arrays.asList(sorts));
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#list(java.lang.Class, int, int)
@@ -279,15 +321,18 @@ public class BaseDAOImpl implements BaseDAO {
 			throw new DatabaseException(e.getMessage());
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#list(java.lang.Class, int, int, com.lmiky.jdp.database.model.PropertyFilter[])
 	 */
-	public <T extends BasePojo> List<T> list(Class<T> pojoClass, int pageFirst, int pageSize, PropertyFilter... propertyFilters) throws DatabaseException {
+	public <T extends BasePojo> List<T> list(Class<T> pojoClass, int pageFirst, int pageSize, PropertyFilter... propertyFilters)
+			throws DatabaseException {
 		return list(pojoClass, Arrays.asList(propertyFilters), null, pageFirst, pageSize);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#list(java.lang.Class, int, int, com.lmiky.jdp.database.model.Sort[])
 	 */
 	public <T extends BasePojo> List<T> list(Class<T> pojoClass, int pageFirst, int pageSize, Sort... sorts) throws DatabaseException {
@@ -305,8 +350,9 @@ public class BaseDAOImpl implements BaseDAO {
 			throw new DatabaseException(e.getMessage());
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#list(java.lang.String, java.util.Map)
 	 */
 	public <T extends BasePojo> List<T> list(String hql, Map<String, Object> params) throws DatabaseException {
@@ -324,8 +370,9 @@ public class BaseDAOImpl implements BaseDAO {
 	public <T extends BasePojo> List<T> list(String hql, int pageFirst, int pageSize) throws DatabaseException {
 		return list(hql, null, pageFirst, pageSize);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#list(java.lang.String, java.util.Map, int, int)
 	 */
 	public <T extends BasePojo> List<T> list(String hql, Map<String, Object> params, int pageFirst, int pageSize) throws DatabaseException {
@@ -389,12 +436,12 @@ public class BaseDAOImpl implements BaseDAO {
 	 */
 	public <T extends BasePojo> int count(Class<T> pojoClass, List<PropertyFilter> propertyFilters) throws DatabaseException {
 		try {
-			return ((Long)generateQuery(generateCountHql(pojoClass, propertyFilters), getFilterValues(propertyFilters)).uniqueResult()).intValue();
+			return ((Long) generateQuery(generateCountHql(pojoClass, propertyFilters), getFilterValues(propertyFilters)).uniqueResult()).intValue();
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
 	}
-	
+
 	public <T extends BasePojo> int count(Class<T> pojoClass, PropertyFilter... propertyFilters) throws DatabaseException {
 		return count(pojoClass, Arrays.asList(propertyFilters));
 	}
@@ -406,8 +453,9 @@ public class BaseDAOImpl implements BaseDAO {
 	public <T extends BasePojo> int count(String hql) throws DatabaseException {
 		return count(hql, null);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#count(java.lang.String, java.util.Map)
 	 */
 	public <T extends BasePojo> int count(String hql, Map<String, Object> params) throws DatabaseException {
@@ -417,63 +465,71 @@ public class BaseDAOImpl implements BaseDAO {
 			throw new DatabaseException(e.getMessage());
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#exist(java.lang.Class, java.util.List)
 	 */
 	public <T extends BasePojo> boolean exist(Class<T> pojoClass, List<PropertyFilter> propertyFilters) throws DatabaseException {
-		if(count(pojoClass, propertyFilters) > 0) {
+		if (count(pojoClass, propertyFilters) > 0) {
 			return true;
 		}
 		return false;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#exist(java.lang.Class, com.lmiky.jdp.database.model.PropertyFilter[])
 	 */
 	public <T extends BasePojo> boolean exist(Class<T> pojoClass, PropertyFilter... propertyFilters) throws DatabaseException {
 		return exist(pojoClass, Arrays.asList(propertyFilters));
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#exist(java.lang.String)
 	 */
 	public <T extends BasePojo> boolean exist(String hql) throws DatabaseException {
 		return exist(hql, null);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#exist(java.lang.String, java.util.Map)
 	 */
 	public <T extends BasePojo> boolean exist(String hql, Map<String, Object> params) throws DatabaseException {
-		if(count(hql, params) > 0) {
+		if (count(hql, params) > 0) {
 			return true;
 		}
 		return false;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#executeQuery(java.lang.String)
 	 */
 	public <X> List<X> executeQuery(String hql) throws DatabaseException {
 		return executeQuery(hql, null);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#executeQuery(java.lang.String, int, int)
 	 */
 	public <X> List<X> executeQuery(String hql, int pageFirst, int pageSize) throws DatabaseException {
 		return executeQuery(hql, null, pageFirst, pageSize);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#executeQuery(java.lang.String, java.util.Map)
 	 */
 	public <X> List<X> executeQuery(String hql, Map<String, Object> params) throws DatabaseException {
 		return executeQuery(hql, params, 0, 0);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#executeQuery(java.lang.String, java.util.Map, int, int)
 	 */
 	@SuppressWarnings("unchecked")
@@ -487,15 +543,17 @@ public class BaseDAOImpl implements BaseDAO {
 			throw new DatabaseException(e.getMessage());
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#executeUpdate(java.lang.String)
 	 */
 	public int executeUpdate(String hql) throws DatabaseException {
 		return executeUpdate(hql, null);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#executeUpdate(java.lang.String, java.util.Map)
 	 */
 	public int executeUpdate(String hql, Map<String, Object> params) throws DatabaseException {
@@ -518,27 +576,28 @@ public class BaseDAOImpl implements BaseDAO {
 	protected <T extends BasePojo> String generateHql(Class<T> pojoClass, List<PropertyFilter> propertyFilters, List<Sort> sorts) {
 		String pojoSimpleName = pojoClass.getSimpleName();
 		StringBuilder hql = new StringBuilder("from " + pojoSimpleName + " " + pojoSimpleName + " ");
-		boolean hasCollectionFilter = false;	//是否含有集合条件
+		boolean hasCollectionFilter = false; // 是否含有集合条件
 		if (propertyFilters != null && !propertyFilters.isEmpty()) {
 			List<String> joinClassNames = new ArrayList<String>();
-			for(PropertyFilter propertyFilter : propertyFilters) {
-				if(propertyFilter.isCollectionField()) {
+			for (PropertyFilter propertyFilter : propertyFilters) {
+				if (propertyFilter.isCollectionField()) {
 					String compareClassSimpleName = propertyFilter.getCompareClass().getSimpleName();
-					//已关联
-					if(joinClassNames.contains(compareClassSimpleName)) {
+					// 已关联
+					if (joinClassNames.contains(compareClassSimpleName)) {
 						continue;
 					}
 					String comparePropertyName = propertyFilter.getPropertyName().substring(0, propertyFilter.getPropertyName().indexOf("."));
-					hql.append(" join ").append(pojoSimpleName).append(".").append(comparePropertyName).append(" ").append(compareClassSimpleName).append(" ");
+					hql.append(" join ").append(pojoSimpleName).append(".").append(comparePropertyName).append(" ").append(compareClassSimpleName)
+							.append(" ");
 					joinClassNames.add(compareClassSimpleName);
-					if(!hasCollectionFilter) {
+					if (!hasCollectionFilter) {
 						hasCollectionFilter = true;
 					}
 				}
 			}
 		}
-		//如果有集合条件
-		if(hasCollectionFilter) {
+		// 如果有集合条件
+		if (hasCollectionFilter) {
 			hql.insert(0, "select distinct " + pojoSimpleName + " ");
 		}
 		return prepareHql(hql.toString(), propertyFilters, sorts);
@@ -555,7 +614,7 @@ public class BaseDAOImpl implements BaseDAO {
 	protected <T extends BasePojo> String generateCountHql(Class<T> pojoClass, List<PropertyFilter> propertyFilters) {
 		return "select count(*) " + removeSelect(removeOrders(generateHql(pojoClass, propertyFilters, null)));
 	}
-	
+
 	/**
 	 * 讲hql转为select count(*) 语句
 	 * @author lmiky
@@ -566,7 +625,7 @@ public class BaseDAOImpl implements BaseDAO {
 	protected <T extends BasePojo> String generateCountHql(String hql) {
 		return "select count(*) " + removeSelect(removeOrders(hql));
 	}
-	
+
 	/**
 	 * 清除select HQL
 	 * @author lmiky
@@ -596,7 +655,7 @@ public class BaseDAOImpl implements BaseDAO {
 		m.appendTail(sb);
 		return sb.toString();
 	}
-	
+
 	/**
 	 * 设置HQL
 	 * @author lmiky
@@ -614,7 +673,7 @@ public class BaseDAOImpl implements BaseDAO {
 			}
 			for (PropertyFilter filter : propertyFilters) {
 				String propertyName = filter.getPropertyName();
-				if(filter.isCollectionField()) {
+				if (filter.isCollectionField()) {
 					propertyName = propertyName.substring(propertyName.indexOf(".") + 1);
 				}
 				hqlBuf.append(" and ").append(filter.getCompareClass().getSimpleName()).append(".").append(propertyName);
@@ -737,7 +796,7 @@ public class BaseDAOImpl implements BaseDAO {
 		}
 		return query;
 	}
-	
+
 	/**
 	 * 生成查询对象
 	 * @author lmiky

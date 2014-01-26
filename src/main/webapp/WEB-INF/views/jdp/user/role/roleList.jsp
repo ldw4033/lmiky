@@ -91,7 +91,7 @@
 									<th class="sortable sorted_name"><a href="javascript:pageSort('name')">名称</a></th>
 									<th>操作</th>
 									<lauthority:checkAuthority authorityCode="jdp_user_role_delete">
-										<th>
+										<th class="simpleCheckbox">
 											<input type="checkbox" name="batctSelectDelete"  id="batctSelectDelete" class="bian" value="" onclick="batchSelectDelete()"/>
 										</th>
 									</lauthority:checkAuthority>

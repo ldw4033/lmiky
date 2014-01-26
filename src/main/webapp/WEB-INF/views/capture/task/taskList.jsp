@@ -90,7 +90,7 @@
 									<th class="sortable sorted_name"><a href="javascript:pageSort('name')">姓名</a></th>
 									<th>操作</th>
 									<lauthority:checkAuthority authorityCode="capture_task_delete">
-										<th>
+										<th class="simpleCheckbox">
 											<input type="checkbox" name="batctSelectDelete"  id="batctSelectDelete" class="bian" value="" onclick="batchSelectDelete()"/>
 										</th>
 									</lauthority:checkAuthority>

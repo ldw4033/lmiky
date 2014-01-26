@@ -14,10 +14,13 @@
     background: #FFFFFF;
 }
 
-.listContent .no{
-    width: 50px;
+.listContent .no {
+    width: 45px;
 }
 
+.listContent .simpleCheckbox {
+	width :30px;
+}
 
 .listContent th,
 .listContent td {

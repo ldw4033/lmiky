@@ -105,6 +105,13 @@ public class ResourceController extends FormController<CmsResource> {
 	public String list(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse) throws Exception {
 		return executeList(modelMap, request, resopnse);
 	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.view.controller.ViewController#getDefaultSortParamName(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
+	 */
+	protected String getDefaultSortParamName(ModelMap modelMap, HttpServletRequest request) {
+		return "createTime";
+	}
 
 	/*
 	 * (non-Javadoc)

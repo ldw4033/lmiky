@@ -30,13 +30,9 @@
 			sortValue = "";
 		}
 		
-		if(sortValue == "") {
-			$("#sortDiv").html("");
-		} else {
-			var orderHtml = '<input type="hidden" name="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_SORT_ORDERBY_NAME %>" value="' + sortItem + '"/>' +
-				'<input type="hidden" name="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_SORT_TYPE_NAME_PREFIX %>' + sortItem + '" value="' + sortValue + '" />';
-			$("#sortDiv").html(orderHtml);
-		}
-		$("#mainForm").submit();
+		var orderHtml = '<input type="hidden" name="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_SORT_ORDERBY_NAME %>" value="' + sortItem + '"/>' +
+		'<input type="hidden" name="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_SORT_TYPE_NAME_PREFIX %>' + sortItem + '" value="' + sortValue + '" />';
+		$("#sortDiv").html(orderHtml);
+		submitForm();
 	}
 </script>

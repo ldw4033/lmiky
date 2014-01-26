@@ -43,7 +43,7 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 	public String executeList(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse) throws Exception {
 		return executeList(modelMap, request, resopnse, BaseController.REQUESTTYPE_NORMAL);
 	}
-	
+
 	/**
 	 * 列表查询
 	 * @author lmiky
@@ -56,33 +56,33 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 	 */
 	public String executeList(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, String requestTyp) throws Exception {
 		try {
-			//判断是否有登陆
+			// 判断是否有登陆
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
-			//检查单点登陆
+			// 检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
-			//检查权限
+			// 检查权限
 			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode(modelMap, request));
-			//生成分页信息
+			// 生成分页信息
 			Page<T> page = generatePage(modelMap, request);
 			resetPage(page, modelMap, request);
-			//生成过滤条件
+			// 生成过滤条件
 			List<PropertyFilter> propertyFilters = generatePropertyFilters(modelMap, request);
 			appendPropertyFilters(modelMap, request, propertyFilters);
-			//生成排序
+			// 生成排序
 			List<Sort> sorts = generateSorts(modelMap, request);
 			appendSorts(modelMap, request, sorts);
 			modelMap.put("sorts", sorts);
-			//查询分页内容，将分页信息设入页面
+			// 查询分页内容，将分页信息设入页面
 			modelMap.put("page", pageService.fillPage(pojoClass, page, propertyFilters, sorts));
 			appendListAttribute(modelMap, request, resopnse);
 			String modulePath = getModulePath(modelMap, request);
 			modelMap.put(Constants.HTTP_PARAM_MODULE_PATH, modulePath);
 			return getExecuteListRet(modelMap, request, modulePath);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			return transactException(e, modelMap, request, resopnse, requestTyp);
 		}
 	}
-	
+
 	/**
 	 * 生成分页对象
 	 * @author lmiky
@@ -93,9 +93,9 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 	 */
 	protected Page<T> generatePage(ModelMap modelMap, HttpServletRequest request) {
 		return PageUtils.generateFromHttpRequest(request);
-		
+
 	}
-	
+
 	/**
 	 * 重新设置分页信息
 	 * @author lmiky
@@ -107,7 +107,7 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 	protected void resetPage(Page<T> page, ModelMap modelMap, HttpServletRequest request) {
 		page.pageAction();
 	}
-	
+
 	/**
 	 * 生成查询过滤
 	 * @author lmiky
@@ -118,9 +118,9 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 	 */
 	protected List<PropertyFilter> generatePropertyFilters(ModelMap modelMap, HttpServletRequest request) {
 		return PropertyFilterUtils.generateFromHttpRequest(request, pojoClass);
-		
+
 	}
-	
+
 	/**
 	 * 添加过滤条件
 	 * @author lmiky
@@ -131,7 +131,7 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 	 */
 	protected void appendPropertyFilters(ModelMap modelMap, HttpServletRequest request, List<PropertyFilter> propertyFilters) {
 	}
-	
+
 	/**
 	 * 生成排序
 	 * @author lmiky
@@ -143,12 +143,45 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 	 */
 	protected List<Sort> generateSorts(ModelMap modelMap, HttpServletRequest request) {
 		List<Sort> sorts = SortUtils.generateFromHttpRequest(request, pojoClass);
-		if(sorts.isEmpty()) {
+		//当页面请求了排序方式，且排序值为空时，即表示以该字段的“无序”方式排序
+		if (sorts.isEmpty() && !hasDefaultSortParam(modelMap, request)) {
 			sorts = getDefaultSort(modelMap, request);
 		}
 		return sorts;
 	}
-	
+
+	/**
+	 * 是否请求中已带有默认的排序参数
+	 * @author lmiky
+	 * @date 2014-1-26
+	 * @param modelMap
+	 * @param request
+	 * @return
+	 */
+	protected boolean hasDefaultSortParam(ModelMap modelMap, HttpServletRequest request) {
+		String defaultSortParamName = getDefaultSortParamName(modelMap, request);
+		if(StringUtils.isBlank(defaultSortParamName)) {
+			return false;
+		}
+		String param = request.getParameter(Constants.HTTP_PARAM_SORT_TYPE_NAME_PREFIX + defaultSortParamName);
+		if(param == null) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * 获取默认排序的参数名
+	 * @author lmiky
+	 * @date 2014-1-26
+	 * @param modelMap
+	 * @param request
+	 * @return
+	 */
+	protected String getDefaultSortParamName(ModelMap modelMap, HttpServletRequest request) {
+		return "";
+	}
+
 	/**
 	 * 获取默认排序
 	 * @author lmiky
@@ -162,7 +195,7 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 		sorts.add(new Sort("id", Sort.SORT_TYPE_DESC, pojoClass));
 		return sorts;
 	}
-	
+
 	/**
 	 * 添加排序
 	 * @author lmiky
@@ -173,9 +206,9 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 	 * @return
 	 */
 	protected void appendSorts(ModelMap modelMap, HttpServletRequest request, List<Sort> sorts) {
-		
+
 	}
-	
+
 	/**
 	 * 追加属性
 	 * @author lmiky
@@ -186,9 +219,9 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 	 * @throws Exception
 	 */
 	protected void appendListAttribute(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse) throws Exception {
-		
+
 	}
-	
+
 	/**
 	 * 获取列表查询返回结果
 	 * @author lmiky
@@ -201,7 +234,7 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 	public String getExecuteListRet(ModelMap modelMap, HttpServletRequest request, String modulePath) {
 		return getViewNamePrefix(modelMap, request, modulePath) + "List";
 	}
-	
+
 	/**
 	 * 获取视图前缀
 	 * @author lmiky
@@ -212,7 +245,7 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 	 * @return
 	 */
 	protected String getViewNamePrefix(ModelMap modelMap, HttpServletRequest request, String modulePath) {
-		if(!StringUtils.isBlank(modulePath)) {
+		if (!StringUtils.isBlank(modulePath)) {
 			modulePath = modulePath + "/";
 		} else {
 			modulePath = "";
@@ -220,7 +253,7 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 		String controllerName = getControllerName(modelMap, request);
 		return modulePath + controllerName;
 	}
-	
+
 	/**
 	 * 获取视图名
 	 * @author lmiky
@@ -232,7 +265,7 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 	public String getControllerName(ModelMap modelMap, HttpServletRequest request) {
 		return this.getClass().getSimpleName().toLowerCase().replace("controller", "");
 	}
-	
+
 	/**
 	 * 获取分页服务对象
 	 * @author lmiky
@@ -249,7 +282,7 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 	 * @date 2013-4-16
 	 * @param pageService
 	 */
-	@Resource(name="pageService")
+	@Resource(name = "pageService")
 	public void setPageService(PageService pageService) {
 		this.pageService = pageService;
 	}

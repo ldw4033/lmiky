@@ -114,7 +114,31 @@ public class BaseServiceImpl implements BaseService {
 			throw new ServiceException(e.getMessage());
 		}
 	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.service.BaseService#update(java.lang.Class, java.lang.Long, java.lang.String, java.lang.Object)
+	 */
+	@Transactional(rollbackFor={Exception.class})
+	public <T extends BasePojo> boolean update(Class<T> pojoClass, Long id, String propertyName, Object propertyValue) throws ServiceException {
+		try {
+			return getDAO().update(pojoClass, id, propertyName, propertyValue);
+		} catch (DatabaseException e) {
+			throw new ServiceException(e.getMessage());
+		}
+	}
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.service.BaseService#update(java.lang.Class, java.lang.Long, java.util.Map)
+	 */
+	@Transactional(rollbackFor={Exception.class})
+	public <T extends BasePojo> boolean update(Class<T> pojoClass, Long id, Map<String, Object> params) throws ServiceException {
+		try {
+			return getDAO().update(pojoClass, id, params);
+		} catch (DatabaseException e) {
+			throw new ServiceException(e.getMessage());
+		}
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.service.BaseService#delete(com.lmiky.jdp.database.pojo.BasePojo)

@@ -19,7 +19,7 @@
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td colspan="2" align="center" valign="top">
-						<table width="98%" height="30" border="0" cellpadding="0" cellspacing="0">
+						<table width="99%" height="30" border="0" cellpadding="0" cellspacing="0">
 							<tr>
 								<td align="center" class="listTitle">
 									&nbsp;<img src="${images }/jt-5.gif" width="16" height="16" align="absmiddle" />${directory.name }&nbsp;文章管理
@@ -33,12 +33,12 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center" valign="top">
-						<table width="98%" border="0" cellspacing="0" cellpadding="0">
+						<table width="99%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<td class="filterTd">
 									<span style="width: 70px;" class="labelSpan_right">标题：</span>
 									<lhtml:propertyFilter inputType="text" compareType="LIKE" propertyName="title" styleClass="bian medium"/>
-									<span style="width: 50px;" class="labelSpan_right">作者：</span>
+									<span style="width: 45px;" class="labelSpan_right">作者：</span>
 									<lhtml:propertyFilter inputType="text" compareType="LIKE" propertyName="author" styleClass="bian medium"/>
 									<span style="width: 70px;" class="labelSpan_right">状态：</span>
 									<lhtml:propertyFilter inputType="select" compareType="EQ" propertyName="state"  styleClass="bian medium">
@@ -55,11 +55,11 @@
 								<td class="filterTd">
 									<span style="width: 70px;" class="labelSpan_right">创建时间：</span>
 									<lhtml:propertyFilter inputType="beginDate" compareType="GE" propertyName="createTime" styleClass="bian medium"/>
-									<span style="width: 50px;" class="labelSpan_center">-</span>
+									<span style="width: 45px;" class="labelSpan_center">-</span>
 									<lhtml:propertyFilter inputType="endDate" compareType="LE" propertyName="createTime" styleClass="bian medium"/>
 									<span style="width: 70px;" class="labelSpan_right">发布时间：</span>
 									<lhtml:propertyFilter inputType="beginDate" compareType="GE" propertyName="pubTime" styleClass="bian medium"/>
-									<span style="width: 50px;" class="labelSpan_center">-</span>
+									<span style="width: 45px;" class="labelSpan_center">-</span>
 									<lhtml:propertyFilter inputType="endDate" compareType="LE" propertyName="pubTime" styleClass="bian medium"/>
 								</td>
 							</tr>
@@ -71,7 +71,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<table width="98%" border="0" cellspacing="0" cellpadding="0">
+						<table width="99%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<td align="left" valign="bottom" class="listMenu">
 									<table border="0" cellpadding="0" cellspacing="0">
@@ -106,18 +106,16 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center" valign="top">
-						<table class="listContent"  width="98%" cellspacing="0" cellpadding="0" rules="cols" border="0">
+						<table class="listContent"  width="99%" cellspacing="0" cellpadding="0" rules="cols" border="0">
 							<tbody>
 								<tr>
 									<th class="no">&nbsp;</th>
 									<th class="sortable sorted_title"><a href="javascript:pageSort('title')">标题</a></th>
-									<th class="sortable sorted_author"><a href="javascript:pageSort('author')">作者</a></th>
-									<th>创建时间</th>
-									<th>发布时间</th>
-									<th>状态</th>
-									<th>操作</th>
+									<th style="width: 130px;" class="sortable sorted_createTime"><a href="javascript:pageSort('createTime')">创建时间</a></th>
+									<th style="width: 60px;" class="sortable sorted_state"><a href="javascript:pageSort('state')">状态</a></th>
+									<th style="width: 180px;">操作</th>
 									<lauthority:checkAuthority authorityCode="cms_resource_delete">
-										<th>
+										<th class="simpleCheckbox">
 											<input type="checkbox" name="batctSelectDelete"  id="batctSelectDelete" class="bian" value="" onclick="batchSelectDelete()"/>
 										</th>
 									</lauthority:checkAuthority>
@@ -129,10 +127,8 @@
 									</c:if>
 									<tr class="${rowClass } hover">
 										<td>${status.count + (page.currentPage - 1) * page.pageSize}</td>
-										<td>${item.title}</td>
-										<td>${item.author}</td>
+										<td style="text-align: left;">${item.title}</td>
 										<td><fmt:formatDate value="${item.createTime}" pattern="${defaultDateTimeFormater }"/></td>
-										<td><fmt:formatDate value="${item.pubTime}" pattern="${defaultDateTimeFormater }"/></td>
 										<td>
 											<c:choose>
 												<c:when test="${item.state == state_create}">创建</c:when>

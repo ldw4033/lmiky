@@ -142,6 +142,19 @@ public class ServiceTest extends BaseTest {
 			baseService.save(goods);
 		}
 	}
+	
+	@Test
+	public void testUpdate2() throws ServiceException {
+		baseService.update(Goods.class, 1l, "createTime", new Date());
+	}
+	
+	@Test
+	public void testUpdate3() throws ServiceException {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("createTime", new Date());
+		params.put("title", "222222222");
+		baseService.update(Goods.class, 1l, params);
+	}
 
 	@Test
 	public void testDelete() throws ServiceException {

@@ -88,6 +88,31 @@ public interface BaseDAO {
 	public <T extends BasePojo> void save(List<T> pojos) throws DatabaseException;
 	
 	/**
+	 * 修改单个属性
+	 * @author lmiky
+	 * @date 2014-1-26
+	 * @param pojoClass
+	 * @param id
+	 * @param propertyName
+	 * @param propertyValue
+	 * @return
+	 * @throws DatabaseException
+	 */
+	public <T extends BasePojo> boolean update(Class<T> pojoClass, Long id, String propertyName, Object propertyValue) throws DatabaseException;
+	
+	/**
+	 * 修改属性
+	 * @author lmiky
+	 * @date 2014-1-26
+	 * @param pojoClass
+	 * @param id
+	 * @param params
+	 * @return
+	 * @throws DatabaseException
+	 */
+	public <T extends BasePojo> boolean update(Class<T> pojoClass, Long id, Map<String, Object> params) throws DatabaseException;
+	
+	/**
 	 * 删除对象
 	 * @author lmiky
 	 * @date 2013-4-16

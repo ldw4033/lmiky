@@ -57,8 +57,8 @@
 			
     </script>
 	</head>
-	<body scroll="no">
-		<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+	<body scroll="no" style="background-color: #F6F6F6;">
+		<table width="1200" height="100%" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<td colspan="3" valign="top">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
