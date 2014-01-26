@@ -57,25 +57,23 @@
 			
     </script>
 	</head>
-	<body scroll="no" style="background-color: #F6F6F6;">
+	<body scroll="no" style="background: #EFEFEF url(${images}/bg.png) repeat 0 0;">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center"  class="home_top">
+			<tr>
+				<td>&nbsp;</td>
+				<td width="1140" style="padding-right: 20px; text-align: right;" valign="middle">
+					您好，${sessionScope.sessionInfo.userName }
+				</td>
+				<td width="60" align="left" valign="middle">
+					<img src="${images}/tb_tc.gif" border="0" align="absmiddle" onclick="logout()" style="cursor: pointer; margin-bottom: 1px;"/>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
 		<table width="1200" height="100%" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<td colspan="3" valign="top">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
-						<tr>
-							<td colspan="2" valign="top">
-								<div class="header">
-								<div class="header-row1">
-									<div style="float: left;">
-										<h1 class="title">内容管理系统</h1>
-									</div>
-									<div style="float: right; font-weight: bold; color: #ffffff; margin-right: 10px; margin-top: 72px;">
-										您好，${sessionScope.sessionInfo.userName }&nbsp;&nbsp;&nbsp;<img src="${images}/tb_tc.gif" border="0" align="absmiddle" onclick="logout()" style="cursor: pointer; margin-bottom: 5px;"/>&nbsp;&nbsp;&nbsp;
-									</div>
-								</div>
-								</div>
-							</td>
-						</tr>
 						<tr>
 							<td height="31" colspan="2" align="center" background="${images}/top1.gif">
 								<table width="98%" border="0" cellspacing="0" cellpadding="0">

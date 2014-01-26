@@ -1,22 +1,13 @@
 @CHARSET "UTF-8";
 
 /*top背景*/
-.header {
-	background: #3066a6 url(../images/topnav.jpg) repeat-x;
+.home_top {
+	margin: auto;
+	height: 35px;
+	background-image: url(../images/top_bg.gif);
+	font-size: 12px;
 }
-.header-row1 {
-	height: 104px;
-	 background: url(../images/toplog.jpg) no-repeat;
-}
-.header .title {
-	font-size: 22px;
-	color: #ffffff;
-	font-weight: bold;
-	margin-top: 38px;
-	margin-left: 175px;
-	text-align: left;
-}
-			
+
 /*top菜单 */
 #sddm {	
     margin: 0;
