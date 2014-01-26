@@ -2,6 +2,7 @@ package com.lmiky.jdp.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import com.lmiky.jdp.constants.Constants;
@@ -12,6 +13,21 @@ import com.lmiky.jdp.constants.Constants;
  * @date 2013-5-16
  */
 public class DateUtils {
+	private static String beginDateTime;
+	private static String endDateTime;
+	static {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		Date date = calendar.getTime();
+		beginDateTime = DateUtils.format(date, Constants.CONTEXT_KEY_FORMAT_TIME_VALUE);
+		calendar.set(Calendar.HOUR_OF_DAY, 23);
+		calendar.set(Calendar.MINUTE, 59);
+		calendar.set(Calendar.SECOND, 59);
+		date = calendar.getTime();
+		endDateTime = DateUtils.format(date, Constants.CONTEXT_KEY_FORMAT_TIME_VALUE);
+	}
 	
 	/**
 	 * 格式化日期/时间
@@ -87,5 +103,25 @@ public class DateUtils {
 	 */
 	public static Date parseTime(String date) {
 		return parse(date, Constants.CONTEXT_KEY_FORMAT_DATETIME_VALUE);
+	}
+	
+	/**
+	 * 开始时间
+	 * @author lmiky
+	 * @date 2014-1-25
+	 * @return
+	 */
+	public static String getBeginDateTime() {
+		return beginDateTime;
+	}
+	
+	/**
+	 * 结束时间
+	 * @author lmiky
+	 * @date 2014-1-25
+	 * @return
+	 */
+	public static String getEndDateTime() {
+		return endDateTime;
 	}
 }

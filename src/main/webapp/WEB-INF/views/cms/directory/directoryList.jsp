@@ -6,230 +6,235 @@
 <%@ include file="/jdp/common/common.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-	<base target="_self"/>
-	<%@ include file="/jdp/form/header.jsp" %>
-	<%@ include file="/jdp/common/tree.jsp" %>
-	<link rel="stylesheet" type="text/css" href="${css}/view.css" />
-	<script type="text/javascript">
-		var zTreeObj;
-		var treeId = "ztree";
-		var selectedNodeId;
-		var treeSetting = {
-			treeId: 'directoryTree',
-			view: {
-				showLine: false,
-				showIcon: true,
-				selectedMulti: false
-			},
-			check: {
-				enable: false
-			},
-			async: {
-				enable: true,
-				url: '<c:url value="/cms/directory/treeList.shtml"/>',
-				autoParam: ["id"]
-			},
-			callback: {
-				onClick: zTreeOnClick,
-				onAsyncSuccess: zTreeOnAsyncSuccess
+	<head>
+		<base target="_self"/>
+		<%@ include file="/jdp/form/header.jsp" %>
+		<%@ include file="/jdp/common/tree.jsp" %>
+		<script type="text/javascript">
+			var zTreeObj;
+			var treeId = "ztree";
+			var selectedNodeId;
+			var treeSetting = {
+				treeId: 'directoryTree',
+				view: {
+					showLine: false,
+					showIcon: true,
+					selectedMulti: false
+				},
+				check: {
+					enable: false
+				},
+				async: {
+					enable: true,
+					url: '<c:url value="/cms/directory/treeList.shtml"/>',
+					autoParam: ["id"]
+				},
+				callback: {
+					onClick: zTreeOnClick,
+					onAsyncSuccess: zTreeOnAsyncSuccess
+				}
+			};
+			function zTreeOnClick(event, treeId, treeNode) {
+				setSelectedNodeId(treeNode);
+				<lauthority:checkAuthority authorityCode="cms_resource_load">
+					$("#resourceFrame").attr("src", "<c:url value="/cms/resource/list.shtml"/>?modulePath=cms/resource&directoryId=" + treeNode.id);
+				</lauthority:checkAuthority>
+			}  
+			
+			function zTreeOnAsyncSuccess(event, treeId, treeNode, msg) {
+				if(selectedNodeId != null && selectedNodeId != undefined && selectedNodeId != '') {
+					var node = zTreeObj.getNodeByParam("id", selectedNodeId, null);
+					zTreeObj.selectNode(node);
+				}
+				var nodes = treeNode.children;
+		    	if(treeNode.children.length == 0) {
+			    	treeNode.isParent = false;
+			    	zTreeObj.updateNode(treeNode);
+			    }
 			}
-		};
-		function zTreeOnClick(event, treeId, treeNode) {
-			setSelectedNodeId(treeNode);
-			<lauthority:checkAuthority authorityCode="cms_resource_load">
-				$("#resourceFrame").attr("src", "<c:url value="/cms/resource/list.shtml"/>?modulePath=cms/resource&directoryId=" + treeNode.id);
-			</lauthority:checkAuthority>
-		}  
-		
-		function zTreeOnAsyncSuccess(event, treeId, treeNode, msg) {
-			if(selectedNodeId != null && selectedNodeId != undefined && selectedNodeId != '') {
-				var node = zTreeObj.getNodeByParam("id", selectedNodeId, null);
-				zTreeObj.selectNode(node);
+			
+			//如果只有一个顶层节点，则展开子节点，否则不展开
+			var zTreeNodes = [  
+				<c:choose>
+					<c:when test="${fn:length(roots) > 1}">
+						<c:forEach items="${roots}" var="node" varStatus="status">
+			        		{id:"${node.id}", name:"${node.name}",
+			        			<c:choose>
+			        				<c:when test="${node.leaf == tree_leaf_yes}">isParent: "false"</c:when>
+			        				<c:otherwise>isParent: "true"</c:otherwise>
+			        			</c:choose>
+			        		}<c:if test="${!status.last}">,</c:if>
+			        	</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${roots}" var="node" varStatus="status">
+							{id:"${node.id}", name:"${node.name}", open:true,
+			        			<c:choose>
+			        				<c:when test="${node.leaf == tree_leaf_yes}">isParent: "false"</c:when>
+			        				<c:otherwise>
+			        					isParent: "true",
+			        					children: [  
+			        				    	<c:forEach items="${node.children}" var="children" varStatus="childStatus">
+				        				    	{id:"${children.id}", name:"${children.name}",
+								        			<c:choose>
+								        				<c:when test="${children.leaf == 0}">isParent: "false"</c:when>
+								        				<c:otherwise>isParent: "true"</c:otherwise>
+								        			</c:choose>
+								        		}<c:if test="${!childStatus.last}">,</c:if>
+			        				    	</c:forEach>
+			        				 	]
+			        				</c:otherwise>
+			        			</c:choose>
+			        		}<c:if test="${!status.last}">,</c:if>
+			        	</c:forEach>
+					</c:otherwise>
+	    		</c:choose>
+	        ]   
+			$(document).ready(function() {
+				zTreeObj = $.fn.zTree.init($("#" + treeId), treeSetting, zTreeNodes);
+				var nodes = zTreeObj.getNodes();
+				if (nodes.length>0) {
+					var node = nodes[0];
+					zTreeObj.selectNode(node);
+					zTreeOnClick(event, treeId, node);
+				}
+			});
+			
+			function setSelectedNodeId(node) {
+				selectedNodeId = node.id;
 			}
-			var nodes = treeNode.children;
-	    	if(treeNode.children.length == 0) {
-		    	treeNode.isParent = false;
-		    	zTreeObj.updateNode(treeNode);
-		    }
-		}
-		
-		//如果只有一个顶层节点，则展开子节点，否则不展开
-		var zTreeNodes = [  
-			<c:choose>
-				<c:when test="${fn:length(roots) > 1}">
-					<c:forEach items="${roots}" var="node" varStatus="status">
-		        		{id:"${node.id}", name:"${node.name}",
-		        			<c:choose>
-		        				<c:when test="${node.leaf == tree_leaf_yes}">isParent: "false"</c:when>
-		        				<c:otherwise>isParent: "true"</c:otherwise>
-		        			</c:choose>
-		        		}<c:if test="${!status.last}">,</c:if>
-		        	</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<c:forEach items="${roots}" var="node" varStatus="status">
-						{id:"${node.id}", name:"${node.name}", open:true,
-		        			<c:choose>
-		        				<c:when test="${node.leaf == tree_leaf_yes}">isParent: "false"</c:when>
-		        				<c:otherwise>
-		        					isParent: "true",
-		        					children: [  
-		        				    	<c:forEach items="${node.children}" var="children" varStatus="childStatus">
-			        				    	{id:"${children.id}", name:"${children.name}",
-							        			<c:choose>
-							        				<c:when test="${children.leaf == 0}">isParent: "false"</c:when>
-							        				<c:otherwise>isParent: "true"</c:otherwise>
-							        			</c:choose>
-							        		}<c:if test="${!childStatus.last}">,</c:if>
-		        				    	</c:forEach>
-		        				 	]
-		        				</c:otherwise>
-		        			</c:choose>
-		        		}<c:if test="${!status.last}">,</c:if>
-		        	</c:forEach>
-				</c:otherwise>
-    		</c:choose>
-        ]   
-		$(document).ready(function() {
-			zTreeObj = $.fn.zTree.init($("#" + treeId), treeSetting, zTreeNodes);
-			var nodes = zTreeObj.getNodes();
-			if (nodes.length>0) {
-				var node = nodes[0];
-				zTreeObj.selectNode(node);
-				zTreeOnClick(event, treeId, node);
+			
+			function addDirectory() {
+				var parentId = '';
+				if(selectedNodeId != null) {
+					parentId = selectedNodeId;
+				}
+				openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }&parentId=' + parentId + '"/>', 600, 400, '', reAsyncNode);
 			}
-		});
-		
-		function setSelectedNodeId(node) {
-			selectedNodeId = node.id;
-		}
-		
-		function addDirectory() {
-			var parentId = '';
-			if(selectedNodeId != null) {
-				parentId = selectedNodeId;
+			
+			function updateDirectory() {
+				if(selectedNodeId != null) {
+					openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }&id=' + selectedNodeId + '"/>', 600, 400, '', reAsyncParentNode);
+				} else {
+					alert('请选择要修改的目录！');
+				}
 			}
-			openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }&parentId=' + parentId + '"/>', 600, 400, '', reAsyncNode);
-		}
-		
-		function updateDirectory() {
-			if(selectedNodeId != null) {
-				openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }&id=' + selectedNodeId + '"/>', 600, 400, '', reAsyncParentNode);
-			} else {
-				alert('请选择要修改的目录！');
+			
+			function sortDirectory() {
+				if(selectedNodeId != null) {
+					openDialog('<c:url value="/sort/load.shtml" />?<lhtml:propertyFilterNamed compareType="EQ" propertyName="parent.id"/>=' + selectedNodeId + '&className=<%=CmsDirectory.class.getName() %>&showName=name', 650, 600, '', reAsyncNode);
+				} else {
+					alert('请选择要删除的父目录！');
+				}
 			}
-		}
-		
-		function sortDirectory() {
-			if(selectedNodeId != null) {
-				openDialog('<c:url value="/sort/load.shtml" />?<lhtml:propertyFilterNamed compareType="EQ" propertyName="parent.id"/>=' + selectedNodeId + '&className=<%=CmsDirectory.class.getName() %>&showName=name', 650, 600, '', reAsyncNode);
-			} else {
-				alert('请选择要删除的父目录！');
-			}
-		}
-		
-		function deleteDirectory() {
-			if(selectedNodeId != null) {
-				if(confirm('删除目录将一并删除所属文章列表，您确定要删除该目录？')) {
-					$.getJSON('<c:url value="/cms/directory/delete.shtml"/>?id=' + selectedNodeId, function(json){
-						if(json.errorInfos) {
-							$.each(json.errorInfos, function(i, item) {
-								alert(item);
-							});	
-						}
-						if(json.messageInfos) {
-							$.each(json.messageInfos, function(i, item) {
-								alert(item);
-							});	
-						}
-						if(json.<%=BaseInfoCodeJsonView.KEY_CODE_NAME%> == <%=BaseCode.CODE_SUCCESS%>) {
-							var node = zTreeObj.getNodeByParam("id", selectedNodeId, null);
-							var parentNode = node.getParentNode();
-							var refreshId = null;
-							if(parentNode != null) {
-								refreshId = parentNode.id;
-								selectedNodeId = refreshId;
-								zTreeOnClick(event, treeId, parentNode)
+			
+			function deleteDirectory() {
+				if(selectedNodeId != null) {
+					if(confirm('删除目录将一并删除所属文章列表，您确定要删除该目录？')) {
+						$.getJSON('<c:url value="/cms/directory/delete.shtml"/>?id=' + selectedNodeId, function(json){
+							if(json.errorInfos) {
+								$.each(json.errorInfos, function(i, item) {
+									alert(item);
+								});	
 							}
-							reAsyncChildNodes(refreshId);
-						}
-					}); 	
+							if(json.messageInfos) {
+								$.each(json.messageInfos, function(i, item) {
+									alert(item);
+								});	
+							}
+							if(json.<%=BaseInfoCodeJsonView.KEY_CODE_NAME%> == <%=BaseCode.CODE_SUCCESS%>) {
+								var node = zTreeObj.getNodeByParam("id", selectedNodeId, null);
+								var parentNode = node.getParentNode();
+								var refreshId = null;
+								if(parentNode != null) {
+									refreshId = parentNode.id;
+									selectedNodeId = refreshId;
+									zTreeOnClick(event, treeId, parentNode)
+								}
+								reAsyncChildNodes(refreshId);
+							}
+						}); 	
+					}
+				} else {
+					alert('请选择要删除的目录！');
 				}
-			} else {
-				alert('请选择要删除的目录！');
 			}
-		}
-		
-		function reAsyncNode() {
-			reAsyncChildNodes(selectedNodeId);
-		}
-		
-		function reAsyncParentNode() {
-			var node = null;
-			if(selectedNodeId != null && selectedNodeId != undefined && selectedNodeId != '') {
-				node = zTreeObj.getNodeByParam("id", selectedNodeId, null);
-				var parentNode = node.getParentNode();
-				var refreshId = null;
-				if(parentNode != null) {
-					refreshId = parentNode.id;
+			
+			function reAsyncNode() {
+				reAsyncChildNodes(selectedNodeId);
+			}
+			
+			function reAsyncParentNode() {
+				var node = null;
+				if(selectedNodeId != null && selectedNodeId != undefined && selectedNodeId != '') {
+					node = zTreeObj.getNodeByParam("id", selectedNodeId, null);
+					var parentNode = node.getParentNode();
+					var refreshId = null;
+					if(parentNode != null) {
+						refreshId = parentNode.id;
+					}
+					reAsyncChildNodes(refreshId);
 				}
-				reAsyncChildNodes(refreshId);
 			}
-		}
-		
-		function reAsyncChildNodes(nodeId) {
-			var node = null;
-			if(nodeId != null && nodeId != undefined && nodeId != '') {
-				node = zTreeObj.getNodeByParam("id", nodeId, null);
+			
+			function reAsyncChildNodes(nodeId) {
+				var node = null;
+				if(nodeId != null && nodeId != undefined && nodeId != '') {
+					node = zTreeObj.getNodeByParam("id", nodeId, null);
+				}
+				//如果isParent=false,则reAsyncChildNodes不会执行
+				if(node != null && node.isParent == false) {
+					node.isParent = true;
+				}
+				//parentNode = null 时，相当于从根节点 Root 进行异步加载
+				zTreeObj.reAsyncChildNodes(node, "refresh", false);
 			}
-			//如果isParent=false,则reAsyncChildNodes不会执行
-			if(node != null && node.isParent == false) {
-				node.isParent = true;
-			}
-			//parentNode = null 时，相当于从根节点 Root 进行异步加载
-			zTreeObj.reAsyncChildNodes(node, "refresh", false);
-		}
-	</script>
-</head>
-<body scroll="no">
-	<table class="table-form"  cellpadding="0" cellspacing="0" border="0" style="width: 100%; height:100%;">
-		<tr>
-			<td width="150" valign="top" rowspan="2">
-				<ul id="ztree" class="ztree" style="overflow:auto;"></ul>
-			</td>
-			<td valign="middle" class="listTitle2">
-				<lauthority:checkAuthority authorityCode="cms_directory_add">
-					<input class="btnClass" type="button" value="添加" onClick="addDirectory()"/>
-					&nbsp;
-				</lauthority:checkAuthority>
-				<lauthority:checkAuthority authorityCode="cms_directory_modify">
-					<input class="btnClass" type="button" value="修改" onclick="updateDirectory()"/>
-					&nbsp;
-				</lauthority:checkAuthority>
-				<lauthority:checkAuthority authorityCode="cms_directory_modify">
-					<input class="btnClass" type="button" value="排序" onclick="sortDirectory()"/>
-					&nbsp;
-				</lauthority:checkAuthority>
-				<lauthority:checkAuthority authorityCode="cms_directory_delete">
-					<input class="btnClass" type="button" value="删除" onclick="deleteDirectory()"/>
-					&nbsp;
-				</lauthority:checkAuthority>
-				<c:set var="isFavorited" value="${false}" />
-				<favorite:inMyMenu menuId="cms_directory_load">
-				<c:set var="isFavorited" value="${true}" />
-					<input class="btnClass1" type="button" onClick="removeMyFavoriteMenu('cms_directory_load', this)" value="取消收藏" />
-				</favorite:inMyMenu>
-				<c:if test="${!isFavorited }">
-					<input class="btnClass1" type="button" onClick="addMyFavoriteMenu('cms_directory_load', this)" value="添加到收藏夹" />
-				</c:if>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top" style="height: 100%">
-				<iframe id="resourceFrame" style="width: 100%; height: 100%;" frameborder="0" src=""/>
-			</td>
-		</tr>
-	</table>
-</body>
+		</script>
+	</head>
+	<body scroll="no">
+		<table class="table-form"  cellpadding="0" cellspacing="0" border="0" style="width: 100%; height:100%;">
+			<tr>
+				<td width="150" valign="top" style="height: 100%">
+					<ul id="ztree" class="ztree" style="overflow:auto;"></ul>
+				</td>
+				<td valign="top" style="padding: 0px;">
+					<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; height:100%; border: none;">
+						<tr>
+							<td valign="middle" class="listTitle2" style="border: none;">
+								<lauthority:checkAuthority authorityCode="cms_directory_add">
+									<input class="btnClass" type="button" value="添加" onClick="addDirectory()"/>
+									&nbsp;
+								</lauthority:checkAuthority>
+								<lauthority:checkAuthority authorityCode="cms_directory_modify">
+									<input class="btnClass" type="button" value="修改" onclick="updateDirectory()"/>
+									&nbsp;
+								</lauthority:checkAuthority>
+								<lauthority:checkAuthority authorityCode="cms_directory_modify">
+									<input class="btnClass" type="button" value="排序" onclick="sortDirectory()"/>
+									&nbsp;
+								</lauthority:checkAuthority>
+								<lauthority:checkAuthority authorityCode="cms_directory_delete">
+									<input class="btnClass" type="button" value="删除" onclick="deleteDirectory()"/>
+									&nbsp;
+								</lauthority:checkAuthority>
+								<c:set var="isFavorited" value="${false}" />
+								<favorite:inMyMenu menuId="cms_directory_load">
+								<c:set var="isFavorited" value="${true}" />
+									<input class="btnClass1" type="button" onClick="removeMyFavoriteMenu('cms_directory_load', this)" value="取消收藏" />
+								</favorite:inMyMenu>
+								<c:if test="${!isFavorited }">
+									<input class="btnClass1" type="button" onClick="addMyFavoriteMenu('cms_directory_load', this)" value="添加到收藏夹" />
+								</c:if>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top" style="height: 100%; border: none;">
+								<iframe id="resourceFrame" style="width: 100%; height: 100%;" frameborder="0" src=""/>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
 </html>

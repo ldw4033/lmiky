@@ -1,10 +1,5 @@
 package com.lmiky.jdp.constants;
 
-import java.util.Calendar;
-
-import java.util.Date;
-
-import com.lmiky.jdp.util.DateUtils;
 import com.lmiky.jdp.util.PropertiesUtils;
 
 /**
@@ -13,8 +8,6 @@ import com.lmiky.jdp.util.PropertiesUtils;
  * @date 2013-4-16
  */
 public class Constants {
-	private static String beginDateTime;
-	private static String endDateTime;
 	// ****************************************properties文件key****************************************//
 	// 配置文件
 	public static final String PROPERTIES_KEY_CONTEXT_FILE = "config/context";
@@ -32,7 +25,9 @@ public class Constants {
 	public static final String CONTEXT_KEY_PAGE_PAGESIZE = "page.pageSize";
 	
 	//文件上传路径
-	public static final String SYSTEM_FILE_UPLOAD_PATH = "system.file.upload.path";
+	//临时目录
+	public static final String SYSTEM_FILE_UPLOAD_PATH_TEMP = "system.file.upload.path.temp";
+	public static final String SYSTEM_FILE_PATH = "system.file.path";
 
 	// ****************************************properties文件key****************************************//
 
@@ -66,38 +61,4 @@ public class Constants {
 	public static final String SESSION_ATTR_CONTINUATION_PARAM_SUFFIX = ".parameters";
 	
 	//**********************************************session属性**********************************************//
-	
-	static {
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.HOUR_OF_DAY, 0);
-		calendar.set(Calendar.MINUTE, 0);
-		calendar.set(Calendar.SECOND, 0);
-		Date date = calendar.getTime();
-		beginDateTime = DateUtils.format(date, CONTEXT_KEY_FORMAT_TIME_VALUE);
-		calendar.set(Calendar.HOUR_OF_DAY, 23);
-		calendar.set(Calendar.MINUTE, 59);
-		calendar.set(Calendar.SECOND, 59);
-		date = calendar.getTime();
-		endDateTime = DateUtils.format(date, CONTEXT_KEY_FORMAT_TIME_VALUE);
-	}
-	
-	/**
-	 * 开始时间
-	 * @author lmiky
-	 * @date 2014-1-25
-	 * @return
-	 */
-	public static String getBeginDateTime() {
-		return beginDateTime;
-	}
-	
-	/**
-	 * 结束时间
-	 * @author lmiky
-	 * @date 2014-1-25
-	 * @return
-	 */
-	public static String getEndDateTime() {
-		return endDateTime;
-	}
 }

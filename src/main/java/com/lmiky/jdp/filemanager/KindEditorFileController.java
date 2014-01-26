@@ -80,7 +80,7 @@ public class KindEditorFileController extends BaseController {
 		        	}
 		        }
 		        if(isAllowFileExtension) {
-					String filePath = PropertiesUtils.getStringContextValue(Constants.SYSTEM_FILE_UPLOAD_PATH);
+					String filePath = PropertiesUtils.getStringContextValue(Constants.SYSTEM_FILE_PATH);
 					String realPath = WebUtils.getRealPath(request.getSession().getServletContext(), filePath);
 					File newFile = new File(realPath + "/" + newFileName);
 					IOUtils.copy(multipartFile.getInputStream(), org.apache.commons.io.FileUtils.openOutputStream(newFile));

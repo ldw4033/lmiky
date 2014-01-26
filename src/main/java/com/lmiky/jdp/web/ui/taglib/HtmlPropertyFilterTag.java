@@ -6,6 +6,7 @@ import javax.servlet.jsp.JspException;
 import org.apache.commons.lang3.StringUtils;
 
 import com.lmiky.jdp.constants.Constants;
+import com.lmiky.jdp.util.DateUtils;
 import com.lmiky.jdp.util.UUIDGenerator;
 
 /**
@@ -101,9 +102,9 @@ public class HtmlPropertyFilterTag extends BaseHtmlTag {
 			if (INPUT_TYPE_DATE.equals(inputType) || INPUT_TYPE_BEGINDATE.equals(inputType) || INPUT_TYPE_ENDDATE.equals(inputType)) {
 				inputHtml.append(Constants.CONTEXT_KEY_FORMAT_DATE_VALUE);
 				if (INPUT_TYPE_BEGINDATE.equals(inputType)) {
-					inputHtml.append(" ").append(Constants.getBeginDateTime());
+					inputHtml.append(" ").append(DateUtils.getBeginDateTime());
 				} else if (INPUT_TYPE_ENDDATE.equals(inputType)) {
-					inputHtml.append(" ").append(Constants.getEndDateTime());
+					inputHtml.append(" ").append(DateUtils.getEndDateTime());
 				}
 			} else {
 				inputHtml.append(Constants.CONTEXT_KEY_FORMAT_DATETIME_VALUE);
