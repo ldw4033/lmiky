@@ -16,7 +16,7 @@
 	       		</td>
 	       	</tr>
 			<tr>
-				<td width="17%" align="right" class="bg02">
+				<td width="70" align="right" class="bg02">
 					<label>旧密码<span class="req">*</span></label>
 				</td>
 				<td>

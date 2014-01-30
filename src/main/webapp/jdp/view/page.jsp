@@ -88,7 +88,7 @@
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-				转到第 <input type="text" style="height: 18px; line-height: 12px;" class="mini" name="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_PAGE_CURRENTPAGE %>"  id="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_PAGE_CURRENTPAGE %>" value="${page.currentPage}"/> 页 
+				转到第 <input type="text" style="height: 18px; line-height: 12px;" class="mini bian" name="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_PAGE_CURRENTPAGE %>"  id="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_PAGE_CURRENTPAGE %>" value="${page.currentPage}"/> 页 
 				<input type="hidden" name="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_PAGE_ACTION%>"  id="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_PAGE_ACTION%>" value="${page.action}"/>
 				<img src="${images}/go.gif" width="29" height="15" align="absmiddle" onclick="document.forms.mainForm.submit()" style="cursor: pointer;"/></span>
 			</td>

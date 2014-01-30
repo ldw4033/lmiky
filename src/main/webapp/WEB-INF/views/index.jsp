@@ -3,7 +3,6 @@
 <%@page import="com.lmiky.jdp.constants.Constants"%>
 <%@page import="com.lmiky.jdp.module.pojo.Function"%>
 <%@ include file="/jdp/common/common.jsp" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="com.lmiky.jdp.system.menu.controller.MenuController" %>
 <html>
 	<head>
@@ -57,7 +56,7 @@
 			
     </script>
 	</head>
-	<body scroll="no" style="background: #EFEFEF url(${images}/bg.png) repeat 0 0;">
+	<body scroll="no" style="background: #EFEFEF url(${images}/bg.png) repeat 0 0; overflow:hidden; height:100%;">
 		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center"  class="home_top">
 			<tr>
 				<td>&nbsp;</td>

@@ -4,7 +4,6 @@
 <c:set var="state_create" value="<%=CmsResource.STATE_CREATE %>"/>
 <c:set var="state_publish" value="<%=CmsResource.STATE_PUBLISH %>"/>
 <c:set var="state_unpublish" value="<%=CmsResource.STATE_UNPUBLISH %>"/>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<%@ include file="/jdp/form/header.jsp" %>

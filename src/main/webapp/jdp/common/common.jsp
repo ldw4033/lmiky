@@ -9,3 +9,4 @@
 <c:set var="defaultDateTimeFormater" value="<%=com.lmiky.jdp.constants.Constants.CONTEXT_KEY_FORMAT_DATETIME_VALUE %>"/>
 <%@ include file="/jdp/common/scripts.jsp" %>
 <%@ include file="/jdp/common/style.jsp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

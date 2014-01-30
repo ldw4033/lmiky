@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/jdp/common/common.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<%@ include file="/jdp/common/header.jsp"%>
@@ -52,7 +51,6 @@
 											<td align="center">
 												<table>
 													<tr>
-														<!-- td align="center" class="btn_menu btnClass_td" onClick="openDialog('<c:url value="/role/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }"/>', 800, 600)">添加</td-->
 														<td align="center" class="btn_menu btnClass_td" onClick="redirectPage('<c:url value="/role/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }"/>')">添加</td>
 													</tr>
 												</table>
@@ -92,7 +90,7 @@
 									<th>操作</th>
 									<lauthority:checkAuthority authorityCode="jdp_user_role_delete">
 										<th class="simpleCheckbox">
-											<input type="checkbox" name="batctSelectDelete"  id="batctSelectDelete" class="bian" value="" onclick="batchSelectDelete()"/>
+											<input type="checkbox" name="batctSelectDelete"  id="batctSelectDelete" value="" onclick="batchSelectDelete()"/>
 										</th>
 									</lauthority:checkAuthority>
 								</tr>
@@ -128,7 +126,7 @@
 										</td>
 										<lauthority:checkAuthority authorityCode="jdp_user_role_delete">
 											<td>
-												<input type="checkbox" name="batchDeleteId" class="bian" value="${item.id}" />
+												<input type="checkbox" name="batchDeleteId" value="${item.id}" />
 											</td>
 										</lauthority:checkAuthority>
 									</tr>

@@ -26,7 +26,6 @@
 			//以下ajax方法IE会出问题，可能的原因是在页面关闭完成时，ajax还没完成连接，为了测试，在ajax之后执行alert方法，就会每次都完成连接解锁，所以要改为同步
 			//var uncacheParam = new Date().getTime(); //防止页面缓存
 			//$.get("${ctx }/lock/unlock.shtml?uncacheParam=" + uncacheParam, { target: '${lockTargetId }'} );
-			//alert('11111111');
 			
 			//var url = "${ctx }/lock/unlock.shtml?target=${lockTargetId }";
 			//window.open(url, "unlock", "left=10000,top=10000,width=1.height=1");

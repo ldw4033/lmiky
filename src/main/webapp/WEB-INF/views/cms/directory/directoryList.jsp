@@ -4,7 +4,6 @@
 <%@page import="com.lmiky.jdp.base.view.BaseInfoCodeJsonView"%>
 <%@page import="com.lmiky.jdp.base.view.BaseCode"%>
 <%@ include file="/jdp/common/common.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<base target="_self"/>
@@ -109,12 +108,12 @@
 				if(selectedNodeId != null) {
 					parentId = selectedNodeId;
 				}
-				openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }&parentId=' + parentId + '"/>', 600, 400, '', reAsyncNode);
+				openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }&parentId=' + parentId + '"/>', 600, 400, '添加目录', reAsyncNode);
 			}
 			
 			function updateDirectory() {
 				if(selectedNodeId != null) {
-					openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }&id=' + selectedNodeId + '"/>', 600, 400, '', reAsyncParentNode);
+					openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }&id=' + selectedNodeId + '"/>', 600, 400, '修改目录', reAsyncParentNode);
 				} else {
 					alert('请选择要修改的目录！');
 				}
@@ -122,9 +121,9 @@
 			
 			function sortDirectory() {
 				if(selectedNodeId != null) {
-					openDialog('<c:url value="/sort/load.shtml" />?<lhtml:propertyFilterNamed compareType="EQ" propertyName="parent.id"/>=' + selectedNodeId + '&className=<%=CmsDirectory.class.getName() %>&showName=name', 650, 600, '', reAsyncNode);
+					sort('<%=CmsDirectory.class.getName() %>', 'name', '<lhtml:propertyFilterNamed compareType="EQ" propertyName="parent.id"/>=' + selectedNodeId, 650, 600, '目录排序', reAsyncNode);
 				} else {
-					alert('请选择要删除的父目录！');
+					alert('请选择要排序的父目录！');
 				}
 			}
 			

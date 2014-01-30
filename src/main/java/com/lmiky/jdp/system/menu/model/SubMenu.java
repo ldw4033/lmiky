@@ -8,13 +8,15 @@ import java.io.Serializable;
  * @date 2013-6-16
  */
 public class SubMenu implements Serializable {
-	private static final long serialVersionUID = 3381366955500160742L;
+	private static final long serialVersionUID = -7733952626633943268L;
 	private String id;
 	private String label;
 	private String url;
 	private String type;
 	private String modulePath;
 	private String authority;
+	private Integer width;
+	private Integer height;
 	
 	/**
 	 * @return the id
@@ -87,5 +89,29 @@ public class SubMenu implements Serializable {
 	 */
 	public void setAuthority(String authority) {
 		this.authority = authority;
+	}
+	/**
+	 * @return the width
+	 */
+	public Integer getWidth() {
+		return width;
+	}
+	/**
+	 * @param width the width to set
+	 */
+	public void setWidth(Integer width) {
+		this.width = width;
+	}
+	/**
+	 * @return the height
+	 */
+	public Integer getHeight() {
+		return height;
+	}
+	/**
+	 * @param height the height to set
+	 */
+	public void setHeight(Integer height) {
+		this.height = height;
 	}
 }

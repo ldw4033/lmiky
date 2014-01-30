@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.lmiky.jdp.user.pojo.User" %>
 <%@ include file="/jdp/common/common.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:set var="yesValid" value="<%=User.VALID_YES %>"/>
 <c:set var="noValid" value="<%=User.VALID_NO %>"/>
 <html>
@@ -115,7 +114,7 @@
 									<th>操作</th>
 									<lauthority:checkAuthority authorityCode="jdp_user_user_delete">
 										<th class="simpleCheckbox">
-											<input type="checkbox" name="batctSelectDelete"  id="batctSelectDelete" class="bian" value="" onclick="batchSelectDelete()"/>
+											<input type="checkbox" name="batctSelectDelete"  id="batctSelectDelete" value="" onclick="batchSelectDelete()"/>
 										</th>
 									</lauthority:checkAuthority>
 								</tr>
@@ -163,7 +162,7 @@
 										</td>
 										<lauthority:checkAuthority authorityCode="jdp_user_user_delete">
 											<td>
-												<input type="checkbox" name="batchDeleteId" class="bian" value="${item.id}" />
+												<input type="checkbox" name="batchDeleteId" value="${item.id}" />
 											</td>
 										</lauthority:checkAuthority>
 									</tr>

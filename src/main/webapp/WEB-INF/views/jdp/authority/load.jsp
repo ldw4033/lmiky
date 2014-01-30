@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.lmiky.jdp.module.controller.ModuleController,com.lmiky.jdp.authority.pojo.Authority,com.lmiky.jdp.module.pojo.Function,com.lmiky.jdp.module.pojo.Module" %>
 <%@ include file="/jdp/common/common.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<base target="_self"/>

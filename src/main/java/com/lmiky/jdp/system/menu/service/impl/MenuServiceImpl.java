@@ -89,6 +89,14 @@ public class MenuServiceImpl implements MenuService {
 					subMenu.setUrl(url + Constants.HTTP_PARAM_MODULE_PATH + "=" + subMenu.getModulePath() + "&" + Constants.HTTP_PARAM_SUBMENU_ID
 							+ "=" + subMenu.getId());
 					subMenu.setType(subMenuElement.elementText("type"));
+					String width = subMenuElement.elementText("width");
+					if(StringUtils.isNotBlank(width)) {
+						subMenu.setWidth(Integer.parseInt(width));
+					}
+					String height = subMenuElement.elementText("height");
+					if(StringUtils.isNotBlank(height)) {
+						subMenu.setHeight(Integer.parseInt(height));
+					}
 					subMenu.setAuthority(subMenuElement.elementText("authority"));
 					subMenuList.add(subMenu);
 					cache.put(CACHE_KEY_SUBMENU_PREFIX + subMenu.getId(), new SimpleCacheData(subMenu));

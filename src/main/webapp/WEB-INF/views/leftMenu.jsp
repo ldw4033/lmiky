@@ -4,13 +4,16 @@
 <%@page import="com.lmiky.jdp.module.pojo.Function"%>
 <%@ include file="/jdp/common/common.jsp" %>
 <c:set var="frameUrl" value=""/>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>首页</title>
 		<link type="text/css" rel="stylesheet" href="${css}/menu.css"/>
 		<script type="text/javascript">
+		
+			var defaultDialogWith = 800;
+			var defaultDialogHeight = 550;
+		
 			var menuPrefix = "topMenu_";	//大菜单TR前缀
 			var subMenuPrefix = "subMenu_";	//子菜单TR前缀
 			var selectedSubMenu = null;	//当前选中的菜单
@@ -73,7 +76,11 @@
 														" onClick="selectSubMenu(this, '<c:url value="/"/>${subMenu.url }');">${subMenu.label }</dt>
 													</c:when>
 													<c:when test="${subMenu.type == 'dialog' }">
-														<dt class="title_common title_close" onClick="parent.openDialog('<c:url value="/"/>${subMenu.url }', 800, 600)">${subMenu.label }</dt>
+														<dt class="title_common title_close" 
+														onClick="parent.openDialog('<c:url value="/"/>${subMenu.url }', 
+														<c:choose><c:when test="${not empty subMenu.width}">${subMenu.width }</c:when><c:otherwise>defaultDialogWith</c:otherwise></c:choose>,
+														<c:choose><c:when test="${not empty subMenu.height}">${subMenu.height }</c:when><c:otherwise>defaultDialogHeight</c:otherwise></c:choose>, 
+														'${subMenu.label }')">${subMenu.label }</dt>
 													</c:when>
 												</c:choose>
 											</div>

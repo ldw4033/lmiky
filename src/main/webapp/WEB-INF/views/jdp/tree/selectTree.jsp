@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="/jdp/common/common.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<%@ include file="/jdp/form/header.jsp" %>
@@ -82,8 +81,12 @@
 						alert('请选择节点！');
 					} else {
 						var retValue = selectedNode.name + "," + selectedNode.id;
-						window.returnValue = retValue;
-						window.close();
+						art.dialog.data('resultValue', retValue);
+						var list = parent.art.dialog.list;
+						for (var i in list) {
+							list[i].close();
+						}
+						art.dialog.close();
 					}
 				}
 			</script>
@@ -107,7 +110,7 @@
 				<td align="center">
 					<input type="button" class="btnClass" style="cursor: pointer;" value="选择" onclick="selectNode()"/>
 					&nbsp;&nbsp;
-					<input type="button" class="btnClass" style="cursor: pointer;" value="关闭" onclick="window.close()"/>
+					<input type="button" class="btnClass" style="cursor: pointer;" value="关闭" onclick="art.dialog.close();"/>
 				</td>
 			</tr>
 		</table>
