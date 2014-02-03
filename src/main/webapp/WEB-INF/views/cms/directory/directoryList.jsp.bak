@@ -30,14 +30,13 @@
 				},
 				callback: {
 					onClick: zTreeOnClick,
-					onAsyncSuccess: zTreeOnAsyncSuccess,
-					onExpand: resizeMenuIframe
+					onAsyncSuccess: zTreeOnAsyncSuccess
 				}
 			};
 			function zTreeOnClick(event, treeId, treeNode) {
 				setSelectedNodeId(treeNode);
 				<lauthority:checkAuthority authorityCode="cms_resource_load">
-					$("#contentFrame", window.parent.parent.document).attr("src", "<c:url value="/cms/resource/list.shtml"/>?modulePath=cms/resource&directoryId=" + treeNode.id);
+					$("#resourceFrame").attr("src", "<c:url value="/cms/resource/list.shtml"/>?modulePath=cms/resource&directoryId=" + treeNode.id);
 				</lauthority:checkAuthority>
 			}  
 			
@@ -51,11 +50,6 @@
 			    	treeNode.isParent = false;
 			    	zTreeObj.updateNode(treeNode);
 			    }
-		    	zTreeObj.expandNode(treeNode, true, false, false, true);
-			}
-			
-			function resizeMenuIframe() {
-				resizeIframe('menuFrame_cms_directory_load');
 			}
 			
 			//如果只有一个顶层节点，则展开子节点，否则不展开
@@ -192,15 +186,52 @@
 					node.isParent = true;
 				}
 				//parentNode = null 时，相当于从根节点 Root 进行异步加载
-				zTreeObj.reAsyncChildNodes(node, "refresh", true);
+				zTreeObj.reAsyncChildNodes(node, "refresh", false);
 			}
 		</script>
 	</head>
-	<body style="overflow-y : hidden; " >
-		<table  cellpadding="0" cellspacing="0" border="0" style="width: 100%; height:100%;">
+	<body scroll="no">
+		<table class="table-form"  cellpadding="0" cellspacing="0" border="0" style="width: 100%; height:100%;">
 			<tr>
 				<td width="150" valign="top" style="height: 100%">
 					<ul id="ztree" class="ztree" style="overflow:auto;"></ul>
+				</td>
+				<td valign="top" style="padding: 0px;">
+					<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; height:100%; border: none;">
+						<tr>
+							<td valign="middle" class="listTitle2" style="border: none;">
+								<lauthority:checkAuthority authorityCode="cms_directory_add">
+									<input class="btnClass" type="button" value="添加" onClick="addDirectory()"/>
+									&nbsp;
+								</lauthority:checkAuthority>
+								<lauthority:checkAuthority authorityCode="cms_directory_modify">
+									<input class="btnClass" type="button" value="修改" onclick="updateDirectory()"/>
+									&nbsp;
+								</lauthority:checkAuthority>
+								<lauthority:checkAuthority authorityCode="cms_directory_modify">
+									<input class="btnClass" type="button" value="排序" onclick="sortDirectory()"/>
+									&nbsp;
+								</lauthority:checkAuthority>
+								<lauthority:checkAuthority authorityCode="cms_directory_delete">
+									<input class="btnClass" type="button" value="删除" onclick="deleteDirectory()"/>
+									&nbsp;
+								</lauthority:checkAuthority>
+								<c:set var="isFavorited" value="${false}" />
+								<favorite:inMyMenu menuId="cms_directory_load">
+								<c:set var="isFavorited" value="${true}" />
+									<input class="btnClass1" type="button" onClick="removeMyFavoriteMenu('cms_directory_load', this)" value="取消收藏" />
+								</favorite:inMyMenu>
+								<c:if test="${!isFavorited }">
+									<input class="btnClass1" type="button" onClick="addMyFavoriteMenu('cms_directory_load', this)" value="添加到收藏夹" />
+								</c:if>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top" style="height: 100%; border: none;">
+								<iframe id="resourceFrame" style="width: 100%; height: 100%;" frameborder="0" src=""/>
+							</td>
+						</tr>
+					</table>
 				</td>
 			</tr>
 		</table>

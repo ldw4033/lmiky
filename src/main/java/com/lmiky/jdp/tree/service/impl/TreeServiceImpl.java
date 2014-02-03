@@ -25,8 +25,8 @@ public class TreeServiceImpl extends BaseServiceImpl {
 		//如果是树
 		if(pojo instanceof BaseTreePojo) {
 			BaseTreePojo parent = ((BaseTreePojo) pojo).getParent();
-			//非顶层
-			if(parent != null) {
+			//新增且非顶层
+			if(pojo.getId() == null && parent != null) {
 				//修改父节点叶子数
 				parent.setLeaf(parent.getLeaf() + 1);
 				super.save(parent);

@@ -32,7 +32,7 @@
 					 oThis.className = "title_common title_open";
 					 selectedSubMenu = oThis;
 				 }
-				 parent.document.getElementById("right").src = htmlSrc;
+				 parent.document.getElementById("contentFrame").src = htmlSrc;
 			} 
 			
  	   </script>
@@ -81,6 +81,9 @@
 														<c:choose><c:when test="${not empty subMenu.width}">${subMenu.width }</c:when><c:otherwise>defaultDialogWith</c:otherwise></c:choose>,
 														<c:choose><c:when test="${not empty subMenu.height}">${subMenu.height }</c:when><c:otherwise>defaultDialogHeight</c:otherwise></c:choose>, 
 														'${subMenu.label }')">${subMenu.label }</dt>
+													</c:when>
+													<c:when test="${subMenu.type == 'iframe' }">
+														<iframe src="<c:url value="/"/>${subMenu.url }" id="menuFrame_${subMenu.id }" onload="this.style.height=menuFrame_${subMenu.id }.document.body.scrollHeight" frameborder="0"  width="100%"></iframe>
 													</c:when>
 												</c:choose>
 											</div>

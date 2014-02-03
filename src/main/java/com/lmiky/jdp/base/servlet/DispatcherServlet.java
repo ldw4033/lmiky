@@ -20,7 +20,9 @@ import com.lmiky.jdp.logger.util.LoggerUtils;
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.session.service.SessionService;
+import com.lmiky.jdp.system.menu.model.SubMenu;
 import com.lmiky.jdp.system.menu.pojo.LatelyOperateMenu;
+import com.lmiky.jdp.system.menu.service.MenuService;
 import com.lmiky.jdp.util.Environment;
 import com.lmiky.jdp.web.model.ContinuationRequest;
 
@@ -29,9 +31,10 @@ import com.lmiky.jdp.web.model.ContinuationRequest;
  * @date 2013-4-25
  */
 public class DispatcherServlet extends org.springframework.web.servlet.DispatcherServlet {
-	private static final long serialVersionUID = 8851136668309720276L;
+	private static final long serialVersionUID = -5419496312370425808L;
 	private BaseService baseService;
 	private SessionService sessionService;
+	private MenuService menuService;
 	
 	/* (non-Javadoc)
 	 * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig)
@@ -48,6 +51,7 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 		Environment.setServletContext(application);
 		baseService = (BaseService)Environment.getBean("baseService");
 		sessionService = (SessionService)Environment.getBean("sessionService");
+		menuService = (MenuService)Environment.getBean("menuService");
 		super.init(config);
 	}
 
@@ -71,17 +75,20 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 			String subMenuId = request.getParameter(Constants.HTTP_PARAM_SUBMENU_ID);
 			if(!StringUtils.isBlank(subMenuId)) {
 				SessionInfo sessionInfo = sessionService.getSessionInfo(request);
+				SubMenu subMenu = menuService.getSubMenu(subMenuId, sessionInfo);
 				//记录最近操作
-				if(sessionInfo != null && sessionInfo.getUserId() != null) {
-					String latelyOperateMenuId = sessionInfo.getLatelyOperateMenuId();
-					//如果跟上次操作一样，就不重复记录
-					if(StringUtils.isBlank(latelyOperateMenuId) ||  !subMenuId.equals(latelyOperateMenuId)) {
-						LatelyOperateMenu latelyOperateMenu = new LatelyOperateMenu();
-						latelyOperateMenu.setMenuId(subMenuId);
-						latelyOperateMenu.setUserId(sessionInfo.getUserId());
-						latelyOperateMenu.setOpeTime(new Date());
-						baseService.save(latelyOperateMenu);
-						sessionInfo.setLatelyOperateMenuId(subMenuId);
+				if(subMenu != null && sessionInfo != null && sessionInfo.getUserId() != null) {
+					if(!SubMenu.TYPE_IFRAME.equals(subMenu.getType())) {
+						String latelyOperateMenuId = sessionInfo.getLatelyOperateMenuId();
+						//如果跟上次操作一样，就不重复记录
+						if(StringUtils.isBlank(latelyOperateMenuId) ||  !subMenuId.equals(latelyOperateMenuId)) {
+							LatelyOperateMenu latelyOperateMenu = new LatelyOperateMenu();
+							latelyOperateMenu.setMenuId(subMenuId);
+							latelyOperateMenu.setUserId(sessionInfo.getUserId());
+							latelyOperateMenu.setOpeTime(new Date());
+							baseService.save(latelyOperateMenu);
+							sessionInfo.setLatelyOperateMenuId(subMenuId);
+						}
 					}
 				}
 			}

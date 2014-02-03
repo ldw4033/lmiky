@@ -19,6 +19,32 @@
 				<tr>
 					<td colspan="2" align="center" valign="top">
 						<table width="99%" height="30" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td valign="middle" class="listTitle2" style="border: none;">
+										<lauthority:checkAuthority authorityCode="cms_directory_add">
+											<input class="btnClass" type="button" value="添加栏目" onClick="parent.document.getElementById('leftMenu').contentWindow.document.getElementById('menuFrame_cms_directory_load').contentWindow.addDirectory()"/>
+											&nbsp;
+										</lauthority:checkAuthority>
+										<lauthority:checkAuthority authorityCode="cms_directory_modify">
+											<input class="btnClass" type="button" value="修改栏目" onclick="parent.document.getElementById('leftMenu').contentWindow.document.getElementById('menuFrame_cms_directory_load').contentWindow.updateDirectory()"/>
+											&nbsp;
+										</lauthority:checkAuthority>
+										<lauthority:checkAuthority authorityCode="cms_directory_modify">
+											<input class="btnClass" type="button" value="排序栏目" onclick="parent.document.getElementById('leftMenu').contentWindow.document.getElementById('menuFrame_cms_directory_load').contentWindow.sortDirectory()"/>
+											&nbsp;
+										</lauthority:checkAuthority>
+										<lauthority:checkAuthority authorityCode="cms_directory_delete">
+											<input class="btnClass" type="button" value="删除栏目" onclick="parent.document.getElementById('leftMenu').contentWindow.document.getElementById('menuFrame_cms_directory_load').contentWindow.deleteDirectory()"/>
+											&nbsp;
+										</lauthority:checkAuthority>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				<tr>
+					<td colspan="2" align="center" valign="top">
+						<table width="99%" height="30" border="0" cellpadding="0" cellspacing="0">
 							<tr>
 								<td align="center" class="listTitle">
 									&nbsp;<img src="${images }/jt-5.gif" width="16" height="16" align="absmiddle" />&nbsp;[${directory.name }]&nbsp;文章管理
@@ -111,6 +137,7 @@
 									<th class="no">&nbsp;</th>
 									<th class="sortable sorted_title"><a href="javascript:pageSort('title')">标题</a></th>
 									<th style="width: 130px;" class="sortable sorted_createTime"><a href="javascript:pageSort('createTime')">创建时间</a></th>
+									<th style="width: 130px;" class="sortable sorted_pubTime"><a href="javascript:pageSort('pubTime')">发布时间</a></th>
 									<th style="width: 60px;" class="sortable sorted_state"><a href="javascript:pageSort('state')">状态</a></th>
 									<th style="width: 180px;">操作</th>
 									<lauthority:checkAuthority authorityCode="cms_resource_delete">
@@ -128,6 +155,7 @@
 										<td>${status.count + (page.currentPage - 1) * page.pageSize}</td>
 										<td style="text-align: left;">${item.title}</td>
 										<td><fmt:formatDate value="${item.createTime}" pattern="${defaultDateTimeFormater }"/></td>
+										<td><fmt:formatDate value="${item.pubTime}" pattern="${defaultDateTimeFormater }"/></td>
 										<td>
 											<c:choose>
 												<c:when test="${item.state == state_create}">创建</c:when>

@@ -56,7 +56,7 @@
 			
     </script>
 	</head>
-	<body scroll="no" style="background: #EFEFEF url(${images}/bg.png) repeat 0 0; overflow:hidden; height:100%;">
+	<body style="background: #EFEFEF url(${images}/bg.png) repeat 0 0; height:100%;">
 		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center"  class="home_top">
 			<tr>
 				<td>&nbsp;</td>
@@ -131,7 +131,7 @@
 								<table width="100%" height="100%" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0">
 									<tr>
 										<td valign="top" bgcolor="#FFFFFF">
-											<iframe src="" id="right" name="right" height="100%" frameborder="0" scrolling="auto" width="100%"></iframe>
+											<iframe src="" id="contentFrame" height="100%" onload="resizeIframe('contentFrame')" frameborder="0" scrolling="auto" width="100%"></iframe>
 										</td>
 									</tr>
 								</table>

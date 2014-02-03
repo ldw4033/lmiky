@@ -109,3 +109,16 @@ function isMouseInObj(event,obj){
 	var point2=getObjPosition(obj); 
 	return( (point1[0]>=point2[0]) && point1[1]>=point2[1] && point1[0]-point2[0]<=obj.offsetWidth && point1[1]-point2[1]<=obj.offsetHeight );
 } 
+
+//调整frame高度
+function resizeIframe(frameId) {
+	var frameObj = document.getElementById(frameId);
+	if(frameObj == undefined || frameObj == null) {
+		frameObj = parent.document.getElementById(frameId);
+		if(frameObj != undefined && frameObj != null) {
+			frameObj.style.height =  window.document.body.scrollHeight;
+		}
+	} else {
+		frameObj.style.height = frameObj.contentWindow.document.body.scrollHeight;
+	}
+}

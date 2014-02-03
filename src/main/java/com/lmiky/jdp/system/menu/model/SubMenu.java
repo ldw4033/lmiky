@@ -8,7 +8,11 @@ import java.io.Serializable;
  * @date 2013-6-16
  */
 public class SubMenu implements Serializable {
-	private static final long serialVersionUID = -7733952626633943268L;
+	private static final long serialVersionUID = -248788134293255417L;
+	public static final String TYPE_LINK = "link";
+	public static final String TYPE_DIALOG = "dialog";
+	public static final String TYPE_IFRAME = "iframe";
+	
 	private String id;
 	private String label;
 	private String url;
