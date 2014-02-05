@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="/jdp/common/common.jsp"%>
+<%@ include file="/jdp/common/simpleCommon.jsp" %>
 <tr>
 	<th width="70" align="right" class="bg02">
 		<label>名称<span class="req">*</span></label>

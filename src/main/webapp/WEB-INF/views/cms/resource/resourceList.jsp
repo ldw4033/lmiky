@@ -20,7 +20,7 @@
 					<td colspan="2" align="center" valign="top">
 						<table width="99%" height="30" border="0" cellpadding="0" cellspacing="0">
 								<tr>
-									<td valign="middle" class="listTitle2" style="border: none;">
+									<td valign="middle" class="listTitle2" style="border: none; padding-left: 2px;">
 										<lauthority:checkAuthority authorityCode="cms_directory_add">
 											<input class="btnClass" type="button" value="添加栏目" onClick="parent.document.getElementById('leftMenu').contentWindow.document.getElementById('menuFrame_cms_directory_load').contentWindow.addDirectory()"/>
 											&nbsp;

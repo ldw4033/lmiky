@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="/jdp/common/taglibs.jsp" %>
+<%@ include file="/jdp/common/simpleCommon.jsp" %>
 <tr>
 	<th width="100" align="right" class="bg02">
 		<label>名称</label>
@@ -26,6 +26,14 @@
 	</th>
 	<td>
 		${pojo.email}
+	</td>
+</tr>
+<tr>
+	<th align="right" class="bg02">
+		<label>创建时间</label>
+	</th>
+	<td colspan="3">
+		<fmt:formatDate value="${pojo.createTime}" pattern="${defaultDateTimeFormater }"/>
 	</td>
 </tr>
 <tr>

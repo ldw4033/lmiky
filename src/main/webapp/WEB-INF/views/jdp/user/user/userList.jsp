@@ -108,7 +108,6 @@
 									<th class="sortable sorted_name"><a href="javascript:pageSort('name')">姓名</a></th>
 									<th>登陆账号</th>
 									<th>联系电话</th>
-									<th>邮箱</th>
 									<th class="sortable sorted_createTime"><a href="javascript:pageSort('createTime')">添加时间</a></th>
 									<th>是否有效</th>
 									<th>操作</th>
@@ -128,7 +127,6 @@
 										<td>${item.name}</td>
 										<td>${item.loginName}</td>
 										<td>${item.phone}</td>
-										<td>${item.email}</td>
 										<td>
 											<fmt:formatDate value="${item.createTime}" pattern="${defaultDateTimeFormater }"/>
 										</td>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.lmiky.cms.resource.pojo.CmsResource,com.lmiky.cms.resource.controller.ResourceController" %>
-<%@ include file="/jdp/common/common.jsp"%>
+<%@ include file="/jdp/common/simpleCommon.jsp" %>
 <c:set var="state_create" value="<%=CmsResource.STATE_CREATE %>"/>
 <c:set var="state_publish" value="<%=CmsResource.STATE_PUBLISH %>"/>
 <c:set var="state_unpublish" value="<%=CmsResource.STATE_UNPUBLISH %>"/>

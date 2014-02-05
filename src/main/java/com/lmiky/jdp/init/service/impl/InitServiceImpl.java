@@ -7,7 +7,6 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +23,7 @@ import com.lmiky.jdp.system.menu.pojo.MyFavoriteMenu;
 import com.lmiky.jdp.system.menu.service.MenuService;
 import com.lmiky.jdp.user.pojo.Role;
 import com.lmiky.jdp.user.pojo.User;
+import com.lmiky.jdp.util.EncoderUtils;
 
 /**
  * 初始化业务实现类
@@ -57,7 +57,7 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 		User user = new User();
 		user.setName(adminName);
 		user.setLoginName(adminLoginName);
-		user.setPassword(DigestUtils.md5Hex(adminPassword));
+		user.setPassword(EncoderUtils.md5(adminPassword));
 		user.setValid(User.VALID_YES);
 		Date currentDate = new Date();
 		user.setCreateTime(currentDate);
