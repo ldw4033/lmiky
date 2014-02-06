@@ -17,6 +17,7 @@ import com.lmiky.jdp.base.controller.BaseController;
 import com.lmiky.jdp.constants.Constants;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.sso.exception.LoginException;
+import com.lmiky.jdp.user.pojo.Operator;
 import com.lmiky.jdp.user.pojo.User;
 import com.lmiky.jdp.util.CookieUtils;
 
@@ -72,7 +73,7 @@ public class LoginController extends BaseController {
 			@RequestParam(value = "loginName", required = false) String loginName, @RequestParam(value = "password", required = false) String password,
 			@RequestParam(value = "rememberLoginName", required = false) boolean rememberLoginName) {
 		try {
-			User user = ssoService.login(loginName, password);
+			User user = ssoService.login(loginName, password, Operator.class);
 			SessionInfo sessionInfo = sessionService.generateSessionInfo(request, user);
 			ssoService.recordSessionInfo(sessionInfo);
 			HttpSession session = request.getSession();

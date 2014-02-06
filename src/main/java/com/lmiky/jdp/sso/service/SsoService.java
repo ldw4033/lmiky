@@ -23,6 +23,18 @@ public interface SsoService {
 	public User login(String loginName, String password) throws LoginException;
 	
 	/**
+	 * 登陆
+	 * @author lmiky
+	 * @date 2014-2-6
+	 * @param loginName
+	 * @param password
+	 * @param userClass 登陆类别
+	 * @return
+	 * @throws LoginException
+	 */
+	public <T extends User> T login(String loginName, String password, Class<T> userClass) throws LoginException;
+	
+	/**
 	 * 记录会话信息
 	 * @author lmiky
 	 * @date 2013-4-24

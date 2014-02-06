@@ -99,7 +99,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 		try {
 			StringBuffer hql = new StringBuffer();
 			// 检查角色
-			hql.append("select 1 from User User, Authority  Authority join User.roles Role where User.id = ").append(userId)
+			hql.append("select 1 from Operator Operator, Authority  Authority join Operator.roles Role where Operator.id = ").append(userId)
 					.append(" and Role.id = Authority.operator and Authority.authorityCode = '").append(authorityCode).append("'");
 			List<Object[]> result = baseDAO.executeQuery(hql.toString());
 			if (result.size() > 0) {

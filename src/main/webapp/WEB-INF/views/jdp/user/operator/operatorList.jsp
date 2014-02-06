@@ -66,27 +66,27 @@
 								<td align="left" valign="bottom" class="listMenu">
 									<table border="0" cellpadding="0" cellspacing="0">
 										<tr>
-											<lauthority:checkAuthority authorityCode="jdp_user_user_add">
+											<lauthority:checkAuthority authorityCode="jdp_user_operator_add">
 												<td align="center">
 													<table>
 														<tr>
-															<td align="center" class="btn_menu btnClass_td" onClick="redirectPage('<c:url value="/user/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }"/>', 800, 600)">添加</td>
+															<td align="center" class="btn_menu btnClass_td" onClick="redirectPage('<c:url value="/operator/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }"/>', 800, 600)">添加</td>
 														</tr>
 													</table>
 												</td>
 											</lauthority:checkAuthority>
-											<lauthority:checkAuthority authorityCode="jdp_user_user_delete">
+											<lauthority:checkAuthority authorityCode="jdp_user_operator_delete">
 												<td align="center">
 													<table>
 														<tr>
-															<td align="center" class="btn_menu btnClass_td" onClick="batchDelete('<c:url value="/user/batchDelete.shtml"/>')">批量删除</td>
+															<td align="center" class="btn_menu btnClass_td" onClick="batchDelete('<c:url value="/operator/batchDelete.shtml"/>')">批量删除</td>
 														</tr>
 													</table>
 												</td>
 											</lauthority:checkAuthority>
 											<td align="center">
 												<jsp:include page="/jdp/include/favoriteMenu.jsp">
-													<jsp:param value="jdp_user_user_load" name="authorityCode"/>
+													<jsp:param value="jdp_user_operator_load" name="authorityCode"/>
 												</jsp:include>
 											</td>
 										</tr>
@@ -111,7 +111,7 @@
 									<th class="sortable sorted_createTime"><a href="javascript:pageSort('createTime')">添加时间</a></th>
 									<th>是否有效</th>
 									<th>操作</th>
-									<lauthority:checkAuthority authorityCode="jdp_user_user_delete">
+									<lauthority:checkAuthority authorityCode="jdp_user_operator_delete">
 										<th class="simpleCheckbox">
 											<input type="checkbox" name="batctSelectDelete"  id="batctSelectDelete" value="" onclick="batchSelectDelete()"/>
 										</th>
@@ -137,28 +137,28 @@
 											</c:choose>
 										</td>
 										<td>
-											<lauthority:checkAuthority authorityCode="jdp_user_user_load">
+											<lauthority:checkAuthority authorityCode="jdp_user_operator_load">
 												<a href="javascript:void(0)" class="td_2"
-														onclick="redirectPage('<c:url value="/user/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
+														onclick="redirectPage('<c:url value="/operator/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
 													查看
 												</a>
 											</lauthority:checkAuthority>
-											<lauthority:checkAuthority authorityCode="jdp_user_user_modify">
+											<lauthority:checkAuthority authorityCode="jdp_user_operator_modify">
 												&nbsp;
 												<a href="javascript:void(0)" class="td_2"
-														onclick="redirectPage('<c:url value="/user/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }"/>', 800, 600)">
+														onclick="redirectPage('<c:url value="/operator/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }"/>', 800, 600)">
 													修改
 												</a>
 											</lauthority:checkAuthority>
-											<lauthority:checkAuthority authorityCode="jdp_user_user_delete">
+											<lauthority:checkAuthority authorityCode="jdp_user_operator_delete">
 												&nbsp;
 												<a href="javascript:void(0)" class="td_2"
-														onclick="deletePojo('<c:url value="/user/delete.shtml?id=${item.id}"/>')">
+														onclick="deletePojo('<c:url value="/operator/delete.shtml?id=${item.id}"/>')">
 													删除
 												</a>
 											</lauthority:checkAuthority>
 										</td>
-										<lauthority:checkAuthority authorityCode="jdp_user_user_delete">
+										<lauthority:checkAuthority authorityCode="jdp_user_operator_delete">
 											<td>
 												<input type="checkbox" name="batchDeleteId" value="${item.id}" />
 											</td>

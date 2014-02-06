@@ -21,6 +21,7 @@ import com.lmiky.jdp.service.impl.BaseServiceImpl;
 import com.lmiky.jdp.system.menu.pojo.LatelyOperateMenu;
 import com.lmiky.jdp.system.menu.pojo.MyFavoriteMenu;
 import com.lmiky.jdp.system.menu.service.MenuService;
+import com.lmiky.jdp.user.pojo.Operator;
 import com.lmiky.jdp.user.pojo.Role;
 import com.lmiky.jdp.user.pojo.User;
 import com.lmiky.jdp.util.EncoderUtils;
@@ -54,7 +55,7 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 		save(role);
 
 		// 用户
-		User user = new User();
+		Operator user = new Operator();
 		user.setName(adminName);
 		user.setLoginName(adminLoginName);
 		user.setPassword(EncoderUtils.md5(adminPassword));
@@ -65,7 +66,7 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 		Set<Role> roles = new HashSet<Role>();
 		roles.add(role);
 		user.setRoles(roles);
-		delete(User.class);
+		delete(Operator.class);
 		save(user);
 
 		//放在初始化模块之前，是因为修改模块中也要授权，先删除，修改模块就不需要浪费时间授权之后还要再删除

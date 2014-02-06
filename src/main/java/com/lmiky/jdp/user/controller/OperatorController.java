@@ -24,9 +24,10 @@ import com.lmiky.jdp.form.model.ValidateError;
 import com.lmiky.jdp.form.util.ValidateUtils;
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.session.model.SessionInfo;
+import com.lmiky.jdp.user.pojo.Operator;
 import com.lmiky.jdp.user.pojo.Role;
 import com.lmiky.jdp.user.pojo.User;
-import com.lmiky.jdp.user.service.UserService;
+import com.lmiky.jdp.user.service.OperatorService;
 import com.lmiky.jdp.util.EncoderUtils;
 
 /**
@@ -35,15 +36,15 @@ import com.lmiky.jdp.util.EncoderUtils;
  * @date 2013-5-7
  */
 @Controller
-@RequestMapping("/user")
-public class UserController extends FormController<User> {
+@RequestMapping("/operator")
+public class OperatorController extends FormController<Operator> {
 	
 	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.form.controller.FormController#getAddAuthorityCode(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
 	protected String getAddAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
-		return "jdp_user_user_add";
+		return "jdp_user_operator_add";
 	}
 
 	/* (non-Javadoc)
@@ -51,7 +52,7 @@ public class UserController extends FormController<User> {
 	 */
 	@Override
 	protected String getModifyAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
-		return "jdp_user_user_modify";
+		return "jdp_user_operator_modify";
 	}
 
 	/* (non-Javadoc)
@@ -59,7 +60,7 @@ public class UserController extends FormController<User> {
 	 */
 	@Override
 	protected String getDeleteAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
-		return "jdp_user_user_delete";
+		return "jdp_user_operator_delete";
 	}
 
 	/* (non-Javadoc)
@@ -67,7 +68,7 @@ public class UserController extends FormController<User> {
 	 */
 	@Override
 	protected String getLoadAuthorityCode(ModelMap modelMap, HttpServletRequest request) {
-		return "jdp_user_user_load";
+		return "jdp_user_operator_load";
 	}
 
 	/**
@@ -117,9 +118,9 @@ public class UserController extends FormController<User> {
 	 * @see com.lmiky.jdp.form.controller.FormController#appendLoadAttribute(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.String, com.lmiky.jdp.database.pojo.BasePojo)
 	 */
 	@Override
-	protected void appendLoadAttribute(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, String openMode, User pojo) throws Exception {
+	protected void appendLoadAttribute(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse, String openMode, Operator pojo) throws Exception {
 		super.appendLoadAttribute(modelMap, request, resopnse, openMode, pojo);
-		UserService userService = (UserService)service;
+		OperatorService userService = (OperatorService)service;
 		if(OPEN_MODE_EDIT.equals(openMode) || OPEN_MODE_READ.equals(openMode)) {
 			modelMap.put("userRoles", userService.listUserRoles(pojo.getId()));
 		}
@@ -153,8 +154,8 @@ public class UserController extends FormController<User> {
 	 * @see com.lmiky.jdp.form.controller.FormController#generateNewPojo(org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected User generateNewPojo(ModelMap modelMap, HttpServletRequest request) throws Exception {
-		User user = super.generateNewPojo(modelMap, request);
+	protected Operator generateNewPojo(ModelMap modelMap, HttpServletRequest request) throws Exception {
+		Operator user = super.generateNewPojo(modelMap, request);
 		Date date = new Date();
 		user.setCreateTime(date);
 		user.setLastSetPasswordTime(date);
@@ -166,7 +167,7 @@ public class UserController extends FormController<User> {
 	 * @see com.lmiky.jdp.form.controller.FormController#setPojoProperties(com.lmiky.jdp.database.pojo.BasePojo, org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	protected void setPojoProperties(User pojo, ModelMap modelMap, HttpServletRequest request) throws Exception {
+	protected void setPojoProperties(Operator pojo, ModelMap modelMap, HttpServletRequest request) throws Exception {
 		super.setPojoProperties(pojo, modelMap, request);
 		if(!StringUtils.isBlank(request.getParameter("password"))) {
 			pojo.setPassword(EncoderUtils.md5(pojo.getPassword()));
@@ -188,7 +189,7 @@ public class UserController extends FormController<User> {
 	 * @see com.lmiky.jdp.form.controller.FormController#validateInput(com.lmiky.jdp.database.pojo.BasePojo, java.lang.String, org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	public List<ValidateError> validateInput(User pojo, String openMode, ModelMap modelMap, HttpServletRequest request) throws Exception {
+	public List<ValidateError> validateInput(Operator pojo, String openMode, ModelMap modelMap, HttpServletRequest request) throws Exception {
 		List<ValidateError> validateErrors = super.validateInput(pojo, openMode, modelMap, request);
 		ValidateUtils.validateRequired(request, "name", "姓名", validateErrors);
 		if(ValidateUtils.validateRequired(request, "loginName", "登陆账号", validateErrors)) {
@@ -262,7 +263,7 @@ public class UserController extends FormController<User> {
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
 			//检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
-			return "jdp/user/user/modifyPassword";
+			return "jdp/user/operator/modifyPassword";
 		} catch(Exception e) {
 			return transactException(e, modelMap, request, response);
 		}
@@ -334,7 +335,7 @@ public class UserController extends FormController<User> {
 	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.base.controller.BaseController#getService()
 	 */
-	@Resource(name="userService")
+	@Resource(name="operatorService")
 	public void setService(BaseService service) {
 		this.service = service;
 	}

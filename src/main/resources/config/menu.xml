@@ -39,12 +39,12 @@
 	<topmenu id="system" label="系统设置">
 		<leftmenu id="systemSetting" label="系统设置">
 			<submenu>
-				<id>jdp_user_user_load</id>
+				<id>jdp_user_operator_load</id>
 				<label>用户管理</label>
-				<url>user/list.shtml</url>
+				<url>operator/list.shtml</url>
 				<type>link</type>
-				<modulePath>jdp/user/user</modulePath>
-				<authority>jdp_user_user_load</authority>
+				<modulePath>jdp/user/operator</modulePath>
+				<authority>jdp_user_operator_load</authority>
 			</submenu>
 			<submenu>
 				<id>jdp_user_role_load</id>
@@ -55,11 +55,11 @@
 				<authority>jdp_user_role_load</authority>
 			</submenu>
 			<submenu>
-				<id>jdp_user_user_modifyPassword</id>
+				<id>jdp_user_operator_modifyPassword</id>
 				<label>修改密码</label>
-				<url>user/toModifyPassword.shtml</url>
+				<url>operator/toModifyPassword.shtml</url>
 				<type>dialog</type>
-				<modulePath>jdp/user/user</modulePath>
+				<modulePath>jdp/user/operator</modulePath>
 				<authority></authority>
 				<width>260</width>
 				<height>230</height>

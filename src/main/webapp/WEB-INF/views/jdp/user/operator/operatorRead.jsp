@@ -56,6 +56,6 @@
 </tr>
 <tr>
 	<td colspan="4" align="center">
-		<input type="button" class="btnClass" style="cursor: pointer;" value="返回" onclick="back('/user/list.shtml?modulePath=${modulePath }')"/>
+		<input type="button" class="btnClass" style="cursor: pointer;" value="返回" onclick="back('/operator/list.shtml?modulePath=${modulePath }')"/>
 	</td>
 </tr>

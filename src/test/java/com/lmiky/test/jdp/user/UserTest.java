@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.service.exception.ServiceException;
+import com.lmiky.jdp.user.pojo.Operator;
 import com.lmiky.jdp.user.pojo.Role;
 import com.lmiky.jdp.user.pojo.User;
 import com.lmiky.test.BaseTest;
@@ -49,7 +50,7 @@ public class UserTest extends BaseTest {
 	
 	@Test
 	public void testAddUserRole() throws ServiceException {
-		User user = baseService.find(User.class, 3l);
+		Operator user = baseService.find(Operator.class, 3l);
 		Role role = baseService.find(Role.class, 2l);
 		Set<Role> roles = new HashSet<Role>();
 		roles.add(role);

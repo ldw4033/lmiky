@@ -20,7 +20,7 @@ import com.lmiky.jdp.database.pojo.BasePojo;
 public class Role extends BasePojo {
 	private static final long serialVersionUID = -6262397836385864159L;
 	private String name;
-	private Set<User> users;
+	private Set<Operator> users;
 
 	/**
 	 * @return the name
@@ -41,14 +41,14 @@ public class Role extends BasePojo {
 	 * @return the users
 	 */
 	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-	public Set<User> getUsers() {
+	public Set<Operator> getUsers() {
 		return users;
 	}
 
 	/**
 	 * @param users the users to set
 	 */
-	public void setUsers(Set<User> users) {
+	public void setUsers(Set<Operator> users) {
 		this.users = users;
 	}
 }

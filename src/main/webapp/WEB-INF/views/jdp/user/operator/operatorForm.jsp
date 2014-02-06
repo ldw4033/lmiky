@@ -6,7 +6,7 @@
 		<script src="${script }/multipleSelect.js" type="text/javascript"></script>
 	</head>
 	<body>
-		<form:form id="mainForm" action="/user/save.shtml" method="post" commandName="pojo">
+		<form:form id="mainForm" action="/operator/save.shtml" method="post" commandName="pojo">
 			<%@ include file="/jdp/form/field.jsp" %>
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>

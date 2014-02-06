@@ -38,15 +38,22 @@ public class SsoServiceImpl implements SsoService {
 	 * @see com.lmiky.jdp.sso.service.SsoService#login(java.lang.String, java.lang.String)
 	 */
 	public User login(String loginName, String password) throws LoginException {
+		return login(loginName, password, User.class);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.sso.service.SsoService#login(java.lang.String, java.lang.String, java.lang.Class)
+	 */
+	public <T extends User> T login(String loginName, String password, Class<T> userClass) throws LoginException {
 		if(StringUtils.isBlank(loginName)) {
 			throw new LoginException(LoginException.USERNAME_NULL);
 		}
 		if(StringUtils.isBlank(password)) {
 			throw new LoginException(LoginException.PASSWORD_NULL);
 		}
-		User user;
+		T user = null;
 		try {
-			user = userService.findByLoginName(loginName);
+			user = userService.findByLoginName(loginName, userClass);
 		} catch (ServiceException e) {
 			throw new LoginException(e.getMessage());
 		}

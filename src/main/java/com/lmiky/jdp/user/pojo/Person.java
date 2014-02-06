@@ -3,10 +3,7 @@ package com.lmiky.jdp.user.pojo;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
 
 import com.lmiky.jdp.database.pojo.BasePojo;
 
@@ -15,11 +12,9 @@ import com.lmiky.jdp.database.pojo.BasePojo;
  * @author lmiky
  * @date 2014-2-5
  */ 
-@Entity 
-@Table(name="t_person")
-@Inheritance(strategy=InheritanceType.JOINED) 
+@SuppressWarnings("serial")
+@MappedSuperclass
 public class Person extends BasePojo {
-	private static final long serialVersionUID = -3768592952850913253L;
 	private String name;
 	private String email;
 	private String phone;

@@ -1,16 +1,11 @@
 package com.lmiky.jdp.user.pojo;
 
 import java.util.Date;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 /**
@@ -20,9 +15,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="t_user")
-@PrimaryKeyJoinColumn(name="id")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class User extends Person {
-	private static final long serialVersionUID = 2172716215766952681L;
+	private static final long serialVersionUID = -7306264895644849278L;
+
+	public static final String POJO_FIELD_NAME_LOGINNAME = "loginName";
+	
 	//是否可用
 	public static final int VALID_YES = 0;
 	public static final int VALID_NO = 1;
@@ -31,7 +29,6 @@ public class User extends Person {
 	private String password;
 	private Date lastSetPasswordTime;
 	private Integer valid;
-	private Set<Role> roles;
 
 	/**
 	 * @return the loginName
@@ -91,21 +88,5 @@ public class User extends Person {
 	 */
 	public void setValid(Integer valid) {
 		this.valid = valid;
-	}
-
-	/**
-	 * @return the roles
-	 */
-	@ManyToMany(fetch = FetchType.LAZY, cascade ={CascadeType.PERSIST})
-	@JoinTable(name = "t_user_role", joinColumns = { @JoinColumn(name = "user_id", updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "role_id", updatable = false) })
-	public Set<Role> getRoles() {
-		return roles;
-	}
-
-	/**
-	 * @param roles the roles to set
-	 */
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
 	}
 }

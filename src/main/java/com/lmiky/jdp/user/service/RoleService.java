@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.service.exception.ServiceException;
-import com.lmiky.jdp.user.pojo.User;
+import com.lmiky.jdp.user.pojo.Operator;
 
 /**
  * 角色业务
@@ -21,7 +21,7 @@ public interface RoleService extends BaseService {
 	 * @return
 	 * @throws ServiceException
 	 */
-	public List<User> listRoleUser(Long roleId) throws ServiceException;
+	public List<Operator> listRoleUser(Long roleId) throws ServiceException;
 	
 	/**
 	 * 获取非角色用户
@@ -31,5 +31,5 @@ public interface RoleService extends BaseService {
 	 * @return
 	 * @throws ServiceException
 	 */
-	public List<User> listNoRoleUser(Long roleId) throws ServiceException;
+	public List<Operator> listNoRoleUser(Long roleId) throws ServiceException;
 }
