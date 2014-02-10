@@ -82,10 +82,10 @@
 					} else {
 						var retValue = selectedNode.name + "," + selectedNode.id;
 						art.dialog.data('resultValue', retValue);
-						var list = parent.art.dialog.list;
-						for (var i in list) {
-							list[i].close();
-						}
+						//var list = parent.art.dialog.list;
+						//for (var i in list) {
+						//	list[i].close();
+						//}
 						art.dialog.close();
 					}
 				}
@@ -96,11 +96,13 @@
 		<!-- form id="mainForm" action="<c:url value="/user/save.shtml"/>" method="post" -->
 		<%@ include file="/jdp/form/field.jsp" %>
 		<table class="table-form full"  height="98%">
+			<!-- 
 		   	<tr>
 		   		<td class="bg01 title">
 		   			&nbsp;<img src="${images }/jt-5.gif" width="16" height="16" align="absmiddle" />请选择节点
 		   		</td>
 		   	</tr>
+		   	 -->
 		   	<tr>
 		   		<td height="100%" valign="top" align="left">
 		   			<ul id="ztree" class="ztree" style="overflow:auto;"></ul>

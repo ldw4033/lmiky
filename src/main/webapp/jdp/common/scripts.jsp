@@ -67,9 +67,9 @@
 	function selectTree(nameFieldId, valueFieldId, className, width, height, title) {
 		openDialog('<c:url value="/tree/loadSelectTree.shtml"/>?className=' + className, width, height, title, function () {
 			var resultValue = art.dialog.data('resultValue');// 读取打开页面的数据
-			if (resultValue != undefined && resultValue != null || resultValue != '') {
+			if (resultValue != undefined && resultValue != null && resultValue != '') {
 				var results = resultValue.split(",");
-				if (nameFieldId != undefined && nameFieldId != null || nameFieldId != '') {
+				if (nameFieldId != undefined && nameFieldId != null && nameFieldId != '') {
 					$("#" + nameFieldId).val(results[0]);	//名称
 				}
 				$("#" + valueFieldId).val(results[1]);	//值
