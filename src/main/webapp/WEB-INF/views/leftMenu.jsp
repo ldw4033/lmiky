@@ -38,7 +38,7 @@
  	   </script>
 	</head>
 	<body>
-		<table width="100%" height="100%" valign="top" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="bian1">
+		<table width="100%" height="100%" valign="top" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" >
 			<tr>
 				<td align="center" valign="top" bgcolor="#FFFFFF">
 					<c:forEach items="${leftMenus }" var="leftMenu" varStatus="status">

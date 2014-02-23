@@ -1,4 +1,10 @@
 @CHARSET "UTF-8";
+html{
+	height:99%;
+}
+body{
+	height:100%;
+}
 body {
 	margin: 0px;
     background-color:#ffffff;
@@ -62,6 +68,7 @@ body,td,p {
 	FONT-SIZE: 12px; 
 	COLOR: #ffffff;
 	cursor: pointer;
+	font-weight: normal;
 	jerry:expression(cellSpacing="2");
 }
 

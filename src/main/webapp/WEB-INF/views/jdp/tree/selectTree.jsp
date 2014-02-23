@@ -91,11 +91,11 @@
 				}
 			</script>
 	</head>
-	<body>
+	<body style="height: 99%">
 		<%@ include file="/jdp/form/messages.jsp" %>
 		<!-- form id="mainForm" action="<c:url value="/user/save.shtml"/>" method="post" -->
 		<%@ include file="/jdp/form/field.jsp" %>
-		<table class="table-form full"  height="98%">
+		<table class="table-form full"  height="100%">
 			<!-- 
 		   	<tr>
 		   		<td class="bg01 title">

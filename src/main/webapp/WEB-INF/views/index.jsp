@@ -56,41 +56,71 @@
 			
     </script>
 	</head>
-	<body style="background: #EFEFEF url(${images}/bg.png) repeat 0 0; height:100%;">
-		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center"  class="home_top">
+	<body style="background: #EFEFEF url(${images}/bg.png) repeat 0 0;">
+		<table border="0" cellpadding="0" cellspacing="0" align="center"  style="height: 100%; width: 100%;">
 			<tr>
-				<td>&nbsp;</td>
-				<td width="1140" style="padding-right: 20px; text-align: right;" valign="middle">
-					您好，${sessionScope.sessionInfo.userName }
-				</td>
-				<td width="60" align="left" valign="middle">
-					<img src="${images}/tb_tc.gif" border="0" align="absmiddle" onclick="logout()" style="cursor: pointer; margin-bottom: 1px;"/>
-				</td>
-				<td>&nbsp;</td>
-			</tr>
-		</table>
-		<table width="1200" height="100%" border="0" cellpadding="0" cellspacing="0" align="center">
-			<tr>
-				<td colspan="3" valign="top">
-					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<td height="35">
+					<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center"  class="home_top">
 						<tr>
-							<td height="31" colspan="2" align="center" background="${images}/top1.gif">
-								<table width="98%" border="0" cellspacing="0" cellpadding="0">
+							<td>&nbsp;</td>
+							<td width="1140" style="padding-right: 20px; text-align: right;" valign="middle">
+								您好，${sessionScope.sessionInfo.userName }
+							</td>
+							<td width="60" align="left" valign="middle">
+								<img src="${images}/tb_tc.gif" border="0" align="absmiddle" onclick="logout()" style="cursor: pointer; margin-bottom: 1px;"/>
+							</td>
+							<td>&nbsp;</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td height="100%">
+					<table width="1200" height="100%" border="0" cellpadding="0" cellspacing="0" align="center">
+						<tr>
+							<td colspan="3" valign="top">
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
 									<tr>
-										<td width="190" class="STYLE1" id="jnkc">今天是&nbsp;<%=DateUtils.format(new Date(), "yyyy年M月d日") %></td>
-										<td align="left">
-											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+										<td height="31" colspan="2" align="center" background="${images}/top1.gif">
+											<table width="98%" border="0" cellspacing="0" cellpadding="0">
 												<tr>
+													<td width="190" class="STYLE1" id="jnkc">今天是&nbsp;<%=DateUtils.format(new Date(), "yyyy年M月d日") %></td>
 													<td align="left">
-														<ul id="nav">
-															<li style="width: 2px;"><img src="${images}/meun_xian.gif" width="2" height="29" align="absmiddle" /></li>
-															<li class="top_dh"><a  id="topMenu_a_<%=MenuController.TOP_MENU_ID_MYINDEX%>" href="javascript:void(0)" onclick="selectTopMenu(this, '<%=MenuController.TOP_MENU_ID_MYINDEX%>')"><strong>个人主页</strong></a></li>
-															<li style="width: 2px;"><img src="${images}/meun_xian.gif" width="2" height="29" align="absmiddle" /></li>
-															<c:forEach items="${menus }" var="topMenu" varStatus="status">
-																<li class="top_dh"><a id="topMenu_a_${topMenu.id }"  href="javascript:void(0)" onclick="selectTopMenu(this, '${topMenu.id }')"><strong>${topMenu.label }</strong></a></li>
-																<li style="width: 2px;"><img src="${images}/meun_xian.gif" width="2" height="29" align="absmiddle" /></li>
-															</c:forEach>
-														</ul>
+														<table width="100%" border="0" cellspacing="0" cellpadding="0">
+															<tr>
+																<td align="left">
+																	<ul id="nav">
+																		<li style="width: 2px;"><img src="${images}/meun_xian.gif" width="2" height="29" align="absmiddle" /></li>
+																		<li class="top_dh"><a  id="topMenu_a_<%=MenuController.TOP_MENU_ID_MYINDEX%>" href="javascript:void(0)" onclick="selectTopMenu(this, '<%=MenuController.TOP_MENU_ID_MYINDEX%>')"><strong>个人主页</strong></a></li>
+																		<li style="width: 2px;"><img src="${images}/meun_xian.gif" width="2" height="29" align="absmiddle" /></li>
+																		<c:forEach items="${menus }" var="topMenu" varStatus="status">
+																			<li class="top_dh"><a id="topMenu_a_${topMenu.id }"  href="javascript:void(0)" onclick="selectTopMenu(this, '${topMenu.id }')"><strong>${topMenu.label }</strong></a></li>
+																			<li style="width: 2px;"><img src="${images}/meun_xian.gif" width="2" height="29" align="absmiddle" /></li>
+																		</c:forEach>
+																	</ul>
+																</td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td height="15" colspan="2" align="right" valign="bottom" background="${images}/top3.gif"></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td align="left" width="190" valign="top" id="left_">
+								<table width="190" height="100%" border="0" cellpadding="0" cellspacing="0" class="bian4">
+									<tr>
+										<td height="100%" valign="top">
+											<table width="100%" height="100%" bgcolor="ffffff" border="0" cellpadding="0" cellspacing="0" class="bian1">
+												<tr>
+													<td valign="top">
+														<iframe src="" id="leftMenu" name="leftMenu" height="100%" frameborder="0" scrolling="no" width="100%"></iframe>
 													</td>
 												</tr>
 											</table>
@@ -98,40 +128,20 @@
 									</tr>
 								</table>
 							</td>
-						</tr>
-						<tr>
-							<td height="15" colspan="2" align="right" valign="bottom" background="${images}/top3.gif"></td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" width="190" valign="top" id="left_">
-					<table width="190" height="100%" border="0" cellpadding="0" cellspacing="0" class="bian4">
-						<tr>
-							<td height="100%">
-								<table width="100%" height="100%" valign="top" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="bian1">
+							<td width="8" height="100%" valign="middle" bgcolor="#F5F5F5">
+								<img src="${images}/shensuo-b.gif" width="8" height="126" style="cursor: pointer;" onClick="changImg(this)">
+							</td>
+							<td width="100%" align="center" valign="top">
+								<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
 									<tr>
 										<td>
-											<iframe src="" id="leftMenu" name="leftMenu" height="100%" frameborder="0" scrolling="no" width="100%"></iframe>
-										</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</table>
-				</td>
-				<td width="8" height="100%" valign="middle" bgcolor="#F5F5F5">
-					<img src="${images}/shensuo-b.gif" width="8" height="126" style="cursor: pointer;" onClick="changImg(this)">
-				</td>
-				<td width="100%" align="center" valign="top">
-					<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
-						<tr>
-							<td>
-								<table width="100%" height="100%" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0">
-									<tr>
-										<td valign="top" bgcolor="#FFFFFF">
-											<iframe src="" id="contentFrame" height="100%" onload="resizeIframe('contentFrame')" frameborder="0" scrolling="auto" width="100%"></iframe>
+											<table width="100%" height="100%" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0">
+												<tr>
+													<td valign="top" bgcolor="#FFFFFF">
+														<iframe src="" id="contentFrame" height="100%" onload="resizeIframe('contentFrame')" frameborder="0" scrolling="auto" width="100%"></iframe>
+													</td>
+												</tr>
+											</table>
 										</td>
 									</tr>
 								</table>

@@ -29,7 +29,7 @@ function actionForm(actionUrl, clearParams, comfirm) {
 			return;
 		}
 	}
-	if(clearParams != null && clearParams != undefined && clearParams != '') {
+	if(!!clearParams) {
 		var clearParam = clearParams.split(",");
 		for(var i=0; i<clearParam.length; i++) {
 			$("[name='" + clearParam[i] + "']").val("");
@@ -113,12 +113,12 @@ function isMouseInObj(event,obj){
 //调整frame高度
 function resizeIframe(frameId) {
 	var frameObj = document.getElementById(frameId);
-	if(frameObj == undefined || frameObj == null) {
+	if(!frameObj) {
 		frameObj = parent.document.getElementById(frameId);
-		if(frameObj != undefined && frameObj != null) {
-			frameObj.style.height =  window.document.body.scrollHeight;
+		if(!!frameObj) {
+			$(frameObj).height(window.document.body.scrollHeight);
 		}
 	} else {
-		frameObj.style.height = frameObj.contentWindow.document.body.scrollHeight;
+		$(frameObj).height(frameObj.contentWindow.document.body.scrollHeight);
 	}
 }

@@ -42,7 +42,7 @@
 			}  
 			
 			function zTreeOnAsyncSuccess(event, treeId, treeNode, msg) {
-				if(selectedNodeId != null && selectedNodeId != undefined && selectedNodeId != '') {
+				if(!!selectedNodeId) {
 					var node = zTreeObj.getNodeByParam("id", selectedNodeId, null);
 					zTreeObj.selectNode(node);
 				}
