@@ -42,7 +42,7 @@
 		</script>
 	</head>
 	<body>
-		<form id="mainForm" action="<c:url value="/sso/login/login.shtml"/>" method="post" onsubmit="return beforeLogin()">
+		<form id="mainForm" action="<c:url value="/sso/login/login.shtml"/>" method="post" onsubmit="return beforeLogin()" style="height: 100%">
 			<input type="hidden" name="${redirect }" value="${param[redirect] }"/>
 			<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
 				<tr>
