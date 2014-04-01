@@ -4,7 +4,7 @@
 <head>
 	<%@ include file="/jdp/form/header.jsp" %>
 </head>
-<body>
+<body style="height: 98%">
 	<%@ include file="/jdp/form/messages.jsp" %>
 	<form id="mainForm" action="<c:url value="/cms/directory/save.shtml"/>" method="post">
 		<%@ include file="/jdp/form/field.jsp" %>

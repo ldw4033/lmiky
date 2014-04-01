@@ -302,7 +302,7 @@ public class OperatorController extends FormController<Operator> {
 				logOpe(User.class.getName(), sessionInfo.getUserId(), modelMap, request, sessionInfo, OPEN_MODE_EDIT, "修改密码");
 				putMessage(modelMap, "修改成功!");
 			}
-			return "jdp/user/user/modifyPassword";
+			return "jdp/user/operator/modifyPassword";
 		} catch(Exception e) {
 			return transactException(e, modelMap, request, resopnse);
 		}

@@ -6,7 +6,7 @@
 </head>
 <body style="height: 98%;">
 	<%@ include file="/jdp/form/messages.jsp" %>
-	<form id="mainForm" action="<c:url value="/user/modifyPassword.shtml"/>" method="post">
+	<form id="mainForm" action="<c:url value="/operator/modifyPassword.shtml"/>" method="post">
 		<input type="hidden" name="modulePath" value="${param.modulePath }"/>
 		<table class="table-form full" style="width: 100%;">
 	       	<tr>

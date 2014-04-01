@@ -52,6 +52,7 @@
 			    	zTreeObj.updateNode(treeNode);
 			    }
 		    	zTreeObj.expandNode(treeNode, true, false, false, true);
+		    	resizeMenuIframe();
 			}
 			
 			function resizeMenuIframe() {

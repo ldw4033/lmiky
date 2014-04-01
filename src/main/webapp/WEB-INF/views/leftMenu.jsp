@@ -83,7 +83,7 @@
 														'${subMenu.label }')">${subMenu.label }</dt>
 													</c:when>
 													<c:when test="${subMenu.type == 'iframe' }">
-														<iframe src="<c:url value="/"/>${subMenu.url }" id="menuFrame_${subMenu.id }" onload="this.style.height=menuFrame_${subMenu.id }.document.body.scrollHeight" frameborder="0"  width="100%"></iframe>
+														<iframe src="<c:url value="/"/>${subMenu.url }" id="menuFrame_${subMenu.id }" onload="resizeIframe('menuFrame_${subMenu.id }')" frameborder="0"  width="100%" scrolling="no" ></iframe>
 													</c:when>
 												</c:choose>
 											</div>
