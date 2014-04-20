@@ -111,14 +111,20 @@ function isMouseInObj(event,obj){
 } 
 
 //调整frame高度
-function resizeIframe(frameId) {
+function resizeIframe(frameId, cb) {
 	var frameObj = document.getElementById(frameId);
 	if(!frameObj) {
 		frameObj = parent.document.getElementById(frameId);
 		if(!!frameObj) {
 			$(frameObj).height(window.document.body.scrollHeight);
+			if(cb && typeof(cb) == "function") {
+				cb();
+			}
 		}
 	} else {
 		$(frameObj).height(frameObj.contentWindow.document.body.scrollHeight);
+		if(cb && typeof(cb) == "function") {
+			cb();
+		}
 	}
 }

@@ -54,10 +54,19 @@
 				win.location.href = "<c:url value="/sso/login/logout.shtml"/>";
 			}
 			
+			function resizeLeftMenuTable() {
+				var contentIframeHeight = $("#contentFrame").height();
+				//alert(contentIframeHeight);
+				var leftMenuTableHeight = $("#leftMenuTable").height();
+				if(contentIframeHeight > leftMenuTableHeight) {
+					$("#leftMenuTable").height(contentIframeHeight);
+				}
+			}
+			
     </script>
 	</head>
 	<body style="background: #EFEFEF url(${images}/bg.png) repeat 0 0;">
-		<table border="0" cellpadding="0" cellspacing="0" align="center"  style="height: 100%; width: 100%;">
+		<table border="0" cellpadding="0" cellspacing="0" align="center" style="height: 100%; width: 100%;">
 			<tr>
 				<td height="35">
 					<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center"  class="home_top">
@@ -76,7 +85,7 @@
 			</tr>
 			<tr>
 				<td height="100%">
-					<table width="1200" height="100%" border="0" cellpadding="0" cellspacing="0" align="center">
+					<table border="0" cellpadding="0" cellspacing="0" align="center" style="height: 100%; width: 1200px;">
 						<tr>
 							<td colspan="3" valign="top">
 								<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -113,17 +122,11 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="left" width="190" valign="top" id="left_">
-								<table width="190" height="100%" border="0" cellpadding="0" cellspacing="0" class="bian4">
+							<td align="left" width="190" valign="top" id="left_" style="height: 100%;">
+								<table width="190" border="0" cellpadding="0" cellspacing="0" class="bian4" id="leftMenuTable" style="height: 100%;">
 									<tr>
-										<td height="100%" valign="top">
-											<table width="100%" height="100%" bgcolor="ffffff" border="0" cellpadding="0" cellspacing="0" class="bian1">
-												<tr>
-													<td valign="top">
-														<iframe src="" id="leftMenu" name="leftMenu" height="100%" frameborder="0" scrolling="no" width="100%"></iframe>
-													</td>
-												</tr>
-											</table>
+										<td height="100%" valign="top" class="bian1" bgcolor="ffffff">
+											<iframe src="" id="leftMenu" name="leftMenu" height="100%" onload="resizeIframe('leftMenu')" frameborder="0" scrolling="no" width="100%"></iframe>
 										</td>
 									</tr>
 								</table>
@@ -131,17 +134,11 @@
 							<td width="8" height="100%" valign="middle" bgcolor="#F5F5F5">
 								<img src="${images}/shensuo-b.gif" width="8" height="126" style="cursor: pointer;" onClick="changImg(this)">
 							</td>
-							<td width="100%" align="center" valign="top">
+							<td width="100%" align="center" valign="top"  style="height: 100%;">
 								<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
 									<tr>
-										<td>
-											<table width="100%" height="100%" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0">
-												<tr>
-													<td valign="top" bgcolor="#FFFFFF">
-														<iframe src="" id="contentFrame" height="100%" onload="resizeIframe('contentFrame')" frameborder="0" scrolling="auto" width="100%"></iframe>
-													</td>
-												</tr>
-											</table>
+										<td style="height: 100%;" valign="top" bgcolor="#FFFFFF">
+											<iframe src="" id="contentFrame" height="100%" onload="resizeIframe('contentFrame');" frameborder="0" scrolling="auto" width="100%"></iframe>
 										</td>
 									</tr>
 								</table>
