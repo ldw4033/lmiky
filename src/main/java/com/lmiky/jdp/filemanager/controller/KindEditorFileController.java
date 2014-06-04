@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.lmiky.jdp.base.controller.BaseController;
 import com.lmiky.jdp.filemanager.util.FileUtils;
 import com.lmiky.jdp.json.util.JsonUtils;
+import com.lmiky.jdp.util.PropertiesUtils;
 import com.lmiky.jdp.web.util.ResponseUtils;
 
 /**
@@ -23,6 +24,8 @@ import com.lmiky.jdp.web.util.ResponseUtils;
 @Controller
 @RequestMapping("/kindEditorFile")
 public class KindEditorFileController extends BaseController {
+	//文件字段名称
+	public static final String PARAM_FIELDNAME_FILE = "imgFile";
 	//是否成功键名
 	public static final String KEY_NAME_ERROR = "error";
 	//提示
@@ -49,7 +52,7 @@ public class KindEditorFileController extends BaseController {
 	public void upload(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Map<String, Object> result = new HashMap<String, Object>();
 		try {
-			String filePath = FileUtils.upload(modelMap, request, response);
+			String filePath = FileUtils.upload(modelMap, request, response, PARAM_FIELDNAME_FILE, PropertiesUtils.getStringContextValue("system.file.path"));
 			result.put(KEY_NAME_ERROR, VALUE_NAME_ERROR_SUCCESS);
 			result.put(KEY_NAME_MESSAGE, "上传成功！");
 			result.put(KEY_NAME_FILE_URL, request.getContextPath() + filePath);

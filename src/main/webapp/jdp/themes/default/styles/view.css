@@ -96,4 +96,5 @@ a.unselectedPageIndex:hover {
 }
 .filterTd {
 	line-height: 25px;
+	text-align: left;
 }

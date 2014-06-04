@@ -22,18 +22,23 @@ import com.lmiky.jdp.util.UUIDGenerator;
  * @date 2014-1-27
  */
 public class FileUtils {
+	//参数名
+	public static final String PARAMNAME_FILEEXTENSION = "fileExtension";	//允许的文件格式，多个格式之间以“,”分隔
+	public static final String PARAMNAME_FILEPATH = "filePath";	//文件保存路径
+	public static final String PARAMNAME_FILE = "fileData";	//文件字段
 
 	/**
-	 * 上传文件 imgFile: 文件form名称
+	 * 上传文件
 	 * @author lmiky
 	 * @date 2014-1-27
 	 * @param modelMap
 	 * @param request
 	 * @param response
 	 * @param formFieldName 表单中文件字段名称
+	 * @param savePath 保存路径，相对路径
 	 * @throws FileUploadException
 	 */
-	public static String upload(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, String formFieldName) throws FileUploadException {
+	public static String upload(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, String formFieldName, String savePath) throws FileUploadException {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		CommonsMultipartFile multipartFile = (CommonsMultipartFile) multipartRequest.getFile(formFieldName);
 		if (multipartFile == null) {
@@ -47,25 +52,24 @@ public class FileUtils {
 		String fileSuffix = StringUtils.substringAfterLast(oldFileName, ".");
 		String newFileName = filePrefix + "." + fileSuffix;
 		// 检查文件格式
-		String fileExtension = request.getParameter("fileExtension"); // 允许的文件格式，多个格式之间以“,”分隔
+		String fileExtension = request.getParameter(PARAMNAME_FILEEXTENSION); 
 		if (!StringUtils.isBlank(fileExtension)) {
 			if (("," + fileExtension + ",").indexOf("," + fileSuffix + ",") == -1) {
 				throw new FileUploadException("文件格式错误！", FileUploadException.CODE_FORMAT_ERROR);
 			}
 		}
 		try {
-			String filePath = PropertiesUtils.getStringContextValue(Constants.SYSTEM_FILE_PATH);
-			String realPath = WebUtils.getRealPath(request.getSession().getServletContext(), filePath);
+			String realPath = WebUtils.getRealPath(request.getSession().getServletContext(), savePath);
 			File newFile = new File(realPath + "/" + newFileName);
 			IOUtils.copy(multipartFile.getInputStream(), org.apache.commons.io.FileUtils.openOutputStream(newFile));
-			return filePath + "/" + newFileName;
+			return savePath + "/" + newFileName;
 		} catch (Exception e) {
 			throw new FileUploadException(e.getMessage());
 		}
 	}
 
 	/**
-	 * 默认表单文件字段名称为imgFile
+	 * 上传文件
 	 * @author lmiky
 	 * @date 2014-1-27
 	 * @param modelMap
@@ -74,6 +78,27 @@ public class FileUtils {
 	 * @throws FileUploadException
 	 */
 	public static String upload(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) throws FileUploadException {
-		return upload(modelMap, request, response, "imgFile");
+		//保存路径
+		String savePath = request.getParameter(PARAMNAME_FILEPATH);
+		//默认路径
+        if(StringUtils.isBlank(savePath)) {
+        	savePath = PropertiesUtils.getStringContextValue(Constants.SYSTEM_FILE_PATH);
+        }
+		return upload(modelMap, request, response, savePath);
+	}
+	
+	/**
+	 * 上传文件
+	 * @author lmiky
+	 * @date 2014-6-4
+	 * @param modelMap
+	 * @param request
+	 * @param response
+	 * @param savePath
+	 * @return
+	 * @throws FileUploadException
+	 */
+	public static String upload(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, String savePath) throws FileUploadException {
+		return upload(modelMap, request, response, PARAMNAME_FILE, savePath);
 	}
 }
