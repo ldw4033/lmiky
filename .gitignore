@@ -5,4 +5,4 @@ target/**/*
 src/main/webapp/WEB-INF/lib/
 src/main/webapp/logs/
 src/main/webapp/files/**/*
-src/main/resources/config/*.xml
+applicationContext-database.xml
