@@ -151,4 +151,5 @@
 			</table>
 		</form>
 	</body>
+	<script src="${script }/jquery.min.js" type="text/javascript"></script>
 </html>
