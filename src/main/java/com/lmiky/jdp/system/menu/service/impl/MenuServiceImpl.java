@@ -71,6 +71,7 @@ public class MenuServiceImpl implements MenuService {
 				LeftMenu leftMenu = new LeftMenu();
 				leftMenu.setId(leftMenuElement.attributeValue("id"));
 				leftMenu.setLabel(leftMenuElement.attributeValue("label"));
+				leftMenu.setTopMenu(topMenu);
 				List<SubMenu> subMenuList = new ArrayList<SubMenu>();
 				leftMenu.setSubMenus(subMenuList);
 				// 子菜单
@@ -98,6 +99,7 @@ public class MenuServiceImpl implements MenuService {
 						subMenu.setHeight(Integer.parseInt(height));
 					}
 					subMenu.setAuthority(subMenuElement.elementText("authority"));
+					subMenu.setLeftMenu(leftMenu);
 					subMenuList.add(subMenu);
 					cache.put(CACHE_KEY_SUBMENU_PREFIX + subMenu.getId(), new SimpleCacheData(subMenu));
 				}

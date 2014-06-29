@@ -1,51 +1,24 @@
 package com.lmiky.jdp.system.menu.model;
 
-import java.io.Serializable;
-
 /**
  * 子菜单菜单
  * @author lmiky
  * @date 2013-6-16
  */
-public class SubMenu implements Serializable {
-	private static final long serialVersionUID = -248788134293255417L;
+public class SubMenu  extends Menu {
+	private static final long serialVersionUID = 3583468450044207384L;
 	public static final String TYPE_LINK = "link";
 	public static final String TYPE_DIALOG = "dialog";
 	public static final String TYPE_IFRAME = "iframe";
 	
-	private String id;
-	private String label;
 	private String url;
 	private String type;
 	private String modulePath;
 	private String authority;
 	private Integer width;
 	private Integer height;
+	private LeftMenu leftMenu;
 	
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
-	}
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
-	}
-	/**
-	 * @return the label
-	 */
-	public String getLabel() {
-		return label;
-	}
-	/**
-	 * @param label the label to set
-	 */
-	public void setLabel(String label) {
-		this.label = label;
-	}
 	/**
 	 * @return the url
 	 */
@@ -117,5 +90,17 @@ public class SubMenu implements Serializable {
 	 */
 	public void setHeight(Integer height) {
 		this.height = height;
+	}
+	/**
+	 * @return the leftMenu
+	 */
+	public LeftMenu getLeftMenu() {
+		return leftMenu;
+	}
+	/**
+	 * @param leftMenu the leftMenu to set
+	 */
+	public void setLeftMenu(LeftMenu leftMenu) {
+		this.leftMenu = leftMenu;
 	}
 }

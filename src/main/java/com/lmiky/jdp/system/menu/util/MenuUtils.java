@@ -8,9 +8,12 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.ui.ModelMap;
 
+import com.lmiky.jdp.constants.Constants;
 import com.lmiky.jdp.service.BaseService;
+import com.lmiky.jdp.session.exception.SessionException;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.system.menu.controller.MenuController;
 import com.lmiky.jdp.system.menu.model.LeftMenu;
@@ -19,6 +22,7 @@ import com.lmiky.jdp.system.menu.model.TopMenu;
 import com.lmiky.jdp.system.menu.service.MenuService;
 import com.lmiky.jdp.util.Environment;
 import com.lmiky.jdp.util.PropertiesUtils;
+import com.lmiky.jdp.web.util.WebUtils;
 
 /**
  * 菜单工具类
@@ -108,11 +112,11 @@ public class MenuUtils {
 	 * @return
 	 * @throws Exception
 	 */
-	public static List<LeftMenu> getLeftMenus(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, SessionInfo sessionInfo,
+	public static List<LeftMenu> getLeftMenus(ModelMap modelMap, HttpServletRequest request, SessionInfo sessionInfo,
 			String topMenuId) throws Exception {
 		List<LeftMenu> leftMenuList = new ArrayList<LeftMenu>();
 		if (MenuController.TOP_MENU_ID_MYINDEX.equals(topMenuId)) {
-			leftMenuList = getMyIndexMenus(modelMap, request, response, sessionInfo, topMenuId);
+			leftMenuList = getMyIndexMenus(modelMap, request, sessionInfo, topMenuId);
 		} else {
 			leftMenuList = getMenuService().getLeftMenus(topMenuId, sessionInfo);
 		}
@@ -125,17 +129,16 @@ public class MenuUtils {
 	 * @date 2014-6-28
 	 * @param modelMap
 	 * @param request
-	 * @param response
 	 * @param sessionInfo
 	 * @param topMenu 如果为空，则获取个人主页菜单列表
 	 * @return
 	 * @throws Exception
 	 */
-	public static List<LeftMenu> getLeftMenus(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, SessionInfo sessionInfo,
+	public static List<LeftMenu> getLeftMenus(ModelMap modelMap, HttpServletRequest request, SessionInfo sessionInfo,
 			TopMenu topMenu) throws Exception {
 		List<LeftMenu> leftMenuList = new ArrayList<LeftMenu>();
 		if (topMenu == null || MenuController.TOP_MENU_ID_MYINDEX.equals(topMenu.getId())) {
-			leftMenuList = getMyIndexMenus(modelMap, request, response, sessionInfo, MenuController.TOP_MENU_ID_MYINDEX);
+			leftMenuList = getMyIndexMenus(modelMap, request, sessionInfo, MenuController.TOP_MENU_ID_MYINDEX);
 		} else {
 			leftMenuList = topMenu.getLeftMenus();
 		}
@@ -148,13 +151,12 @@ public class MenuUtils {
 	 * @date 2014-6-28
 	 * @param modelMap
 	 * @param request
-	 * @param response
 	 * @param sessionInfo
 	 * @param topMenuId
 	 * @return
 	 * @throws Exception
 	 */
-	public static List<LeftMenu> getMyIndexMenus(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, SessionInfo sessionInfo,
+	public static List<LeftMenu> getMyIndexMenus(ModelMap modelMap, HttpServletRequest request, SessionInfo sessionInfo,
 			String topMenuId) throws Exception {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userId", sessionInfo.getUserId());
@@ -204,12 +206,11 @@ public class MenuUtils {
 	 * @date 2014-6-28
 	 * @param modelMap
 	 * @param request
-	 * @param response
 	 * @param sessionInfo
 	 * @return
 	 * @throws Exception
 	 */
-	public static SubMenu getMyLatelyOpeLinkMenu(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, SessionInfo sessionInfo) throws Exception {
+	public static SubMenu getMyLatelyOpeLinkMenu(ModelMap modelMap, HttpServletRequest request, SessionInfo sessionInfo) throws Exception {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userId", sessionInfo.getUserId());
 		// 最近操作菜单
@@ -233,16 +234,18 @@ public class MenuUtils {
 	 * @date 2014-6-28
 	 * @param modelMap
 	 * @param request
-	 * @param response
 	 * @param sessionInfo
 	 * @return
 	 * @throws Exception
 	 */
-	public static SubMenu getMyWelcomeMenu(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, SessionInfo sessionInfo) throws Exception {
+	public static SubMenu getMyWelcomeMenu(ModelMap modelMap, HttpServletRequest request, SessionInfo sessionInfo) throws Exception {
+		SubMenu welcomeMenu = null;
 		//最近操作菜单
-		SubMenu subMenu = getMyLatelyOpeLinkMenu(modelMap, request, response, sessionInfo);
+		SubMenu subMenu = getMyLatelyOpeLinkMenu(modelMap, request, sessionInfo);
 		if(subMenu != null) {
-			return subMenu;
+			welcomeMenu = (SubMenu) subMenu.clone();
+			welcomeMenu.setUrl(subMenu.getUrl() + "&" + Constants.HTTP_PARAM_TOPMENU_ID + "=" + MenuController.TOP_MENU_ID_MYINDEX);
+			return welcomeMenu;
 		}
 		//收藏夹
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -255,7 +258,9 @@ public class MenuUtils {
 		for (String subMenuId : subMenuIds) {
 			SubMenu sm = menuService.getSubMenu(subMenuId, sessionInfo);
 			if (sm != null && SubMenu.TYPE_LINK.equals(sm.getType())) {
-				return sm;
+				welcomeMenu = (SubMenu) sm.clone();
+				welcomeMenu.setUrl(sm.getUrl() + "&" + Constants.HTTP_PARAM_TOPMENU_ID + "=" + MenuController.TOP_MENU_ID_MYINDEX);
+				return welcomeMenu;
 			}
 		}
 		//拥有权限的菜单
@@ -264,9 +269,89 @@ public class MenuUtils {
 			for(LeftMenu leftMenu : topMenu.getLeftMenus()) {
 				for(SubMenu sm : leftMenu.getSubMenus()) {
 					if (sm != null && SubMenu.TYPE_LINK.equals(sm.getType())) {
+						welcomeMenu = (SubMenu) sm.clone();
+						welcomeMenu.setUrl(sm.getUrl() + "&" + Constants.HTTP_PARAM_TOPMENU_ID + "=" + topMenu.getId());
 						return sm;
 					}
 				}
+			}
+		}
+		return null;
+	}
+	
+	
+	/**
+	 * 获取当前子菜单ID
+	 * @author lmiky
+	 * @date 2014-6-29
+	 * @param request
+	 * @return
+	 */
+	public static String getSubMenuId(ModelMap modelMap, HttpServletRequest request) {
+		String subMenuId = request.getParameter(Constants.HTTP_PARAM_SUBMENU_ID);
+		if(subMenuId == null) {
+			subMenuId = "";
+		}
+		return subMenuId.trim();
+	}
+	
+	/**
+	 * 获取当前子菜单
+	 * @author lmiky
+	 * @date 2014-6-29
+	 * @param request
+	 * @return
+	 * @throws SessionException
+	 * @throws Exception
+	 */
+	public static SubMenu getSubMenu(ModelMap modelMap, HttpServletRequest request) throws SessionException, Exception {
+		String subMenuId = getSubMenuId(modelMap, request);
+		if(StringUtils.isBlank(subMenuId)) {
+			return null;
+		}
+		return ((MenuService)Environment.getBean("menuService")).getSubMenu(subMenuId, WebUtils.getSessionInfo(request));
+	}
+	
+	/**
+	 * 获取当前顶层菜单ID
+	 * @author lmiky
+	 * @date 2014-6-29
+	 * @param request
+	 * @return
+	 */
+	public static String getTopMenuId(ModelMap modelMap, HttpServletRequest request) {
+		String topMenuId = request.getParameter(Constants.HTTP_PARAM_TOPMENU_ID);
+		if(topMenuId == null) {
+			topMenuId = "";
+		}
+		return topMenuId.trim();
+	}
+	
+	/**
+	 * 获取当前顶层菜单
+	 * @author lmiky
+	 * @date 2014-6-29
+	 * @param request
+	 * @return
+	 * @throws SessionException
+	 * @throws Exception
+	 */
+	public static TopMenu getTopMenu(ModelMap modelMap, HttpServletRequest request) throws SessionException, Exception {
+		String topMenuId = getTopMenuId(modelMap, request);
+		if(StringUtils.isBlank(topMenuId)) {
+			return null;
+		}
+		SessionInfo sessionInfo = WebUtils.getSessionInfo(request);
+		if(MenuController.TOP_MENU_ID_MYINDEX.equals(topMenuId)) {
+			TopMenu topMenu = new TopMenu();
+			topMenu.setId(topMenuId);
+			topMenu.setLabel(MenuController.TOP_MENU_LABEL_MYINDEX);
+			topMenu.setLeftMenus(getLeftMenus(modelMap, request, sessionInfo, topMenu));
+			return topMenu;
+		}
+		for(TopMenu tm : sessionInfo.getTopMenus()) {
+			if(topMenuId.equals(tm.getId())) {
+				return tm;
 			}
 		}
 		return null;

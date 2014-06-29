@@ -1,6 +1,5 @@
 package com.lmiky.jdp.system.menu.model;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,35 +7,22 @@ import java.util.List;
  * @author lmiky
  * @date 2013-6-16
  */
-public class LeftMenu implements Serializable {
-	private static final long serialVersionUID = 613083126910346194L;
-	private String id;
-	private String label;
+public class LeftMenu extends Menu {
+	private static final long serialVersionUID = -3891079667547674181L;
+	private TopMenu topMenu;
 	private List<SubMenu> subMenus;
 	
 	/**
-	 * @return the id
+	 * @return the topMenu
 	 */
-	public String getId() {
-		return id;
+	public TopMenu getTopMenu() {
+		return topMenu;
 	}
 	/**
-	 * @param id the id to set
+	 * @param topMenu the topMenu to set
 	 */
-	public void setId(String id) {
-		this.id = id;
-	}
-	/**
-	 * @return the label
-	 */
-	public String getLabel() {
-		return label;
-	}
-	/**
-	 * @param label the label to set
-	 */
-	public void setLabel(String label) {
-		this.label = label;
+	public void setTopMenu(TopMenu topMenu) {
+		this.topMenu = topMenu;
 	}
 	/**
 	 * @return the subMenus

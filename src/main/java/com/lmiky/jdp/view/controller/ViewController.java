@@ -75,8 +75,11 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 			// 查询分页内容，将分页信息设入页面
 			modelMap.put("page", pageService.fillPage(pojoClass, page, propertyFilters, sorts));
 			appendListAttribute(modelMap, request, resopnse);
+			//设置模块
 			String modulePath = getModulePath(modelMap, request);
 			modelMap.put(Constants.HTTP_PARAM_MODULE_PATH, modulePath);
+			//设置菜单
+			setMenuInfo(modelMap, request);
 			return getExecuteListRet(modelMap, request, modulePath);
 		} catch (Exception e) {
 			return transactException(e, modelMap, request, resopnse, requestTyp);

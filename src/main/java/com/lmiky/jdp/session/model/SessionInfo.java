@@ -3,10 +3,12 @@ package com.lmiky.jdp.session.model;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import com.lmiky.jdp.constants.Constants;
+import com.lmiky.jdp.system.menu.model.TopMenu;
 import com.lmiky.jdp.util.PropertiesUtils;
 
 /**
@@ -28,9 +30,12 @@ public class SessionInfo implements Serializable {
 	private String systemUrlParamHistory = PropertiesUtils.getStringContextValue("system.url.param.history").toLowerCase();
 	private String systemUrlParamNoHistory = PropertiesUtils.getStringContextValue("system.url.param.history.noRemember").toLowerCase();
 	private int systenUriPatternLength = Constants.SYSTEM_URI_PATTERN.length();
+	//访问页面历史记录，提供“退后”按钮使用
 	@SuppressWarnings("rawtypes")
 	private Map<String, Map> urlParamHistorys = new LinkedHashMap<String, Map>();
 	private int urlParamHistoryNum = PropertiesUtils.getIntContextValue("system.url.param.history.num");
+	//永远全新的顶层菜单列表
+	private List<TopMenu> topMenus;
 
 	/**
 	 * @return the sessionId
@@ -222,5 +227,13 @@ public class SessionInfo implements Serializable {
 		// 截取掉诸如以下信息*.shtml;jsessionid=FDSAGDF43ASFSD654AF
 		String requestUri = uri.substring(0, uri.lastIndexOf(Constants.SYSTEM_URI_PATTERN) + systenUriPatternLength);
 		return urlParamHistorys.get(requestUri);
+	}
+
+	public List<TopMenu> getTopMenus() {
+		return topMenus;
+	}
+
+	public void setTopMenus(List<TopMenu> topMenus) {
+		this.topMenus = topMenus;
 	}
 }

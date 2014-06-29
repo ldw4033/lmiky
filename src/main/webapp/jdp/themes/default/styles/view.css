@@ -1,43 +1,12 @@
 @CHARSET "UTF-8";
-.listMenu {
-	height:30px;
-	COLOR: #666666;
-	font-weight: bold;
-	font-size:13px; 
-	BORDER-BOTTOM: #FF2A00 1px solid;
-}
-
-.listContent {
-    border-collapse: collapse;
-    border: 1px solid #BABABA;
-    color: #000;
-    background: #FFFFFF;
-}
-
-.listContent .no {
-    width: 45px;
-}
 
 .listContent .simpleCheckbox {
-	width :30px;
+	width :20px;
 }
 
-.listContent th,
 .listContent td {
 	text-align: center;
-	border: 1px solid #BABABA;
-	padding: 0.3em;
-	height:25px;
-}
-
-.listContent th {
-	FONT-WEIGHT: bold; 
-	FONT-SIZE: 13px; 
-	COLOR: #444444; 
-	BACKGROUND-COLOR: #E5E5E5;
-}
-
-.listContent td {
+	font-size: 12px !important;
 }
 
 .listContent th a {
@@ -45,6 +14,7 @@
 	background-repeat: no-repeat;
 	display: block;
 	text-decoration: none;
+	color: #666666 !important;
 }
 
 .listContent th.sortable a {
@@ -57,16 +27,6 @@
 
 .listContent th.order-desc a {
     background-image: URL(../images/arrow_down.png) !important;
-}
-
-.listContent tr.even {
-	background: #FFFFFF;
-    border-top: 1px solid #c0c0c0;
-}
-
-.listContent tr.odd {
-    background: #F6F6F6;
-    border-top: 1px solid #c0c0c0;
 }
 
 a.selectedPageIndex:link {
@@ -93,8 +53,4 @@ a.unselectedPageIndex:active {
 }
 a.unselectedPageIndex:hover {
     COLOR: #FE5230; TEXT-DECORATION: none
-}
-.filterTd {
-	line-height: 25px;
-	text-align: left;
 }

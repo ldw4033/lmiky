@@ -29,6 +29,8 @@ import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.session.service.SessionService;
 import com.lmiky.jdp.sso.exception.SsoException;
 import com.lmiky.jdp.sso.service.SsoService;
+import com.lmiky.jdp.system.menu.service.MenuService;
+import com.lmiky.jdp.system.menu.util.MenuUtils;
 import com.lmiky.jdp.user.pojo.User;
 import com.lmiky.jdp.util.PropertiesUtils;
 import com.lmiky.jdp.util.UUIDGenerator;
@@ -53,6 +55,7 @@ public abstract class BaseController {
 	protected SessionService sessionService;
 	protected SsoService ssoService;
 	protected AuthorityService authorityService;
+	protected MenuService menuService;
 	private String viewType = PropertiesUtils.getStringContextValue("system.viewType");
 	protected String loginUrl = PropertiesUtils.getStringContextValue("system.loginUrl");
 	
@@ -455,6 +458,22 @@ public abstract class BaseController {
 	}
 	
 	/**
+	 * 设置菜单信息
+	 * @author lmiky
+	 * @date 2014年6月29日 下午1:42:04
+	 * @param modelMap
+	 * @param request
+	 * @throws SessionException
+	 * @throws Exception
+	 */
+	public void setMenuInfo(ModelMap modelMap, HttpServletRequest request) throws SessionException, Exception {
+		//子菜单
+		modelMap.put("subMenu", MenuUtils.getSubMenu(modelMap, request));
+		//获取拥有权限
+		modelMap.put("topMenu", MenuUtils.getTopMenu(modelMap, request));
+	}
+	
+	/**
 	 * 设置业务对象
 	 * @author lmiky
 	 * @date 2013-4-15
@@ -532,5 +551,20 @@ public abstract class BaseController {
 	@Resource(name="authorityService")
 	public void setAuthorityService(AuthorityService authorityService) {
 		this.authorityService = authorityService;
+	}
+
+	/**
+	 * @return the menuService
+	 */
+	public MenuService getMenuService() {
+		return menuService;
+	}
+
+	/**
+	 * @param menuService the menuService to set
+	 */
+	@Resource(name="menuService")
+	public void setMenuService(MenuService menuService) {
+		this.menuService = menuService;
 	}
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="/jdp/common/taglibs.jsp" %>
 <c:set var="httpParamSubMenuId" value="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_SUBMENU_ID %>"/>
+<c:set var="httpParamTopMenuId" value="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_TOPMENU_ID %>"/>
 <c:set var="httpParamOpenMode" value="<%=com.lmiky.jdp.form.controller.FormController.HTTP_PARAM_FORM_OEPNMODE %>"/>
 <c:set var="readOpenMode" value="<%=com.lmiky.jdp.form.controller.FormController.OPEN_MODE_READ %>"/>
 <c:set var="editOpenMode" value="<%=com.lmiky.jdp.form.controller.FormController.OPEN_MODE_EDIT %>"/>

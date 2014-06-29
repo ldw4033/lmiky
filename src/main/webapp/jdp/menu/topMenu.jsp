@@ -7,16 +7,16 @@
 <div id="user-nav" class="navbar navbar-inverse">
 	<ul class="nav btn-group">
      	<li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-user"></i> <span class="text">${sessionScope.sessionInfo.userName }</span></a></li>
-		<li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-pencil"></i> <span class="text">修改密码</span></a></li>
+		<li class="btn btn-inverse"  onClick="openDialog('<c:url value="/"/>operator/toModifyPassword.shtml',  260, 230, '修改密码')"><a title="" href="#"><i class="icon icon-pencil"></i> <span class="text">修改密码</span></a></li>
 		<li class="btn btn-inverse"><a title="" href="<c:url value="/sso/login/logout.shtml"/>"><i class="icon icon-share-alt"></i> <span class="text">退出</span></a></li>
 	</ul>
 </div>
 <div style="width: 1200px; margin-left: auto; margin-right: auto;">
 	<div id="menu-nav" class="navbar navbar-inverse" style="z-index: 20">
 		<ul class="nav btn-group">
-			<li class="btn btn-inverse"><a title="" href="#"><span class="text"><%=MenuController.TOP_MENU_LABEL_MYINDEX %></span></a></li>
-			<c:forEach items="${menus }" var="topMenu" varStatus="status">
-				<li class="btn btn-inverse"><a title="" href="#"><span class="text">${topMenu.label }</span></a></li>
+			<li class="btn btn-inverse"><a title="" href="<c:url value="/"/>"><span class="text"><%=MenuController.TOP_MENU_LABEL_MYINDEX %></span></a></li>
+			<c:forEach items="${sessionScope.sessionInfo.topMenus }" var="topMenu" varStatus="status">
+				<li class="btn btn-inverse"><a title="" href="<c:url value="/"/>${topMenu.leftMenus[0].subMenus[0].url }&${httpParamTopMenuId}=${topMenu.id}"><span class="text">${topMenu.label }</span></a></li>
 			</c:forEach>
 		</ul>
 	</div>

@@ -68,8 +68,8 @@ public class MenuController extends BaseController {
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
 			// 检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
-			menuService.getTopMenus(sessionInfo);
-			request.setAttribute("welcomeMenu", MenuUtils.getMyWelcomeMenu(modelMap, request, response, sessionInfo));
+			sessionInfo.setTopMenus(menuService.getTopMenus(sessionInfo));
+			request.setAttribute("welcomeMenu", MenuUtils.getMyWelcomeMenu(modelMap, request, sessionInfo));
 			return "index";
 		} catch (Exception e) {
 			return transactException(e, modelMap, request, response);
@@ -95,7 +95,7 @@ public class MenuController extends BaseController {
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
 			// 检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
-			modelMap.put("leftMenus", MenuUtils.getLeftMenus(modelMap, request, response, sessionInfo, topMenuId));
+			modelMap.put("leftMenus", MenuUtils.getLeftMenus(modelMap, request, sessionInfo, topMenuId));
 			return "leftMenu";
 		} catch (Exception e) {
 			return transactException(e, modelMap, request, response);
