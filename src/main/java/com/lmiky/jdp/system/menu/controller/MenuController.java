@@ -68,7 +68,7 @@ public class MenuController extends BaseController {
 			SessionInfo sessionInfo = getSessionInfo(modelMap, request);
 			// 检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
-			sessionInfo.setTopMenus(menuService.getTopMenus(sessionInfo));
+			//sessionInfo.setTopMenus(menuService.getTopMenus(sessionInfo));
 			request.setAttribute("welcomeMenu", MenuUtils.getMyWelcomeMenu(modelMap, request, sessionInfo));
 			return "index";
 		} catch (Exception e) {

@@ -15,8 +15,7 @@
 </head>
 <body>
 	<%@ include file="/jdp/menu/topMenu.jsp"%>
-	<div
-		style="width: 1200px; margin-left: auto; margin-right: auto; margin-top: 72px; background-color: #444444;">
+	<div class="container_content">
 		<%@ include file="/jdp/menu/leftMenu.jsp"%>
 		<div id="content">
 			<%@ include file="/jdp/menu/location.jsp"%>
@@ -81,6 +80,7 @@
 								</tr>
 						</tbody>
 					</table>
+					<%@ include file="/jdp/view/sort.jsp" %>
 					</form>
 				</div>
 			</div>
@@ -88,6 +88,5 @@
 	</div>
 	<%@ include file="/jdp/common/scripts.jsp"%>
 	<%@ include file="/jdp/view/scripts.jsp"%>
-	<%@ include file="/jdp/view/sort.jsp" %>
 </body>
 </html>

@@ -51,6 +51,7 @@ public class Constants {
 	public static final String HTTP_PARAM_MODULE_PATH= "modulePath";	//模块路劲
 	public static final String HTTP_PARAM_SUBMENU_ID= "subMenuId";	//子菜单ID
 	public static final String HTTP_PARAM_TOPMENU_ID= "topMenuId";	//顶层菜单ID
+	public static final String HTTP_PARAM_MENU_FROM= "menuFrom";	//菜单来源
 	
 	//**********************************************Http参数**********************************************//
 	

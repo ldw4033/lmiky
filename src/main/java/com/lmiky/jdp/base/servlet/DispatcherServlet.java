@@ -35,8 +35,9 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 	private BaseService baseService;
 	private SessionService sessionService;
 	private MenuService menuService;
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig)
 	 */
 	@Override
@@ -44,44 +45,48 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 		// 注册Conveter
 		DateConverter dateConverter = new DateConverter();
 		dateConverter.setUseLocaleFormat(true);
-		dateConverter.setPatterns(new String[]{Constants.CONTEXT_KEY_FORMAT_DATE_VALUE, Constants.CONTEXT_KEY_FORMAT_DATETIME_VALUE});
-        ConvertUtils.register(dateConverter, Date.class);
-		//设置环境
+		dateConverter.setPatterns(new String[] { Constants.CONTEXT_KEY_FORMAT_DATE_VALUE, Constants.CONTEXT_KEY_FORMAT_DATETIME_VALUE });
+		ConvertUtils.register(dateConverter, Date.class);
+		// 设置环境
 		ServletContext application = config.getServletContext();
 		Environment.setServletContext(application);
-		baseService = (BaseService)Environment.getBean("baseService");
-		sessionService = (SessionService)Environment.getBean("sessionService");
-		menuService = (MenuService)Environment.getBean("menuService");
+		baseService = (BaseService) Environment.getBean("baseService");
+		sessionService = (SessionService) Environment.getBean("sessionService");
+		menuService = (MenuService) Environment.getBean("menuService");
 		super.init(config);
 	}
 
-
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see org.springframework.web.servlet.DispatcherServlet#doService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	protected void doService(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String continuationId = request.getParameter(Constants.HTTP_PARAM_LOGIN_CONTINUATION);
+		SessionInfo sessionInfo = null;
+		try {
+			sessionInfo = sessionService.getSessionInfo(request);
+		} catch (Exception e) {
+			LoggerUtils.logException(e);
+		}
 		if (!StringUtils.isBlank(continuationId) && !(request instanceof ContinuationRequest)) {
 			HttpSession session = request.getSession();
-			Map parameters = (Map)session.getAttribute(continuationId + Constants.SESSION_ATTR_CONTINUATION_PARAM_SUFFIX);
-			if(parameters!=null) {
+			Map parameters = (Map) session.getAttribute(continuationId + Constants.SESSION_ATTR_CONTINUATION_PARAM_SUFFIX);
+			if (parameters != null) {
 				session.removeAttribute(continuationId + Constants.SESSION_ATTR_CONTINUATION_PARAM_SUFFIX);
-				request = new ContinuationRequest(request, parameters); //构造新的请求
+				request = new ContinuationRequest(request, parameters); // 构造新的请求
 			}
-		} else {	//非继续登录之前的操作，防止重复记录
+		} else { // 非继续登录之前的操作，防止重复记录
 			String subMenuId = request.getParameter(Constants.HTTP_PARAM_SUBMENU_ID);
-			if(!StringUtils.isBlank(subMenuId)) {
-				SessionInfo sessionInfo = sessionService.getSessionInfo(request);
+			if (!StringUtils.isBlank(subMenuId)) {
 				SubMenu subMenu = menuService.getSubMenu(subMenuId, sessionInfo);
-				//记录最近操作
-				if(subMenu != null && sessionInfo != null && sessionInfo.getUserId() != null) {
-					if(!SubMenu.TYPE_IFRAME.equals(subMenu.getType())) {
+				// 记录最近操作
+				if (subMenu != null && sessionInfo != null && sessionInfo.getUserId() != null) {
+					if (!SubMenu.TYPE_IFRAME.equals(subMenu.getType())) {
 						String latelyOperateMenuId = sessionInfo.getLatelyOperateMenuId();
-						//如果跟上次操作一样，就不重复记录
-						if(StringUtils.isBlank(latelyOperateMenuId) ||  !subMenuId.equals(latelyOperateMenuId)) {
+						// 如果跟上次操作一样，就不重复记录
+						if (StringUtils.isBlank(latelyOperateMenuId) || !subMenuId.equals(latelyOperateMenuId)) {
 							LatelyOperateMenu latelyOperateMenu = new LatelyOperateMenu();
 							latelyOperateMenu.setMenuId(subMenuId);
 							latelyOperateMenu.setUserId(sessionInfo.getUserId());
@@ -92,15 +97,15 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 					}
 				}
 			}
-			//保存参数
-			try {
-				SessionInfo sessionInfo = sessionService.getSessionInfo(request);
-				if(sessionInfo != null) {
-					sessionInfo.AddUrlParamHistory(request.getRequestURI(), new HashMap(request.getParameterMap()));
-				}
-			} catch(Exception e) {
-				LoggerUtils.logException(e);
+			// 保存参数
+			if (sessionInfo != null) {
+				// 最近访问历史记录
+				sessionInfo.AddUrlParamHistory(request.getRequestURI(), new HashMap(request.getParameterMap()));
 			}
+		}
+		// 设置菜单
+		if (sessionInfo != null && (sessionInfo.getTopMenus() == null || sessionInfo.getTopMenus().isEmpty())) {
+			sessionInfo.setTopMenus(menuService.getTopMenus(sessionInfo));
 		}
 		super.doService(request, response);
 	}

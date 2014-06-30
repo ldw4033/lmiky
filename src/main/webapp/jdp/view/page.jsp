@@ -6,8 +6,15 @@
 <c:set var="pageSliderEnd" value="<%=com.lmiky.jdp.web.page.model.Page.SLIDER_END %>"/>
 
 <div class="dataTables_paginate">
-				<span style="margin-right: 5px;">共 <span class="font_style3">${page.itemCount}</span> 条记录</span> 
-				<span class="btn-group">
+				<span class="left">
+					<span style="margin-right: 5px;">共 <span class="font_style3">${page.itemCount}</span> 条记录</span> 
+					<span style="margin-left: 5px;">
+					转到第 <input type="text" class="page-input" name="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_PAGE_CURRENTPAGE %>"  id="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_PAGE_CURRENTPAGE %>" value="${page.currentPage}"/> 页 
+					<input type="hidden" name="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_PAGE_ACTION%>"  id="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_PAGE_ACTION%>" value="${page.action}"/>
+					<button class="btn ui-button go"  onclick="document.forms.mainForm.submit()"><i class="icon-random"></i></button>
+					</span>
+				</span>
+				<span class="btn-group right page_index">
 				<c:choose>
 					<c:when test="${page.pageCount <= pageSliderBegein + pageSliderCenter + pageSliderEnd}">
 						<c:forEach var="pageIndex"  begin="1" end="${ page.pageCount}" varStatus="status">
@@ -62,11 +69,6 @@
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-				</span>
-				<span style="margin-left: 5px;">
-				转到第 <input type="text" class="page-input" name="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_PAGE_CURRENTPAGE %>"  id="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_PAGE_CURRENTPAGE %>" value="${page.currentPage}"/> 页 
-				<input type="hidden" name="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_PAGE_ACTION%>"  id="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_PAGE_ACTION%>" value="${page.action}"/>
-				<button class="btn ui-button"  onclick="document.forms.mainForm.submit()"><i class="icon-random"></i></button>
 				</span>
 
 </div>

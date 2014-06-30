@@ -244,7 +244,7 @@ public class MenuUtils {
 		SubMenu subMenu = getMyLatelyOpeLinkMenu(modelMap, request, sessionInfo);
 		if(subMenu != null) {
 			welcomeMenu = (SubMenu) subMenu.clone();
-			welcomeMenu.setUrl(subMenu.getUrl() + "&" + Constants.HTTP_PARAM_TOPMENU_ID + "=" + MenuController.TOP_MENU_ID_MYINDEX);
+			welcomeMenu.setUrl(subMenu.getUrl() + "&" + Constants.HTTP_PARAM_MENU_FROM + "=" + MenuController.TOP_MENU_ID_MYINDEX + "-" + MenuController.LEFTMENU_ID_LATELYOPE);
 			return welcomeMenu;
 		}
 		//收藏夹
@@ -259,7 +259,7 @@ public class MenuUtils {
 			SubMenu sm = menuService.getSubMenu(subMenuId, sessionInfo);
 			if (sm != null && SubMenu.TYPE_LINK.equals(sm.getType())) {
 				welcomeMenu = (SubMenu) sm.clone();
-				welcomeMenu.setUrl(sm.getUrl() + "&" + Constants.HTTP_PARAM_TOPMENU_ID + "=" + MenuController.TOP_MENU_ID_MYINDEX);
+				welcomeMenu.setUrl(sm.getUrl() + "&" + Constants.HTTP_PARAM_MENU_FROM + "=" + MenuController.TOP_MENU_ID_MYINDEX + "-" + MenuController.LEFTMENU_ID_LATELYOPE);
 				return welcomeMenu;
 			}
 		}
@@ -270,7 +270,7 @@ public class MenuUtils {
 				for(SubMenu sm : leftMenu.getSubMenus()) {
 					if (sm != null && SubMenu.TYPE_LINK.equals(sm.getType())) {
 						welcomeMenu = (SubMenu) sm.clone();
-						welcomeMenu.setUrl(sm.getUrl() + "&" + Constants.HTTP_PARAM_TOPMENU_ID + "=" + topMenu.getId());
+						welcomeMenu.setUrl(sm.getUrl() + "&" + Constants.HTTP_PARAM_MENU_FROM + "=" + topMenu.getId() + "-" + sm.getLeftMenu().getId());
 						return sm;
 					}
 				}
@@ -320,11 +320,11 @@ public class MenuUtils {
 	 * @return
 	 */
 	public static String getTopMenuId(ModelMap modelMap, HttpServletRequest request) {
-		String topMenuId = request.getParameter(Constants.HTTP_PARAM_TOPMENU_ID);
-		if(topMenuId == null) {
-			topMenuId = "";
+		String menuForm = request.getParameter(Constants.HTTP_PARAM_MENU_FROM);
+		if(menuForm == null) {
+			menuForm = "";
 		}
-		return topMenuId.trim();
+		return menuForm.trim().split("-")[0];
 	}
 	
 	/**
