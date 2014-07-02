@@ -19,6 +19,14 @@ body {
 	margin-top: 72px; 
 	background-color: #444444;
 }
+
+#container_footer {
+	min-height: 10px;
+}
+
+#content {
+		min-height: 700px;
+}
 /*内容end*/
 
 /*字体begin*/

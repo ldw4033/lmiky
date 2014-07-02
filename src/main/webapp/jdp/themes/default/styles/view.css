@@ -1,7 +1,12 @@
 @CHARSET "UTF-8";
 
+/*内容列表*/
 .listContent .simpleCheckbox {
 	width :20px;
+}
+
+.listContent .list_index{
+	min-width :30px;
 }
 
 .listContent td {
@@ -28,29 +33,18 @@
 .listContent th.order-desc a {
     background-image: URL(../images/arrow_down.png) !important;
 }
+/*内容列表*/
 
-a.selectedPageIndex:link {
-	COLOR: #FE5230; TEXT-DECORATION: none
-}
-a.selectedPageIndex:visited {
-	COLOR: #FE5230; TEXT-DECORATION: none
-}
-a.selectedPageIndex:active {
-	COLOR: #FE5230; TEXT-DECORATION: none
-}
-a.selectedPageIndex:hover {
-    COLOR: #FE5230; TEXT-DECORATION: none
+/*分页begin*/
+
+.dataTables_paginate .page-input {
+    font-size: 10px;
+    color: #333333;
+    width: 40px;
+    margin-bottom: 3px;
 }
 
-a.unselectedPageIndex:link {
-	COLOR: #000000; TEXT-DECORATION: none
+.dataTables_paginate .go, .dataTables_paginate page_index {
+    margin-bottom: 3px;
 }
-a.unselectedPageIndex:visited {
-	COLOR: #000000; TEXT-DECORATION: none
-}
-a.unselectedPageIndex:active {
-	COLOR: #FE5230; TEXT-DECORATION: none
-}
-a.unselectedPageIndex:hover {
-    COLOR: #FE5230; TEXT-DECORATION: none
-}
+/*分页end*/

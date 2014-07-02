@@ -1171,18 +1171,6 @@ span.icon .checker {
     color: #333333;
 }
 
-.dataTables_paginate .page-input {
-    font-size: 10px;
-    color: #333333;
-    width: 20px;
-    height: 10px !important;
-    margin-bottom: 3px;
-}
-
-.dataTables_paginate .go, .dataTables_paginate page_index {
-    margin-bottom: 3px;
-}
-
 .dataTables_paginate .ui-button:hover, .pagination.alternate li a:hover, .dataTables_paginate .hovered{
     background-color: #e8e8e8;
     background-image: -moz-linear-gradient(center top , #f0f0f0, #dadada);
