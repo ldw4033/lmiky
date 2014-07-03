@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/jdp/common/common.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script src="${script }/jquery.min.js" type="text/javascript"></script>
 <c:set var="selectedLeftMenuId" value=""/>
 <c:if test="${fn:contains(param.menuFrom, '-')}">
@@ -7,7 +8,7 @@
 </c:if>
 <div id="sidebar">
 	<ul>
-		<li id="menuLabel"><a href="javascript: void(0)"><span>${topMenu.label }</span></a></li>
+		<li id="menuLabel"><a href="javascript: void(0)"><span>${topMenu.label }</span><i class="icon-step-backward" style="float: right;" onclick="extendLeftMenu()"></i></a></li>
 		<c:forEach items="${topMenu.leftMenus }" var="leftMenu" varStatus="status">
 			<li class="submenu" id="leftMenu_${leftMenu.id }"><a href="#"><i class="icon icon-th-list"></i><span>${leftMenu.label }</span></a>
 				<ul>
@@ -27,4 +28,9 @@
 	$(document).ready(function(){
 		$('#leftMenu_${selectedLeftMenuId}').addClass('open');
 	}); 
+	
+	function extendLeftMenu() {
+		$('#sidebar').hide();
+		$('#content').css('margin-left', '0px');
+	}
 </script>
