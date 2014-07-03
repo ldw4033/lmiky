@@ -101,7 +101,7 @@ a:hover {
 #user-nav > ul > li > a:hover, #user-nav > ul > li.open > a {
 	color: #ffffff;
 }
-#user-nav > ul > li > a > i, #sidebar li a i {
+#user-nav > ul > li > a > i, #sidebar li a i, #sidebar-mini li a i {
 	vertical-align: top;
 	background-image: url('../img/glyphicons-halflings-white.png');
 	opacity: .5;
@@ -136,21 +136,40 @@ a:hover {
 
 /* Sidebar Navigation */
 #sidebar {
+    width: 220px;
     display: block;
+}
+
+#sidebar-mini {
+    width: 15px;
+    display: none;
+}
+
+#sidebar, #sidebar-mini {
     float: left;
     position: relative;
-    width: 220px;
     z-index: 16;
 }
 
 #sidebar > ul {
+	width: 220px;
+}
+
+#sidebar-mini   i {
+	margin-top: 10px !important;
+}
+
+#sidebar > ul, #sidebar-mini > ul {
+	margin: 0 10px 0 0;
+}
+
+#sidebar > ul, #sidebar-mini > ul {
 	list-style: none;
 	margin: 0 10px 0 0;
 	padding: 0;
 	position: absolute;
-	width: 220px;
 }
-#sidebar > ul > li {
+#sidebar > ul > li, #sidebar-mini > ul > li {
 	display: block;	
 	position: relative;
 }
@@ -388,7 +407,7 @@ a:hover {
 	padding: 0;
 }
 .stats-plain li {
-	padding: 0 30px;
+	padding: 0 ;
 	display: inline-block;
 	margin: 0 10px 20px;
 }
@@ -1407,7 +1426,7 @@ form {
 		margin-right: 0;
 		left: 30%;
 	}
-	#sidebar {
+	#sidebar, #sidebar-mini {
 		float: none;
 		width: 100% !important;
 	}
@@ -1420,11 +1439,12 @@ form {
 		color: #eeeeee;
 		font-size: 10px;
 	}
-	#sidebar > a > i {
+	
+	#sidebar > a > i{
 		margin-right: 10px;
 		background-image: url('../img/glyphicons-halflings-white.png');
 	}
-	#sidebar > ul {
+	#sidebar > ul, #sidebar-mini > ul {
 		display: none;
 		margin: -2px 0 0 !important;
 		width: 100% !important;
@@ -1492,7 +1512,7 @@ form {
 		position: absolute;
 		top: 12px;
     }
-	#sidebar > a {
+	#sidebar > a, #sidebar-mini > a {
 		display: none !important;
 	}
 	#sidebar > ul > li.open.submenu > a {

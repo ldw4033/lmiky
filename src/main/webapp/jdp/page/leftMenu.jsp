@@ -8,7 +8,7 @@
 </c:if>
 <div id="sidebar">
 	<ul>
-		<li id="menuLabel"><a href="javascript: void(0)"><span>${topMenu.label }</span><i class="icon-step-backward" style="float: right;" onclick="extendLeftMenu()"></i></a></li>
+		<li id="menuLabel"><a href="javascript: void(0)"><span>${topMenu.label }</span><i class="icon-step-backward" style="float: right;" onclick="shrinkLeftMenu()"></i></a></li>
 		<c:forEach items="${topMenu.leftMenus }" var="leftMenu" varStatus="status">
 			<li class="submenu" id="leftMenu_${leftMenu.id }"><a href="#"><i class="icon icon-th-list"></i><span>${leftMenu.label }</span></a>
 				<ul>
@@ -24,13 +24,27 @@
 		</c:forEach>
 	</ul>
 </div>
+<div id="sidebar-mini">
+	<ul>
+		<li><a href="javascript: void(0)"><i class="icon-step-forward" onclick="extendLeftMenu()"></i></a></li>
+	</ul>
+</div>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#leftMenu_${selectedLeftMenuId}').addClass('open');
 	}); 
 	
+	function shrinkLeftMenu() {
+		$('#sidebar').hide("fast", function() {
+			$('#sidebar-mini').show("fast");
+		});
+		$('#content').css('margin-left', '15px');
+	}
+	
 	function extendLeftMenu() {
-		$('#sidebar').hide();
-		$('#content').css('margin-left', '0px');
+		$('#sidebar-mini').hide("fast", function() {
+			$('#sidebar').show("fast");
+			$('#content').css('margin-left', '220px');
+		});
 	}
 </script>
