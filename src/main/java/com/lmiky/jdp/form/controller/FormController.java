@@ -155,6 +155,8 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			appendLoadAttribute(modelMap, request, resopnse, openMode, pojo);
 			String modulePath = getModulePath(modelMap, request);
 			modelMap.put(Constants.HTTP_PARAM_MODULE_PATH, modulePath);
+			//设置菜单
+			setMenuInfo(modelMap, request);
 			return getExecuteLoadRet(modelMap, request, modulePath);
 		} catch(Exception e) {
 			return transactException(e, modelMap, request, resopnse, requestTyp);
@@ -398,6 +400,8 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			appendSaveAttribute(modelMap, request, resopnse);
 			String modulePath = getModulePath(modelMap, request);
 			modelMap.put(Constants.HTTP_PARAM_MODULE_PATH, modulePath);
+			//设置菜单
+			setMenuInfo(modelMap, request);
 			appendLoadAttribute(modelMap, request, resopnse, openMode, pojo);
 			return getExecuteSaveRet(modelMap, request, modulePath);
 		} catch(Exception e) {

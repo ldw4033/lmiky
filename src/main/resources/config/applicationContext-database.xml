@@ -14,9 +14,9 @@
         <property name="username" value="root"/>
         <property name="password" value="root"/>
         -->
-        <property name="url" value="jdbc:mysql://110.76.45.92:3306/lmiky?useUnicode=true&amp;characterEncoding=utf-8"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/lmiky?useUnicode=true&amp;characterEncoding=utf-8"/>
         <property name="username" value="root"/>
-        <property name="password" value="xyf123456"/>
+        <property name="password" value="root"/>
 
 		<property name="initialSize" value="5" />
 		<property name="maxActive" value="20" /> 	<!-- 最大连接数 -->

@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.lmiky.jdp.constants.Constants;
+import com.lmiky.jdp.system.menu.model.SubMenu;
 import com.lmiky.jdp.system.menu.model.TopMenu;
 import com.lmiky.jdp.util.PropertiesUtils;
 
@@ -34,8 +35,10 @@ public class SessionInfo implements Serializable {
 	@SuppressWarnings("rawtypes")
 	private Map<String, Map> urlParamHistorys = new LinkedHashMap<String, Map>();
 	private int urlParamHistoryNum = PropertiesUtils.getIntContextValue("system.url.param.history.num");
-	//永远全新的顶层菜单列表
+	//拥有权限的顶层菜单列表
 	private List<TopMenu> topMenus;
+	//最近操作菜单
+	private List<SubMenu> latelyOpeMenus;
 
 	/**
 	 * @return the sessionId
@@ -229,11 +232,32 @@ public class SessionInfo implements Serializable {
 		return urlParamHistorys.get(requestUri);
 	}
 
+	/**
+	 * @return the topMenus
+	 */
 	public List<TopMenu> getTopMenus() {
 		return topMenus;
 	}
 
+	/**
+	 * @param topMenus the topMenus to set
+	 */
 	public void setTopMenus(List<TopMenu> topMenus) {
 		this.topMenus = topMenus;
 	}
+
+	/**
+	 * @return the latelyOpeMenus
+	 */
+	public List<SubMenu> getLatelyOpeMenus() {
+		return latelyOpeMenus;
+	}
+
+	/**
+	 * @param latelyOpeMenus the latelyOpeMenus to set
+	 */
+	public void setLatelyOpeMenus(List<SubMenu> latelyOpeMenus) {
+		this.latelyOpeMenus = latelyOpeMenus;
+	}
+
 }

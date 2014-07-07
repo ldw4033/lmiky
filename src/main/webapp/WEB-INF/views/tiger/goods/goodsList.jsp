@@ -16,9 +16,21 @@
 			<div id="content">
 				<%@ include file="/jdp/page/location.jsp"%>
 				<div class="container-fluid">
-					<div class="row-fluid">
-					<form id="mainForm" action="<c:url value="/tiger/goods/list.shtml"/>" method="post">
+					<form id="mainForm" action="<c:url value="/tiger/goods/list.shtml"/>" method="post" class="form-vertical">
 					<%@ include file="/jdp/view/field.jsp"%>
+					<div class="row-fluid">
+						<div class="span12">
+							<div class="widget-box border-radius">
+								<div class="nopadding control-group">
+										<label class="control-label" style="width: 80px;">商品名称：</label>
+										<lhtml:propertyFilter inputType="text" compareType="LIKE" propertyName="title" styleClass="medium"/>
+										&nbsp;
+										<button type="submit" class="btn action-button">查询</button>
+								</div>
+							</div>						
+						</div>
+					</div>
+					<div class="row-fluid">
 					<table class="listContent table table-bordered table-striped with-check table-hover">
 						<thead>
 							<tr>
@@ -77,8 +89,8 @@
 							</tbody>
 						</table>
 						<%@ include file="/jdp/view/sort.jsp" %>
-						</form>
 					</div>
+					</form>
 				</div>
 			</div>
 			<%@ include file="/jdp/page/footer.jsp"%>

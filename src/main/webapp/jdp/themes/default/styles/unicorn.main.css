@@ -664,11 +664,13 @@ a:hover {
     border-top: 1px solid #CDCDCD;
     border-left: 1px solid #CDCDCD;
     border-right: 1px solid #CDCDCD;
+    border-bottom: 1px solid #CDCDCD;
     clear: both;
     margin-top: 16px;
     margin-bottom: 16px;
     position: relative;
 }
+
 .widget-box.widget-calendar, .widget-box.widget-chat {
     overflow:hidden !important;
 }
@@ -1352,11 +1354,34 @@ div.dataTables_wrapper .ui-widget-header {
 form {
 	margin-bottom: 0;
 }
+
 .form-horizontal .control-group {
 	border-top: 1px solid #ffffff;
 	border-bottom: 1px solid #eeeeee;
 	margin-bottom: 0;
 }
+
+.form-vertical .control-group {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	line-height: 25px;
+}
+
+.form-vertical .action-button {
+	margin-bottom: 10px;
+	height: 25px;
+	font-size: 12px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.form-vertical input, .form-vertical select {
+	height: 25px;
+	font-size: 12px;
+	margin-bottom: 8px;
+	padding: 0px 6px !important;
+}
+
 .form-horizontal .control-group:last-child {
 	border-bottom: 0;
 }
@@ -1364,6 +1389,27 @@ form {
 	padding-top: 15px;
 	width: 180px;
 }
+
+.form-horizontal .read-control-label {
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+	margin: 0px !important;
+}
+
+.form-vertical .control-label, .form-horizontal .mini-control-label {
+	font-size: 12px;
+	text-align: right;
+	display: inline-block ;
+	cursor: pointer;
+}
+
+.form-horizontal .mini-control-label {
+	margin-bottom: 0px;
+	margin-top: 3px;
+	vertical-align: middle;
+}
+
+
 .form-horizontal .controls {
 	margin-left: 200px;
 	padding: 10px 0;
@@ -1375,6 +1421,13 @@ form {
 	margin-top: 0;
 	margin-bottom: 0;
 }
+
+#mainForm .form-actions {
+	padding-left: 0px;
+	padding-right: 0px;
+	text-align: center;
+}
+
 .help-block, .help-inline {
     color: #999999;
 }

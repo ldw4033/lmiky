@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<base target="_self"/>
-<%@ include file="/jdp/common/meta.jsp" %>
-<link rel="stylesheet" type="text/css" href="${css}/form.css"/>
 <script type="text/javascript">
 	var submitting = false;
 	$(document).ready(function() {
+		alert(1);
 		$("#mainForm").submit(function () {
 			if(!beforeSubmitForm()) {
 				submitting = false;

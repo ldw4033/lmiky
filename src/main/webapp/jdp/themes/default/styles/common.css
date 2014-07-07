@@ -27,6 +27,15 @@ body {
 #content {
 		min-height: 700px;
 }
+
+#mainForm label, #mainForm input,  #mainForm div,  #mainForm span,  #mainForm select {
+	font-size: 12px !important;
+}
+
+#mainForm .form-table {
+	margin-top: 0px !important;
+}
+
 /*内容end*/
 
 /*字体begin*/
@@ -54,4 +63,42 @@ body {
 
 .clear {
 	clear: both;
+}
+
+.border-radius {
+	border-radius : 4px;
+	-webkit-border-radius: 4px;
+}
+
+.mini{
+    width: 40px;
+}
+
+.small{
+    width: 70px;
+}
+
+.medium{
+    width: 130px;
+}
+
+.large {
+    width: 200px;
+}
+
+.larger {
+    width: 350px;
+}
+
+.full {
+    width: 100%;
+}
+
+.req {
+	color: #F54108;
+}
+
+.messageDiv {
+	padding-left: 20px;
+	padding-right: 20px;
 }

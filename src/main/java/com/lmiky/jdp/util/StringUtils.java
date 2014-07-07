@@ -67,9 +67,10 @@ public class StringUtils {
 	 */
 	public static Map<String, String[]> getUrlParameters(String url) {
 		Map<String, String[]> parameterMap = new HashMap<String, String[]>();
-		if(url.indexOf("?") != -1) {
-			url = url.substring(url.indexOf("?") + 1);
+		if(url.indexOf("?") == -1) {
+			return parameterMap;
 		}
+		url = url.substring(url.indexOf("?") + 1);
 		String[] params = url.split("&");
 		for(String param : params) {
 			String[] keyAndValues = param.split("=");

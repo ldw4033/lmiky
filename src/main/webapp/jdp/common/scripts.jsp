@@ -22,10 +22,10 @@
 			alert(json.msg);
 			if(json.code == '<%=MenuController.CODE_SUCCESS%>' && obj != null && obj != undefined) {
 				if($(obj).text() != '') {
-					$(obj).text("取消收藏");
+					$(obj).html('<i class="icon-star-empty"></i> 取消收藏');
 				}
 				if($(obj).val() != '') {
-					$(obj).val("取消收藏");
+					$(obj).val('取消收藏');
 				}
 				$(obj).removeAttr('onclick').unbind('click').click(function(){
 					removeMyFavoriteMenu(menuId, obj);
@@ -40,7 +40,7 @@
 			alert(json.msg);
 			if(json.code == '<%=MenuController.CODE_SUCCESS%>' && obj != null && obj != undefined) {
 				if($(obj).text() != '') {
-					$(obj).text("添加到收藏夹");
+					$(obj).html('<i class="icon-star"></i> 添加到收藏夹');
 				}
 				if($(obj).val() != '') {
 					$(obj).val("添加到收藏夹");
@@ -59,7 +59,7 @@
 
 	//回退
 	function back(url) {
-		window.location.href = '<c:url value="/common/back.shtml"/>?url=' + encodeURI(url);
+		window.location.href = '<c:url value="/common/back.shtml"/>?url=' + encodeURIComponent(url + '?modulePath=${modulePath }&menuFrom=${param.menuFrom }&subMenuId=${param.subMenuId }');
 	}
 	
 	//选择树
