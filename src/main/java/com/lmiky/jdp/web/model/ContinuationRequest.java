@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequestWrapper;
 public class ContinuationRequest extends HttpServletRequestWrapper implements HttpServletRequest {
 	@SuppressWarnings("rawtypes")
 	private Map parameters;
-	private HttpServletRequest request;
 	
 	/**
 	 * @param request
@@ -26,7 +25,6 @@ public class ContinuationRequest extends HttpServletRequestWrapper implements Ht
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ContinuationRequest(HttpServletRequest request, Map parameters) {
 		super(request);
-		this.request = request;
 		this.parameters = parameters;
 		//追加request的参数
 		Enumeration parameterNames = request.getParameterNames();
@@ -64,47 +62,20 @@ public class ContinuationRequest extends HttpServletRequestWrapper implements Ht
 	 * @see javax.servlet.ServletRequestWrapper#getParameterValues(java.lang.String)
 	 */
 	public String[] getParameterValues(String arg0) {
-		return (String[])parameters.get(arg0);
+		String[]  parameterValues = (String[])parameters.get(arg0);
+		if(parameterValues == null || parameterValues.length == 0) {
+			return getRequest().getParameterValues(arg0);
+		}
+		return parameterValues;
 	}
 
 	/* (non-Javadoc)
 	 * @see javax.servlet.ServletRequestWrapper#getParameter(java.lang.String)
 	 */
 	@Override
-	public String getParameter(String name) {
-		if(parameters == null) {
-			return null;
-		}
-		String[] param = (String[])parameters.get(name);
-		if(param == null) {
-			return null;
-		}
-		return param[0];
+	public String getParameter(String arg0) {
+		String[] values = getParameterValues(arg0);
+		return values==null || values.length==0 ? null : values[0];
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.servlet.http.HttpServletRequestWrapper#getHeaderNames()
-	 */
-	@SuppressWarnings("rawtypes")
-	@Override
-	public Enumeration getHeaderNames() {
-		return request.getHeaderNames();
-	}
-
-	/* (non-Javadoc)
-	 * @see javax.servlet.http.HttpServletRequestWrapper#getHeaders(java.lang.String)
-	 */
-	@SuppressWarnings("rawtypes")
-	@Override
-	public Enumeration getHeaders(String name) {
-		return request.getHeaders(name);
-	}
-
-	/* (non-Javadoc)
-	 * @see javax.servlet.http.HttpServletRequestWrapper#getHeader(java.lang.String)
-	 */
-	@Override
-	public String getHeader(String name) {
-		return request.getHeader(name);
-	}
 }
