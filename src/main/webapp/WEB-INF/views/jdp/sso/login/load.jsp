@@ -3,7 +3,6 @@
 <c:set var="redirect" value="<%=com.lmiky.jdp.constants.Constants.HTTP_PARAM_LOGIN_REDIRECT%>" />
 <html>
 	<head>
-		<%@ include file="/jdp/common/meta.jsp"%>
 		<title></title>
 		<style type="text/css">
 			.dl_dx {
