@@ -11,6 +11,13 @@ body {
 	overflow-x: hidden;
     margin-top: -9px;
 }
+
+.alert-body {
+	overflow-x: hidden;
+    margin: 0px;
+     padding: 0px;
+     background: #FFFFFF !important;
+}
 a:hover {
 	text-decoration: none;
 }
@@ -252,6 +259,13 @@ a:hover {
 	/*border-top-right-radius: 8px;*/
 }
 
+#mimi-content {
+    background: none repeat scroll 0 0 #ffffff;
+    margin: 0px;
+    padding: 0px;
+    width: auto;
+}
+
 #content-header {
 	background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#FFFFFF), to(#EEEEEE));
 	background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);
@@ -295,7 +309,7 @@ a:hover {
 	top: -7px;
 }
 
-.container-fluid .row-fluid:first-child {
+.container-fluid .row-fluid:first-child, .mini-container-fluid .row-fluid:first-child {
 	margin-top: 20px;
 }
 /* Breadcrumb */
@@ -1428,6 +1442,11 @@ form {
 	text-align: center;
 }
 
+#mainForm .mini-form-actions {
+	background-color: inherit !important;
+	border-top: none !important;
+}
+
 .help-block, .help-inline {
     color: #999999;
 }
@@ -1521,6 +1540,12 @@ form {
         margin-left: 0;
         padding: 10px 30px;
     }
+    .form-horizontal .mini-controls {
+        margin-left: 0;
+        padding: 10px 0px;
+        display: inline-block;
+    }
+    
     .form-actions {
         text-align: center;
     }
@@ -1603,6 +1628,10 @@ form {
 	.container-fluid {
 		padding-left: 20px;
 		padding-right: 20px;
+	}
+	.mini-container-fluid {
+		padding-left: 0px;
+		padding-right: 0px;
 	}
 	#search { display: none; }
 	#user-nav > ul > li > a > span.text {

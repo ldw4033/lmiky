@@ -3,7 +3,6 @@
 <script type="text/javascript">
 	var submitting = false;
 	$(document).ready(function() {
-		alert(1);
 		$("#mainForm").submit(function () {
 			if(!beforeSubmitForm()) {
 				submitting = false;

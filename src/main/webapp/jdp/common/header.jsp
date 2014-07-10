@@ -9,3 +9,4 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <base target="_self"/>
 <%@ include file="/jdp/common/style.jsp" %>
+<script src="${script }/jquery.min.js" type="text/javascript"></script>

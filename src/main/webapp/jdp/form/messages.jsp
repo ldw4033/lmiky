@@ -2,21 +2,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:if test="${not empty validateErrorInfos}">
 	<div class="row-fluid">
-	<div class="span12">
-	<div class="messageDiv">
-	<c:forEach var="validateErrorInfo" items="${validateErrorInfos}">
-			<script type="text/javascript">
-				$(document).ready(function() {
-					$("input[name='${validateErrorInfo.fieldName}']").parent().parent('.control-group').addClass("error");
-				});
-			</script>
-			<div class="alert alert-error">
-				<button class="close" data-dismiss="alert">×</button>
-				<c:out value="${validateErrorInfo.errorDesc}" />
+		<div class="span12">
+			<div class="messageDiv">
+				<c:forEach var="validateErrorInfo" items="${validateErrorInfos}">
+					<script type="text/javascript">
+						$(document).ready(function() {
+							$("input[name='${validateErrorInfo.fieldName}']").parent().parent('.control-group').addClass("error");
+						});
+					</script>
+					<div class="alert alert-error">
+						<button class="close" data-dismiss="alert">×</button>
+						<c:out value="${validateErrorInfo.errorDesc}" />
+					</div>
+				</c:forEach>
 			</div>
-	</c:forEach>
-	</div>
-	</div>
+		</div>
 	</div>
 </c:if>
 <%@ include file="/jdp/common/messageLabel.jsp"%>

@@ -51,7 +51,6 @@
 			<%@ include file="/jdp/page/footer.jsp"%>
 		</div>
 		<%@ include file="/jdp/common/scripts.jsp"%>
-		<%@ include file="/jdp/view/scripts.jsp"%>
 		<script src="${script }/multipleSelect.js" type="text/javascript"></script>
 	</body>
 </html>

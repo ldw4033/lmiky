@@ -23,7 +23,7 @@
 			</div>
 	   </c:forEach>
 	</c:if>
-<c:if test="${not empty errorInfos && not empty errorInfos && not empty messageInfos}">
+<c:if test="${not empty errorInfos || not empty messageInfos}">
 			</div>
 		</div>
 	</div>

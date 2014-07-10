@@ -71,27 +71,27 @@ body {
 }
 
 .mini{
-    width: 40px;
+    width: 40px !important;
 }
 
 .small{
-    width: 70px;
+    width: 70px !important;
 }
 
 .medium{
-    width: 130px;
+    width: 130px !important;
 }
 
 .large {
-    width: 200px;
+    width: 200px !important;
 }
 
 .larger {
-    width: 350px;
+    width: 350px !important;
 }
 
 .full {
-    width: 100%;
+    width: 100% !important;
 }
 
 .req {
