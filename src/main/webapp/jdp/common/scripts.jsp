@@ -14,6 +14,10 @@
 	var MESSAGE_DELETE_IMG_CONFIRM = "您确定要删除该图片？";
 	var MESSAGE_DELETE_IMG_UNSELECT = "请选择要删除的图片！";
 	
+	//默认弹框
+	var DEFAULT_DIALOG_WITH = 800;
+	var DEFAULT_DIALOG_HEIGHT = 550;
+	
 	//添加菜单到收藏夹
 	function addMyFavoriteMenu(menuId, obj) {
 		var uncacheParam = new Date().getTime(); //防止页面缓存

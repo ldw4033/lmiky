@@ -6,7 +6,7 @@
 </div>
 <div id="user-nav" class="navbar navbar-inverse">
 	<ul class="nav btn-group">
-     	<li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-user"></i> <span class="text">${sessionScope.sessionInfo.userName }</span></a></li>
+     	<li class="btn btn-inverse"><a title="" href="javascript: void(0)"><i class="icon icon-user"></i> <span class="text">${sessionScope.sessionInfo.userName }</span></a></li>
 		<li class="btn btn-inverse"  onClick="openDialog('<c:url value="/"/>operator/toModifyPassword.shtml',  420, 300, '修改密码')"><a title="" href="#"><i class="icon icon-pencil"></i> <span class="text">修改密码</span></a></li>
 		<li class="btn btn-inverse"><a title="" href="<c:url value="/sso/login/logout.shtml"/>"><i class="icon icon-share-alt"></i> <span class="text">退出</span></a></li>
 	</ul>

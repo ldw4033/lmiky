@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="/jdp/common/taglibs.jsp" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/jdp/common/common.jsp"%>
 <script type="text/javascript">
 	<!--
 		function changeUrl(url) {
@@ -11,31 +11,24 @@
 	//-->
 </script>
 
-<tr>
-	<th width="100" align="right" class="bg02">
-		<label>名称<span class="req">*</span></label>
-	</th>
-	<td width="500">
-		<input name="name" type="text" class="large bian" value="${pojo.name}"/>
-	</td>
-</tr>
-<tr>
-	<th align="right" class="bg02">
-		<label>抓取地址<span class="req">*</span></label>
-	</th>
-	<td>
-		<input name="name" type="text" class="full bian" value="${pojo.captureUrl}" onblur="changeUrl(this.value)"/>
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<iframe id="urlContent" src="" style="width: 100%; height: 100%;" frameborder="0" src="" scrolling="no"/></iframe>
-	</td>
-</tr>
-<tr>
-	<td colspan="2" align="center">
-		<input type="submit" class="btnClass" style="cursor: pointer;" value="提交" />
-		&nbsp;&nbsp;
-		<input type="button" class="btnClass" style="cursor: pointer;" value="返回" onclick="back('/capture/task/list.shtml?modulePath=${modulePath }')"/>
-	</td>
-</tr>
+<div class="control-group">
+	<label class="control-label">名称 <span class="req">*</span></label>
+	<div class="controls">
+		<input name="name" type="text" value="${pojo.name}" />
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label">抓取地址 <span class="req">*</span></label>
+	<div class="controls">
+		<input name="captureUrl" type="text" value="${pojo.captureUrl}"  onblur="changeUrl(this.value)"/>
+	</div>
+</div>
+<div class="control-group" style="padding:5px;">
+	<iframe id="urlContent" src="" style="width: 100%; height: 100%;" frameborder="0" src="" scrolling="no"/></iframe>
+</div>
+<div class="form-actions">
+	<button type="submit" class="btn btn-primary">提交</button>
+	&nbsp;&nbsp;
+	<button type="button" class="btn btn-primary"
+		onclick="back('/capture/task/list.shtml')">返回</button>
+</div>

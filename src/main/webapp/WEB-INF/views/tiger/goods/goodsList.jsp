@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/jdp/common/htmlDoctype.jsp"%>
 <%@ include file="/jdp/common/common.jsp"%>
-<%@ page import="com.lmiky.jdp.user.pojo.User"%>
-<c:set var="yesValid" value="<%=User.VALID_YES%>" />
-<c:set var="noValid" value="<%=User.VALID_NO%>" />
 <html>
 	<head>
 		<title>${subMenu.label }</title>
@@ -31,6 +29,19 @@
 						</div>
 					</div>
 					<div class="row-fluid">
+						<jsp:include page="/jdp/include/addMenu.jsp">
+							<jsp:param value="tiger_goods_add" name="authorityCode"/>
+							<jsp:param value="/tiger/goods/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }&menuFrom=${param.menuFrom }&subMenuId=${param.subMenuId }" name="addUrl"/>
+						</jsp:include>
+						<jsp:include page="/jdp/include/batchDeleteMenu.jsp">
+							<jsp:param value="tiger_goods_delete" name="authorityCode"/>
+							<jsp:param value="tiger/goods/batchDelete.shtml" name="deleteUrl"/>
+						</jsp:include>
+						<jsp:include page="/jdp/include/favoriteMenu.jsp">
+							<jsp:param value="tiger_goods_load" name="authorityCode"/>
+						</jsp:include>
+					</div>
+					<div class="row-fluid">
 					<table class="listContent table table-bordered table-striped with-check table-hover">
 						<thead>
 							<tr>
@@ -51,38 +62,38 @@
 						</thead>
 						<tbody>
 							<c:forEach var="item" items="${page.items}" varStatus="status">
-										<tr>
-											<td>${status.count + (page.currentPage - 1) * page.pageSize}</td>
-											<td>${item.title}</td>
-											<td>${item.salePrice}</td>
-											<td>${item.marketPrice}</td>
-											<td>${item.couponDiscount}</td>
-											<td>
-												<lauthority:checkAuthority authorityCode="tiger_goods_load">
-													<a href="javascript:void(0)" class="td_2" onclick="redirectPage('<c:url value="/tiger/goods/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
-														查看
-													</a>
-												</lauthority:checkAuthority>
-												<lauthority:checkAuthority authorityCode="tiger_goods_modify">
-													&nbsp;
-													<a href="javascript:void(0)" class="td_2" onclick="redirectPage('<c:url value="/tiger/goods/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
-														修改
-													</a>
-												</lauthority:checkAuthority>
-												<lauthority:checkAuthority authorityCode="tiger_goods_delete">
-													&nbsp;
-													<a href="javascript:void(0)" onclick="deletePojo('<c:url value="/tiger/goods/delete.shtml?id=${item.id}"/>')" class="td_2">
-														删除
-													</a>
-												</lauthority:checkAuthority>
-											</td>
-											<lauthority:checkAuthority authorityCode="tiger_goods_delete">
-												<td>
-													<input type="checkbox" name="batchDeleteId" value="${item.id}" />
-												</td>
+									<tr>
+										<td>${status.count + (page.currentPage - 1) * page.pageSize}</td>
+										<td>${item.title}</td>
+										<td>${item.salePrice}</td>
+										<td>${item.marketPrice}</td>
+										<td>${item.couponDiscount}</td>
+										<td>
+											<lauthority:checkAuthority authorityCode="tiger_goods_load">
+												<a href="javascript:void(0)" class="td_2" onclick="redirectPage('<c:url value="/tiger/goods/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }&menuFrom=${param.menuFrom }&subMenuId=${param.subMenuId }', 800, 600)">
+													查看
+												</a>
 											</lauthority:checkAuthority>
-										</tr>
-									</c:forEach>
+											<lauthority:checkAuthority authorityCode="tiger_goods_modify">
+												&nbsp;
+												<a href="javascript:void(0)" class="td_2" onclick="redirectPage('<c:url value="/tiger/goods/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }"/>&modulePath=${modulePath }&menuFrom=${param.menuFrom }&subMenuId=${param.subMenuId }', 800, 600)">
+													修改
+												</a>
+											</lauthority:checkAuthority>
+											<lauthority:checkAuthority authorityCode="tiger_goods_delete">
+												&nbsp;
+												<a href="javascript:void(0)" onclick="deletePojo('<c:url value="/tiger/goods/delete.shtml?id=${item.id}"/>')" class="td_2">
+													删除
+												</a>
+											</lauthority:checkAuthority>
+										</td>
+										<lauthority:checkAuthority authorityCode="tiger_goods_delete">
+											<td>
+												<input type="checkbox" name="batchDeleteId" value="${item.id}" />
+											</td>
+										</lauthority:checkAuthority>
+									</tr>
+								</c:forEach>
 									<tr>
 										<td colspan="${colCount }" style="background-color: #ffffff"><%@ include file="/jdp/view/page.jsp" %></td>
 									</tr>
@@ -90,7 +101,7 @@
 						</table>
 						<%@ include file="/jdp/view/sort.jsp" %>
 					</div>
-					</form>
+				</form>
 				</div>
 			</div>
 			<%@ include file="/jdp/page/footer.jsp"%>

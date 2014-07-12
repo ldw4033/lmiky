@@ -1,17 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="/jdp/common/simpleCommon.jsp" %>
-<tr>
-	<th width="70" align="right" class="bg02">
-		<label>名称<span class="req">*</span></label>
-	</th>
-	<td>
-		<input name="name" type="text" class="larger bian" value="${pojo.name}"/>
-	</td>
-</tr>
-<tr>
-	<td colspan="2" align="center">
-		<input type="submit" class="btnClass" style="cursor: pointer;" value="提交" />
-		&nbsp;&nbsp;
-		<input type="button" class="btnClass" style="cursor: pointer;" value="返回" onclick="back('/role/list.shtml?modulePath=${modulePath }')"/>
-	</td>
-</tr>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/jdp/common/common.jsp"%>
+<div class="control-group">
+	<label class="control-label">名称 <span class="req">*</span></label>
+	<div class="controls">
+		<input name="title" type="text" value="${pojo.name}" />
+	</div>
+</div>
+<div class="form-actions">
+	<button type="submit" class="btn btn-primary">提交</button>
+	&nbsp;&nbsp;
+	<button type="button" class="btn btn-primary"
+		onclick="back('/role/list.shtml')">返回</button>
+</div>

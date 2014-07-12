@@ -61,8 +61,8 @@
 				<type>dialog</type>
 				<modulePath>jdp/user/operator</modulePath>
 				<authority></authority>
-				<width>260</width>
-				<height>230</height>
+				<width>420</width>
+				<height>300</height>
 			</submenu>
 			<submenu>
 				<id>jdp_authority_load</id>

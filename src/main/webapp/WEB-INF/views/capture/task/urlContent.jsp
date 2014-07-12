@@ -10,7 +10,7 @@
 			<form:form id="mainForm" action="/capture/task/urlContent.shtml" method="post" commandName="pojo">
 				<table class="table-form full" >
 			       	<tr>
-			       		<td colspan="6" class="bg01 title">
+			       		<td>
 			       			${content }
 			       		</td>
 			       	</tr>

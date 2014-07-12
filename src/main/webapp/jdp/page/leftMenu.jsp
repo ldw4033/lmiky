@@ -18,7 +18,21 @@
 								class="active"
 								<c:set var="selectedLeftMenuId" value="${leftMenu.id }"/>
 							</c:if>
-						><a href="<c:url value="/"/>${subMenuV.url }&${httpParamMenuFrom}=${topMenu.id}-${leftMenu.id}">${subMenuV.label }</a></li>
+						>
+							<c:choose>
+								<c:when test="${subMenuV.type == 'link' }">
+									<a href="<c:url value="/"/>${subMenuV.url }&${httpParamMenuFrom}=${topMenu.id}-${leftMenu.id}">${subMenuV.label }</a>
+								</c:when>
+								<c:when test="${subMenuV.type == 'dialog' }">
+									<a href="javascript: void(0)" 
+										onClick="openDialog('<c:url value="/"/>${subMenuV.url }', 
+														<c:choose><c:when test="${not empty subMenuV.width}">${subMenuV.width }</c:when><c:otherwise>DEFAULT_DIALOG_WITH</c:otherwise></c:choose>,
+														<c:choose><c:when test="${not empty subMenuV.height}">${subMenuV.height }</c:when><c:otherwise>DEFAULT_DIALOG_HEIGHT</c:otherwise></c:choose>, 
+														'${subMenuV.label }')"
+									>${subMenuV.label }</a>
+								</c:when>
+							</c:choose>
+						</li>
 					</c:forEach>
 				</ul></li>
 		</c:forEach>

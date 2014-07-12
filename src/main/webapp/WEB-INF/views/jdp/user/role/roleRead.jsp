@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<tr>
-	<th width="70" align="right" class="bg02">
-		<label>名称</label>
-	</th>
-	<td class="larger">
+<%@ include file="/jdp/common/common.jsp" %>
+<div class="control-group">
+	<label class="control-label read-control-label">名称：</label>
+	<div class="controls">
 		${pojo.name}
-	</td>
-</tr>
-<tr>
-	<td colspan="2" align="center">
-		<input type="button" class="btnClass" style="cursor: pointer;" value="返回" onclick="back('/role/list.shtml?modulePath=${modulePath }')"/>
-	</td>
-</tr>
+	</div>
+</div>
+<div class="form-actions">
+	<button type="button" class="btn btn-primary"
+		onclick="back('/role/list.shtml')">返回</button>
+</div>

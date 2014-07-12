@@ -1297,6 +1297,11 @@ div.dataTables_wrapper .ui-widget-header {
 .nopadding {	
 	padding: 0 !important;
 }
+
+.nomargin {	
+	margin: 0 !important;
+}
+
 .nopadding .table {
 	margin-bottom: 0;
 }

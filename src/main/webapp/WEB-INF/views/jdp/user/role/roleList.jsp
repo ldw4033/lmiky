@@ -1,126 +1,88 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/jdp/common/htmlDoctype.jsp"%>
 <%@ include file="/jdp/common/common.jsp"%>
 <html>
 	<head>
+		<title>${subMenu.label }</title>
 		<%@ include file="/jdp/common/header.jsp"%>
 		<%@ include file="/jdp/view/header.jsp"%>
 	</head>
 	<body>
-		<form id="mainForm" action="<c:url value="/role/list.shtml"/>" method="post">
-			<input type="hidden" name="modulePath" value="${modulePath }"/>
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td colspan="2" align="center" valign="top">
-						<table width="98%" height="30" border="0" cellpadding="0" cellspacing="0">
+		<%@ include file="/jdp/page/topMenu.jsp"%>
+		<div class="container_content">
+			<%@ include file="/jdp/page/leftMenu.jsp"%>
+			<div id="content">
+				<%@ include file="/jdp/page/location.jsp"%>
+				<div class="container-fluid">
+					<form id="mainForm" action="<c:url value="/role/list.shtml"/>" method="post" class="form-vertical">
+					<%@ include file="/jdp/view/field.jsp"%>
+					<div class="row-fluid">
+						<div class="span12">
+							<div class="widget-box border-radius">
+								<div class="nopadding control-group">
+										<label class="control-label"  style="width: 50px;">名称：</label>
+										<lhtml:propertyFilter inputType="text" compareType="LIKE" propertyName="name" styleClass="medium"/>
+										&nbsp;
+										<button type="submit" class="btn action-button">查询</button>
+								</div>
+							</div>						
+						</div>
+					</div>
+					<div class="row-fluid">
+						<jsp:include page="/jdp/include/addMenu.jsp">
+							<jsp:param value="jdp_user_role_add" name="authorityCode"/>
+							<jsp:param value="role/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }&menuFrom=${param.menuFrom }&subMenuId=${param.subMenuId }" name="addUrl"/>
+						</jsp:include>
+						<jsp:include page="/jdp/include/batchDeleteMenu.jsp">
+							<jsp:param value="jdp_user_role_delete" name="authorityCode"/>
+							<jsp:param value="role/batchDelete.shtml" name="deleteUrl"/>
+						</jsp:include>
+						<jsp:include page="/jdp/include/favoriteMenu.jsp">
+							<jsp:param value="jdp_user_role_load" name="authorityCode"/>
+						</jsp:include>
+					</div>
+					<div class="row-fluid">
+					<table class="listContent table table-bordered table-striped with-check table-hover">
+						<thead>
 							<tr>
-								<td align="center" class="listTitle">
-									&nbsp;<img src="${images }/jt-5.gif" width="16" height="16" align="absmiddle" />&nbsp;角色管理
-								</td>
+								<th>&nbsp;</th>
+								<th class="sortable sorted_name"><a
+									href="javascript:pageSort('name')">名称</a></th>
+								<th>操作</th>
+								<c:set var="colCount" value="3"/>
+								<lauthority:checkAuthority
+									authorityCode="jdp_user_operator_delete">
+									<c:set var="colCount" value="4"/>
+									<th class="simpleCheckbox"><input type="checkbox"
+										name="batctSelectDelete" id="batctSelectDelete" value=""
+										onclick="batchSelectDelete()" /></th>
+								</lauthority:checkAuthority>
 							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center" valign="top">&nbsp;</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center" valign="top">
-						<table width="98%" border="0" cellspacing="0" cellpadding="0">
-							<tr>
-								<td class="filterTd">
-									<span style="width: 50px;" class="labelSpan_right">姓名：</span>
-									<lhtml:propertyFilter inputType="text" compareType="LIKE" propertyName="name" styleClass="bian medium"/>
-									&nbsp;
-									<input class="btnClass" type="submit" value="查询" style="cursor: pointer;"/>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center" valign="top">&nbsp;</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-						<table width="98%" border="0" cellspacing="0" cellpadding="0">
-							<tr>
-								<td align="left" valign="bottom" class="listMenu">
-									<table border="0" cellpadding="0" cellspacing="0">
-										<tr>
-											<lauthority:checkAuthority authorityCode="jdp_user_role_add">
-											<td align="center">
-												<table>
-													<tr>
-														<td align="center" class="btn_menu btnClass_td" onClick="redirectPage('<c:url value="/role/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }"/>')">添加</td>
-													</tr>
-												</table>
-											</td>
-											</lauthority:checkAuthority>
-											<lauthority:checkAuthority authorityCode="jdp_user_role_delete">
-												<td align="center">
-													<table>
-														<tr>
-															<td align="center" class="btn_menu btnClass_td" onClick="batchDelete('<c:url value="/role/batchDelete.shtml"/>')">批量删除</td>
-														</tr>
-													</table>
-												</td>
-											</lauthority:checkAuthority>
-											<td align="center">
-												<jsp:include page="/jdp/include/favoriteMenu.jsp">
-													<jsp:param value="jdp_user_role_load" name="authorityCode"/>
-												</jsp:include>
-											</td>
-										</tr>
-									</table>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center" valign="top">&nbsp;</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center" valign="top">
-						<table class="listContent"  width="98%" cellspacing="0" cellpadding="0" rules="cols" border="0">
-							<tbody>
-								<tr>
-									<th class="no">&nbsp;</th>
-									<th class="sortable sorted_name"><a href="javascript:pageSort('name')">名称</a></th>
-									<th>操作</th>
-									<lauthority:checkAuthority authorityCode="jdp_user_role_delete">
-										<th class="simpleCheckbox">
-											<input type="checkbox" name="batctSelectDelete"  id="batctSelectDelete" value="" onclick="batchSelectDelete()"/>
-										</th>
-									</lauthority:checkAuthority>
-								</tr>
-								<c:forEach var="item" items="${page.items}" varStatus="status">
-									<c:set var="rowClass" value="odd"/>
-									<c:if test="${(status.index % 2) == 0}">
-										<c:set var="rowClass" value="even"/>
-									</c:if>
-									<tr class="${rowClass } hover">
+						</thead>
+						<tbody>
+							<c:forEach var="item" items="${page.items}" varStatus="status">
+									<tr>
 										<td>${status.count + (page.currentPage - 1) * page.pageSize}</td>
 										<td>${item.name}</td>
 										<td>
 											<lauthority:checkAuthority authorityCode="jdp_user_role_load">
-												<a href="javascript:void(0)" class="td_2"
-														onclick="redirectPage('<c:url value="/role/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }', 800, 600)">
-													查看
+												<a href="javascript:void(0)"
+														onclick="redirectPage('<c:url value="/role/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }&menuFrom=${param.menuFrom }&subMenuId=${param.subMenuId }')">
+													<i class="icon icon-circle-arrow-up"></i> 查看
 												</a>
 											</lauthority:checkAuthority>
 											<lauthority:checkAuthority authorityCode="jdp_user_role_modify">
 												&nbsp;
-												<a href="javascript:void(0)" class="td_2"
-														onclick="redirectPage('<c:url value="/role/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }"/>', 800, 600)">
-													修改
+												<a href="javascript:void(0)"
+														onclick="redirectPage('<c:url value="/role/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }&menuFrom=${param.menuFrom }&subMenuId=${param.subMenuId }"/>')">
+													<i class="icon icon-edit"></i> 修改
 												</a>
 											</lauthority:checkAuthority>
 											<lauthority:checkAuthority authorityCode="jdp_user_role_delete">
 												&nbsp;
-												<a href="javascript:void(0)" class="td_2"
+												<a href="javascript:void(0)"
 														onclick="deletePojo('<c:url value="/role/delete.shtml?id=${item.id}"/>')">
-													删除
+													<i class="icon icon-trash"></i> 删除
 												</a>
 											</lauthority:checkAuthority>
 										</td>
@@ -131,23 +93,19 @@
 										</lauthority:checkAuthority>
 									</tr>
 								</c:forEach>
+									<tr>
+										<td colspan="${colCount }" style="background-color: #ffffff"><%@ include file="/jdp/view/page.jsp" %></td>
+									</tr>
 							</tbody>
 						</table>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center" valign="top">&nbsp;</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center" valign="top">
-						<%@ include file="/jdp/view/page.jsp" %>
-					</td>
-				</tr>
-				<tr>
-					<td height="13"></td>
-				</tr>
-			</table>
-			<%@ include file="/jdp/view/sort.jsp" %>
-		</form>
+						<%@ include file="/jdp/view/sort.jsp" %>
+					</div>
+				</form>
+				</div>
+			</div>
+			<%@ include file="/jdp/page/footer.jsp"%>
+		</div>
+		<%@ include file="/jdp/common/scripts.jsp"%>
+		<%@ include file="/jdp/view/scripts.jsp"%>
 	</body>
 </html>

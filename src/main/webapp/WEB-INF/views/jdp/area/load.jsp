@@ -1,10 +1,11 @@
-<%@page import="com.lmiky.jdp.form.controller.FormController"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="com.lmiky.jdp.area.controller.AreaController" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/jdp/common/htmlDoctype.jsp"%>
 <%@ include file="/jdp/common/common.jsp"%>
+<%@page import="com.lmiky.jdp.form.controller.FormController"%>
+<%@ page import="com.lmiky.jdp.area.controller.AreaController" %>
 <html>
 <head>
-	<base target="_self"/>
+	<%@ include file="/jdp/common/header.jsp"%>
 	<%@ include file="/jdp/form/header.jsp" %>
 	<%@ include file="/jdp/common/tree.jsp" %>
 	<script type="text/javascript">
@@ -134,7 +135,7 @@
 		
 	</script>
 </head>
-<body scroll="no">
+<body class="alert-body" >
 	<table class="table-form"  cellpadding="0" cellspacing="0" border="0" style="width: 100%; height:100%;">
 		<tr>
 			<td width="30%" valign="top">

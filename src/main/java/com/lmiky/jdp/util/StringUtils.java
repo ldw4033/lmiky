@@ -75,7 +75,7 @@ public class StringUtils {
 		for(String param : params) {
 			String[] keyAndValues = param.split("=");
 			String key = keyAndValues[0];
-			String value = keyAndValues[1];
+			String value = keyAndValues.length > 1 ? keyAndValues[1] : "";
 			String[] values = parameterMap.get(key);
 			if(values == null) {
 				values = new String[]{value};

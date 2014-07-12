@@ -1,56 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<tr>
-	<td align="right" class="bg02">
-		<label>名称</label>
-	</td>
-	<td colspan="5">
+<%@ include file="/jdp/common/common.jsp" %>
+<div class="control-group">
+	<label class="control-label read-control-label">名称：</label>
+	<div class="controls">
 		${pojo.title}
-	</td>
-</tr>
-<tr>
-	<td align="right" class="bg02">
-		<label>说明</label>
-	</td>
-	<td colspan="5">
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label read-control-label">说明：</label>
+	<div class="controls">
 		${pojo.content}
-	</td>
-</tr>
-<tr>
-	<td width="100" align="right" class="bg02">
-		<label>折扣价</label>
-	</td>
-	<td class="small">
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label read-control-label">折扣价：</label>
+	<div class="controls">
 		${pojo.salePrice}
-	</td>
-	<td width="100" align="right" class="bg02">
-		<label>市场价</label>
-	</td>
-	<td class="small">
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label read-control-label">市场价：</label>
+	<div class="controls">
 		${pojo.marketPrice}
-	</td>
-	<td width="100" align="right" class="bg02">
-		<label>优惠券折扣</label>
-	</td>
-	<td class="small">
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label read-control-label">惠券折扣：</label>
+	<div class="controls">
 		${pojo.couponDiscount}
-	</td>
-</tr>
-<tr>
-	<td align="right" class="bg02">
-		<label>图标</label>
-	</td>
-	<td colspan="5">
-	</td>
-</tr>
-<tr>
-	<td align="right" class="bg02">
-		<label>图片</label>
-	</td>
-	<td colspan="5">
-	</td>
-</tr>
-<tr>
-	<td colspan="6" align="center">
-		<input type="button" class="btnClass" style="cursor: pointer;" value="返回" onclick="back('/tiger/goods/list.shtml?modulePath=${modulePath }')"/>
-	</td>
-</tr>
+	</div>
+</div>
+<div class="form-actions">
+	<button type="button" class="btn btn-primary"
+		onclick="back('/tiger/goods/list.shtml')">返回</button>
+</div>

@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="com.lmiky.jdp.module.controller.ModuleController,com.lmiky.jdp.authority.pojo.Authority,com.lmiky.jdp.module.pojo.Function,com.lmiky.jdp.module.pojo.Module" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/jdp/common/htmlDoctype.jsp"%>
 <%@ include file="/jdp/common/common.jsp"%>
-<html>
+<%@ page import="com.lmiky.jdp.module.controller.ModuleController,com.lmiky.jdp.authority.pojo.Authority,com.lmiky.jdp.module.pojo.Function,com.lmiky.jdp.module.pojo.Module" %>
+<html style="height: 98%;">
 <head>
-	<base target="_self"/>
+	<%@ include file="/jdp/common/header.jsp"%>
 	<%@ include file="/jdp/form/header.jsp" %>
 	<%@ include file="/jdp/common/tree.jsp" %>
 	<script type="text/javascript">
@@ -58,16 +59,17 @@
 		
 	</script>
 </head>
-<body scroll="no">
+<body class="alert-body" style="height: 100%;">
 	<table class="table-form"  cellpadding="0" cellspacing="0" border="0" style="width: 100%; height:100%;">
 		<tr>
 			<td width="25%" valign="top">
 				<ul id="ztree" class="ztree" style="overflow:auto;"></ul>
 			</td>
 			<td valign="top" >
-				<iframe id="userFrame" style="width: 100%; height: 100%;" frameborder="0" src="" scrolling="no"/>
+				<iframe id="userFrame" style="width: 100%; height: 100%;" frameborder="0" src="" scrolling="auto"/>
 			</td>
 		</tr>
 	</table>
+	<%@ include file="/jdp/common/scripts.jsp"%>
 </body>
 </html>
