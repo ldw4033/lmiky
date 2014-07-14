@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<tr>
-	<th width="20%" align="right" class="bg02">
-		<label>名称</label>
-	</th>
-	<td>
+<div class="control-group">
+	<label class="control-label read-control-label">名称：</label>
+	<div class="controls">
 		${pojo.name}
-	</td>
-</tr>
+	</div>
+</div>

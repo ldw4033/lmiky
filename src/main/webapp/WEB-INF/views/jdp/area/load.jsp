@@ -3,7 +3,7 @@
 <%@ include file="/jdp/common/common.jsp"%>
 <%@page import="com.lmiky.jdp.form.controller.FormController"%>
 <%@ page import="com.lmiky.jdp.area.controller.AreaController" %>
-<html>
+<html style="height: 98%;">
 <head>
 	<%@ include file="/jdp/common/header.jsp"%>
 	<%@ include file="/jdp/form/header.jsp" %>
@@ -135,7 +135,7 @@
 		
 	</script>
 </head>
-<body class="alert-body" >
+<body class="alert-body"  style="height: 100%;">
 	<table class="table-form"  cellpadding="0" cellspacing="0" border="0" style="width: 100%; height:100%;">
 		<tr>
 			<td width="30%" valign="top">

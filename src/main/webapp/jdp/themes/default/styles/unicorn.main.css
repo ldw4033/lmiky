@@ -18,6 +18,7 @@ body {
      padding: 0px;
      background: #FFFFFF !important;
 }
+
 a:hover {
 	text-decoration: none;
 }
@@ -1302,6 +1303,10 @@ div.dataTables_wrapper .ui-widget-header {
 	margin: 0 !important;
 }
 
+.noborder {
+	border: 0;
+}
+
 .nopadding .table {
 	margin-bottom: 0;
 }
@@ -1546,9 +1551,9 @@ form {
         padding: 10px 30px;
     }
     .form-horizontal .mini-controls {
-        margin-left: 0;
-        padding: 10px 0px;
-        display: inline-block;
+        margin-left: 0 !important;
+        padding: 10px 0px !important;
+        display: inline-block !important;
     }
     
     .form-actions {

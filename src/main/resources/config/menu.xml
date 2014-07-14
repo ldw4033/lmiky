@@ -79,6 +79,8 @@
 				<type>dialog</type>
 				<modulePath>jdp/area</modulePath>
 				<authority>jdp_area_manage</authority>
+				<width>800</width>
+				<height>510</height>
 			</submenu>
 		</leftmenu>
 	</topmenu>

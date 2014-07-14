@@ -35,6 +35,7 @@
 <body>
         <div id="loginbox">       
         	<form id="mainForm" action="<c:url value="/sso/login/login.shtml"/>" method="post" onsubmit="return beforeLogin()">     
+        		<input type="hidden" name="${redirect }" value="${param[redirect] }"/>
         		<c:choose>
 	        		<c:when test="${not empty errorInfos }">
 						<c:forEach items="${errorInfos }" var="errorInfo" varStatus="status">
