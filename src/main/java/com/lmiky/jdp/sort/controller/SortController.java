@@ -17,6 +17,8 @@ import com.lmiky.jdp.base.controller.BaseController;
 import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.database.pojo.BasePojo;
 import com.lmiky.jdp.database.util.PropertyFilterUtils;
+import com.lmiky.jdp.logger.model.OperateType;
+import com.lmiky.jdp.logger.util.LoggerUtils;
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.sort.SortService;
@@ -106,6 +108,7 @@ public class SortController extends BaseController {
 			} else {
 				((SortService) service).sort(sortClass, selectedPojos);
 				putMessage(modelMap, "保存成功!");
+				LoggerUtils.save(className, null, sessionInfo.getUserId(), sessionInfo.getUserName(), OperateType.OPE_TYPE_SORT, this.getClass().getName(), null, service);
 			}
 			return load(modelMap, request, response, className, showName);
 		} catch (Exception e) {

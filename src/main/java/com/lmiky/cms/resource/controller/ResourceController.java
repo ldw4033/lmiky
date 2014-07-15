@@ -25,7 +25,7 @@ import com.lmiky.jdp.form.controller.FormController;
 import com.lmiky.jdp.form.model.ValidateError;
 import com.lmiky.jdp.form.util.ValidateUtils;
 import com.lmiky.jdp.lock.exception.LockException;
-import com.lmiky.jdp.logger.pojo.Logger;
+import com.lmiky.jdp.logger.model.OperateType;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.user.pojo.User;
 
@@ -37,9 +37,6 @@ import com.lmiky.jdp.user.pojo.User;
 @Controller
 @RequestMapping("/cms/resource")
 public class ResourceController extends FormController<CmsResource> {
-	public static final String OPE_TYPE_PUBLISH = "cms_resource_publish";
-	public static final String OPE_TYPE_UNPUBLISH = "cms_resource_unpublish";
-
 	// 操作来源
 	public static final String PUBLISH_OPE_FORM_VIEW = "view"; // 列表视图
 	public static final String PUBLISH_OPE_FORM_FORM = "form"; // 表单
@@ -379,13 +376,13 @@ public class ResourceController extends FormController<CmsResource> {
 					savePojo(pojo, modelMap, request, resopnse);
 					if (state == CmsResource.STATE_PUBLISH) {
 						putMessage(modelMap, "发布成功!");// 记录日志
-						logOpe(pojo, modelMap, request, sessionInfo, OPE_TYPE_PUBLISH);
+						logOpe(pojo, modelMap, request, sessionInfo, OperateType.OPE_TYPE_CMS_RESOURCE_PUBLISH);
 					} else if (state == CmsResource.STATE_UNPUBLISH) {
 						putMessage(modelMap, "取消发布成功!");
-						logOpe(pojo, modelMap, request, sessionInfo, OPE_TYPE_UNPUBLISH);
+						logOpe(pojo, modelMap, request, sessionInfo, OperateType.OPE_TYPE_CMS_RESOURCE_UNPUBLISH);
 					} else {
 						putMessage(modelMap, "修改成功!");
-						logOpe(pojo, modelMap, request, sessionInfo, Logger.OPE_TYPE_UPDATE);
+						logOpe(pojo, modelMap, request, sessionInfo, OperateType.OPE_TYPE_UPDATE);
 					}
 					if (!PUBLISH_OPE_FORM_FORM.equals(opeFrom)) {
 						// 解锁

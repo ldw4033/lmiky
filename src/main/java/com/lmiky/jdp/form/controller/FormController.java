@@ -18,7 +18,7 @@ import com.lmiky.jdp.database.pojo.BasePojo;
 import com.lmiky.jdp.form.model.ValidateError;
 import com.lmiky.jdp.lock.exception.LockException;
 import com.lmiky.jdp.lock.service.LockService;
-import com.lmiky.jdp.logger.pojo.Logger;
+import com.lmiky.jdp.logger.model.OperateType;
 import com.lmiky.jdp.logger.util.LoggerUtils;
 import com.lmiky.jdp.service.exception.ServiceException;
 import com.lmiky.jdp.session.model.SessionInfo;
@@ -348,6 +348,11 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			checkSso(sessionInfo, modelMap, request);
 			//获取打开方式
 			String openMode = getOpenMode(modelMap, request, id);
+			//操作类别
+			String opeType = OperateType.OPE_TYPE_UPDATE;
+			if(OPEN_MODE_CTEATE.equals(openMode)) {
+				opeType = OperateType.OPE_TYPE_ADD;
+			}
 			//获取实体对象
 			T pojo = generatePojo(modelMap, request, id);
 			boolean hasLock = true;
@@ -388,7 +393,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 					//改为编辑模式
 					openMode = OPEN_MODE_EDIT;
 					//记录日志
-					logOpe(pojo, modelMap, request, sessionInfo, openMode);
+					logOpe(pojo, modelMap, request, sessionInfo, opeType);
 				}
 			}
 			//将对象设入页面
@@ -396,7 +401,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 			//将打开方式设入页面
 			modelMap.put(HTTP_PARAM_FORM_OEPNMODE, openMode);
 			//获取表单子页面并设入页面
-			modelMap.put(HTTP_PARAM_FORM_SUBFORM, getSubForm(modelMap, request, (OPEN_MODE_EDIT.equals(openMode)) ? Logger.OPE_TYPE_UPDATE : Logger.OPE_TYPE_ADD));
+			modelMap.put(HTTP_PARAM_FORM_SUBFORM, getSubForm(modelMap, request, (OPEN_MODE_EDIT.equals(openMode)) ? OperateType.OPE_TYPE_UPDATE : OperateType.OPE_TYPE_ADD));
 			appendSaveAttribute(modelMap, request, resopnse);
 			String modulePath = getModulePath(modelMap, request);
 			modelMap.put(Constants.HTTP_PARAM_MODULE_PATH, modulePath);
@@ -623,7 +628,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 					//TODO 考虑要不要执行“去掉加锁缓存数据”
 					putMessage(modelMap, "删除成功!");
 					//记录日志
-					logOpe(pojo, modelMap, request, sessionInfo, Logger.OPE_TYPE_DELETE);
+					logOpe(pojo, modelMap, request, sessionInfo, OperateType.OPE_TYPE_DELETE);
 					//解锁
 					lockService.unlock(lockTargetId, sessionInfo.getUserId());
 				}
@@ -726,7 +731,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 					putMessage(modelMap, "删除成功!");
 					//记录日志
 					for(T pojo : pojos) {
-						logOpe(pojo, modelMap, request, sessionInfo, Logger.OPE_TYPE_DELETE);
+						logOpe(pojo, modelMap, request, sessionInfo, OperateType.OPE_TYPE_DELETE);
 					}
 				}
 			}

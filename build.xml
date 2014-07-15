@@ -53,7 +53,6 @@
 		</javac>
 	</target>
 
-	<!-- 
     <target name="resources" depends="init">
     	<mkdir dir="${maven.project.build.outputDirectory}" />
 		<native2ascii src="${maven.project.basedir}/src/main/resources" encoding="utf-8"
@@ -62,7 +61,6 @@
             <fileset dir="${maven.project.basedir}/src/main/resources" excludes="**/*.src"/>
         </copy>
     </target>
- 	-->
  	
     <!-- target name="build" depends="compile, resources"-->
     <target name="build" depends="compile">

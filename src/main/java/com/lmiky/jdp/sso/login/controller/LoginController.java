@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lmiky.jdp.base.controller.BaseController;
 import com.lmiky.jdp.constants.Constants;
+import com.lmiky.jdp.logger.model.OperateType;
+import com.lmiky.jdp.logger.util.LoggerUtils;
+import com.lmiky.jdp.service.exception.ServiceException;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.sso.exception.LoginException;
 import com.lmiky.jdp.user.pojo.Operator;
@@ -78,6 +81,7 @@ public class LoginController extends BaseController {
 			ssoService.recordSessionInfo(sessionInfo);
 			HttpSession session = request.getSession();
 			session.setAttribute(Constants.SESSION_ATTR_SESSIONINFO, sessionInfo);
+			LoggerUtils.save(null, null, sessionInfo.getUserId(), sessionInfo.getUserName(), OperateType.OPE_TYPE_LOGIN, this.getClass().getName(), null, service);
 			//记录cookie
 			if(rememberLoginName) {
 				CookieUtils.addCookie(response, COOKIE_NAME_LOGINNAME, loginName);
@@ -142,6 +146,11 @@ public class LoginController extends BaseController {
 		}
 		sessionService.removeSessionInfo(request);
 		request.getSession().invalidate();
+		try {
+			LoggerUtils.save(null, null, sessionInfo.getUserId(), sessionInfo.getUserName(), OperateType.OPE_TYPE_LOGOUT, this.getClass().getName(), null, service);
+		} catch (ServiceException e) {
+			logException(e, modelMap, request, response);
+		}
 		return load(modelMap, request, response);
 	}
 }

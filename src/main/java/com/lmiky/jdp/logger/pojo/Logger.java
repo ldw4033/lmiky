@@ -16,11 +16,7 @@ import com.lmiky.jdp.database.pojo.BasePojo;
 @Entity
 @Table(name="t_logger")
 public class Logger extends BasePojo {
-	private static final long serialVersionUID = -424096974521890936L;
-	public static final String OPE_TYPE_ADD = "add";
-	public static final String OPE_TYPE_UPDATE = "update";
-	public static final String OPE_TYPE_DELETE = "delete";
-	
+	private static final long serialVersionUID = 1099345557579557690L;
 	private String pojoName;
 	private Long pojoId;
 	private Long userId;

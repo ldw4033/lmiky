@@ -22,6 +22,7 @@ import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.form.controller.FormController;
 import com.lmiky.jdp.form.model.ValidateError;
 import com.lmiky.jdp.form.util.ValidateUtils;
+import com.lmiky.jdp.logger.model.OperateType;
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.user.pojo.Operator;
@@ -299,7 +300,7 @@ public class OperatorController extends FormController<Operator> {
 				user.setLastSetPasswordTime(new Date());
 				service.save(user);
 				//记录日志
-				logOpe(User.class.getName(), sessionInfo.getUserId(), modelMap, request, sessionInfo, OPEN_MODE_EDIT, "修改密码");
+				logOpe(User.class.getName(), sessionInfo.getUserId(), modelMap, request, sessionInfo, OperateType.OPE_TYPE_UPDATE, "修改密码");
 				putMessage(modelMap, "修改成功!");
 			}
 			return "jdp/user/operator/modifyPassword";
