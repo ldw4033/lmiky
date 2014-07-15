@@ -17,6 +17,7 @@ public class SubMenu  extends Menu {
 	private String authority;
 	private Integer width;
 	private Integer height;
+	private String iframeurl;
 	private LeftMenu leftMenu;
 	
 	/**
@@ -90,6 +91,18 @@ public class SubMenu  extends Menu {
 	 */
 	public void setHeight(Integer height) {
 		this.height = height;
+	}
+	/**
+	 * @return the iframeurl
+	 */
+	public String getIframeurl() {
+		return iframeurl;
+	}
+	/**
+	 * @param iframeurl the iframeurl to set
+	 */
+	public void setIframeurl(String iframeurl) {
+		this.iframeurl = iframeurl;
 	}
 	/**
 	 * @return the leftMenu

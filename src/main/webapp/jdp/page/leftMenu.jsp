@@ -25,11 +25,14 @@
 								</c:when>
 								<c:when test="${subMenuV.type == 'dialog' }">
 									<a href="javascript: void(0)" 
-										onClick="openDialog('<c:url value="/"/>${subMenuV.url }', 
+										onClick="openDialog('<c:url value="/"/>${subMenuV.url }&${httpParamMenuFrom}=${topMenu.id}-${leftMenu.id}', 
 														<c:choose><c:when test="${not empty subMenuV.width}">${subMenuV.width }</c:when><c:otherwise>DEFAULT_DIALOG_WITH</c:otherwise></c:choose>,
 														<c:choose><c:when test="${not empty subMenuV.height}">${subMenuV.height }</c:when><c:otherwise>DEFAULT_DIALOG_HEIGHT</c:otherwise></c:choose>, 
 														'${subMenuV.label }')"
 									>${subMenuV.label }</a>
+								</c:when>
+								<c:when test="${subMenuV.type == 'iframe' }">
+									<iframe src="<c:url value="/"/>${subMenuV.iframeurl }&${httpParamMenuFrom}=${topMenu.id}-${leftMenu.id}" id="menuFrame_${subMenuV.id }" onload="resizeIframe('menuFrame_${subMenuV.id }')" frameborder="0"  width="98%" scrolling="no" style="margin: 2px;"></iframe>
 								</c:when>
 							</c:choose>
 						</li>

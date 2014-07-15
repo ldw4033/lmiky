@@ -87,7 +87,7 @@ public class StringUtils {
 				newValues[values.length] = value;
 				values = newValues;
 			}
-			parameterMap.put(keyAndValues[0], new String[]{keyAndValues[1]});
+			parameterMap.put(key, values);
 		}
 		return parameterMap;
 	}

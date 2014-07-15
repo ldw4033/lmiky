@@ -28,11 +28,12 @@
 		<leftmenu id="cms" label="内容管理">
 			<submenu>
 				<id>cms_directory_load</id>
-				<label>栏目管理</label>
-				<url>cms/directory/loadTree.shtml</url>
+				<label>内容管理</label>
+				<url>cms/directory/loadPage.shtml</url>
 				<type>iframe</type>
 				<modulePath>cms/directory</modulePath>
 				<authority>cms_directory_load</authority>
+				<iframeurl>cms/directory/loadTree.shtml</iframeurl>
 			</submenu>
 		</leftmenu>
 	</topmenu>

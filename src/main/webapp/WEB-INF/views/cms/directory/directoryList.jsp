@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="/jdp/common/htmlDoctype.jsp"%>
+<%@ include file="/jdp/common/common.jsp"%>
 <%@ page import="com.lmiky.jdp.tree.controller.TreeController,com.lmiky.jdp.tree.pojo.BaseTreePojo" %>
 <%@page import="com.lmiky.cms.directory.pojo.CmsDirectory"%>
 <%@page import="com.lmiky.jdp.base.view.BaseInfoCodeJsonView"%>
 <%@page import="com.lmiky.jdp.base.view.BaseCode"%>
-<%@ include file="/jdp/common/common.jsp"%>
 <html>
 	<head>
 		<base target="_self"/>
+		<%@ include file="/jdp/common/header.jsp"%>
 		<%@ include file="/jdp/form/header.jsp" %>
 		<%@ include file="/jdp/common/tree.jsp" %>
 		<script type="text/javascript">
@@ -115,12 +117,12 @@
 				if(selectedNodeId != null) {
 					parentId = selectedNodeId;
 				}
-				openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }&parentId=' + parentId + '"/>', 600, 400, '添加目录', reAsyncNode);
+				openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }&parentId=' + parentId + '"/>', 400, 250, '添加目录', reAsyncNode);
 			}
 			
 			function updateDirectory() {
 				if(selectedNodeId != null) {
-					openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }&id=' + selectedNodeId + '"/>', 600, 400, '修改目录', reAsyncParentNode);
+					openDialog('<c:url value="/cms/directory/load.shtml?${httpParamOpenMode }=${editOpenMode }&modulePath=${modulePath }&id=' + selectedNodeId + '"/>', 400, 250, '修改目录', reAsyncParentNode);
 				} else {
 					alert('请选择要修改的目录！');
 				}
@@ -128,7 +130,7 @@
 			
 			function sortDirectory() {
 				if(selectedNodeId != null) {
-					sort('<%=CmsDirectory.class.getName() %>', 'name', '<lhtml:propertyFilterNamed compareType="EQ" propertyName="parent.id"/>=' + selectedNodeId, 650, 600, '目录排序', reAsyncNode);
+					sort('<%=CmsDirectory.class.getName() %>', 'name', '<lhtml:propertyFilterNamed compareType="EQ" propertyName="parent.id"/>=' + selectedNodeId, 650, 610, '目录排序', reAsyncNode);
 				} else {
 					alert('请选择要排序的父目录！');
 				}
@@ -197,7 +199,7 @@
 			}
 		</script>
 	</head>
-	<body style="overflow-y : hidden; " >
+	<body class="iframe-body" style="min-height: 300px;" >
 		<table  cellpadding="0" cellspacing="0" border="0" style="width: 100%; height:100%;">
 			<tr>
 				<td width="150" valign="top" style="height: 100%">
@@ -205,5 +207,6 @@
 				</td>
 			</tr>
 		</table>
+		<%@ include file="/jdp/common/scripts.jsp"%>
 	</body>
 </html>

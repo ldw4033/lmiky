@@ -397,6 +397,9 @@ public class MenuUtils {
 			topMenuId = MenuController.TOP_MENU_ID_MYINDEX;
 		}
 		SessionInfo sessionInfo = WebUtils.getSessionInfo(request);
+		if(sessionInfo == null) {
+			throw new SessionException(SessionException.SESSION_NULL);
+		}
 		if (MenuController.TOP_MENU_ID_MYINDEX.equals(topMenuId)) {
 			TopMenu topMenu = new TopMenu();
 			topMenu.setId(topMenuId);

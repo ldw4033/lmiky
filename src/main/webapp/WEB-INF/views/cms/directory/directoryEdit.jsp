@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<tr>
-	<th align="right" class="bg02" width="100">
-		<label>名称<span class="req">*</span></label>
-	</th>
-	<td>
-		<input name="name" type="text" maxlength="256" class="full bian" value="${pojo.name}"/>
-	</td>
-</tr>
-<tr>
-	<td colspan="2" align="center">
-		<input type="submit" class="btnClass" style="cursor: pointer;" value="提交" />
-	</td>
-</tr>
+<%@ include file="/jdp/common/common.jsp"%>
+<div class="control-group">
+	<label class="mini-control-label" style="width: 60px;">名称 <span class="req">*</span></label>
+	<div class="controls mini-controls">
+		<input name="name" type="text" value="${pojo.name}" class="large"/>
+	</div>
+</div>
+<div class="form-actions mini-form-actions">
+	<button type="submit" class="btn btn-primary">提交</button>
+</div>

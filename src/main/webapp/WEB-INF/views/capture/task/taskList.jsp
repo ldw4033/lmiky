@@ -37,11 +37,11 @@
 							<jsp:param value="capture/task/load.shtml?${httpParamOpenMode }=${createOpenMode }&modulePath=${modulePath }&menuFrom=${param.menuFrom }&subMenuId=${param.subMenuId }" name="addUrl"/>
 						</jsp:include>
 						<jsp:include page="/jdp/include/batchDeleteMenu.jsp">
-							<jsp:param value="capture_task_add" name="authorityCode"/>
+							<jsp:param value="capture_task_delete" name="authorityCode"/>
 							<jsp:param value="capture/task/batchDelete.shtml" name="deleteUrl"/>
 						</jsp:include>
 						<jsp:include page="/jdp/include/favoriteMenu.jsp">
-							<jsp:param value="capture_task_load" name="authorityCode"/>
+							<jsp:param value="capture_task_load" name="menuId"/>
 						</jsp:include>
 					</div>
 					<div class="row-fluid">
@@ -97,7 +97,7 @@
 									</tr>
 								</c:forEach>
 									<tr>
-										<td colspan="${colCount }" style="background-color: #ffffff"><%@ include file="/jdp/view/page.jsp" %></td>
+										<td colspan="${colCount }" class="pageColumn"><%@ include file="/jdp/view/page.jsp" %></td>
 									</tr>
 							</tbody>
 						</table>

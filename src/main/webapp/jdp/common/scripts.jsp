@@ -62,7 +62,12 @@
 
 	//回退
 	function back(url) {
-		window.location.href = '<c:url value="/common/back.shtml"/>?url=' + encodeURIComponent(url + '?modulePath=${modulePath }&menuFrom=${param.menuFrom }&subMenuId=${param.subMenuId }');
+		if(url.indexOf('?') == -1) {
+			url = url + '?modulePath=${modulePath }&menuFrom=${param.menuFrom }&subMenuId=${param.subMenuId }'
+		} else {
+			url = url + '&modulePath=${modulePath }&menuFrom=${param.menuFrom }&subMenuId=${param.subMenuId }'
+		}
+		window.location.href = '<c:url value="/common/back.shtml"/>?url=' + encodeURIComponent(url);
 	}
 	
 	//选择树

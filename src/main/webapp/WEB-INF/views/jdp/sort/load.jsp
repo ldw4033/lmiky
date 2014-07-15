@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="/jdp/common/htmlDoctype.jsp"%>
 <%@ include file="/jdp/common/common.jsp"%>
 <html>
 <head>
+	<%@ include file="/jdp/common/header.jsp"%>
 	<%@ include file="/jdp/form/header.jsp" %>
 	<script type="text/javascript">
 		function initMultipleSelect() {
@@ -95,7 +97,7 @@
 	</script>
 	
 </head>
-<body>
+<body class="alert-body">
 	<%@ include file="/jdp/form/messages.jsp" %>
 		<form id="mainForm" action="<c:url value="/sort/save.shtml"/>" method="post" onsubmit="return setSelected()">
 		<input type="hidden" name="className" value="${className }"/>
@@ -106,11 +108,6 @@
 		<span id="groupSpan" style="display: none;">
 		</span>
 		<table class="table-form full" >
-	       	<tr>
-	       		<td class="bg01 title" height="16">
-	       			&nbsp;<img src="${images }/jt-5.gif" width="16" height="16" align="absmiddle" />排序
-	       		</td>
-	       	</tr>
 	       	<tr>
 				<td valign="top">
 					<div style="float: left;">
@@ -124,18 +121,36 @@
 						</div>
 					</div>
 					<div style="float: left; width: 65px; text-align: center;">
-						<div style="height: 100px;"></div>
-						<div>&nbsp;<input type="button" id="addSelect" class="btnClass2" style="width: 30px;" value="-->"/>&nbsp;</div>
-						<div style="height: 20px;"></div>
-						<div>&nbsp;<input type="button" id="addAllSelect" class="btnClass2" style="width: 30px;" value="=>"/>&nbsp;</div>
-						<div style="height: 20px;"></div>
-						<div>&nbsp;<input type="button" id="removeSelect" class="btnClass2" style="width: 30px;" value="<--"/>&nbsp;</div>
-						<div style="height: 20px;"></div>
-						<div>&nbsp;<input type="button" id="removeAllSelect" class="btnClass2" style="width: 30px;" value="<="/>&nbsp;</div>
-						<div style="height: 20px;"></div>
-						<div>&nbsp;<input type="button" id="upSelect" class="btnClass2" style="width: 30px;" value="↑"/>&nbsp;</div>
-						<div style="height: 20px;"></div>
-						<div>&nbsp;<input type="button" id="downSelect" class="btnClass2" style="width: 30px;" value="↓"/>&nbsp;</div>
+							<div style="height: 100px;"></div>
+							<div>
+								&nbsp;<button type="button" id="addSelect"
+									style="width: 30px;" ><i class="icon icon-step-forward"></i></button>&nbsp;
+							</div>
+							<div style="height: 20px;"></div>
+							<div>
+								&nbsp;<button type="button" id="addAllSelect"
+									style="width: 30px;" ><i class="icon icon-fast-forward"></i></button>&nbsp;
+							</div>
+							<div style="height: 20px;"></div>
+							<div>
+								&nbsp;<button type="button" id="removeSelect"
+									style="width: 30px;" ><i class="icon icon-step-backward"></i></button>&nbsp;
+							</div>
+							<div style="height: 20px;"></div>
+							<div>
+								&nbsp;<button type="button" id="removeAllSelect"
+									style="width: 30px;" ><i class="icon-fast-backward"></i></button>&nbsp;
+							</div>
+							<div style="height: 20px;"></div>
+							<div>
+								&nbsp;<button type="button" id="upSelect"
+									style="width: 30px;" ><i class="icon-chevron-up"></i></button>&nbsp;
+							</div>
+							<div style="height: 20px;"></div>
+							<div>
+								&nbsp;<button type="button" id="downSelect"
+									style="width: 30px;" ><i class="icon-chevron-down"></i></button>&nbsp;
+							</div>
 					</div>
 					<div style="float: left;">
 						<div style="line-height: 25px;">排序后</div>
@@ -148,10 +163,11 @@
 			</tr>
 			<tr>
 				<td align="center" height="40">
-					<input type="submit" class="btnClass" style="cursor: pointer;" value="提交" />
+					<button type="submit" class="btn btn-primary" >提交</button>
 				</td>
 			</tr>
 		</table>
 	</form>
+	<%@ include file="/jdp/common/scripts.jsp"%>
 </body>
 </html>

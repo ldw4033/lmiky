@@ -56,7 +56,7 @@
 							<jsp:param value="operator/batchDelete.shtml" name="deleteUrl"/>
 						</jsp:include>
 						<jsp:include page="/jdp/include/favoriteMenu.jsp">
-							<jsp:param value="jdp_user_operator_load" name="authorityCode"/>
+							<jsp:param value="jdp_user_operator_load" name="menuId"/>
 						</jsp:include>
 					</div>
 					<div class="row-fluid">
@@ -128,7 +128,7 @@
 									</tr>
 								</c:forEach>
 									<tr>
-										<td colspan="${colCount }" style="background-color: #ffffff"><%@ include file="/jdp/view/page.jsp" %></td>
+										<td colspan="${colCount }" class="pageColumn"><%@ include file="/jdp/view/page.jsp" %></td>
 									</tr>
 							</tbody>
 						</table>

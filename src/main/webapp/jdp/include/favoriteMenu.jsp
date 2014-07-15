@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/jdp/common/taglibs.jsp" %>
 <c:set var="isFavorited" value="${false}" />
-<favorite:inMyMenu menuId="${param.authorityCode }">
+<favorite:inMyMenu menuId="${param.menuId }">
 	<c:set var="isFavorited" value="${true}" />
 	<button type="button" class="btn" onClick="removeMyFavoriteMenu('${param.authorityCode }', this)"><i class="icon-star-empty"></i> 取消收藏</button>
 </favorite:inMyMenu>

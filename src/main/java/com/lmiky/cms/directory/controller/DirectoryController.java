@@ -1,5 +1,7 @@
 package com.lmiky.cms.directory.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +15,9 @@ import com.lmiky.cms.directory.pojo.CmsDirectory;
 import com.lmiky.jdp.base.controller.BaseController;
 import com.lmiky.jdp.base.view.BaseCode;
 import com.lmiky.jdp.base.view.BaseInfoCodeJsonView;
+import com.lmiky.jdp.constants.Constants;
+import com.lmiky.jdp.form.model.ValidateError;
+import com.lmiky.jdp.form.util.ValidateUtils;
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.tree.controller.BaseTreeController;
 
@@ -57,6 +62,28 @@ public class DirectoryController extends BaseTreeController<CmsDirectory> {
 		return "cms_directory_load";
 	}
 
+	/**
+	 * 加载页面
+	 * @author lmiky
+	 * @date 2014-7-15
+	 * @param modelMap
+	 * @param request
+	 * @param resopnse
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/loadPage.shtml")
+	public String loadPage(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse) throws Exception {
+		try {
+			modelMap.put(Constants.HTTP_PARAM_MODULE_PATH, getModulePath(modelMap, request));
+			//设置菜单
+			setMenuInfo(modelMap, request);
+			return "cms/directory/load";
+		} catch (Exception e) {
+			return transactException(e, modelMap, request, resopnse);
+		}
+	}
+	
 	/**
 	 * @author lmiky
 	 * @date 2014-1-3
@@ -142,6 +169,17 @@ public class DirectoryController extends BaseTreeController<CmsDirectory> {
 	protected String getExecuteDeleteRet(ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse) throws Exception {
 		modelMap.put(BaseInfoCodeJsonView.KEY_CODE_NAME, BaseCode.CODE_SUCCESS);
 		return "baseInfoCodeJsonView";
+	}
+	
+
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#validateInput(com.lmiky.jdp.database.pojo.BasePojo, java.lang.String, org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
+	 */
+	@Override
+	public List<ValidateError> validateInput(CmsDirectory pojo, String openMode, ModelMap modelMap, HttpServletRequest request) throws Exception {
+		List<ValidateError> validateErrors = super.validateInput(pojo, openMode, modelMap, request);
+		ValidateUtils.validateRequired(request, "name", "姓名", validateErrors);
+		return validateErrors;
 	}
 
 	/* (non-Javadoc)

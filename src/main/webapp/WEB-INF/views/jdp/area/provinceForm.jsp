@@ -1,7 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/jdp/common/htmlDoctype.jsp"%>
 <%@ include file="/jdp/common/common.jsp"%>
-<html>
+<html style="height: 98%;">
 <head>
+	<%@ include file="/jdp/common/header.jsp"%>
 	<%@ include file="/jdp/form/header.jsp" %>
 	<link rel="stylesheet" type="text/css" href="${css}/view.css" />
 	<script type="text/javascript">
@@ -11,61 +13,45 @@
 		}
 	</script>
 </head>
-<body>
-	<%@ include file="/jdp/form/messages.jsp" %>
-		<form:form id="mainForm" action="/province/save.shtml" method="post" commandName="pojo">
-			<%@ include file="/jdp/form/field.jsp" %>
-			<input type="hidden" name="parentId" value="${param.parentId}"/>
-			<input type="hidden" name="countryId" value="${param.parentId}"/>
-			<table class="full" height="30" border="0" cellpadding="0" cellspacing="0">
-				<tr>
-					<td align="center" class="listTitle">
-						&nbsp;<img src="${images }/jt-5.gif" width="16" height="16" align="absmiddle" />&nbsp;省份管理
-					</td>
-				</tr>
-				<tr>
-					<td align="center" valign="top">&nbsp;</td>
-				</tr>
-			</table>
-			<table class="full" border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td align="left" valign="bottom" class="listMenu">
-						<table border="0" cellpadding="0" cellspacing="0">
-								<tr>
-									<c:if test="${openMode == 'edit'}">
-										<lauthority:checkAuthority authorityCode="jdp_area_manage">
-											<td align="center">
-												<table>
-													<tr>
-														<td align="center" class="btn_menu btnClass_td" onClick="addCity()">添加子地市</td>
-													</tr>
-												</table>
-											</td>
-											<td align="center">
-												<table>
-													<tr>
-														<td align="center" class="btn_menu btnClass_td" onClick="deletePojo('<c:url value="/province/delete.shtml"/>')">删除</td>
-													</tr>
-												</table>
-											</td>
-										</lauthority:checkAuthority>
-									</c:if>
-									<td align="center">
+<body class="alert-body" style="height: 100%;">
+				<div class="container-fluid nopadding">
+					<div class="row-fluid nomargin">
+						<form:form id="mainForm" action="/province/save.shtml" method="post" commandName="pojo" class="form-horizontal">
+							<%@ include file="/jdp/form/field.jsp" %>
+							<input type="hidden" name="parentId" value="${param.parentId}"/>
+							<input type="hidden" name="countryId" value="${param.parentId}"/>
+							<div class="span12 nomargin">
+								<div class="widget-box form-table" style="height: 500px;">
+									<div class="widget-title">
+										<span class="icon">
+											<c:choose>
+							       				<c:when test="${param[httpParamOpenMode] == createOpenMode }"><i class="icon-align-justify"></i></c:when>
+							       				<c:when test="${param[httpParamOpenMode] == editOpenMode }"><i class="icon-edit"></i></c:when>
+							       				<c:otherwise><i class="icon-align-justify"></i></c:otherwise>
+							       			</c:choose>
+										</span>
+										<h5>省份管理</h5>
+									</div>
+									<div class="row-fluid" style="margin-top: 20px; margin-bottom: 20px; padding-left: 10px;">
+										<c:if test="${openMode == 'edit'}">
+											<lauthority:checkAuthority authorityCode="jdp_area_manage">
+												<button type="button" class="btn" onClick="addCity()"><i class="icon-plus"></i> 添加子地市</button>
+												<button type="button" class="btn" onClick="deletePojo('<c:url value="/province/delete.shtml"/>')"><i class="icon-remove"></i> 删除</button>
+											</lauthority:checkAuthority>
+										</c:if>
 										<jsp:include page="/jdp/include/favoriteMenu.jsp">
-											<jsp:param value="jdp_area_load" name="authorityCode"/>
+											<jsp:param value="jdp_area_load" name="menuId"/>
 										</jsp:include>
-									</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<td align="center" valign="top">&nbsp;</td>
-				</tr>
-			</table>
-			<table class="table-form full" border="0" cellspacing="0" cellpadding="0">
-				<jsp:include page="<%=(String)request.getAttribute(com.lmiky.jdp.form.controller.FormController.HTTP_PARAM_FORM_SUBFORM)%>" />
-			</table>
-		</form:form>
+									</div>	
+									<div class="row-fluid">
+										<%@ include file="/jdp/form/messages.jsp" %>
+										<jsp:include page="<%=(String)request.getAttribute(com.lmiky.jdp.form.controller.FormController.HTTP_PARAM_FORM_SUBFORM)%>" />
+									</div>	
+								</div>	
+							</div>
+						</form:form>
+					</div>
+				</div>
+				<%@ include file="/jdp/common/scripts.jsp"%>
 </body>
 </html>

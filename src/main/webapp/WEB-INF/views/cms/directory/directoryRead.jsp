@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<tr>
-	<th align="right" class="bg02">
-		<label>名称</label>
-	</th>
-	<td>
+<%@ include file="/jdp/common/common.jsp"%>
+<div class="control-group">
+	<label class="mini-control-label" style="width: 60px;">名称：</label>
+	<div class="controls mini-controls">
 		${pojo.name}
-	</td>
-</tr>
+	</div>
+</div>

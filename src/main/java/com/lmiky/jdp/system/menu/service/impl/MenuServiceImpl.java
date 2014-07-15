@@ -99,6 +99,16 @@ public class MenuServiceImpl implements MenuService {
 						subMenu.setHeight(Integer.parseInt(height));
 					}
 					subMenu.setAuthority(subMenuElement.elementText("authority"));
+					String iframeurl = subMenuElement.elementText("iframeurl");
+					if(StringUtils.isNotBlank(iframeurl)) {
+						if (iframeurl.indexOf("?") == -1) {
+							iframeurl += "?";
+						} else {
+							iframeurl += "&";
+						}
+						subMenu.setIframeurl(iframeurl + Constants.HTTP_PARAM_MODULE_PATH + "=" + subMenu.getModulePath() + "&" + Constants.HTTP_PARAM_SUBMENU_ID
+								+ "=" + subMenu.getId());
+					}
 					subMenu.setLeftMenu(leftMenu);
 					subMenuList.add(subMenu);
 					cache.put(CACHE_KEY_SUBMENU_PREFIX + subMenu.getId(), new SimpleCacheData(subMenu));

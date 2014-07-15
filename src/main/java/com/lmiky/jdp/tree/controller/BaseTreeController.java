@@ -48,7 +48,8 @@ public abstract class BaseTreeController<T extends BaseTreePojo> extends FormCon
 			checkSso(sessionInfo, modelMap, request);
 			//检查权限
 			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode(modelMap, request));
-			modelMap.put("roots", service.list(pojoClass, new PropertyFilter("parent.id", null, PropertyCompareType.NULL, pojoClass), new Sort(BaseSortPojo.POJO_FIELD_NAME_SORT, Sort.SORT_TYPE_DESC, pojoClass)));
+			List<?> roots = service.list(pojoClass, new PropertyFilter("parent.id", null, PropertyCompareType.NULL, pojoClass), new Sort(BaseSortPojo.POJO_FIELD_NAME_SORT, Sort.SORT_TYPE_DESC, pojoClass));
+			modelMap.put("roots", roots);
 			appendListAttribute(modelMap, request, resopnse);
 			String modulePath = getModulePath(modelMap, request);
 			modelMap.put(Constants.HTTP_PARAM_MODULE_PATH, modulePath);

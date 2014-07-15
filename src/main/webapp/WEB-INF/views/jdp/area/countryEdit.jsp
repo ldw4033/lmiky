@@ -14,14 +14,14 @@
 		$(document).ready(function() {
 			if('${flag}' == 'refresh') {
 				<c:choose>
-					<c:when test="${openMode == 'edit'}">
+					<c:when test="${openMode == 'edit' or openMode == 'create'}">
 						<c:if test="${not empty pojo.id}">
 							parent.reAsyncChildNodes('${param.parentId}', '<%=AreaController.AREA_TYPE_COUNTRY%>${pojo.id}');
 						</c:if>
 					</c:when>
-					<c:when test="${not empty param.parentId}">
+					<c:otherwise>
 						parent.reAsyncChildNodes('${param.parentId}');
-					</c:when>
+					</c:otherwise>
 				</c:choose>
 			}
 		});
@@ -29,7 +29,7 @@
 </script>
 <div class="control-group">
 	<label  class="mini-control-label" style="width: 60px;">名称 <span class="req">*</span></label>
-	<div class="controls" style="margin-left: 0px; padding: 10px 0px; display: inline-block;">
+	<div class="controls mini-controls">
 		<input name="name" type="text" value="${pojo.name}" class="larger"/>
 	</div>
 </div>

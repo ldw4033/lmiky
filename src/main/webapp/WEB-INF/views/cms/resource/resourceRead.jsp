@@ -1,64 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="/jdp/common/simpleCommon.jsp" %>
-<tr>
-	<th align="right" class="bg02" width="17%">
-		<label>标题</label>
-	</th>
-	<td colspan="3">
+<%@ include file="/jdp/common/common.jsp" %>
+<div class="control-group">
+	<label class="control-label read-control-label">标题：</label>
+	<div class="controls">
 		${pojo.title}
-	</td>
-</tr>
-<tr>
-	<th align="right" class="bg02">
-		<label>副标题</label>
-	</th>
-	<td colspan="3">
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label read-control-label">副标题：</label>
+	<div class="controls">
 		${pojo.subtitle}
-	</td>
-</tr>
-<tr>
-	<th align="right" class="bg02" width="17%">
-		<label>作者</label>
-	</th>
-	<td width="33%">
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label read-control-label">作者：</label>
+	<div class="controls">
 		${pojo.author}
-	</td>
-	<th align="right" class="bg02" width="17%">
-		<label>来源</label>
-	</th>
-	<td width="33%">
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label read-control-label">来源：</label>
+	<div class="controls">
 		${pojo.source}
-	</td>
-</tr>
-<tr>
-	<th align="right" class="bg02" width="17%">
-		<label>创建时间</label>
-	</th>
-	<td>
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label read-control-label">创建时间：</label>
+	<div class="controls">
 		<fmt:formatDate value="${pojo.createTime}" pattern="${defaultDateTimeFormater }"/>
-	</td>
-	<th align="right" class="bg02" width="17%">
-		<label>发布时间</label>
-	</th>
-	<td>
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label read-control-label">发布时间：</label>
+	<div class="controls">
 		<fmt:formatDate value="${pojo.pubTime}" pattern="${defaultDateTimeFormater }"/>
-	</td>
-</tr>
-<tr>
-	<th align="right" class="bg02">
-		<label>所属栏目</label>
-	</th>
-	<td colspan="3">
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label read-control-label">所属栏目：</label>
+	<div class="controls">
 		${directory.name}
-	</td>
-</tr>
-<tr>
-	<td colspan="4" valign="top" height="300">
+	</div>
+</div>
+<div class="control-group">
+	<div class="controls nolabel-full-controls">
 		${pojo.content}
-	</td>
-</tr>
-<tr>
-	<td colspan="4" align="center">
-		<input type="button" class="btnClass" style="cursor: pointer;" value="返回" onclick="back('/cms/resource/list.shtml?modulePath=${modulePath }')"/>
-	</td>
-</tr>
+	</div>
+</div>
+<div class="form-actions">
+	<button type="button" class="btn btn-primary"
+		onclick="back('/cms/resource/list.shtml')">返回</button>
+</div>

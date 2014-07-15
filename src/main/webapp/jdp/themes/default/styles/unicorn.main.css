@@ -19,6 +19,12 @@ body {
      background: #FFFFFF !important;
 }
 
+.iframe-body {
+    margin: 0px;
+    padding: 0px;
+    background: #FFFFFF !important;
+}
+
 a:hover {
 	text-decoration: none;
 }
@@ -1550,15 +1556,21 @@ form {
         margin-left: 0;
         padding: 10px 30px;
     }
-    .form-horizontal .mini-controls {
-        margin-left: 0 !important;
-        padding: 10px 0px !important;
-        display: inline-block !important;
-    }
-    
     .form-actions {
         text-align: center;
     }
+}
+
+.form-horizontal .mini-controls {
+	margin-left: 0 !important;
+	padding: 10px 0px !important;
+	display: inline-block !important;
+}
+    
+.form-horizontal .nolabel-full-controls {
+	width: 99% !important;
+	margin-left: auto !important; 
+	margin-right: auto !important;
 }
 
 @media (min-width: 481px) and (max-width: 767px) {

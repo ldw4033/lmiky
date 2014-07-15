@@ -18,9 +18,10 @@
 					<div class="row-fluid nomargin">
 						<form:form id="mainForm" action="/country/save.shtml" method="post" commandName="pojo" class="form-horizontal">
 							<%@ include file="/jdp/form/field.jsp" %>
+							<input type="hidden" name="parentId" value="${param.parentId}"/>
 							<div class="span12 nomargin">
 								<div class="widget-box form-table" style="height: 500px;">
-									<div class="widget-title noborder">
+									<div class="widget-title">
 										<span class="icon">
 											<c:choose>
 							       				<c:when test="${param[httpParamOpenMode] == createOpenMode }"><i class="icon-align-justify"></i></c:when>
@@ -31,10 +32,14 @@
 										<h5>国家管理</h5>
 									</div>
 									<div class="row-fluid" style="margin-top: 20px; margin-bottom: 20px; padding-left: 10px;">
-										<button type="button" class="btn" onClick="addProvince()"><i class="icon-plus"></i> 添加子省份</button>
-										<button type="button" class="btn" onClick="deletePojo('<c:url value="/country/delete.shtml"/>')"><i class="icon-remove"></i> 删除</button>
+										<c:if test="${openMode == 'edit'}">
+											<lauthority:checkAuthority authorityCode="jdp_area_manage">
+												<button type="button" class="btn" onClick="addProvince()"><i class="icon-plus"></i> 添加子省份</button>
+												<button type="button" class="btn" onClick="deletePojo('<c:url value="/country/delete.shtml"/>')"><i class="icon-remove"></i> 删除</button>
+											</lauthority:checkAuthority>
+										</c:if>
 										<jsp:include page="/jdp/include/favoriteMenu.jsp">
-											<jsp:param value="jdp_area_load" name="authorityCode"/>
+											<jsp:param value="jdp_area_load" name="menuId"/>
 										</jsp:include>
 									</div>	
 									<div class="row-fluid">
@@ -46,5 +51,6 @@
 						</form:form>
 					</div>
 				</div>
+				<%@ include file="/jdp/common/scripts.jsp"%>
 </body>
 </html>

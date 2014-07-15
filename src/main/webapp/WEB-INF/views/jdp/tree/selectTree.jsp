@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="/jdp/common/htmlDoctype.jsp"%>
 <%@ include file="/jdp/common/common.jsp"%>
-<html>
+<html style="height: 99%" >
 	<head>
+		<%@ include file="/jdp/common/header.jsp"%>
 		<%@ include file="/jdp/form/header.jsp" %>
 		<%@ include file="/jdp/common/tree.jsp" %>
 			<script type="text/javascript">
@@ -91,7 +93,7 @@
 				}
 			</script>
 	</head>
-	<body style="height: 99%">
+	<body style="height: 99%" class="alert-body">
 		<%@ include file="/jdp/form/messages.jsp" %>
 		<!-- form id="mainForm" action="<c:url value="/user/save.shtml"/>" method="post" -->
 		<%@ include file="/jdp/form/field.jsp" %>
@@ -110,11 +112,12 @@
 		   	</tr>
 		   	<tr>
 				<td align="center">
-					<input type="button" class="btnClass" style="cursor: pointer;" value="选择" onclick="selectNode()"/>
+					<button type="button" class="btn btn-primary" onclick="selectNode()">选择</button>
 					&nbsp;&nbsp;
-					<input type="button" class="btnClass" style="cursor: pointer;" value="关闭" onclick="art.dialog.close();"/>
+					<button type="button" class="btn btn-primary" onclick="art.dialog.close();">关闭</button>
 				</td>
 			</tr>
 		</table>
+		<%@ include file="/jdp/common/scripts.jsp"%>
 	</body>
 </html>

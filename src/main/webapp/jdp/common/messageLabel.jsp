@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${not empty errorInfos || not empty messageInfos}">
 	<div class="row-fluid">
-		<div class="span12">
 			<div class="messageDiv">
 </c:if>
 	<%-- Error Messages --%>
@@ -25,6 +24,5 @@
 	</c:if>
 <c:if test="${not empty errorInfos || not empty messageInfos}">
 			</div>
-		</div>
 	</div>
 </c:if>

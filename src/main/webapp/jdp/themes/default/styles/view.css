@@ -30,6 +30,10 @@
 	padding: 3px !important;
 }
 
+.listContent .pageColumn {
+	background-color: #ffffff !important;
+}
+
 .listContent th a {
 	background-position: right;
 	background-repeat: no-repeat;

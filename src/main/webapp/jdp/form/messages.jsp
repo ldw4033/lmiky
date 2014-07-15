@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:if test="${not empty validateErrorInfos}">
 	<div class="row-fluid">
-		<div class="span12">
 			<div class="messageDiv">
 				<c:forEach var="validateErrorInfo" items="${validateErrorInfos}">
 					<script type="text/javascript">
@@ -16,7 +15,6 @@
 					</div>
 				</c:forEach>
 			</div>
-		</div>
 	</div>
 </c:if>
 <%@ include file="/jdp/common/messageLabel.jsp"%>
