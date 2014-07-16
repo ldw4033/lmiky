@@ -10,6 +10,7 @@ public class OperateType {
 	public static final String OPE_TYPE_ADD = "add";
 	public static final String OPE_TYPE_UPDATE = "update";
 	public static final String OPE_TYPE_DELETE = "delete";
+	public static final String OPE_TYPE_BATCHDELETE = "batchdelete";
 	public static final String OPE_TYPE_SORT = "sort";	//排序
 	public static final String OPE_TYPE_LOGIN = "login";
 	public static final String OPE_TYPE_LOGOUT = "logout";

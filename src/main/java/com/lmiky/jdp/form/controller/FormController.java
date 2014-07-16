@@ -731,7 +731,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 					putMessage(modelMap, "删除成功!");
 					//记录日志
 					for(T pojo : pojos) {
-						logOpe(pojo, modelMap, request, sessionInfo, OperateType.OPE_TYPE_DELETE);
+						logOpe(pojo, modelMap, request, sessionInfo, OperateType.OPE_TYPE_BATCHDELETE);
 					}
 				}
 			}
