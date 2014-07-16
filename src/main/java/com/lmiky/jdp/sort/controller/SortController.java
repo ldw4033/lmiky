@@ -108,7 +108,7 @@ public class SortController extends BaseController {
 			} else {
 				((SortService) service).sort(sortClass, selectedPojos);
 				putMessage(modelMap, "保存成功!");
-				LoggerUtils.save(className, null, sessionInfo.getUserId(), sessionInfo.getUserName(), OperateType.OPE_TYPE_SORT, this.getClass().getName(), null, service);
+				LoggerUtils.save(request, className, null, sessionInfo.getUserId(), sessionInfo.getUserName(), OperateType.OPE_TYPE_SORT, this.getClass().getName(), null, service);
 			}
 			return load(modelMap, request, response, className, showName);
 		} catch (Exception e) {

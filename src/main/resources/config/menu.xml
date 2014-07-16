@@ -83,6 +83,14 @@
 				<width>800</width>
 				<height>510</height>
 			</submenu>
+			<submenu>
+				<id>jdp_logger_load</id>
+				<label>日志查询</label>
+				<url>logger/list.shtml</url>
+				<type>link</type>
+				<modulePath>jdp/logger</modulePath>
+				<authority>jdp_logger_load</authority>
+			</submenu>
 		</leftmenu>
 	</topmenu>
 </menus>

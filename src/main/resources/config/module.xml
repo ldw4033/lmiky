@@ -20,6 +20,9 @@
 		<module name="地区管理" path="jdp/area">
 			<function name="管理" authorityCode="jdp_area_manage" sort="0"/>
 		</module>
+		<module name="日志查询" path="jdp/logger">
+			<function name="查看" authorityCode="jdp_logger_load" sort="0"/>
+		</module>
 	</moduleGroup>
 	<moduleGroup name="网络商城" path="mall">
 		<module name="商品管理" path="tiger/goods">

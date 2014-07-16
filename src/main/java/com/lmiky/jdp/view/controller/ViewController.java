@@ -2,6 +2,7 @@ package com.lmiky.jdp.view.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -73,7 +74,7 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 			appendSorts(modelMap, request, sorts);
 			modelMap.put("sorts", sorts);
 			// 查询分页内容，将分页信息设入页面
-			modelMap.put("page", pageService.fillPage(pojoClass, page, propertyFilters, sorts));
+			modelMap.put("page", fillPage(page, modelMap, request, propertyFilters, sorts, null));
 			appendListAttribute(modelMap, request, resopnse);
 			//设置模块
 			String modulePath = getModulePath(modelMap, request);
@@ -96,7 +97,6 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 	 */
 	protected Page<T> generatePage(ModelMap modelMap, HttpServletRequest request) {
 		return PageUtils.generateFromHttpRequest(request);
-
 	}
 
 	/**
@@ -109,6 +109,22 @@ public abstract class ViewController<T extends BasePojo> extends BasePojoControl
 	 */
 	protected void resetPage(Page<T> page, ModelMap modelMap, HttpServletRequest request) {
 		page.pageAction();
+	}
+	
+	/**
+	 * 填充分页信息
+	 * @author lmiky
+	 * @date 2014-7-16
+	 * @param page
+	 * @param modelMap
+	 * @param request
+	 * @param propertyFilters
+	 * @param sorts
+	 * @param otherElements
+	 * @return
+	 */
+	protected Page<T> fillPage(Page<T> page, ModelMap modelMap, HttpServletRequest request, List<PropertyFilter> propertyFilters, List<Sort> sorts, Map<String, Object> otherElements) {
+		return pageService.fillPage(pojoClass, page, propertyFilters, sorts);
 	}
 
 	/**

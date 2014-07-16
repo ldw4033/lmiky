@@ -485,7 +485,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @throws Exception
 	 */
 	public void logOpe(T pojo, ModelMap modelMap, HttpServletRequest request, SessionInfo sessionInfo, String opeType) throws Exception {
-		LoggerUtils.save(pojoClass.getName(), pojo.getId(), sessionInfo.getUserId(), sessionInfo.getUserName(),
+		LoggerUtils.save(request, pojoClass.getName(), pojo.getId(), sessionInfo.getUserId(), sessionInfo.getUserName(),
 				opeType, this.getClass().getName(),
 				getPojoDescribe(pojo, modelMap, request), service);
 	}
@@ -504,7 +504,7 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @throws Exception
 	 */
 	public void logOpe(String className, Long pojoId, ModelMap modelMap, HttpServletRequest request, SessionInfo sessionInfo, String opeType, String describe) throws Exception {
-		LoggerUtils.save(className, pojoId, sessionInfo.getUserId(), sessionInfo.getUserName(),
+		LoggerUtils.save(request, className, pojoId, sessionInfo.getUserId(), sessionInfo.getUserName(),
 				opeType, this.getClass().getName(),
 				describe, service);
 	}

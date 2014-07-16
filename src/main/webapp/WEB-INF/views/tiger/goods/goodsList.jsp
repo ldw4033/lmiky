@@ -71,19 +71,19 @@
 										<td>
 											<lauthority:checkAuthority authorityCode="tiger_goods_load">
 												<a href="javascript:void(0)" class="td_2" onclick="redirectPage('<c:url value="/tiger/goods/load.shtml?id=${item.id}&${httpParamOpenMode }=${readOpenMode }"/>&modulePath=${modulePath }&menuFrom=${param.menuFrom }&subMenuId=${param.subMenuId }', 800, 600)">
-													查看
+													<i class="icon icon-circle-arrow-up"></i> 查看
 												</a>
 											</lauthority:checkAuthority>
 											<lauthority:checkAuthority authorityCode="tiger_goods_modify">
 												&nbsp;
 												<a href="javascript:void(0)" class="td_2" onclick="redirectPage('<c:url value="/tiger/goods/load.shtml?id=${item.id}&${httpParamOpenMode }=${editOpenMode }"/>&modulePath=${modulePath }&menuFrom=${param.menuFrom }&subMenuId=${param.subMenuId }', 800, 600)">
-													修改
+													<i class="icon icon-edit"></i> 修改
 												</a>
 											</lauthority:checkAuthority>
 											<lauthority:checkAuthority authorityCode="tiger_goods_delete">
 												&nbsp;
 												<a href="javascript:void(0)" onclick="deletePojo('<c:url value="/tiger/goods/delete.shtml?id=${item.id}"/>')" class="td_2">
-													删除
+													<i class="icon icon-trash"></i> 删除
 												</a>
 											</lauthority:checkAuthority>
 										</td>

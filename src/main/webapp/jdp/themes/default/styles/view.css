@@ -21,6 +21,7 @@
 .listContent th {
 	text-align: center;
 	vertical-align: middle !important;
+	height: 30px !important;
 }
 
 .listContent td {
@@ -28,6 +29,11 @@
 	font-size: 12px !important;
 	vertical-align: middle !important;
 	padding: 3px !important;
+	height: 30px !important;
+}
+
+.listContent  input[type="radio"], .listContent  input[type="checkbox"] {
+	margin: 0px;
 }
 
 .listContent .pageColumn {

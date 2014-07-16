@@ -11,6 +11,7 @@ public class Constants {
 	// ****************************************properties文件key****************************************//
 	// 配置文件
 	public static final String PROPERTIES_KEY_CONTEXT_FILE = "config/context";
+	public static final String PROPERTIES_KEY_OPERATENAME_FILE = "config/operateName";
 
 	// 格式
 	public static final String CONTEXT_KEY_FORMAT_DATE = "format.date"; // 日期

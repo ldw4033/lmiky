@@ -16,7 +16,7 @@ import com.lmiky.jdp.database.pojo.BasePojo;
 @Entity
 @Table(name="t_logger")
 public class Logger extends BasePojo {
-	private static final long serialVersionUID = 1099345557579557690L;
+	private static final long serialVersionUID = 3769782013004612938L;
 	private String pojoName;
 	private Long pojoId;
 	private Long userId;
@@ -25,6 +25,7 @@ public class Logger extends BasePojo {
 	private String opeType;
 	private String opeClassName;
 	private String logDesc;
+	private String ip;
 	
 	/**
 	 * @return the pojoName
@@ -129,5 +130,18 @@ public class Logger extends BasePojo {
 	 */
 	public void setLogDesc(String logDesc) {
 		this.logDesc = logDesc;
+	}
+	/**
+	 * @return the ip
+	 */
+	@Column(name="ip")
+	public String getIp() {
+		return ip;
+	}
+	/**
+	 * @param ip the ip to set
+	 */
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 }
