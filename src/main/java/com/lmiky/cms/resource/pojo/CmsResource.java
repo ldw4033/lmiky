@@ -41,6 +41,7 @@ public class CmsResource extends BasePojo {
 	private Integer state = STATE_CREATE;
 	private Set<CmsResourceContent> resourceContents;
 	private CmsDirectory directory;
+	private Set<CmsResourcePictureSnapshot> pictureSnapshots;
 	
 	/**
 	 * @return the title
@@ -204,5 +205,18 @@ public class CmsResource extends BasePojo {
 	 */
 	public void setDirectory(CmsDirectory directory) {
 		this.directory = directory;
+	}
+	/**
+	 * @return the pictureSnapshots
+	 */
+	@OneToMany(mappedBy="cmsResource", fetch=FetchType.LAZY, cascade={CascadeType.ALL})
+	public Set<CmsResourcePictureSnapshot> getPictureSnapshots() {
+		return pictureSnapshots;
+	}
+	/**
+	 * @param pictureSnapshots the pictureSnapshots to set
+	 */
+	public void setPictureSnapshots(Set<CmsResourcePictureSnapshot> pictureSnapshots) {
+		this.pictureSnapshots = pictureSnapshots;
 	}
 }
