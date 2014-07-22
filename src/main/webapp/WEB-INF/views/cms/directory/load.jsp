@@ -6,6 +6,7 @@
 		<title>${subMenu.label }</title>
 		<%@ include file="/jdp/common/header.jsp"%>
 		<%@ include file="/jdp/view/header.jsp"%>
+		<%@ include file="/jdp/common/scripts.jsp"%>
 	</head>
 	<body>
 		<%@ include file="/jdp/page/topMenu.jsp"%>
@@ -19,6 +20,5 @@
 			</div>
 			<%@ include file="/jdp/page/footer.jsp"%>
 		</div>
-		<%@ include file="/jdp/common/scripts.jsp"%>
 	</body>
 </html>

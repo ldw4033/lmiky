@@ -47,5 +47,8 @@
 		<%@ include file="/jdp/common/scripts.jsp"%>
 		<%@ include file="/jdp/common/date.jsp"%>
 		<%@ include file="/jdp/common/htmlEditor.jsp"%>
+		<script src="${scriptPlugin }/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
+		<script src="${scriptPlugin }/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
+		<script src="${scriptPlugin }/jQuery-File-Upload/js/jquery.fileupload.js"></script>
 	</body>
 </html>
