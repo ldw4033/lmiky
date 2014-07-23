@@ -46,6 +46,12 @@
 	</div>
 </div>
 <div class="control-group">
+	<label class="control-label">内容快照 <span class="req">*</span></label>
+	<div class="controls">
+		<input name="file" id="fileupload" type="file" />
+	</div>
+</div>
+<div class="control-group">
 	<div class="controls nolabel-full-controls">
 		<textarea rows="30" name="content" style="width: 100%;" id="htmlContent">${pojo.content}</textarea>
 	</div>
@@ -69,3 +75,24 @@
 	<button type="button" class="btn btn-primary"
 		onclick="back('/cms/resource/list.shtml')">返回</button>
 </div>
+<script type="text/javascript">
+$(function () {
+    $('#fileupload').fileupload({
+        url: '<c:url value="/kindEditorFile/upload.shtml"/>',
+        dataType: 'json',
+        done: function (e, data) {
+            $.each(data.result.files, function (index, file) {
+                $('<p/>').text(file.name).appendTo('#files');
+            });
+        },
+        progressall: function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#progress .progress-bar').css(
+                'width',
+                progress + '%'
+            );
+        }
+    }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+});
+</script>
