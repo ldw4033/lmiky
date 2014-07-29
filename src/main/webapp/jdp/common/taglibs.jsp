@@ -11,4 +11,4 @@
 <c:set var="script" value="${ctx}/jdp/scripts"/>
 <c:set var="scriptPlugin" value="${script}/plugins"/>
 <c:set var="css" value="${ctx}/jdp/themes/default/styles"/>
-<c:set var="images" value="${ctx}/jdp/themes/default/images"/>
+<c:set var="images" value="${ctx}/jdp/themes/default/img"/>

@@ -48,7 +48,9 @@
 <div class="control-group">
 	<label class="control-label">内容快照 <span class="req">*</span></label>
 	<div class="controls">
-		<input name="file" id="fileupload" type="file" />
+		<div id="fileList" style="margin: 10px 0;">
+		</div>
+	    <input type="file" name="file" id="file">
 	</div>
 </div>
 <div class="control-group">
@@ -76,23 +78,32 @@
 		onclick="back('/cms/resource/list.shtml')">返回</button>
 </div>
 <script type="text/javascript">
-$(function () {
-    $('#fileupload').fileupload({
-        url: '<c:url value="/kindEditorFile/upload.shtml"/>',
-        dataType: 'json',
-        done: function (e, data) {
-            $.each(data.result.files, function (index, file) {
-                $('<p/>').text(file.name).appendTo('#files');
-            });
-        },
-        progressall: function (e, data) {
-            var progress = parseInt(data.loaded / data.total * 100, 10);
-            $('#progress .progress-bar').css(
-                'width',
-                progress + '%'
-            );
-        }
-    }).prop('disabled', !$.support.fileInput)
-        .parent().addClass($.support.fileInput ? undefined : 'disabled');
-});
+	/**
+	 * 添加内容快照图片
+	 */
+	function appendUploadImageShot(filePath) {
+		var divId = Date.now();
+		$('#fileList').append('<div style="display: inline-block; margin: 0 0 5px;" id="' + divId + '"></div>');
+		$('#' + divId).append('<img src="${ctx}/' + filePath + '" style="height: 120px; width: 120px;" />');
+		$('#' + divId).append('<img src="${images}/cancel.png" style="position: relative; top: -52px; cursor: pointer; margin-right: 10px;" onclick="deleteShotImg(' + divId + ')" />');
+		$('#' + divId).append('<input type="hidden" name="pictureSnapshots" value="' + filePath + '"/>');
+	}
+	
+	/**
+	 * 删除内容快照图片
+	 */
+	function deleteShotImg(divId) {
+		$('#' + divId).remove();
+	}
+	
+	//文件上传
+	$(document).ready(function() {
+		initImageUploadElement('file', function(file, data, response, filePath) {
+			//用回调的机制，确保重新调整iframe大小是在显示完图片之后
+			var callbacks = $.Callbacks();
+			callbacks.add(appendUploadImageShot(filePath));	//显示图片
+			callbacks.add(resizeIframe('contentFrame'));	//重新调整iframe大小
+			callbacks.fire();
+		});
+	});
 </script>

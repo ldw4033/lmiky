@@ -10,7 +10,8 @@
 		<title>${subMenu.label }</title>
 		<%@ include file="/jdp/common/header.jsp"%>
 		<%@ include file="/jdp/form/header.jsp"%>
-		<link rel="stylesheet" href="${scriptPlugin }/kindeditor/themes/default/default.css" />
+		<%@ include file="/jdp/htmleditor/htmlEditorStyle.jsp"%>
+		<%@ include file="/jdp/file/uploadStyle.jsp"%>
 	</head>
 	<body class="iframe-body">
 					<div class="row-fluid" style="margin-top: 20px;">
@@ -46,9 +47,7 @@
 				</div>
 		<%@ include file="/jdp/common/scripts.jsp"%>
 		<%@ include file="/jdp/common/date.jsp"%>
-		<%@ include file="/jdp/common/htmlEditor.jsp"%>
-		<script src="${scriptPlugin }/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
-		<script src="${scriptPlugin }/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
-		<script src="${scriptPlugin }/jQuery-File-Upload/js/jquery.fileupload.js"></script>
+		<%@ include file="/jdp/htmleditor/htmlEditorScript.jsp"%>
+		<%@ include file="/jdp/file/uploadScript.jsp"%>
 	</body>
 </html>

@@ -1,6 +1,9 @@
 package com.lmiky.jdp.filemanager.util;
 
 import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,7 +28,7 @@ public class FileUtils {
 	//参数名
 	public static final String PARAMNAME_FILEEXTENSION = "fileExtension";	//允许的文件格式，多个格式之间以“,”分隔
 	public static final String PARAMNAME_FILEPATH = "filePath";	//文件保存路径
-	public static final String PARAMNAME_FILE = "fileData";	//文件字段
+	public static final String PARAMNAME_FILE = "file";	//文件字段
 
 	/**
 	 * 上传文件
@@ -58,13 +61,29 @@ public class FileUtils {
 				throw new FileUploadException("文件格式错误！", FileUploadException.CODE_FORMAT_ERROR);
 			}
 		}
+		if(StringUtils.isBlank(savePath)) {
+			savePath = PropertiesUtils.getStringContextValue(Constants.SYSTEM_FILE_PATH);
+		}
+		InputStream in = null;
+		OutputStream out = null;
 		try {
 			String realPath = WebUtils.getRealPath(request.getSession().getServletContext(), savePath);
 			File newFile = new File(realPath + "/" + newFileName);
-			IOUtils.copy(multipartFile.getInputStream(), org.apache.commons.io.FileUtils.openOutputStream(newFile));
+			in = multipartFile.getInputStream();
+			out = org.apache.commons.io.FileUtils.openOutputStream(newFile);
+			IOUtils.copy(in, out);
+			in.close();
+			out.close();
 			return savePath + "/" + newFileName;
 		} catch (Exception e) {
 			throw new FileUploadException(e.getMessage());
+		} finally {
+			if(in != null) {
+				IOUtils.closeQuietly(in);
+			}
+			if(out != null) {
+				IOUtils.closeQuietly(out);
+			}
 		}
 	}
 

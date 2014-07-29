@@ -59,6 +59,7 @@ public class ResponseUtils {
 		PrintWriter writer = getWriter(response);
 		writer.write(content);
 		writer.flush();
+		writer.close();
 	}
 	
 	/**
@@ -74,6 +75,7 @@ public class ResponseUtils {
 		PrintWriter writer = getWriter(response);
 		writer.write(content);
 		writer.flush();
+		writer.close();
 	}
 	
 	/**
@@ -89,6 +91,7 @@ public class ResponseUtils {
 		PrintWriter writer = getWriter(response);
 		writer.write(content);
 		writer.flush();
+		writer.close();
 	}
 	
 	/**
@@ -106,6 +109,7 @@ public class ResponseUtils {
 		PrintWriter writer = getWriter(response);
 		writer.write(content, off, length);
 		writer.flush();
+		writer.close();
 	}
 	
 	/**
@@ -123,5 +127,6 @@ public class ResponseUtils {
 		PrintWriter writer = getWriter(response);
 		writer.write(content, off, length);
 		writer.flush();
+		writer.close();
 	}
 }
