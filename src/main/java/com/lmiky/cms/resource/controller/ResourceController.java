@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.lmiky.cms.directory.pojo.CmsDirectory;
 import com.lmiky.cms.resource.pojo.CmsResource;
 import com.lmiky.cms.resource.pojo.CmsResourceContent;
+import com.lmiky.cms.resource.pojo.CmsResourcePictureSnapshot;
 import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.database.model.Sort;
@@ -26,6 +28,7 @@ import com.lmiky.jdp.form.model.ValidateError;
 import com.lmiky.jdp.form.util.ValidateUtils;
 import com.lmiky.jdp.lock.exception.LockException;
 import com.lmiky.jdp.logger.model.OperateType;
+import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.user.pojo.User;
 
@@ -202,12 +205,25 @@ public class ResourceController extends FormController<CmsResource> {
 		content.setContent(request.getParameter("content"));
 		content.setCmsResource(pojo);
 		pojo.setResourceContents(contents);
+		//所属目录
 		String directoryId = request.getParameter("directoryId");
 		if (!StringUtils.isBlank(directoryId)) {
 			CmsDirectory directory = new CmsDirectory();
 			directory.setId(Long.parseLong(directoryId));
 			pojo.setDirectory(directory);
 		}
+		//内容图片快照
+		String[] pictureSnapshotPaths = request.getParameterValues("snapshots");
+		Set<CmsResourcePictureSnapshot>pictureSnapshots = new HashSet<CmsResourcePictureSnapshot>();
+		if(pictureSnapshotPaths != null && pictureSnapshotPaths.length > 0) {
+			for(String pictureSnapshotPath : pictureSnapshotPaths) {
+				CmsResourcePictureSnapshot snapshot = new CmsResourcePictureSnapshot();
+				snapshot.setPath(pictureSnapshotPath);
+				pictureSnapshots.add(snapshot);
+				snapshot.setCmsResource(pojo);
+			}
+		}
+		pojo.setPictureSnapshots(pictureSnapshots);
 	}
 
 	/*
@@ -399,4 +415,14 @@ public class ResourceController extends FormController<CmsResource> {
 			return transactException(e, modelMap, request, resopnse);
 		}
 	}
+
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.base.controller.BaseController#setService(com.lmiky.jdp.service.BaseService)
+	 */
+	@Resource(name="cmsResourceService")
+	public void setService(BaseService service) {
+		super.setService(service);
+	}
+	
+	
 }

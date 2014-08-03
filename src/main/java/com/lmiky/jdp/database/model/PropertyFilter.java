@@ -19,7 +19,7 @@ public class PropertyFilter implements Serializable {
 	 * 
 	 */
 	public PropertyFilter() {
-
+		isCollectionField = false;
 	}
 
 	/**

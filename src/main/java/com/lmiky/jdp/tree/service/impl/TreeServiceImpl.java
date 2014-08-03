@@ -39,6 +39,7 @@ public class TreeServiceImpl extends BaseServiceImpl {
 	 * @see com.lmiky.jdp.service.impl.BaseServiceImpl#delete(com.lmiky.jdp.database.pojo.BasePojo)
 	 */
 	@Override
+	@Transactional
 	public <T extends BasePojo> void delete(T pojo) throws ServiceException {
 		if(pojo instanceof BaseTreePojo) {
 			BaseTreePojo pojoTree = (BaseTreePojo) pojo;

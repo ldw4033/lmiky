@@ -1,6 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/jdp/common/common.jsp"%>
-
+<style type="text/css">
+	.pictureSnapshotBlock {
+		display: inline-block; 
+		margin: 0 0 5px;
+	}
+	.pictureSnapshot {
+		height: 120px; 
+		width: 120px;
+	}
+	.pictureSnapshotCancel {
+		position: relative; 
+		top: -52px; 
+		cursor: pointer; 
+		margin-right: 10px;
+	}
+</style>
 <div class="control-group">
 	<label class="control-label">标题 <span class="req">*</span></label>
 	<div class="controls">
@@ -49,6 +64,13 @@
 	<label class="control-label">内容快照 <span class="req">*</span></label>
 	<div class="controls">
 		<div id="fileList" style="margin: 10px 0;">
+			<c:forEach var="pictureSnapshot" items="${pojo.pictureSnapshots }">
+				<div class="pictureSnapshotBlock" id="${pictureSnapshot.id}">
+					<img src="${ctx}${pictureSnapshot.path}" class="pictureSnapshot" />
+					<img src="${images}/cancel.png" class="pictureSnapshotCancel" onclick="deleteShotImg('${pictureSnapshot.id}')" />
+					<input type="hidden" name="snapshots" value="${pictureSnapshot.path}"/>
+				</div>
+			</c:forEach>
 		</div>
 	    <input type="file" name="file" id="file">
 	</div>
@@ -83,10 +105,10 @@
 	 */
 	function appendUploadImageShot(filePath) {
 		var divId = Date.now();
-		$('#fileList').append('<div style="display: inline-block; margin: 0 0 5px;" id="' + divId + '"></div>');
-		$('#' + divId).append('<img src="${ctx}/' + filePath + '" style="height: 120px; width: 120px;" />');
-		$('#' + divId).append('<img src="${images}/cancel.png" style="position: relative; top: -52px; cursor: pointer; margin-right: 10px;" onclick="deleteShotImg(' + divId + ')" />');
-		$('#' + divId).append('<input type="hidden" name="pictureSnapshots" value="' + filePath + '"/>');
+		$('#fileList').append('<div class="pictureSnapshotBlock" id="' + divId + '"></div>');
+		$('#' + divId).append('<img src="${ctx}/' + filePath + '" class="pictureSnapshot" />');
+		$('#' + divId).append('<img src="${images}/cancel.png" class="pictureSnapshotCancel" onclick="deleteShotImg(' + divId + ')" />');
+		$('#' + divId).append('<input type="hidden" name="snapshots" value="' + filePath + '"/>');
 	}
 	
 	/**

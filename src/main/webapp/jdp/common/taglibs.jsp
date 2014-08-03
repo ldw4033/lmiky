@@ -7,6 +7,7 @@
 <%@ taglib uri="/WEB-INF/tld/lmiky-lhtml.tld" prefix="lhtml" %>
 <%@ taglib uri="/WEB-INF/tld/lmiky-lauthority.tld" prefix="lauthority" %>
 <%@ taglib uri="/WEB-INF/tld/lmiky-favorite.tld" prefix="favorite" %>
+<%@ taglib uri="/WEB-INF/tld/lmiky-lresource.tld" prefix="lresource" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <c:set var="script" value="${ctx}/jdp/scripts"/>
 <c:set var="scriptPlugin" value="${script}/plugins"/>

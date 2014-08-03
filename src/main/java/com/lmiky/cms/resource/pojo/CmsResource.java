@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -210,6 +211,7 @@ public class CmsResource extends BasePojo {
 	 * @return the pictureSnapshots
 	 */
 	@OneToMany(mappedBy="cmsResource", fetch=FetchType.LAZY, cascade={CascadeType.ALL})
+	@OrderBy("id desc")
 	public Set<CmsResourcePictureSnapshot> getPictureSnapshots() {
 		return pictureSnapshots;
 	}
