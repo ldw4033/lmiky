@@ -224,6 +224,7 @@ public class BaseDAOImpl implements BaseDAO {
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#delete(java.lang.Class, com.lmiky.jdp.database.model.PropertyFilter[])
 	 */
 	public <T extends BasePojo> int delete(Class<T> pojoClass, PropertyFilter... propertyFilters) throws DatabaseException {
+		//getSession().setFlushMode(FlushMode.MANUAL);
 		return delete(pojoClass, Arrays.asList(propertyFilters));
 	}
 

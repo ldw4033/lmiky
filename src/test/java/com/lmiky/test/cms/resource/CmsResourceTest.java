@@ -12,8 +12,10 @@ import org.junit.Test;
 import com.lmiky.cms.directory.pojo.CmsDirectory;
 import com.lmiky.cms.resource.pojo.CmsResource;
 import com.lmiky.cms.resource.pojo.CmsResourceContent;
+import com.lmiky.cms.resource.pojo.CmsResourcePictureSnapshot;
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.service.exception.ServiceException;
+import com.lmiky.jdp.user.pojo.User;
 import com.lmiky.test.BaseTest;
 
 /**
@@ -37,6 +39,9 @@ public class CmsResourceTest extends BaseTest {
 		CmsDirectory directory = new CmsDirectory();
 		directory.setId(1l);
 		resource.setDirectory(directory);
+		User user = new User();
+		user.setId(1l);
+		resource.setCreator(user);
 		baseService.save(resource);
 	}
 	
@@ -46,11 +51,31 @@ public class CmsResourceTest extends BaseTest {
 			testSave();
 		}
 	}
+	
+	@Test
+	public void testSave3() throws ServiceException {
+		CmsResource resource = baseService.find(CmsResource.class, 128l);
+		resource.setTitle(resource.getTitle() + (int)(Math.random() * 100));
+		baseService.save(resource);
+	}
+	
+	@Test
+	public void testSave4() throws ServiceException {
+		CmsResource resource = baseService.find(CmsResource.class, 128l);
+		resource.setTitle("test" + (int)(Math.random() * 100));
+		Set<CmsResourcePictureSnapshot> pictureSnapshots = new HashSet<CmsResourcePictureSnapshot>();
+		CmsResourcePictureSnapshot shot = new CmsResourcePictureSnapshot();
+		shot.setPath("/test");
+		shot.setCmsResource(resource);
+		pictureSnapshots.add(shot);
+		resource.setPictureSnapshots(pictureSnapshots);
+		baseService.save(resource);
+	}
 
 	/**
 	 * @param baseService the baseService to set
 	 */
-	@Resource(name="baseService")
+	@Resource(name="cmsResourceService")
 	public void setBaseService(BaseService baseService) {
 		this.baseService = baseService;
 	}
