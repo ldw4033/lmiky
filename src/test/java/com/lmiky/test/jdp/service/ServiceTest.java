@@ -82,7 +82,7 @@ public class ServiceTest extends BaseTest {
 	
 	@Test
 	public void testSave2() throws ServiceException {
-		Goods goods = baseService.find(Goods.class, 671l);
+		Goods goods = baseService.find(Goods.class, 502l);
 		goods.setContent("111222");
 		baseService.save(goods);
 	}

@@ -1,4 +1,4 @@
-package com.lmiky.cms.resource.impl;
+package com.lmiky.cms.resource.service.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +23,7 @@ public class CmsResourceServiceImpl extends BaseServiceImpl {
 	 * @see com.lmiky.jdp.service.impl.BaseServiceImpl#save(com.lmiky.jdp.database.pojo.BasePojo)
 	 */
 	@Override
-	@Transactional
+	@Transactional(rollbackFor={Exception.class})
 	public <T extends BasePojo> void save(T pojo) throws ServiceException {
 		if(pojo.getId() != null && pojo instanceof CmsResource) {	//对象已存在
 			PropertyFilter propertyFilter = new PropertyFilter();
