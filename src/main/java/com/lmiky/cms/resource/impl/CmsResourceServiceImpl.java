@@ -22,6 +22,7 @@ public class CmsResourceServiceImpl extends BaseServiceImpl {
 	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.service.impl.BaseServiceImpl#save(com.lmiky.jdp.database.pojo.BasePojo)
 	 */
+	@Override
 	@Transactional
 	public <T extends BasePojo> void save(T pojo) throws ServiceException {
 		if(pojo.getId() != null && pojo instanceof CmsResource) {	//对象已存在
@@ -32,6 +33,7 @@ public class CmsResourceServiceImpl extends BaseServiceImpl {
 			propertyFilter.setPropertyValue(pojo.getId());
 			//删除旧的图片快照
 			delete(CmsResourcePictureSnapshot.class, propertyFilter);
+			//this.executeUpdate("delete from CmsResourcePictureSnapshot where cmsResource.id = " + pojo.getId());
 		}
 		super.save(pojo);
 	}
