@@ -37,5 +37,4 @@ public class CmsResourceServiceImpl extends BaseServiceImpl {
 		}
 		super.save(pojo);
 	}
-	
 }
