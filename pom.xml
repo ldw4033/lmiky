@@ -16,6 +16,7 @@
 		<org.apache.log4j.version>1.2.17</org.apache.log4j.version>
 		<net.sf.ehcache.version>2.6.6</net.sf.ehcache.version>
 		<org.codehaus.jackson.version>1.9.13</org.codehaus.jackson.version>
+		<org.apache.httpcomponents.version>4.3.1</org.apache.httpcomponents.version>
 	</properties>
 
 
@@ -191,11 +192,16 @@
 			<version>2.5.0</version>
 		</dependency>
 
-		<!-- httpclient -->
+		<!-- httpcomponents -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.3.1</version>
+			<version>${org.apache.httpcomponents.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>${org.apache.httpcomponents.version}</version>
 		</dependency>
 
 	</dependencies>

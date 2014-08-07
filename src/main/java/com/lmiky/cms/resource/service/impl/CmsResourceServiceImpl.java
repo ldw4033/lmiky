@@ -26,15 +26,15 @@ public class CmsResourceServiceImpl extends BaseServiceImpl {
 	@Transactional(rollbackFor={Exception.class})
 	public <T extends BasePojo> void save(T pojo) throws ServiceException {
 		if(pojo.getId() != null && pojo instanceof CmsResource) {	//对象已存在
-			PropertyFilter propertyFilter = new PropertyFilter();
-			propertyFilter.setCompareClass(CmsResourcePictureSnapshot.class);
-			propertyFilter.setCompareType(PropertyCompareType.EQ);
-			propertyFilter.setPropertyName("cmsResource.id");
-			propertyFilter.setPropertyValue(pojo.getId());
-			//删除旧的图片快照
-			delete(CmsResourcePictureSnapshot.class, propertyFilter);
-			//this.executeUpdate("delete from CmsResourcePictureSnapshot where cmsResource.id = " + pojo.getId());
+//			PropertyFilter propertyFilter = new PropertyFilter();
+//			propertyFilter.setCompareClass(CmsResourcePictureSnapshot.class);
+//			propertyFilter.setCompareType(PropertyCompareType.EQ);
+//			propertyFilter.setPropertyName("cmsResource.id");
+//			propertyFilter.setPropertyValue(pojo.getId());
+//			//删除旧的图片快照
+//			delete(CmsResourcePictureSnapshot.class, propertyFilter);
+			this.executeUpdate("delete from CmsResourcePictureSnapshot where cmsResource.id = " + pojo.getId());
 		}
-		super.save(pojo);
+//		super.save(pojo);
 	}
 }
