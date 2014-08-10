@@ -16,6 +16,8 @@
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 		<!-- context:exclude-filter type="regex" expression=".*ServiceImpl$" / -->
+		<!--  将service排除在外，意味着这个时候不初始化service    -->  
+    	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/> 
 	</context:component-scan>
 
 	<!-- ②：启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
@@ -52,6 +54,7 @@
 	</mvc:interceptors>
 	 -->
 	 <!-- OpenSessionInView -->
+	 <!-- 
 	 <mvc:interceptors>
 	    <mvc:interceptor>
 	        <mvc:mapping path="/**/*.shtml" />
@@ -60,4 +63,5 @@
 	        </bean>
 	    </mvc:interceptor>
 	</mvc:interceptors>
+	 -->
 </beans>

@@ -10,7 +10,7 @@
 	<div id="mimi-content">
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<form:form id="mainForm" action="/cms/directory/save.shtml" method="post" commandName="pojo" class="form-horizontal">
+				<form:form id="mainForm" action="${ctx}/cms/directory/save.shtml" method="post" commandName="pojo" class="form-horizontal">
 						<%@ include file="/jdp/form/field.jsp" %>
 						<input type="hidden" name="parentId" value="${parentId }"/>
 						<div class="form-table">

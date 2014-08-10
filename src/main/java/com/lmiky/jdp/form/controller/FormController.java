@@ -1,5 +1,6 @@
 package com.lmiky.jdp.form.controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -279,9 +280,12 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @param request
 	 * @param id
 	 * @return
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
 	 * @throws ServiceException 
+	 * @throws InvocationTargetException 
 	 */
-	protected T loadPojo(ModelMap modelMap, HttpServletRequest request, Long id) throws ServiceException {
+	protected T loadPojo(ModelMap modelMap, HttpServletRequest request, Long id) throws InstantiationException, IllegalAccessException, ServiceException, InvocationTargetException  {
 		return service.find(pojoClass, id);
 	}
 	

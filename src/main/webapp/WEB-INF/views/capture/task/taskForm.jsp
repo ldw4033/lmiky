@@ -15,7 +15,7 @@
 				<%@ include file="/jdp/page/location.jsp"%>
 				<div class="container-fluid">
 					<div class="row-fluid">
-					<form:form id="mainForm" action="/capture/task/save.shtml" method="post" commandName="pojo" class="form-horizontal">
+					<form:form id="mainForm" action="${ctx}/capture/task/save.shtml" method="post" commandName="pojo" class="form-horizontal">
 					<%@ include file="/jdp/form/field.jsp" %>
 					<div class="span12 nomargin">
 						<div class="widget-box form-table">

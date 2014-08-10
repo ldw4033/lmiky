@@ -16,7 +16,7 @@
 <body class="alert-body" style="height: 100%;">
 				<div class="container-fluid nopadding">
 					<div class="row-fluid nomargin">
-						<form:form id="mainForm" action="/country/save.shtml" method="post" commandName="pojo" class="form-horizontal">
+						<form:form id="mainForm" action="${ctx}/country/save.shtml" method="post" commandName="pojo" class="form-horizontal">
 							<%@ include file="/jdp/form/field.jsp" %>
 							<input type="hidden" name="parentId" value="${param.parentId}"/>
 							<div class="span12 nomargin">

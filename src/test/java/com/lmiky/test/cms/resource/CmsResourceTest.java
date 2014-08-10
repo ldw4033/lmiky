@@ -1,12 +1,16 @@
 package com.lmiky.test.cms.resource;
 
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.hibernate.Hibernate;
 import org.junit.Test;
 
 import com.lmiky.cms.directory.pojo.CmsDirectory;
@@ -61,7 +65,7 @@ public class CmsResourceTest extends BaseTest {
 	
 	@Test
 	public void testSave4() throws ServiceException {
-		CmsResource resource = baseService.find(CmsResource.class, 128l);
+		CmsResource resource = baseService.find(CmsResource.class, 132l);
 		resource.setTitle("test" + (int)(Math.random() * 100));
 		Set<CmsResourcePictureSnapshot> pictureSnapshots = new HashSet<CmsResourcePictureSnapshot>();
 		CmsResourcePictureSnapshot shot = new CmsResourcePictureSnapshot();
@@ -70,6 +74,21 @@ public class CmsResourceTest extends BaseTest {
 		pictureSnapshots.add(shot);
 		resource.setPictureSnapshots(pictureSnapshots);
 		baseService.save(resource);
+	}
+	
+	@Test
+	public void testClone() throws ServiceException, ClassNotFoundException, IOException, IllegalAccessException, InvocationTargetException {
+		CmsResource resource = baseService.find(CmsResource.class, 132l);
+		Hibernate.initialize(resource);
+		System.out.println( resource.getTitle());
+		System.out.println(System.currentTimeMillis());
+		CmsResource c1 = (CmsResource) resource.deepClone();
+		System.out.println(c1.getPictureSnapshots().size());
+		System.out.println(System.currentTimeMillis());
+		CmsResource c2 = new CmsResource();
+		BeanUtils.copyProperties(c2, resource);
+		System.out.println(c2.getPictureSnapshots().size());
+		System.out.println(System.currentTimeMillis());
 	}
 
 	/**

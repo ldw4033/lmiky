@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lmiky.cms.resource.pojo.CmsResource;
 import com.lmiky.jdp.database.dao.BaseDAO;
 import com.lmiky.jdp.database.exception.DatabaseException;
 import com.lmiky.jdp.database.model.PropertyFilter;
@@ -97,6 +98,16 @@ public class BaseServiceImpl implements BaseService {
 	@Transactional(rollbackFor={Exception.class})
 	public <T extends BasePojo> void save(T pojo) throws ServiceException {
 		try {
+			if(pojo.getId() != null && pojo instanceof CmsResource) {	//对象已存在
+//				PropertyFilter propertyFilter = new PropertyFilter();
+//				propertyFilter.setCompareClass(CmsResourcePictureSnapshot.class);
+//				propertyFilter.setCompareType(PropertyCompareType.EQ);
+//				propertyFilter.setPropertyName("cmsResource.id");
+//				propertyFilter.setPropertyValue(pojo.getId());
+//				//删除旧的图片快照
+//				delete(CmsResourcePictureSnapshot.class, propertyFilter);
+				this.executeUpdate("delete from CmsResourcePictureSnapshot where cmsResource.id = " + pojo.getId());
+			}
 			getDAO().save(pojo);
 		} catch (DatabaseException e) {
 			throw new ServiceException(e.getMessage());

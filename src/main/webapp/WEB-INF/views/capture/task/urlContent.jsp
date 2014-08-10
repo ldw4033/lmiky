@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<%@ include file="/jdp/form/messages.jsp" %>
-			<form:form id="mainForm" action="/capture/task/urlContent.shtml" method="post" commandName="pojo">
+			<form:form id="mainForm" action="${ctx}/capture/task/urlContent.shtml" method="post" commandName="pojo">
 				<table class="table-form full" >
 			       	<tr>
 			       		<td>

@@ -15,7 +15,7 @@
 	</head>
 	<body class="iframe-body">
 					<div class="row-fluid" style="margin-top: 20px;">
-					<form:form id="mainForm" action="/cms/resource/save.shtml" method="post" commandName="pojo" class="form-horizontal">
+					<form:form id="mainForm" action="${ctx}/cms/resource/save.shtml" method="post" commandName="pojo" class="form-horizontal">
 					<%@ include file="/jdp/form/field.jsp" %>
 					<input type="hidden" id="directoryId" name="directoryId" value="${directory.id }"/>
 					<input type="hidden" name="opeFrom" value="<%=ResourceController.PUBLISH_OPE_FORM_FORM%>"/>
