@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.hibernate.FlushMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -94,7 +95,7 @@ public class BaseDAOImpl implements BaseDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.BaseDAO#save(com.lmiky.jdp.database.pojo.BasePojo)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#save(com.lmiky.jdp.database.pojo.BasePojo )
 	 */
 	public <T extends BasePojo> void save(T pojo) throws DatabaseException {
 		try {
@@ -119,7 +120,8 @@ public class BaseDAOImpl implements BaseDAO {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#update(java.lang.Class, java.lang.Long, java.lang.String, java.lang.Object)
 	 */
 	public <T extends BasePojo> boolean update(Class<T> pojoClass, Long id, String propertyName, Object propertyValue) throws DatabaseException {
@@ -127,8 +129,9 @@ public class BaseDAOImpl implements BaseDAO {
 		params.put(propertyName, propertyValue);
 		return update(pojoClass, id, params);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#update(java.lang.Class, java.lang.Long, java.util.Map)
 	 */
 	public <T extends BasePojo> boolean update(Class<T> pojoClass, Long id, Map<String, Object> params) throws DatabaseException {
@@ -136,8 +139,8 @@ public class BaseDAOImpl implements BaseDAO {
 		StringBuilder hql = new StringBuilder("update ").append(pojoSimpleName).append(" ").append(pojoSimpleName);//
 		Iterator<String> ite = params.keySet().iterator();
 		boolean isFirst = true;
-		while(ite.hasNext()) {
-			if(isFirst) {
+		while (ite.hasNext()) {
+			if (isFirst) {
 				hql.append(" set ");
 				isFirst = false;
 			} else {
@@ -153,7 +156,7 @@ public class BaseDAOImpl implements BaseDAO {
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.BaseDAO#delete(com.lmiky.jdp.database.pojo.BasePojo)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#delete(com.lmiky.jdp.database.pojo .BasePojo)
 	 */
 	public <T extends BasePojo> void delete(T pojo) throws DatabaseException {
 		try {
@@ -213,7 +216,7 @@ public class BaseDAOImpl implements BaseDAO {
 	public <T extends BasePojo> int delete(Class<T> pojoClass, List<PropertyFilter> propertyFilters) throws DatabaseException {
 		try {
 			String hql = generateHql(pojoClass, propertyFilters, null);
-			return generateQuery(hql.replaceFirst("from", "delete"), getFilterValues(propertyFilters)).executeUpdate();
+			return executeQueryUpdate(generateQuery(hql.replaceFirst("from", "delete"), getFilterValues(propertyFilters)));
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
@@ -224,7 +227,6 @@ public class BaseDAOImpl implements BaseDAO {
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#delete(java.lang.Class, com.lmiky.jdp.database.model.PropertyFilter[])
 	 */
 	public <T extends BasePojo> int delete(Class<T> pojoClass, PropertyFilter... propertyFilters) throws DatabaseException {
-		//getSession().setFlushMode(FlushMode.MANUAL);
 		return delete(pojoClass, Arrays.asList(propertyFilters));
 	}
 
@@ -242,7 +244,7 @@ public class BaseDAOImpl implements BaseDAO {
 	 */
 	public int delete(String hql, Map<String, Object> params) throws DatabaseException {
 		try {
-			return generateQuery(hql, params).executeUpdate();
+			return executeQueryUpdate(generateQuery(hql, params));
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
@@ -314,8 +316,7 @@ public class BaseDAOImpl implements BaseDAO {
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#list(java.lang.Class, java.util.List, java.util.List, int, int)
 	 */
-	public <T extends BasePojo> List<T> list(Class<T> pojoClass, List<PropertyFilter> propertyFilters, List<Sort> sorts, int pageFirst, int pageSize)
-			throws DatabaseException {
+	public <T extends BasePojo> List<T> list(Class<T> pojoClass, List<PropertyFilter> propertyFilters, List<Sort> sorts, int pageFirst, int pageSize) throws DatabaseException {
 		try {
 			return list(generateQuery(pojoClass, propertyFilters, sorts), pageFirst, pageSize);
 		} catch (Exception e) {
@@ -327,8 +328,7 @@ public class BaseDAOImpl implements BaseDAO {
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#list(java.lang.Class, int, int, com.lmiky.jdp.database.model.PropertyFilter[])
 	 */
-	public <T extends BasePojo> List<T> list(Class<T> pojoClass, int pageFirst, int pageSize, PropertyFilter... propertyFilters)
-			throws DatabaseException {
+	public <T extends BasePojo> List<T> list(Class<T> pojoClass, int pageFirst, int pageSize, PropertyFilter... propertyFilters) throws DatabaseException {
 		return list(pojoClass, Arrays.asList(propertyFilters), null, pageFirst, pageSize);
 	}
 
@@ -559,7 +559,25 @@ public class BaseDAOImpl implements BaseDAO {
 	 */
 	public int executeUpdate(String hql, Map<String, Object> params) throws DatabaseException {
 		try {
-			return generateQuery(hql, params).executeUpdate();
+			return executeQueryUpdate(generateQuery(hql, params));
+		} catch (Exception e) {
+			throw new DatabaseException(e.getMessage());
+		}
+	}
+
+	/**
+	 * 执行Query
+	 * @author lmiky
+	 * @date 2014年8月12日 下午10:26:50
+	 * @param query
+	 * @return
+	 */
+	protected int executeQueryUpdate(Query query) {
+		try {
+			//因为用了openSessionInView，整个http请求都是同一个session，hibernate在执行update hql的时候，会判断是否需要先刷新session，从而引起一下问题
+			//1、如果之前加载了某个对象，并修改了对像属性，但暂时不想提交，想在update之后提交，但是由于hibernate的机制，会先提交之前修改的对象，然后才update
+			getSession().setFlushMode(FlushMode.MANUAL);
+			return query.executeUpdate();
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
@@ -588,8 +606,7 @@ public class BaseDAOImpl implements BaseDAO {
 						continue;
 					}
 					String comparePropertyName = propertyFilter.getPropertyName().substring(0, propertyFilter.getPropertyName().indexOf("."));
-					hql.append(" join ").append(pojoSimpleName).append(".").append(comparePropertyName).append(" ").append(compareClassSimpleName)
-							.append(" ");
+					hql.append(" join ").append(pojoSimpleName).append(".").append(comparePropertyName).append(" ").append(compareClassSimpleName).append(" ");
 					joinClassNames.add(compareClassSimpleName);
 					if (!hasCollectionFilter) {
 						hasCollectionFilter = true;
@@ -720,12 +737,10 @@ public class BaseDAOImpl implements BaseDAO {
 			}
 			for (Sort sort : sorts) {
 				if (!isSorted) {
-					hqlBuf.append(" order by ").append(sort.getSortClass().getSimpleName()).append(".").append(sort.getPropertyName()).append(" ")
-							.append(sort.getSortType());
+					hqlBuf.append(" order by ").append(sort.getSortClass().getSimpleName()).append(".").append(sort.getPropertyName()).append(" ").append(sort.getSortType());
 					isSorted = true;
 				} else {
-					hqlBuf.append(", ").append(sort.getSortClass().getSimpleName()).append(".").append(sort.getPropertyName()).append(" ")
-							.append(sort.getSortType());
+					hqlBuf.append(", ").append(sort.getSortClass().getSimpleName()).append(".").append(sort.getPropertyName()).append(" ").append(sort.getSortType());
 				}
 			}
 		}
@@ -744,11 +759,9 @@ public class BaseDAOImpl implements BaseDAO {
 		if (propertyFilters != null && !propertyFilters.isEmpty()) {
 			for (PropertyFilter filter : propertyFilters) {
 				// like或null直接在HQL拼写的时候写入
-				if (filter.getPropertyValue() != null && filter.getCompareType() != PropertyCompareType.LIKE
-						&& filter.getCompareType() != PropertyCompareType.LLIKE && filter.getCompareType() != PropertyCompareType.RLIKE
-						&& filter.getCompareType() != PropertyCompareType.NLIKE && filter.getCompareType() != PropertyCompareType.NLLIKE
-						&& filter.getCompareType() != PropertyCompareType.NRLIKE && filter.getCompareType() != PropertyCompareType.NNULL
-						&& filter.getCompareType() != PropertyCompareType.NULL) {
+				if (filter.getPropertyValue() != null && filter.getCompareType() != PropertyCompareType.LIKE && filter.getCompareType() != PropertyCompareType.LLIKE
+						&& filter.getCompareType() != PropertyCompareType.RLIKE && filter.getCompareType() != PropertyCompareType.NLIKE && filter.getCompareType() != PropertyCompareType.NLLIKE
+						&& filter.getCompareType() != PropertyCompareType.NRLIKE && filter.getCompareType() != PropertyCompareType.NNULL && filter.getCompareType() != PropertyCompareType.NULL) {
 					values.add(filter.getPropertyValue());
 				}
 			}

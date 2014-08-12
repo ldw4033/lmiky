@@ -211,7 +211,7 @@ public class CmsResource extends BasePojo {
 	 * @return the pictureSnapshots
 	 */
 	@OneToMany(mappedBy="cmsResource", fetch=FetchType.LAZY, cascade={CascadeType.ALL})
-	@OrderBy("id desc")
+	@OrderBy("id asc")
 	public Set<CmsResourcePictureSnapshot> getPictureSnapshots() {
 		return pictureSnapshots;
 	}

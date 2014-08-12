@@ -54,7 +54,6 @@
 	</mvc:interceptors>
 	 -->
 	 <!-- OpenSessionInView -->
-	 <!-- 
 	 <mvc:interceptors>
 	    <mvc:interceptor>
 	        <mvc:mapping path="/**/*.shtml" />
@@ -62,14 +61,5 @@
 	            <property name="sessionFactory" ref="sessionFactory" />
 	        </bean>
 	    </mvc:interceptor>
-	</mvc:interceptors>
-	 -->
-	 <mvc:interceptors>
-		 <mvc:interceptor>
-			<mvc:mapping path="/**/*.shtml" />
-			<bean id="openSessionInViewInterceptor" class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor">
-				<property name="sessionFactory" ref="sessionFactory" />
-			</bean>
-		</mvc:interceptor>
 	</mvc:interceptors>
 </beans>

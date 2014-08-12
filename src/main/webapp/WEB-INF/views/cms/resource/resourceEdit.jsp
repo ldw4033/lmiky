@@ -1,21 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/jdp/common/common.jsp"%>
-<style type="text/css">
-	.pictureSnapshotBlock {
-		display: inline-block; 
-		margin: 0 0 5px;
-	}
-	.pictureSnapshot {
-		height: 120px; 
-		width: 120px;
-	}
-	.pictureSnapshotCancel {
-		position: relative; 
-		top: -52px; 
-		cursor: pointer; 
-		margin-right: 10px;
-	}
-</style>
 <div class="control-group">
 	<label class="control-label">标题 <span class="req">*</span></label>
 	<div class="controls">

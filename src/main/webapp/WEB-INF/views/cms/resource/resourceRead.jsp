@@ -43,6 +43,18 @@
 	</div>
 </div>
 <div class="control-group">
+	<label class="control-label read-control-label">内容快照：</label>
+	<div class="controls">
+		<div id="fileList" style="margin: 10px 0;">
+			<c:forEach var="pictureSnapshot" items="${pojo.pictureSnapshots }">
+				<div class="pictureSnapshotBlock" id="${pictureSnapshot.id}">
+					<img src="${ctx}${pictureSnapshot.path}" class="pictureSnapshot" />
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+</div>
+<div class="control-group">
 	<div class="controls nolabel-full-controls">
 		${pojo.content}
 	</div>

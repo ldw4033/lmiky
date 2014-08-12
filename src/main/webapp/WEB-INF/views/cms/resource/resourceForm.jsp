@@ -12,6 +12,22 @@
 		<%@ include file="/jdp/form/header.jsp"%>
 		<%@ include file="/jdp/htmleditor/htmlEditorStyle.jsp"%>
 		<%@ include file="/jdp/file/uploadStyle.jsp"%>
+		<style type="text/css">
+			.pictureSnapshotBlock {
+				display: inline-block; 
+				margin: 0 0 5px;
+			}
+			.pictureSnapshot {
+				height: 120px; 
+				width: 120px;
+			}
+			.pictureSnapshotCancel {
+				position: relative; 
+				top: -52px; 
+				cursor: pointer; 
+				margin-right: 10px;
+			}
+		</style>
 	</head>
 	<body class="iframe-body">
 					<div class="row-fluid" style="margin-top: 20px;">

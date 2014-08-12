@@ -57,7 +57,7 @@ public class FileUtils {
 		// 检查文件格式
 		String fileExtension = request.getParameter(PARAMNAME_FILEEXTENSION); 
 		if (!StringUtils.isBlank(fileExtension)) {
-			if (("," + fileExtension + ",").indexOf("," + fileSuffix + ",") == -1) {
+			if (("," + fileExtension.toLowerCase() + ",").indexOf("," + fileSuffix.toLowerCase() + ",") == -1) {
 				throw new FileUploadException("文件格式错误！", FileUploadException.CODE_FORMAT_ERROR);
 			}
 		}
