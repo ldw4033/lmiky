@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.FlushMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -160,9 +161,19 @@ public class BaseDAOImpl implements BaseDAO {
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#update(java.lang.Class, java.lang.Long, java.util.Map)
 	 */
 	public <T extends BasePojo> boolean update(Class<T> pojoClass, Long id, Map<String, Object> params) throws DatabaseException {
+		Map<String, Object> condition = new HashMap<String, Object>();
+		condition.put(BasePojo.POJO_FIELD_NAME_ID, id);
+		return update(pojoClass, condition, params);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#update(java.lang.Class, java.util.Map, java.util.Map)
+	 */
+	public <T extends BasePojo> boolean update(Class<T> pojoClass, Map<String, Object> condition, Map<String, Object> updateValue) throws DatabaseException {
 		String pojoSimpleName = pojoClass.getSimpleName();
 		StringBuilder hql = new StringBuilder("update ").append(pojoSimpleName).append(" ").append(pojoSimpleName);//
-		Iterator<String> ite = params.keySet().iterator();
+		Map<String, Object> params = new HashMap<String, Object>();
+		Iterator<String> ite = updateValue.keySet().iterator();
 		boolean isFirst = true;
 		while (ite.hasNext()) {
 			if (isFirst) {
@@ -174,11 +185,32 @@ public class BaseDAOImpl implements BaseDAO {
 			String propertyName = ite.next();
 			hql.append(pojoSimpleName).append(".").append(propertyName).append("=:").append(propertyName);
 		}
-		hql.append(" where ").append(pojoSimpleName).append(".").append(BasePojo.POJO_FIELD_NAME_ID).append("=:").append(BasePojo.POJO_FIELD_NAME_ID);
-		params.put(BasePojo.POJO_FIELD_NAME_ID, id);
+		params.putAll(updateValue);
+		hql.append(" where 1=1 ");
+		if(!updateValue.isEmpty()) {
+			ite = condition.keySet().iterator();
+			while (ite.hasNext()) {
+				String propertyName = ite.next();
+				hql.append(" and ").append(pojoSimpleName).append(".").append(propertyName).append("=:").append(propertyName);
+			}
+			params.putAll(condition);
+		}
 		return executeUpdate(hql.toString(), params) > 0;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#update(java.lang.Class, java.lang.String, java.lang.Object, java.lang.String, java.lang.Object)
+	 */
+	public <T extends BasePojo> boolean update(Class<T> pojoClass, String conditionFieldName, Object conditionFieldValue, String updateFieldName, Object updateFieldValue) throws DatabaseException {
+		Map<String, Object> condition = new HashMap<String, Object>();
+		if(!StringUtils.isBlank(conditionFieldName) && conditionFieldValue != null) {
+			condition.put(conditionFieldName, conditionFieldValue);
+		}
+		Map<String, Object> updateValue = new HashMap<String, Object>();
+		updateValue.put(updateFieldName, updateFieldValue);
+		return update(pojoClass, condition, updateValue); 
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#delete(com.lmiky.jdp.database.pojo .BasePojo)

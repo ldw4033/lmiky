@@ -1,4 +1,4 @@
-package com.lmiky.jdp.authority.dao.impl;
+package com.lmiky.jdp.authority.dao.hibernate;
 
 import java.util.List;
 

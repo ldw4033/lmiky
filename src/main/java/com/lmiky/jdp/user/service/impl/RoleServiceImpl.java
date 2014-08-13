@@ -3,14 +3,19 @@ package com.lmiky.jdp.user.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lmiky.jdp.database.dao.BaseDAO;
+import com.lmiky.jdp.database.exception.DatabaseException;
 import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.service.exception.ServiceException;
 import com.lmiky.jdp.service.impl.BaseServiceImpl;
+import com.lmiky.jdp.user.dao.UserDAO;
 import com.lmiky.jdp.user.pojo.Operator;
 import com.lmiky.jdp.user.pojo.Role;
 import com.lmiky.jdp.user.service.RoleService;
@@ -26,6 +31,7 @@ import com.lmiky.jdp.user.service.RoleService;
  */ 
 @Service("roleService")
 public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
+	private UserDAO userDAO;
 
 	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.user.service.RoleService#listRoleUser(java.lang.Long)
@@ -44,8 +50,28 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
 	 */
 	@Transactional(readOnly=true)
 	public List<Operator> listNoRoleUser(Long roleId) throws ServiceException {
-		String hql = "from Operator Operator where not exists (select 1 from Operator u join u.roles r where r.id = " + roleId + " and Operator.id = u.id) ORDER BY Operator.name ";
-		return list(hql);
+		try {
+			return userDAO.listNoRoleUser(roleId);
+		} catch (DatabaseException e) {
+			throw new ServiceException(e.getMessage());
+		}
 	}
 
+	/**
+	 * @return the userDAO
+	 */
+	public UserDAO getUserDAO() {
+		return userDAO;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.service.impl.BaseServiceImpl#setDAO(com.lmiky.jdp.database.dao.BaseDAO)
+	 */
+	@Override
+	@Resource(name="userDAO")
+	public void setDAO(BaseDAO dao) {
+		super.setDAO(dao);
+		this.userDAO = (UserDAO)dao;
+	}
+	
 }

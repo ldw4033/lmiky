@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lmiky.jdp.database.model.PropertyCompareType;
+import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.module.pojo.Function;
 import com.lmiky.jdp.module.pojo.Module;
 import com.lmiky.jdp.module.service.ModuleService;
@@ -29,14 +31,26 @@ public class ModuleServiceImpl extends BaseServiceImpl implements ModuleService 
 		if(Module.MODULE_TYPE_SYSTEM.equals(moduleType)) {
 			functions = list(Function.class);
 		} else if(Module.MODULE_TYPE_GROUP.equals(moduleType)) {
-			String hql = "select Function from Function Function where Function.module.group.path = '" + modulePath + "'";
-			functions = list(hql);
+			PropertyFilter propertyFilter = new PropertyFilter();
+			propertyFilter.setCompareClass(Function.class);
+			propertyFilter.setCompareType(PropertyCompareType.EQ);
+			propertyFilter.setPropertyName("module.group.path");
+			propertyFilter.setPropertyValue(modulePath);
+			functions = this.list(Function.class, propertyFilter);
 		} else if(Module.MODULE_TYPE_MODULE.equals(moduleType)) {
-			String hql = "select Function from Function Function where Function.module.path = '" + modulePath + "'";
-			functions = list(hql);
+			PropertyFilter propertyFilter = new PropertyFilter();
+			propertyFilter.setCompareClass(Function.class);
+			propertyFilter.setCompareType(PropertyCompareType.EQ);
+			propertyFilter.setPropertyName("module.path");
+			propertyFilter.setPropertyValue(modulePath);
+			functions = this.list(Function.class, propertyFilter);
 		} else if(Module.MODULE_TYPE_FUNCTION.equals(moduleType)) {
-			String hql = "select Function from Function Function where Function.authorityCode = '" + modulePath + "'";
-			functions = list(hql);
+			PropertyFilter propertyFilter = new PropertyFilter();
+			propertyFilter.setCompareClass(Function.class);
+			propertyFilter.setCompareType(PropertyCompareType.EQ);
+			propertyFilter.setPropertyName("authorityCode");
+			propertyFilter.setPropertyValue(modulePath);
+			functions = this.list(Function.class, propertyFilter);
 		}
 		return functions;
 	}

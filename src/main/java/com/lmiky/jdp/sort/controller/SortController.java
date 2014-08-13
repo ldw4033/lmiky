@@ -21,7 +21,7 @@ import com.lmiky.jdp.logger.model.OperateType;
 import com.lmiky.jdp.logger.util.LoggerUtils;
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.session.model.SessionInfo;
-import com.lmiky.jdp.sort.SortService;
+import com.lmiky.jdp.sort.service.SortService;
 import com.lmiky.jdp.sort.pojo.BaseSortPojo;
 
 /**

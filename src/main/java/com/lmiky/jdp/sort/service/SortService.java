@@ -1,4 +1,4 @@
-package com.lmiky.jdp.sort;
+package com.lmiky.jdp.sort.service;
 
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.service.exception.ServiceException;

@@ -7,8 +7,8 @@ import com.lmiky.jdp.database.exception.DatabaseException;
 import com.lmiky.jdp.database.pojo.BasePojo;
 import com.lmiky.jdp.service.exception.ServiceException;
 import com.lmiky.jdp.service.impl.BaseServiceImpl;
-import com.lmiky.jdp.sort.SortService;
 import com.lmiky.jdp.sort.pojo.BaseSortPojo;
+import com.lmiky.jdp.sort.service.SortService;
 
 /**
  * 排序
@@ -25,16 +25,11 @@ public class SortServiceImpl extends BaseServiceImpl implements SortService {
 	@Transactional(rollbackFor = { Exception.class })
 	public <T extends BaseSortPojo> void sort(Class<T> sortPojoClass, String[] sortedIds) throws ServiceException {
 		try {
-			String className = sortPojoClass.getSimpleName();
-			StringBuilder hql = new StringBuilder();
 			// 清除原先的排序
-			hql.append("update ").append(className).append(" set ").append(BaseSortPojo.POJO_FIELD_NAME_SORT).append(" = ").append(BaseSortPojo.DEFAULT_SORT);
-			baseDAO.executeUpdate(hql.toString());
+			this.update(sortPojoClass, null, null, BaseSortPojo.POJO_FIELD_NAME_SORT, BaseSortPojo.DEFAULT_SORT);
 			int sortValue = sortedIds.length;
 			for (String id : sortedIds) {
-				hql.delete(0, hql.length());
-				hql.append("update ").append(className).append(" set ").append(BaseSortPojo.POJO_FIELD_NAME_SORT).append(" = ").append(sortValue).append(" where ").append(BasePojo.POJO_FIELD_NAME_ID).append(" = ").append(id);
-				baseDAO.executeUpdate(hql.toString());
+				this.update(sortPojoClass, BasePojo.POJO_FIELD_NAME_ID, Long.valueOf(id), BaseSortPojo.POJO_FIELD_NAME_SORT, sortValue);
 				sortValue--;
 			}
 		} catch (DatabaseException e) {

@@ -22,7 +22,7 @@ import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.session.service.SessionService;
 import com.lmiky.jdp.system.menu.model.SubMenu;
 import com.lmiky.jdp.system.menu.pojo.LatelyOperateMenu;
-import com.lmiky.jdp.system.menu.service.MenuService;
+import com.lmiky.jdp.system.menu.service.MenuParseService;
 import com.lmiky.jdp.util.Environment;
 import com.lmiky.jdp.web.model.ContinuationRequest;
 
@@ -34,7 +34,7 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 	private static final long serialVersionUID = -5419496312370425808L;
 	private BaseService baseService;
 	private SessionService sessionService;
-	private MenuService menuService;
+	private MenuParseService menuParseService;
 
 	/*
 	 * (non-Javadoc)
@@ -52,7 +52,7 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 		Environment.setServletContext(application);
 		baseService = (BaseService) Environment.getBean("baseService");
 		sessionService = (SessionService) Environment.getBean("sessionService");
-		menuService = (MenuService) Environment.getBean("menuService");
+		menuParseService = (MenuParseService) Environment.getBean("menuParseService");
 		super.init(config);
 	}
 
@@ -80,7 +80,7 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 		} else { // 非继续登录之前的操作，防止重复记录
 			String subMenuId = request.getParameter(Constants.HTTP_PARAM_SUBMENU_ID);
 			if (!StringUtils.isBlank(subMenuId)) {
-				SubMenu subMenu = menuService.getSubMenu(subMenuId, sessionInfo);
+				SubMenu subMenu = menuParseService.getSubMenu(subMenuId, sessionInfo);
 				// 记录最近操作
 				if (subMenu != null && sessionInfo != null && sessionInfo.getUserId() != null) {
 					if (!SubMenu.TYPE_IFRAME.equals(subMenu.getType())) {
@@ -105,7 +105,7 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 		}
 		// 设置菜单
 		if (sessionInfo != null && (sessionInfo.getTopMenus() == null || sessionInfo.getTopMenus().isEmpty())) {
-			sessionInfo.setTopMenus(menuService.getTopMenus(sessionInfo));
+			sessionInfo.setTopMenus(menuParseService.getTopMenus(sessionInfo));
 		}
 		super.doService(request, response);
 	}

@@ -3,13 +3,18 @@ package com.lmiky.jdp.user.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lmiky.jdp.database.dao.BaseDAO;
+import com.lmiky.jdp.database.exception.DatabaseException;
 import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.service.exception.ServiceException;
+import com.lmiky.jdp.user.dao.UserDAO;
 import com.lmiky.jdp.user.pojo.Operator;
 import com.lmiky.jdp.user.pojo.Role;
 import com.lmiky.jdp.user.service.OperatorService;
@@ -21,6 +26,7 @@ import com.lmiky.jdp.user.service.OperatorService;
  */
 @Service("operatorService")
 public class OperatorServiceImpl extends UserServiceImpl implements OperatorService {
+	private UserDAO userDAO;
 
 	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.user.service.UserService#listUserRoles(java.lang.Long)
@@ -39,8 +45,20 @@ public class OperatorServiceImpl extends UserServiceImpl implements OperatorServ
 	 */
 	@Transactional(readOnly=true)
 	public List<Role> listNoUserRoles(Long userId) throws ServiceException {
-		String hql = "from Role Role where not exists (select 1 from Role r join r.users u where u.id = " + userId + " and Role.id = r.id) ORDER BY Role.name ";
-		return list(hql);
+		try {
+			return userDAO.listNoUserRoles(userId);
+		} catch (DatabaseException e) {
+			throw new ServiceException(e.getMessage());
+		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.service.impl.BaseServiceImpl#setDAO(com.lmiky.jdp.database.dao.BaseDAO)
+	 */
+	@Override
+	@Resource(name="userDAO")
+	public void setDAO(BaseDAO dao) {
+		super.setDAO(dao);
+		this.userDAO = (UserDAO)dao;
+	}
 }

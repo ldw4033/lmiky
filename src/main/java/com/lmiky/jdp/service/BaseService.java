@@ -104,6 +104,32 @@ public interface BaseService {
 	public <T extends BasePojo> boolean update(Class<T> pojoClass, Long id, Map<String, Object> params) throws ServiceException;
 	
 	/**
+	 * 根据条件修改
+	 * @author lmiky
+	 * @date 2014年8月13日 下午9:48:37
+	 * @param pojoClass
+	 * @param condition
+	 * @param updateValue
+	 * @return
+	 * @throws ServiceException
+	 */
+	public <T extends BasePojo> boolean update(Class<T> pojoClass, Map<String, Object> condition, Map<String, Object> updateValue) throws ServiceException;
+	
+	/**
+	 * 根据条件修改
+	 * @author lmiky
+	 * @date 2014年8月13日 下午9:56:15
+	 * @param pojoClass
+	 * @param conditionFieldName
+	 * @param conditionFieldValue
+	 * @param updateFieldName
+	 * @param updateFieldValue
+	 * @return
+	 * @throws ServiceException
+	 */
+	public <T extends BasePojo> boolean update(Class<T> pojoClass, String conditionFieldName, Object conditionFieldValue, String updateFieldName, Object updateFieldValue) throws ServiceException;
+	
+	/**
 	 * 删除对象
 	 * @author lmiky
 	 * @date 2013-4-16

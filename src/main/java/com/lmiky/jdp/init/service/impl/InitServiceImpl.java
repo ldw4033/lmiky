@@ -20,7 +20,7 @@ import com.lmiky.jdp.module.pojo.ModuleGroup;
 import com.lmiky.jdp.service.impl.BaseServiceImpl;
 import com.lmiky.jdp.system.menu.pojo.LatelyOperateMenu;
 import com.lmiky.jdp.system.menu.pojo.MyFavoriteMenu;
-import com.lmiky.jdp.system.menu.service.MenuService;
+import com.lmiky.jdp.system.menu.service.MenuParseService;
 import com.lmiky.jdp.user.pojo.Operator;
 import com.lmiky.jdp.user.pojo.Role;
 import com.lmiky.jdp.user.pojo.User;
@@ -34,7 +34,7 @@ import com.lmiky.jdp.util.EncoderUtils;
 @Service("initService")
 public class InitServiceImpl extends BaseServiceImpl implements InitService {
 	private ModuleParser moduleParser;
-	private MenuService menuService;
+	private MenuParseService menuParseService;
 	private AuthorityService authorityService;
 
 	/*
@@ -127,7 +127,7 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 	 * @see com.lmiky.jdp.init.service.InitService#updateMenu()
 	 */
 	public void updateMenu() throws Exception {
-		menuService.parse();
+		menuParseService.parse();
 	}
 	
 	/**
@@ -145,20 +145,6 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 		this.moduleParser = moduleParser;
 	}
 
-	/**
-	 * @return the menuService
-	 */
-	public MenuService getMenuService() {
-		return menuService;
-	}
-
-	/**
-	 * @param menuService the menuService to set
-	 */
-	@Resource(name = "menuService")
-	public void setMenuService(MenuService menuService) {
-		this.menuService = menuService;
-	}
 
 	/**
 	 * @return the authorityService
@@ -173,5 +159,20 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 	@Resource(name = "authorityService")
 	public void setAuthorityService(AuthorityService authorityService) {
 		this.authorityService = authorityService;
+	}
+
+	/**
+	 * @return the menuParseService
+	 */
+	public MenuParseService getMenuParseService() {
+		return menuParseService;
+	}
+
+	/**
+	 * @param menuParseService the menuParseService to set
+	 */
+	@Resource(name="menuParseService")
+	public void setMenuParseService(MenuParseService menuParseService) {
+		this.menuParseService = menuParseService;
 	}
 }

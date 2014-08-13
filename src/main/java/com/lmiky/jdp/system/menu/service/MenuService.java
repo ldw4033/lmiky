@@ -2,73 +2,33 @@ package com.lmiky.jdp.system.menu.service;
 
 import java.util.List;
 
-import com.lmiky.jdp.session.model.SessionInfo;
-import com.lmiky.jdp.system.menu.model.LeftMenu;
-import com.lmiky.jdp.system.menu.model.SubMenu;
-import com.lmiky.jdp.system.menu.model.TopMenu;
+import com.lmiky.jdp.service.BaseService;
+import com.lmiky.jdp.service.exception.ServiceException;
 
 /**
- * 菜单
  * @author lmiky
- * @date 2013-6-16
+ * @date 2014年8月13日 下午10:28:09
  */
-public interface MenuService {
+public interface MenuService extends BaseService {
+
 	/**
-	 * 初始化
+	 * 获取最近操作菜单ID
 	 * @author lmiky
-	 * @date 2013-6-16
-	 * @throws Exception
-	 */
-	public void init() throws Exception;
-	
-	/**
-	 * 解析菜单
-	 * @author lmiky
-	 * @date 2013-12-31
-	 * @throws Exception
-	 */
-	public void parse() throws Exception;
-	
-	/**
-	 * 解析获取拥有权限的菜单列表
-	 * @author lmiky
-	 * @date 2013-6-16
-	 * @param sessionInfo
+	 * @date 2014年8月13日 下午10:19:27
+	 * @param userId 指定用户
+	 * @param size	要获取的条数
 	 * @return
-	 * @throws Exception
+	 * @throws ServiceException
 	 */
-	public List<TopMenu> getTopMenus(SessionInfo sessionInfo) throws Exception;
-	
+	public List<String> listLatelyOperateMenuId(Long userId, int size) throws ServiceException;
+
 	/**
-	 * 根据ID获取类别菜单
+	 * 获取收藏夹菜单ID
 	 * @author lmiky
-	 * @date 2014-1-5
-	 * @param topMenuId
-	 * @param sessionInfo
+	 * @date 2014年8月13日 下午10:35:35
+	 * @param userId
 	 * @return
-	 * @throws Exception
+	 * @throws ServiceException
 	 */
-	public TopMenu getTopMenu(String topMenuId, SessionInfo sessionInfo) throws Exception;
-	
-	/**
-	 * 根据顶层菜单ID获取左菜单
-	 * @author lmiky
-	 * @date 2014-1-22
-	 * @param topMenuId
-	 * @param sessionInfo 如果不为空，则检查权限，没有权限则返回空值
-	 * @return
-	 * @throws Exception
-	 */
-	public List<LeftMenu> getLeftMenus(String topMenuId, SessionInfo sessionInfo) throws Exception;
-	
-	/**
-	 * 根据ID获取子菜单
-	 * @author lmiky
-	 * @date 2013-6-16
-	 * @param subMenuId
-	 * @param sessionInfo 如果不为空，则检查权限，没有权限则返回空值
-	 * @return
-	 * @throws Exception
-	 */
-	public SubMenu getSubMenu(String subMenuId, SessionInfo sessionInfo) throws Exception;
+	public List<String> listFavoriteMenuId(Long userId) throws ServiceException;
 }
