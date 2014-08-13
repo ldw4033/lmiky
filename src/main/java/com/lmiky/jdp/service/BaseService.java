@@ -29,6 +29,18 @@ public interface BaseService {
 	/**
 	 * 根据属性获取对象
 	 * @author lmiky
+	 * @date 2014-8-13 下午5:32:32
+	 * @param pojoClass
+	 * @param propertyName
+	 * @param propertyValue
+	 * @return
+	 * @throws ServiceException
+	 */
+	public <T extends BasePojo> T find(Class<T> pojoClass, String propertyName, Object propertyValue) throws ServiceException;
+	
+	/**
+	 * 根据属性获取对象
+	 * @author lmiky
 	 * @date 2013-4-16
 	 * @param pojoClass
 	 * @param propertyFilters
@@ -47,27 +59,6 @@ public interface BaseService {
 	 * @throws ServiceException
 	 */
 	public <T extends BasePojo> T find(Class<T> pojoClass, PropertyFilter... propertyFilters) throws ServiceException;
-	
-	/**
-	 * 根据HQL获取对象
-	 * @author lmiky
-	 * @date 2013-4-16
-	 * @param hql
-	 * @return
-	 * @throws ServiceException
-	 */
-	public <T extends BasePojo> T find(String hql) throws ServiceException;
-	
-	/**
-	 * 根据HQL获取对象
-	 * @author lmiky
-	 * @date 2013-5-29
-	 * @param hql
-	 * @param params 参数
-	 * @return
-	 * @throws ServiceException
-	 */
-	public <T extends BasePojo> T find(String hql, Map<String, Object> params) throws ServiceException;
 	
 	/**
 	 * 保存对象
@@ -153,6 +144,18 @@ public interface BaseService {
 	/**
 	 * 批量删除
 	 * @author lmiky
+	 * @date 2014-8-13 下午5:16:48
+	 * @param pojoClass
+	 * @param propertyName
+	 * @param propertyValue
+	 * @return
+	 * @throws ServiceException
+	 */
+	public <T extends BasePojo> int delete(Class<T> pojoClass, String propertyName, Object propertyValue) throws ServiceException;
+	
+	/**
+	 * 批量删除
+	 * @author lmiky
 	 * @date 2013-4-16
 	 * @param pojoClass
 	 * @param propertyFilters 过滤条件
@@ -171,27 +174,6 @@ public interface BaseService {
 	 * @throws ServiceException
 	 */
 	public <T extends BasePojo> int delete(Class<T> pojoClass, PropertyFilter... propertyFilters) throws ServiceException;
-	
-	/**
-	 * 根据HQL批量删除
-	 * @author lmiky
-	 * @date 2013-4-16
-	 * @param hql
-	 * @return
-	 * @throws ServiceException
-	 */
-	public int delete(String hql) throws ServiceException;
-	
-	/**
-	 * 根据HQL批量删除
-	 * @author lmiky
-	 * @date 2013-5-29
-	 * @param hql
-	 * @param params
-	 * @return
-	 * @throws ServiceException
-	 */
-	public int delete(String hql, Map<String, Object> params) throws ServiceException;
 	
 	/**
 	 * 查询对象列表
@@ -302,52 +284,6 @@ public interface BaseService {
 	public <T extends BasePojo> List<T> list(Class<T> pojoClass, int pageFirst, int pageSize, Sort... sorts) throws ServiceException;
 	
 	/**
-	 * 查询对象列表
-	 * @author lmiky
-	 * @date 2013-4-16
-	 * @param hql
-	 * @return
-	 * @throws ServiceException
-	 */
-	public <T extends BasePojo> List<T> list(String hql) throws ServiceException;
-	
-	/**
-	 * 查询对象列表
-	 * @author lmiky
-	 * @date 2013-5-29
-	 * @param hql
-	 * @param params
-	 * @return
-	 * @throws ServiceException
-	 */
-	public <T extends BasePojo> List<T> list(String hql, Map<String, Object> params) throws ServiceException;
-	
-	/**
-	 * 查询对象列表
-	 * @author lmiky
-	 * @date 2013-4-16
-	 * @param hql
-	 * @param pageFirst	从第几条记录开始查询
-	 * @param pageSize	查询几条记录
-	 * @return
-	 * @throws ServiceException
-	 */
-	public <T extends BasePojo> List<T> list(String hql, int pageFirst, int pageSize) throws ServiceException;
-	
-	/**
-	 * 查询对象列表
-	 * @author lmiky
-	 * @date 2013-5-29
-	 * @param hql
-	 * @param params
-	 * @param pageFirst
-	 * @param pageSize
-	 * @return
-	 * @throws ServiceException
-	 */
-	public <T extends BasePojo> List<T> list(String hql, Map<String, Object> params, int pageFirst, int pageSize) throws ServiceException;
-	
-	/**
 	 * 计算数量
 	 * @author lmiky
 	 * @date 2013-4-16
@@ -380,27 +316,6 @@ public interface BaseService {
 	public <T extends BasePojo> int count(Class<T> pojoClass, PropertyFilter... propertyFilters) throws ServiceException;
 	
 	/**
-	 * 计算数量
-	 * @author lmiky
-	 * @date 2013-4-16
-	 * @param hql
-	 * @return
-	 * @throws ServiceException
-	 */
-	public <T extends BasePojo> int count(String hql) throws ServiceException;
-
-	/**
-	 * 计算数量
-	 * @author lmiky
-	 * @date 2013-5-29
-	 * @param hql
-	 * @param params
-	 * @return
-	 * @throws ServiceException
-	 */
-	public <T extends BasePojo> int count(String hql, Map<String, Object> params) throws ServiceException;
-	
-	/**
 	 * 判断是否存在
 	 * @author lmiky
 	 * @date 2013-4-16
@@ -422,91 +337,4 @@ public interface BaseService {
 	 */
 	public <T extends BasePojo> boolean exist(Class<T> pojoClass, PropertyFilter... propertyFilters) throws ServiceException;
 	
-	/**
-	 * 判断是否存在
-	 * @author lmiky
-	 * @date 2013-5-30
-	 * @param hql
-	 * @return
-	 * @throws ServiceException
-	 */
-	public <T extends BasePojo> boolean exist(String hql) throws ServiceException;
-	
-	/**
-	 * 判断是否存在
-	 * @author lmiky
-	 * @date 2013-5-30
-	 * @param hql
-	 * @param params
-	 * @return
-	 * @throws ServiceException
-	 */
-	public <T extends BasePojo> boolean exist(String hql, Map<String, Object> params) throws ServiceException;
-	
-	/**
-	 * 执行hql查询
-	 * @author lmiky
-	 * @date 2013-5-24
-	 * @param hql
-	 * @return
-	 * @throws ServiceException
-	 */
-	public <X> List<X> executeQuery(String hql) throws ServiceException;
-	
-	/**
-	 * 执行hql查询
-	 * @author lmiky
-	 * @date 2013-6-16
-	 * @param hql
-	 * @param pageFirst
-	 * @param pageSize
-	 * @return
-	 * @throws ServiceException
-	 */
-	public <X> List<X> executeQuery(String hql, int pageFirst, int pageSize) throws ServiceException;
-	
-	/**
-	 * 执行hql查询
-	 * @author lmiky
-	 * @date 2013-5-29
-	 * @param hql
-	 * @param params
-	 * @return
-	 * @throws ServiceException
-	 */
-	public <X> List<X> executeQuery(String hql, Map<String, Object> params) throws ServiceException;
-	
-	/**
-	 * 执行hql查询
-	 * @author lmiky
-	 * @date 2013-6-16
-	 * @param hql
-	 * @param params
-	 * @param pageFirst
-	 * @param pageSize
-	 * @return
-	 * @throws ServiceException
-	 */
-	public <X> List<X> executeQuery(String hql, Map<String, Object> params, int pageFirst, int pageSize) throws ServiceException;
-	
-	/**
-	 * 执行hql更新
-	 * @author lmiky
-	 * @date 2013-5-24
-	 * @param hql
-	 * @return
-	 * @throws ServiceException
-	 */
-	public int executeUpdate(String hql) throws ServiceException;
-	
-	/**
-	 * 执行hql更新
-	 * @author lmiky
-	 * @date 2013-5-29
-	 * @param hql
-	 * @param params
-	 * @return
-	 * @throws ServiceException
-	 */
-	public int executeUpdate(String hql, Map<String, Object> params) throws ServiceException;
 }

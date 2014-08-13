@@ -92,32 +92,28 @@ public class InitServiceImpl extends BaseServiceImpl implements InitService {
 		for(ModuleGroup moduleGroup : moduleGroups) {
 			for(Module module : moduleGroup.getModules()) {
 				for(Function function : module.getFunctions()) {
-					String hql = "select distinct Role from Role Role, Authority Authority where Role.id = Authority.operator and Authority.modulePath = '" + function.getAuthorityCode()+ "'";
-					List<Role> roles = getDAO().list(hql);
+					List<Role> roles = authorityService.listAuthorizedOperator(function.getAuthorityCode());
 					String[] roleStrs = new String[roles.size()];
 					for(int i=0; i<roles.size(); i++) {
 						roleStrs[i] = roles.get(i).getId().toString();
 					}
 					authorityService.authorize(function.getAuthorityCode(), Module.MODULE_TYPE_FUNCTION, roleStrs);
 				}
-				String hql = "select distinct Role from Role Role, Authority Authority where Role.id = Authority.operator and Authority.modulePath = '" + module.getPath() + "'";
-				List<Role> roles = getDAO().list(hql);
+				List<Role> roles = authorityService.listAuthorizedOperator(module.getPath());
 				String[] roleStrs = new String[roles.size()];
 				for(int i=0; i<roles.size(); i++) {
 					roleStrs[i] = roles.get(i).getId().toString();
 				}
 				authorityService.authorize(module.getPath(), Module.MODULE_TYPE_MODULE, roleStrs);
 			}
-			String hql = "select distinct Role from Role Role, Authority Authority where Role.id = Authority.operator and Authority.modulePath = '" + moduleGroup.getPath() + "'";
-			List<Role> roles = getDAO().list(hql);
+			List<Role> roles = authorityService.listAuthorizedOperator(moduleGroup.getPath());
 			String[] roleStrs = new String[roles.size()];
 			for(int i=0; i<roles.size(); i++) {
 				roleStrs[i] = roles.get(i).getId().toString();
 			}
 			authorityService.authorize(moduleGroup.getPath(), Module.MODULE_TYPE_GROUP, roleStrs);
 		}
-		String hql = "select distinct Role from Role Role, Authority Authority where Role.id = Authority.operator and Authority.modulePath = '" + Module.MODULE_PATH_SYSTEM + "'";
-		List<Role> roles = getDAO().list(hql);
+		List<Role> roles = authorityService.listAuthorizedOperator(Module.MODULE_PATH_SYSTEM);
 		String[] roleStrs = new String[roles.size()];
 		for(int i=0; i<roles.size(); i++) {
 			roleStrs[i] = roles.get(i).getId().toString();

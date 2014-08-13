@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lmiky.jdp.authority.dao.AuthorityDAO;
 import com.lmiky.jdp.authority.pojo.Authority;
 import com.lmiky.jdp.authority.service.AuthorityService;
 import com.lmiky.jdp.database.dao.BaseDAO;
@@ -24,6 +25,7 @@ import com.lmiky.jdp.user.pojo.Role;
 @Service("authorityService")
 public class AuthorityServiceImpl implements AuthorityService {
 	private BaseDAO baseDAO; 
+	private AuthorityDAO authorityDAO;
 	private ModuleService moduleService;
 
 	/* (non-Javadoc)
@@ -33,9 +35,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 	@Transactional(readOnly = true)
 	public List<Role> listAuthorizedOperator(String modulePath) throws ServiceException {
 		try {
-			String hql = "select distinct Role from Role Role where exists (select 1 from Authority Authority where Authority.modulePath = '" + modulePath
-					+ "' and Authority.operator = Role.id)";
-			return baseDAO.list(hql);
+			return authorityDAO.listAuthorizedOperator(modulePath);
 		} catch (Exception e) {
 			throw new ServiceException(e.getMessage());
 		}
@@ -48,9 +48,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 	@Transactional(readOnly = true)
 	public List<Role> listUnauthorizedOperator(String modulePath) throws ServiceException {
 		try {
-			String hql = "select distinct Role from Role Role where not exists (select 1 from Authority Authority where Authority.modulePath = '" + modulePath
-					+ "' and Authority.operator = Role.id)";
-			return baseDAO.list(hql);
+			return authorityDAO.listUnauthorizedOperator(modulePath);
 		} catch (Exception e) {
 			throw new ServiceException(e.getMessage());
 		}
@@ -64,8 +62,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 	public void authorize(String modulePath, String moduleType, String[] operatorIds) throws ServiceException {
 		try {
 			// 删除旧的数据
-			String hql = "delete from Authority Authority  where Authority.modulePath = '" + modulePath + "'";
-			baseDAO.delete(hql);
+			authorityDAO.delete(Authority.class, "modulePath", modulePath);
 			if (operatorIds == null || operatorIds.length == 0) {
 				return;
 			}
@@ -83,7 +80,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 						authorities.add(authority);
 					}
 				}
-				baseDAO.save(authorities);
+				authorityDAO.save(authorities);
 			}
 		} catch (Exception e) {
 			throw new ServiceException(e.getMessage());
@@ -97,18 +94,10 @@ public class AuthorityServiceImpl implements AuthorityService {
 	@Transactional(readOnly = true)
 	public boolean checkAuthority(String authorityCode, Long userId) throws ServiceException {
 		try {
-			StringBuffer hql = new StringBuffer();
-			// 检查角色
-			hql.append("select 1 from Operator Operator, Authority  Authority join Operator.roles Role where Operator.id = ").append(userId)
-					.append(" and Role.id = Authority.operator and Authority.authorityCode = '").append(authorityCode).append("'");
-			List<Object[]> result = baseDAO.executeQuery(hql.toString());
-			if (result.size() > 0) {
-				return true;
-			}
+			return authorityDAO.checkAuthority(authorityCode, userId);
 		} catch (DatabaseException e) {
 			throw new ServiceException(e.getMessage());
 		}
-		return false;
 	}
 
 	/**
@@ -117,9 +106,10 @@ public class AuthorityServiceImpl implements AuthorityService {
 	 * @date 2013-5-24
 	 * @param dao
 	 */
-	@Resource(name = "baseDAO")
+	@Resource(name = "authorityDAO")
 	public void setDAO(BaseDAO dao) {
 		this.baseDAO = dao;
+		this.authorityDAO = (AuthorityDAO)this.baseDAO;
 	}
 
 	/**

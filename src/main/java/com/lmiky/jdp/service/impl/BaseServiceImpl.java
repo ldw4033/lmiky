@@ -38,6 +38,18 @@ public class BaseServiceImpl implements BaseService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.service.BaseService#find(java.lang.Class, java.lang.String, java.lang.Object)
+	 */
+	@Transactional(readOnly=true)
+	public <T extends BasePojo> T find(Class<T> pojoClass, String propertyName, Object propertyValue) throws ServiceException {
+		try {
+			return getDAO().find(pojoClass, propertyName, propertyValue);
+		} catch (DatabaseException e) {
+			throw new ServiceException(e.getMessage());
+		}
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.service.BaseService#find(java.lang.Class, java.util.List)
@@ -58,33 +70,6 @@ public class BaseServiceImpl implements BaseService {
 	public <T extends BasePojo> T find(Class<T> pojoClass, PropertyFilter... propertyFilters) throws ServiceException {
 		try {
 			return getDAO().find(pojoClass, propertyFilters);
-		} catch (DatabaseException e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.service.BaseService#find(java.lang.String)
-	 */
-	@SuppressWarnings("unchecked")
-	@Transactional(readOnly=true)
-	public <T extends BasePojo> T find(String hql) throws ServiceException {
-		try {
-			return (T)getDAO().find(hql);
-		} catch (DatabaseException e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-
-	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.service.BaseService#find(java.lang.String, java.util.Map)
-	 */
-	@SuppressWarnings("unchecked")
-	@Transactional(readOnly=true)
-	public <T extends BasePojo> T find(String hql, Map<String, Object> params) throws ServiceException {
-		try {
-			return (T)getDAO().find(hql, params);
 		} catch (DatabaseException e) {
 			throw new ServiceException(e.getMessage());
 		}
@@ -189,6 +174,19 @@ public class BaseServiceImpl implements BaseService {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.service.BaseService#delete(java.lang.Class, java.lang.String, java.lang.Object)
+	 */
+	@Override
+	@Transactional(rollbackFor={Exception.class})
+	public <T extends BasePojo> int delete(Class<T> pojoClass, String propertyName, Object propertyValue) throws ServiceException {
+		try {
+			return getDAO().delete(pojoClass, propertyName, propertyValue);
+		} catch (DatabaseException e) {
+			throw new ServiceException(e.getMessage());
+		}
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.service.BaseService#delete(java.lang.Class, java.util.List)
@@ -209,31 +207,6 @@ public class BaseServiceImpl implements BaseService {
 	public <T extends BasePojo> int delete(Class<T> pojoClass, PropertyFilter... propertyFilters) throws ServiceException {
 		try {
 			return getDAO().delete(pojoClass, propertyFilters);
-		} catch (DatabaseException e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.service.BaseService#delete(java.lang.String)
-	 */
-	@Transactional(rollbackFor={Exception.class})
-	public int delete(String hql) throws ServiceException {
-		try {
-			return getDAO().delete(hql);
-		} catch (DatabaseException e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-	
-	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.service.BaseService#delete(java.lang.String, java.util.Map)
-	 */
-	@Transactional(rollbackFor={Exception.class})
-	public int delete(String hql, Map<String, Object> params) throws ServiceException {
-		try {
-			return getDAO().delete(hql, params);
 		} catch (DatabaseException e) {
 			throw new ServiceException(e.getMessage());
 		}
@@ -353,56 +326,6 @@ public class BaseServiceImpl implements BaseService {
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.service.BaseService#list(java.lang.String)
-	 */
-	@Transactional(readOnly=true)
-	public <T extends BasePojo> List<T> list(String hql) throws ServiceException {
-		try {
-			return getDAO().list(hql);
-		} catch (DatabaseException e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-	
-	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.service.BaseService#list(java.lang.String, java.util.Map)
-	 */
-	@Transactional(readOnly=true)
-	public <T extends BasePojo> List<T> list(String hql, Map<String, Object> params) throws ServiceException {
-		try {
-			return getDAO().list(hql, params);
-		} catch (DatabaseException e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.service.BaseService#list(java.lang.String, int, int)
-	 */
-	@Transactional(readOnly=true)
-	public <T extends BasePojo> List<T> list(String hql, int pageFirst, int pageSize) throws ServiceException {
-		try {
-			return getDAO().list(hql, pageFirst, pageSize);
-		} catch (DatabaseException e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-	
-	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.service.BaseService#list(java.lang.String, java.util.Map, int, int)
-	 */
-	@Transactional(readOnly=true)
-	public <T extends BasePojo> List<T> list(String hql, Map<String, Object> params, int pageFirst, int pageSize) throws ServiceException {
-		try {
-			return getDAO().list(hql, params, pageFirst, pageSize);
-		} catch (DatabaseException e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.service.BaseService#count(java.lang.Class)
 	 */
 	@Transactional(readOnly=true)
@@ -438,31 +361,6 @@ public class BaseServiceImpl implements BaseService {
 			throw new ServiceException(e.getMessage());
 		}
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.service.BaseService#count(java.lang.String)
-	 */
-	@Transactional(readOnly=true)
-	public <T extends BasePojo> int count(String hql) throws ServiceException {
-		try {
-			return getDAO().count(hql);
-		} catch (DatabaseException e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-	
-	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.service.BaseService#count(java.lang.String, java.util.Map)
-	 */
-	@Transactional(readOnly=true)
-	public <T extends BasePojo> int count(String hql, Map<String, Object> params) throws ServiceException {
-		try {
-			return getDAO().count(hql, params);
-		} catch (DatabaseException e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
 	
 	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.service.BaseService#exist(java.lang.Class, java.util.List)
@@ -488,102 +386,6 @@ public class BaseServiceImpl implements BaseService {
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.service.BaseService#exist(java.lang.String)
-	 */
-	@Transactional(readOnly=true)
-	public <T extends BasePojo> boolean exist(String hql) throws ServiceException {
-		try {
-			return getDAO().exist(hql);
-		} catch (DatabaseException e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-	
-	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.service.BaseService#exist(java.lang.String, java.util.Map)
-	 */
-	@Transactional(readOnly=true)
-	public <T extends BasePojo> boolean exist(String hql, Map<String, Object> params) throws ServiceException {
-		try {
-			return getDAO().exist(hql, params);
-		} catch (DatabaseException e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-
-	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.service.BaseService#executeQuery(java.lang.String)
-	 */
-	@Transactional(readOnly=true)
-	public <X> List<X> executeQuery(String hql) throws ServiceException {
-		try {
-			return getDAO().executeQuery(hql);
-		} catch (DatabaseException e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-	
-	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.service.BaseService#executeQuery(java.lang.String, int, int)
-	 */
-	@Transactional(readOnly=true)
-	public <X> List<X> executeQuery(String hql, int pageFirst, int pageSize) throws ServiceException {
-		try {
-			return getDAO().executeQuery(hql, pageFirst, pageSize);
-		} catch (DatabaseException e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-	
-	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.service.BaseService#executeQuery(java.lang.String, java.util.Map)
-	 */
-	@Transactional(readOnly=true)
-	public <X> List<X> executeQuery(String hql, Map<String, Object> params) throws ServiceException {
-		try {
-			return getDAO().executeQuery(hql, params);
-		} catch (DatabaseException e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-	
-	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.service.BaseService#executeQuery(java.lang.String, java.util.Map, int, int)
-	 */
-	@Transactional(readOnly=true)
-	public <X> List<X> executeQuery(String hql, Map<String, Object> params, int pageFirst, int pageSize) throws ServiceException {
-		try {
-			return getDAO().executeQuery(hql, params, pageFirst, pageSize);
-		} catch (DatabaseException e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-	
-	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.service.BaseService#executeUpdate(java.lang.String)
-	 */
-	@Transactional(rollbackFor={Exception.class})
-	public int executeUpdate(String hql) throws ServiceException {
-		try {
-			return getDAO().executeUpdate(hql);
-		} catch (DatabaseException e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-	
-	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.service.BaseService#executeUpdate(java.lang.String, java.util.Map)
-	 */
-	@Transactional(rollbackFor={Exception.class})
-	public int executeUpdate(String hql, Map<String, Object> params) throws ServiceException {
-		try {
-			return getDAO().executeUpdate(hql, params);
-		} catch (DatabaseException e) {
-			throw new ServiceException(e.getMessage());
-		}
-	}
-	
 	/**
 	 * 获取DAO对象
 	 * @author lmiky
@@ -604,4 +406,5 @@ public class BaseServiceImpl implements BaseService {
 	public void setDAO(BaseDAO dao) {
 		this.baseDAO = dao;
 	}
+
 }

@@ -24,7 +24,7 @@ import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.database.pojo.BasePojo;
 
 /**
- * 类说明
+ * 基础dao
  * @author lmiky
  * @date 2013-4-15
  */
@@ -45,6 +45,22 @@ public class BaseDAOImpl implements BaseDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#find(java.lang.Class, java.lang.String, java.lang.Object)
+	 */
+	public <T extends BasePojo> T find(Class<T> pojoClass, String propertyName, Object propertyValue) throws DatabaseException {
+		try {
+			PropertyFilter propertyFilter = new PropertyFilter();
+			propertyFilter.setCompareClass(pojoClass);
+			propertyFilter.setCompareType(PropertyCompareType.EQ);
+			propertyFilter.setPropertyName(propertyName);
+			propertyFilter.setPropertyValue(propertyValue);
+			return find(pojoClass, propertyFilter);
+		} catch (Exception e) {
+			throw new DatabaseException(e.getMessage());
+		}
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#find(java.lang.Class, java.util.List)
@@ -67,12 +83,16 @@ public class BaseDAOImpl implements BaseDAO {
 		return find(pojoClass, Arrays.asList(propertyFilters));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.BaseDAO#find(java.lang.String)
+	/**
+	 * 根据hql查询
+	 * @author lmiky
+	 * @date 2014-8-13 下午4:57:39
+	 * @param hql
+	 * @return
+	 * @throws DatabaseException
 	 */
 	@SuppressWarnings("unchecked")
-	public <T extends BasePojo> T find(String hql) throws DatabaseException {
+	protected <T extends BasePojo> T find(String hql) throws DatabaseException {
 		try {
 			return (T) generateQuery(hql).uniqueResult();
 		} catch (Exception e) {
@@ -80,12 +100,17 @@ public class BaseDAOImpl implements BaseDAO {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.BaseDAO#find(java.lang.String, java.util.Map)
+	/**
+	 * 根据hql查询
+	 * @author lmiky
+	 * @date 2014-8-13 下午4:58:32
+	 * @param hql
+	 * @param params
+	 * @return
+	 * @throws DatabaseException
 	 */
 	@SuppressWarnings("unchecked")
-	public <T extends BasePojo> T find(String hql, Map<String, Object> params) throws DatabaseException {
+	protected <T extends BasePojo> T find(String hql, Map<String, Object> params) throws DatabaseException {
 		try {
 			return (T) generateQuery(hql, params).uniqueResult();
 		} catch (Exception e) {
@@ -209,6 +234,22 @@ public class BaseDAOImpl implements BaseDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#delete(java.lang.Class, java.lang.String, java.lang.Object)
+	 */
+	public <T extends BasePojo> int delete(Class<T> pojoClass, String propertyName, Object propertyValue) throws DatabaseException {
+		try {
+			PropertyFilter propertyFilter = new PropertyFilter();
+			propertyFilter.setCompareClass(pojoClass);
+			propertyFilter.setCompareType(PropertyCompareType.EQ);
+			propertyFilter.setPropertyName(propertyName);
+			propertyFilter.setPropertyValue(propertyValue);
+			return delete(pojoClass, propertyFilter);
+		} catch (Exception e) {
+			throw new DatabaseException(e.getMessage());
+		}
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#delete(java.lang.Class, java.util.List)
@@ -230,19 +271,28 @@ public class BaseDAOImpl implements BaseDAO {
 		return delete(pojoClass, Arrays.asList(propertyFilters));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.BaseDAO#delete(java.lang.String)
+	/**
+	 * 根据hql删除
+	 * @author lmiky
+	 * @date 2014-8-13 下午4:58:57
+	 * @param hql
+	 * @return
+	 * @throws DatabaseException
 	 */
-	public int delete(String hql) throws DatabaseException {
+	protected int delete(String hql) throws DatabaseException {
 		return delete(hql, null);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.BaseDAO#delete(java.lang.String, java.util.Map)
+	/**
+	 * 根据hql删除
+	 * @author lmiky
+	 * @date 2014-8-13 下午4:59:11
+	 * @param hql
+	 * @param params
+	 * @return
+	 * @throws DatabaseException
 	 */
-	public int delete(String hql, Map<String, Object> params) throws DatabaseException {
+	protected int delete(String hql, Map<String, Object> params) throws DatabaseException {
 		try {
 			return executeQueryUpdate(generateQuery(hql, params));
 		} catch (Exception e) {
@@ -283,7 +333,7 @@ public class BaseDAOImpl implements BaseDAO {
 	public <T extends BasePojo> List<T> list(Class<T> pojoClass, List<PropertyFilter> propertyFilters, List<Sort> sorts) throws DatabaseException {
 		return list(pojoClass, propertyFilters, sorts, 0, 0);
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#list(java.lang.Class, com.lmiky.jdp.database.model.PropertyFilter[])
@@ -340,11 +390,15 @@ public class BaseDAOImpl implements BaseDAO {
 		return list(pojoClass, null, Arrays.asList(sorts), pageFirst, pageSize);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.BaseDAO#list(java.lang.String)
+	/**
+	 * 根据hql获取列表
+	 * @author lmiky
+	 * @date 2014-8-13 下午4:59:25
+	 * @param hql
+	 * @return
+	 * @throws DatabaseException
 	 */
-	public <T extends BasePojo> List<T> list(String hql) throws DatabaseException {
+	protected <T extends BasePojo> List<T> list(String hql) throws DatabaseException {
 		try {
 			return list(hql, null);
 		} catch (Exception e) {
@@ -352,11 +406,16 @@ public class BaseDAOImpl implements BaseDAO {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.BaseDAO#list(java.lang.String, java.util.Map)
+	/**
+	 * 根据hql获取列表
+	 * @author lmiky
+	 * @date 2014-8-13 下午5:00:19
+	 * @param hql
+	 * @param params
+	 * @return
+	 * @throws DatabaseException
 	 */
-	public <T extends BasePojo> List<T> list(String hql, Map<String, Object> params) throws DatabaseException {
+	protected <T extends BasePojo> List<T> list(String hql, Map<String, Object> params) throws DatabaseException {
 		try {
 			return list(generateQuery(hql, params), 0, 0);
 		} catch (Exception e) {
@@ -364,19 +423,32 @@ public class BaseDAOImpl implements BaseDAO {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.BaseDAO#list(java.lang.String, int, int)
+	/**
+	 * 根据hql获取分页列表
+	 * @author lmiky
+	 * @date 2014-8-13 下午5:00:34
+	 * @param hql
+	 * @param pageFirst
+	 * @param pageSize
+	 * @return
+	 * @throws DatabaseException
 	 */
-	public <T extends BasePojo> List<T> list(String hql, int pageFirst, int pageSize) throws DatabaseException {
+	protected <T extends BasePojo> List<T> list(String hql, int pageFirst, int pageSize) throws DatabaseException {
 		return list(hql, null, pageFirst, pageSize);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.BaseDAO#list(java.lang.String, java.util.Map, int, int)
+	/**
+	 * 根据hql获取分页列表
+	 * @author lmiky
+	 * @date 2014-8-13 下午5:00:50
+	 * @param hql
+	 * @param params
+	 * @param pageFirst
+	 * @param pageSize
+	 * @return
+	 * @throws DatabaseException
 	 */
-	public <T extends BasePojo> List<T> list(String hql, Map<String, Object> params, int pageFirst, int pageSize) throws DatabaseException {
+	protected <T extends BasePojo> List<T> list(String hql, Map<String, Object> params, int pageFirst, int pageSize) throws DatabaseException {
 		try {
 			return list(generateQuery(hql, params), pageFirst, pageSize);
 		} catch (Exception e) {
@@ -400,7 +472,7 @@ public class BaseDAOImpl implements BaseDAO {
 	}
 
 	/**
-	 * 查询列表
+	 * 查询分页列表
 	 * @author lmiky
 	 * @date 2013-4-16
 	 * @param query
@@ -431,6 +503,22 @@ public class BaseDAOImpl implements BaseDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#count(java.lang.Class, java.lang.String, java.lang.Object)
+	 */
+	public <T extends BasePojo> int count(Class<T> pojoClass, String propertyName, Object propertyValue) throws DatabaseException {
+		try {
+			PropertyFilter propertyFilter = new PropertyFilter();
+			propertyFilter.setCompareClass(pojoClass);
+			propertyFilter.setCompareType(PropertyCompareType.EQ);
+			propertyFilter.setPropertyName(propertyName);
+			propertyFilter.setPropertyValue(propertyValue);
+			return count(pojoClass, propertyFilter);
+		} catch (Exception e) {
+			throw new DatabaseException(e.getMessage());
+		}
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#count(java.lang.Class, java.util.List)
@@ -443,23 +531,35 @@ public class BaseDAOImpl implements BaseDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#count(java.lang.Class, com.lmiky.jdp.database.model.PropertyFilter[])
+	 */
 	public <T extends BasePojo> int count(Class<T> pojoClass, PropertyFilter... propertyFilters) throws DatabaseException {
 		return count(pojoClass, Arrays.asList(propertyFilters));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.BaseDAO#count(java.lang.String)
+	/**
+	 * 根据hql计数
+	 * @author lmiky
+	 * @date 2014-8-13 下午5:01:12
+	 * @param hql
+	 * @return
+	 * @throws DatabaseException
 	 */
-	public <T extends BasePojo> int count(String hql) throws DatabaseException {
+	protected <T extends BasePojo> int count(String hql) throws DatabaseException {
 		return count(hql, null);
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.BaseDAO#count(java.lang.String, java.util.Map)
+	
+	/**
+	 * 根据hql计数
+	 * @author lmiky
+	 * @date 2014-8-13 下午5:01:26
+	 * @param hql
+	 * @param params
+	 * @return
+	 * @throws DatabaseException
 	 */
-	public <T extends BasePojo> int count(String hql, Map<String, Object> params) throws DatabaseException {
+	protected <T extends BasePojo> int count(String hql, Map<String, Object> params) throws DatabaseException {
 		try {
 			return ((Long) generateQuery(generateCountHql(hql), params).uniqueResult()).intValue();
 		} catch (Exception e) {
@@ -486,55 +586,102 @@ public class BaseDAOImpl implements BaseDAO {
 		return exist(pojoClass, Arrays.asList(propertyFilters));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.BaseDAO#exist(java.lang.String)
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#exist(java.lang.Class, java.lang.String, java.lang.Object)
 	 */
-	public <T extends BasePojo> boolean exist(String hql) throws DatabaseException {
+	public <T extends BasePojo> boolean exist(Class<T> pojoClass, String propertyName, Object propertyValue) throws DatabaseException {
+		try {
+			PropertyFilter propertyFilter = new PropertyFilter();
+			propertyFilter.setCompareClass(pojoClass);
+			propertyFilter.setCompareType(PropertyCompareType.EQ);
+			propertyFilter.setPropertyName(propertyName);
+			propertyFilter.setPropertyValue(propertyValue);
+			return exist(pojoClass, propertyFilter);
+		} catch (Exception e) {
+			throw new DatabaseException(e.getMessage());
+		}
+	}
+	
+	/**
+	 * 根据hql判断数据是否存在
+	 * @author lmiky
+	 * @date 2014-8-13 下午5:01:34
+	 * @param hql
+	 * @return
+	 * @throws DatabaseException
+	 */
+	protected <T extends BasePojo> boolean exist(String hql) throws DatabaseException {
 		return exist(hql, null);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.BaseDAO#exist(java.lang.String, java.util.Map)
+	/**
+	 * 根据hql判断数据是否存在
+	 * @author lmiky
+	 * @date 2014-8-13 下午5:01:52
+	 * @param hql
+	 * @param params
+	 * @return
+	 * @throws DatabaseException
 	 */
-	public <T extends BasePojo> boolean exist(String hql, Map<String, Object> params) throws DatabaseException {
+	protected <T extends BasePojo> boolean exist(String hql, Map<String, Object> params) throws DatabaseException {
 		if (count(hql, params) > 0) {
 			return true;
 		}
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.BaseDAO#executeQuery(java.lang.String)
+	/**
+	 * 执行hql
+	 * @author lmiky
+	 * @date 2014-8-13 下午5:02:00
+	 * @param hql
+	 * @return
+	 * @throws DatabaseException
 	 */
-	public <X> List<X> executeQuery(String hql) throws DatabaseException {
+	protected <X> List<X> executeQuery(String hql) throws DatabaseException {
 		return executeQuery(hql, null);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.BaseDAO#executeQuery(java.lang.String, int, int)
+	/**
+	 * 执行hql
+	 * @author lmiky
+	 * @date 2014-8-13 下午5:02:14
+	 * @param hql
+	 * @param pageFirst
+	 * @param pageSize
+	 * @return
+	 * @throws DatabaseException
 	 */
-	public <X> List<X> executeQuery(String hql, int pageFirst, int pageSize) throws DatabaseException {
+	protected <X> List<X> executeQuery(String hql, int pageFirst, int pageSize) throws DatabaseException {
 		return executeQuery(hql, null, pageFirst, pageSize);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.BaseDAO#executeQuery(java.lang.String, java.util.Map)
+	/**
+	 * 执行hql
+	 * @author lmiky
+	 * @date 2014-8-13 下午5:02:18
+	 * @param hql
+	 * @param params
+	 * @return
+	 * @throws DatabaseException
 	 */
-	public <X> List<X> executeQuery(String hql, Map<String, Object> params) throws DatabaseException {
+	protected <X> List<X> executeQuery(String hql, Map<String, Object> params) throws DatabaseException {
 		return executeQuery(hql, params, 0, 0);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.BaseDAO#executeQuery(java.lang.String, java.util.Map, int, int)
+	/**
+	 * 执行hql
+	 * @author lmiky
+	 * @date 2014-8-13 下午5:02:26
+	 * @param hql
+	 * @param params
+	 * @param pageFirst
+	 * @param pageSize
+	 * @return
+	 * @throws DatabaseException
 	 */
 	@SuppressWarnings("unchecked")
-	public <X> List<X> executeQuery(String hql, Map<String, Object> params, int pageFirst, int pageSize) throws DatabaseException {
+	protected <X> List<X> executeQuery(String hql, Map<String, Object> params, int pageFirst, int pageSize) throws DatabaseException {
 		try {
 			Query query = generateQuery(hql, params);
 			query.setFirstResult(pageFirst);
@@ -549,7 +696,7 @@ public class BaseDAOImpl implements BaseDAO {
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#executeUpdate(java.lang.String)
 	 */
-	public int executeUpdate(String hql) throws DatabaseException {
+	protected int executeUpdate(String hql) throws DatabaseException {
 		return executeUpdate(hql, null);
 	}
 
@@ -557,7 +704,7 @@ public class BaseDAOImpl implements BaseDAO {
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#executeUpdate(java.lang.String, java.util.Map)
 	 */
-	public int executeUpdate(String hql, Map<String, Object> params) throws DatabaseException {
+	protected int executeUpdate(String hql, Map<String, Object> params) throws DatabaseException {
 		try {
 			return executeQueryUpdate(generateQuery(hql, params));
 		} catch (Exception e) {
