@@ -25,10 +25,11 @@ opePojo_com.lmiky.jdp.area.pojo.City=城市
 opePojo_com.lmiky.tiger.goods.pojo.Goods=商品
 
 #内容管理
-opePojo_com.lmiky.cms.directory.pojo.CmsDirectory=目录
-opePojo_com.lmiky.cms.resource.pojo.CmsResource=文章
 opeType_cms_resource_publish=发布
 opeType_cms_resource_unpublish=取消发布
+
+opePojo_com.lmiky.cms.directory.pojo.CmsDirectory=目录
+opePojo_com.lmiky.cms.resource.pojo.CmsResource=文章
 
 #抓取管理
 opePojo_com.lmiky.capture.task.pojo.CaptureTask=抓取任务

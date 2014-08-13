@@ -145,7 +145,7 @@ public class ServiceTest extends BaseTest {
 	
 	@Test
 	public void testUpdate2() throws ServiceException {
-		baseService.update(Goods.class, 1l, "createTime", new Date());
+		baseService.update(Goods.class, 2l, "createTime", new Date());
 	}
 	
 	@Test
