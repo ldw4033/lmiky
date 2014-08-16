@@ -183,17 +183,19 @@ public class BaseDAOImpl implements BaseDAO {
 				hql.append(", ");
 			}
 			String propertyName = ite.next();
-			hql.append(pojoSimpleName).append(".").append(propertyName).append("=:").append(propertyName);
+			String paramName = propertyName.replaceAll("\\.", "_");	//hibernate的:name模式不支持“.”
+			hql.append(pojoSimpleName).append(".").append(propertyName).append("=:").append(paramName);
+			params.put(paramName, updateValue.get(propertyName));
 		}
-		params.putAll(updateValue);
 		hql.append(" where 1=1 ");
 		if(!updateValue.isEmpty()) {
 			ite = condition.keySet().iterator();
 			while (ite.hasNext()) {
 				String propertyName = ite.next();
-				hql.append(" and ").append(pojoSimpleName).append(".").append(propertyName).append("=:").append(propertyName);
+				String paramName = propertyName.replaceAll("\\.", "_");	
+				hql.append(" and ").append(pojoSimpleName).append(".").append(propertyName).append("=:").append(paramName);
+				params.put(paramName, condition.get(propertyName));
 			}
-			params.putAll(condition);
 		}
 		return executeUpdate(hql.toString(), params) > 0;
 	}

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lmiky.jdp.base.controller.BaseController;
+import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.database.pojo.BasePojo;
 import com.lmiky.jdp.database.util.PropertyFilterUtils;
@@ -21,8 +22,8 @@ import com.lmiky.jdp.logger.model.OperateType;
 import com.lmiky.jdp.logger.util.LoggerUtils;
 import com.lmiky.jdp.service.BaseService;
 import com.lmiky.jdp.session.model.SessionInfo;
-import com.lmiky.jdp.sort.service.SortService;
 import com.lmiky.jdp.sort.pojo.BaseSortPojo;
+import com.lmiky.jdp.sort.service.SortService;
 
 /**
  * 排序
@@ -106,7 +107,8 @@ public class SortController extends BaseController {
 			if (selectedPojos == null || selectedPojos.length == 0) {
 				putMessage(modelMap, "请选择要排序的内容!");
 			} else {
-				((SortService) service).sort(sortClass, selectedPojos);
+				List<PropertyFilter> propertyFilters = PropertyFilterUtils.generateFromHttpRequest(request, sortClass);
+				((SortService) service).sort(sortClass, selectedPojos, propertyFilters);
 				putMessage(modelMap, "保存成功!");
 				LoggerUtils.save(request, className, null, sessionInfo.getUserId(), sessionInfo.getUserName(), OperateType.OPE_TYPE_SORT, this.getClass().getName(), null, service);
 			}
