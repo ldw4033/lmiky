@@ -127,7 +127,7 @@ public class MenuController extends BaseController {
 				myFavoriteMenu.setMenuId(menuId);
 				myFavoriteMenu.setUserId(sessionInfo.getUserId());
 				myFavoriteMenu.setAddTime(new Date());
-				service.save(myFavoriteMenu);
+				service.add(myFavoriteMenu);
 				MenuUtils.addMyFavorite(request, sessionInfo, menuId);
 				retMap.put("code", CODE_SUCCESS);
 				retMap.put("msg", "收藏成功！");

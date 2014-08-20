@@ -78,6 +78,43 @@ public interface BaseService {
 	 */
 	public <T extends BasePojo> void save(List<T> pojos) throws ServiceException;
 	
+	
+	/**
+	 * 添加对象
+	 * @author lmiky
+	 * @date 2013-8-16
+	 * @param pojo
+	 * @throws ServiceException
+	 */
+	public <T extends BasePojo> void add(T pojo) throws ServiceException;
+	
+	/**
+	 * 添加对象
+	 * @author lmiky
+	 * @date 2013-8-16
+	 * @param pojos
+	 * @throws ServiceException
+	 */
+	public <T extends BasePojo> void add(List<T> pojos) throws ServiceException;
+	
+	/**
+	 * 修改对象
+	 * @author lmiky
+	 * @date 2013-8-16
+	 * @param pojo
+	 * @throws ServiceException
+	 */
+	public <T extends BasePojo> void update(T pojo) throws ServiceException;
+	
+	/**
+	 * 修改对象
+	 * @author lmiky
+	 * @date 2013-8-16
+	 * @param pojos
+	 * @throws ServiceException
+	 */
+	public <T extends BasePojo> void update(List<T> pojos) throws ServiceException;
+	
 	/**
 	 * 修改单个属性
 	 * @author lmiky

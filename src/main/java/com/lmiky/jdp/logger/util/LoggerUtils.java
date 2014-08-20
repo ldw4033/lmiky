@@ -242,7 +242,7 @@ public class LoggerUtils {
 		logger.setLogDesc(logDesc);
 		logger.setLogTime(new Date());
 		logger.setIp(request.getRemoteAddr());
-		service.save(logger);
+		service.add(logger);
 	}
 	
 	/**

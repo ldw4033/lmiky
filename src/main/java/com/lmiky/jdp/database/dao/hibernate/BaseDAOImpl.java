@@ -146,6 +146,34 @@ public class BaseDAOImpl implements BaseDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#add(com.lmiky.jdp.database.pojo.BasePojo)
+	 */
+	public <T extends BasePojo> void add(T pojo) throws DatabaseException {
+		save(pojo);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#add(java.util.List)
+	 */
+	public <T extends BasePojo> void add(List<T> pojos) throws DatabaseException {
+		save(pojos);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#update(com.lmiky.jdp.database.pojo.BasePojo)
+	 */
+	public <T extends BasePojo> void update(T pojo) throws DatabaseException {
+		save(pojo);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#update(java.util.List)
+	 */
+	public <T extends BasePojo> void update(List<T> pojos) throws DatabaseException {
+		save(pojos);
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#update(java.lang.Class, java.lang.Long, java.lang.String, java.lang.Object)

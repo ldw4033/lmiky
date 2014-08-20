@@ -91,7 +91,7 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 							latelyOperateMenu.setMenuId(subMenuId);
 							latelyOperateMenu.setUserId(sessionInfo.getUserId());
 							latelyOperateMenu.setOpeTime(new Date());
-							baseService.save(latelyOperateMenu);
+							baseService.add(latelyOperateMenu);
 							sessionInfo.setLatelyOperateMenuId(subMenuId);
 						}
 					}

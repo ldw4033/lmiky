@@ -298,7 +298,7 @@ public class OperatorController extends FormController<Operator> {
 			} else {
 				user.setPassword(EncoderUtils.md5(request.getParameter("password")));
 				user.setLastSetPasswordTime(new Date());
-				service.save(user);
+				service.update(user);
 				//记录日志
 				logOpe(User.class.getName(), sessionInfo.getUserId(), modelMap, request, sessionInfo, OperateType.OPE_TYPE_UPDATE, "修改密码");
 				putMessage(modelMap, "修改成功!");

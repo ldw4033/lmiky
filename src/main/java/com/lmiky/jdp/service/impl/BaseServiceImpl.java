@@ -101,6 +101,54 @@ public class BaseServiceImpl implements BaseService {
 	}
 	
 	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.service.BaseService#add(com.lmiky.jdp.database.pojo.BasePojo)
+	 */
+	@Transactional(rollbackFor={Exception.class})
+	public <T extends BasePojo> void add(T pojo) throws ServiceException {
+		try {
+			getDAO().add(pojo);
+		} catch (DatabaseException e) {
+			throw new ServiceException(e.getMessage());
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.service.BaseService#add(java.util.List)
+	 */
+	@Transactional(rollbackFor={Exception.class})
+	public <T extends BasePojo> void add(List<T> pojos) throws ServiceException {
+		try {
+			getDAO().add(pojos);
+		} catch (DatabaseException e) {
+			throw new ServiceException(e.getMessage());
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.service.BaseService#update(com.lmiky.jdp.database.pojo.BasePojo)
+	 */
+	@Transactional(rollbackFor={Exception.class})
+	public <T extends BasePojo> void update(T pojo) throws ServiceException {
+		try {
+			getDAO().update(pojo);
+		} catch (DatabaseException e) {
+			throw new ServiceException(e.getMessage());
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.service.BaseService#update(java.util.List)
+	 */
+	@Transactional(rollbackFor={Exception.class})
+	public <T extends BasePojo> void update(List<T> pojos) throws ServiceException {
+		try {
+			getDAO().update(pojos);
+		} catch (DatabaseException e) {
+			throw new ServiceException(e.getMessage());
+		}
+	}
+	
+	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.service.BaseService#update(java.lang.Class, java.lang.Long, java.lang.String, java.lang.Object)
 	 */
 	@Transactional(rollbackFor={Exception.class})

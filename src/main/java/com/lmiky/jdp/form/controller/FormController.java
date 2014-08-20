@@ -474,7 +474,11 @@ public abstract class FormController<T extends BasePojo> extends ViewController<
 	 * @throws ServiceException
 	 */
 	protected void savePojo(T pojo, ModelMap modelMap, HttpServletRequest request, HttpServletResponse resopnse)  throws ServiceException {
-		service.save(pojo);
+		if(pojo.getId() == null) {	//新对象
+			service.add(pojo);
+		} else {
+			service.update(pojo);
+		}
 	}
 	
 	/**
