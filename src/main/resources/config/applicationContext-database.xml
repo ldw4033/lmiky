@@ -32,10 +32,14 @@
     </bean>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="mapperLocations" value="classpath*:mappers/**/*.xml" />
         <property name="dataSource" ref="dataSource" />
+    	<property  name="configLocation"  value="classpath:mybatis.xml"/>
+        <property name="mapperLocations" value="classpath*:mappers/**/*.xml" />
     </bean>
 
+	<bean id="sqlSession"     class="org.mybatis.spring.SqlSessionTemplate"> 
+	      <constructor-arg index="0" ref="sqlSessionFactory" /> 
+	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 
 </beans>
