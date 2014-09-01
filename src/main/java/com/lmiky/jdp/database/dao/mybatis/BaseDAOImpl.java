@@ -7,8 +7,9 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.persistence.Table;
 
+import org.apache.ibatis.jdbc.SqlBuilder;
 import org.apache.ibatis.session.SqlSession;
-import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.springframework.stereotype.Repository;
 
 import com.lmiky.jdp.database.dao.BaseDAO;
 import com.lmiky.jdp.database.exception.DatabaseException;
@@ -16,7 +17,13 @@ import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.database.pojo.BasePojo;
 
-public class BaseDAOImpl extends SqlSessionDaoSupport implements BaseDAO {
+/**
+ * 基础dao
+ * @author lmiky
+ * @date 2014年8月26日 下午3:39:28
+ */
+@Repository("baseDAO")
+public class BaseDAOImpl implements BaseDAO {
 	private SqlSession sqlSession;
 	
 	protected Map<Class<?>, String> pojoTableNames = new HashMap<Class<?>, String>();
@@ -47,10 +54,17 @@ public class BaseDAOImpl extends SqlSessionDaoSupport implements BaseDAO {
 		return cacheTableName;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#find(java.lang.Class, java.lang.Long)
+	 */
 	@Override
 	public <T extends BasePojo> T find(Class<T> pojoClass, Long id) throws DatabaseException {
-		// TODO Auto-generated method stub
-		return null;
+		SqlBuilder.BEGIN();
+		SqlBuilder.SELECT(" * ");
+		SqlBuilder.FROM(getPojoTabelName(pojoClass) + " " + pojoClass.getSimpleName());
+		SqlBuilder.WHERE(" id = ${id}");
+		String sql = SqlBuilder.SQL();
+		return sqlSession.selectOne(sql, id);
 	}
 
 	@Override

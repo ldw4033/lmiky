@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="common">
+    <!-- 执行删除sql -->
+    <delete id="executeDelete" parameterType="string">
+    	${sql}
+    </delete>
+    
+    <!-- 根据id删除 -->
+    <delete id="executeDeleteById" parameterType="long">
+    	delete from ${tableName} where id = #{id} 
+    </delete>
+    
+    <!-- 执行批量删除 -->
+    <delete id="executeBatchDeleteByIds" parameterType="Map">
+    	delete from ${tableName}
+    	<if test="ids != null and ids.size > 0">
+    		where id in
+	    	<foreach collection="ids" index="index" item="id" open="(" separator="," close=")"> 
+		       	#{id} 
+		    </foreach> 
+	    </if>
+    </delete>
+</mapper>

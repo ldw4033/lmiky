@@ -15,7 +15,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import com.lmiky.jdp.database.dao.BaseDAO;
 import com.lmiky.jdp.database.exception.DatabaseException;
@@ -29,7 +28,6 @@ import com.lmiky.jdp.database.pojo.BasePojo;
  * @author lmiky
  * @date 2013-4-15
  */
-@Repository("baseDAO")
 public class BaseDAOImpl implements BaseDAO {
 	private SessionFactory sessionFactory;
 
