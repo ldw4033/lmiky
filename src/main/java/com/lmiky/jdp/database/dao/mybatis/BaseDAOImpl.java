@@ -1,5 +1,6 @@
 package com.lmiky.jdp.database.dao.mybatis;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,12 +8,12 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.persistence.Table;
 
-import org.apache.ibatis.jdbc.SqlBuilder;
-import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.lmiky.jdp.database.dao.BaseDAO;
 import com.lmiky.jdp.database.exception.DatabaseException;
+import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.database.pojo.BasePojo;
@@ -24,7 +25,19 @@ import com.lmiky.jdp.database.pojo.BasePojo;
  */
 @Repository("baseDAO")
 public class BaseDAOImpl implements BaseDAO {
-	private SqlSession sqlSession;
+	//sql方法名
+	/**
+	 * sql方法名：查询
+	 */
+	protected static final String SQLNAME_FIND = "find";
+	
+	//查询方法名后缀
+	/**
+	 * 查询方法名后缀：查询
+	 */
+	private static final String SQLNAME_SUFFIX_FIND = "." + SQLNAME_FIND;
+	
+	private SqlSessionTemplate sqlSessionTemplate;
 	
 	protected Map<Class<?>, String> pojoTableNames = new HashMap<Class<?>, String>();
 	
@@ -59,30 +72,37 @@ public class BaseDAOImpl implements BaseDAO {
 	 */
 	@Override
 	public <T extends BasePojo> T find(Class<T> pojoClass, Long id) throws DatabaseException {
-		SqlBuilder.BEGIN();
-		SqlBuilder.SELECT(" * ");
-		SqlBuilder.FROM(getPojoTabelName(pojoClass) + " " + pojoClass.getSimpleName());
-		SqlBuilder.WHERE(" id = ${id}");
-		String sql = SqlBuilder.SQL();
-		return sqlSession.selectOne(sql, id);
+//		return find(pojoClass, BasePojo.POJO_FIELD_NAME_ID, id);
+		return sqlSessionTemplate.selectOne(pojoClass.getName() + SQLNAME_SUFFIX_FIND, id);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#find(java.lang.Class, java.lang.String, java.lang.Object)
+	 */
 	@Override
 	public <T extends BasePojo> T find(Class<T> pojoClass, String propertyName, Object propertyValue) throws DatabaseException {
-		// TODO Auto-generated method stub
-		return null;
+		PropertyFilter propertyFilter = new PropertyFilter();
+		propertyFilter.setCompareClass(pojoClass);
+		propertyFilter.setPropertyName(propertyName);
+		propertyFilter.setPropertyValue(propertyValue);
+		propertyFilter.setCompareType(PropertyCompareType.EQ);
+		return find(pojoClass, propertyFilter);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#find(java.lang.Class, java.util.List)
+	 */
 	@Override
 	public <T extends BasePojo> T find(Class<T> pojoClass, List<PropertyFilter> propertyFilters) throws DatabaseException {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSessionTemplate.selectOne(pojoClass.getName() + SQLNAME_SUFFIX_FIND, propertyFilters);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#find(java.lang.Class, com.lmiky.jdp.database.model.PropertyFilter[])
+	 */
 	@Override
 	public <T extends BasePojo> T find(Class<T> pojoClass, PropertyFilter... propertyFilters) throws DatabaseException {
-		// TODO Auto-generated method stub
-		return null;
+		return find(pojoClass, Arrays.asList(propertyFilters));
 	}
 
 	@Override
@@ -284,18 +304,17 @@ public class BaseDAOImpl implements BaseDAO {
 	}
 
 	/**
-	 * @return the sqlSession
+	 * @return the sqlSessionTemplate
 	 */
-	public SqlSession getSqlSession() {
-		return sqlSession;
+	public SqlSessionTemplate getSqlSessionTemplate() {
+		return sqlSessionTemplate;
 	}
 
 	/**
-	 * @param sqlSession the sqlSession to set
+	 * @param sqlSessionTemplate the sqlSessionTemplate to set
 	 */
-	@Resource(name="sqlSession")
-	public void setSqlSession(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
+	@Resource(name="sqlSessionTemplate")
+	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
+		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
-
 }
