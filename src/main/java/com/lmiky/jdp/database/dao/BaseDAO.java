@@ -70,15 +70,6 @@ public interface BaseDAO {
 	public <T extends BasePojo> void save(T pojo) throws DatabaseException;
 	
 	/**
-	 * 保存对象
-	 * @author lmiky
-	 * @date 2013-5-29
-	 * @param pojos
-	 * @throws DatabaseException
-	 */
-	public <T extends BasePojo> void save(List<T> pojos) throws DatabaseException;
-	
-	/**
 	 * 添加对象
 	 * @author lmiky
 	 * @date 2013-8-16
@@ -88,15 +79,6 @@ public interface BaseDAO {
 	public <T extends BasePojo> void add(T pojo) throws DatabaseException;
 	
 	/**
-	 * 添加对象
-	 * @author lmiky
-	 * @date 2013-8-16
-	 * @param pojos
-	 * @throws DatabaseException
-	 */
-	public <T extends BasePojo> void add(List<T> pojos) throws DatabaseException;
-	
-	/**
 	 * 修改对象
 	 * @author lmiky
 	 * @date 2013-8-16
@@ -104,15 +86,6 @@ public interface BaseDAO {
 	 * @throws DatabaseException
 	 */
 	public <T extends BasePojo> void update(T pojo) throws DatabaseException;
-	
-	/**
-	 * 修改对象
-	 * @author lmiky
-	 * @date 2013-8-16
-	 * @param pojos
-	 * @throws DatabaseException
-	 */
-	public <T extends BasePojo> void update(List<T> pojos) throws DatabaseException;
 	
 	/**
 	 * 修改单个属性
