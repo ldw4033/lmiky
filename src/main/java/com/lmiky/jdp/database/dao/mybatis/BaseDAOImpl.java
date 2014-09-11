@@ -299,4 +299,22 @@ public class BaseDAOImpl implements BaseDAO {
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
+
+	@Override
+	public <T extends BasePojo> void save(List<T> pojos) throws DatabaseException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public <T extends BasePojo> void add(List<T> pojos) throws DatabaseException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public <T extends BasePojo> void update(List<T> pojos) throws DatabaseException {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -129,6 +129,21 @@ public class BaseDAOImpl implements BaseDAO {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#save(java.util.List)
+	 */
+	public <T extends BasePojo> void save(List<T> pojos) throws DatabaseException {
+		try {
+			Session session = getSession();
+			for (T t : pojos) {
+				session.saveOrUpdate(t);
+			}
+		} catch (Exception e) {
+			throw new DatabaseException(e.getMessage());
+		}
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#add(com.lmiky.jdp.database.pojo.BasePojo)
 	 */
@@ -137,10 +152,24 @@ public class BaseDAOImpl implements BaseDAO {
 	}
 	
 	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#add(java.util.List)
+	 */
+	public <T extends BasePojo> void add(List<T> pojos) throws DatabaseException {
+		save(pojos);
+	}
+	
+	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.database.dao.BaseDAO#update(com.lmiky.jdp.database.pojo.BasePojo)
 	 */
 	public <T extends BasePojo> void update(T pojo) throws DatabaseException {
 		save(pojo);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#update(java.util.List)
+	 */
+	public <T extends BasePojo> void update(List<T> pojos) throws DatabaseException {
+		save(pojos);
 	}
 	
 	/*
