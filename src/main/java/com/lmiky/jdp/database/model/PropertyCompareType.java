@@ -9,57 +9,73 @@ public enum PropertyCompareType {
 	/**
 	 * 等于：=
 	 */
-	EQ,
+	EQ("eq"),
 	/**
 	 * 不等于：!=
 	 */
-	NE,
+	NE("ne"),
 	/**
 	 * 大于：>
 	 */
-	GT,
+	GT("gt"),
 	/**
 	 * 大于等于：>=
 	 */
-	GE,
+	GE("ge"),
 	/**
 	 * 小于：<
 	 */
-	LT,
+	LT("lt"),
 	/**
 	 * 小于等于：<=
 	 */
-	LE,
+	LE("le"),
 	/**
 	 * 模糊查询：%?%
 	 */
-	LIKE,
+	LIKE("like"),
 	/**
 	 * 左模糊查询：%?
 	 */
-	LLIKE,
+	LLIKE("llike"),
 	/**
 	 * 右模糊查询：?%
 	 */
-	RLIKE,
+	RLIKE("rlike"),
 	/**
 	 * 不匹配模糊查询：not like %?%
 	 */
-	NLIKE,
+	NLIKE("nlike"),
 	/**
 	 * 不匹配左模糊查询：not like %?
 	 */
-	NLLIKE, 
+	NLLIKE("nllike"), 
 	/**
 	 * 不匹配右模糊查询：not like ?%
 	 */
-	NRLIKE,
+	NRLIKE("nrlike"),
 	/**
 	 * 不为空：is not null
 	 */
-	NNULL,
+	NNULL("nnull"),
 	/**
 	 * 不为空：is null
 	 */
-	NULL;
+	NULL("null");
+	
+	private String value;
+	
+	/**
+	 * @param value
+	 */
+	private PropertyCompareType (String value) {
+		this.value = value;
+	}
+
+	/**
+	 * @return the value
+	 */
+	public String getValue() {
+		return value;
+	}
 }

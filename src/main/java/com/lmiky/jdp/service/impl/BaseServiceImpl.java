@@ -94,7 +94,9 @@ public class BaseServiceImpl implements BaseService {
 	@Transactional(rollbackFor={Exception.class})
 	public <T extends BasePojo> void save(List<T> pojos) throws ServiceException {
 		try {
-			getDAO().save(pojos);
+			for(T t: pojos) {
+				save(t);
+			}
 		} catch (DatabaseException e) {
 			throw new ServiceException(e.getMessage());
 		}
@@ -118,7 +120,9 @@ public class BaseServiceImpl implements BaseService {
 	@Transactional(rollbackFor={Exception.class})
 	public <T extends BasePojo> void add(List<T> pojos) throws ServiceException {
 		try {
-			getDAO().add(pojos);
+			for(T t: pojos) {
+				add(t);
+			}
 		} catch (DatabaseException e) {
 			throw new ServiceException(e.getMessage());
 		}
@@ -142,7 +146,9 @@ public class BaseServiceImpl implements BaseService {
 	@Transactional(rollbackFor={Exception.class})
 	public <T extends BasePojo> void update(List<T> pojos) throws ServiceException {
 		try {
-			getDAO().update(pojos);
+			for(T t: pojos) {
+				update(t);
+			}
 		} catch (DatabaseException e) {
 			throw new ServiceException(e.getMessage());
 		}

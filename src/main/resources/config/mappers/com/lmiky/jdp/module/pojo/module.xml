@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lmiky.jdp.module.pojo.Module">
+	<resultMap type="Module" id="module" extends="com.lmiky.jdp.database.pojo.BasePojo.basePojo">
+		<id column="name" property="name"/>
+		<id column="path" property="path"/>
+		<!-- 
+		<association property="group" column="group_id" select="com.lmiky.jdp.module.pojo.ModuleGroup.findById"/>
+		 -->
+		 <!-- 
+		 <association property="group" column="group_id" resultMap="com.lmiky.jdp.module.pojo.ModuleGroup.moduleGroup"/>
+		 -->
+	</resultMap>
+	<sql id="tableName">
+		t_module
+	</sql>
+	<select id="findById" resultMap="module">
+		select * from 
+		<include refid="tableName"/>	
+		where id = #{id}
+	</select>
+	
+	<select id="findByGroupId" resultMap="module">
+		select * from 
+		<include refid="tableName"/>	
+		where group_id = #{groupId}
+	</select>
+	
+	<select id="find" resultMap="module">
+		select * from 
+		<include refid="tableName"/>
+		<trim prefix="where">
+			<include refid="common.propertiesCondition"/>
+		</trim>
+	</select>
+	
+	 <!-- 
+	 <select id="find" resultMap="module">
+		select m.*, g.id modulegroup_id, g.name modulegroup_name, g.path modulegroup_path from 
+		<include refid="tableName"/> m  join <include refid="com.lmiky.jdp.module.pojo.ModuleGroup.tableName"/> g on m.group_id = g.id
+		where m.id = #{id}
+	</select>
+	 -->
+	 
+	 <insert id="add" parameterType="Module" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+	 	insert into <include refid="tableName"/>(name, path, group_id) values(#{name}, #{path}, #{group.id})
+	 </insert>
+	 
+	 <update id="update" parameterType="Module" >
+	 	update <include refid="tableName"/>
+	 	<set>
+		 	<if test="name != null and name != ''">
+		 		name = #{name},
+		 	</if>
+		 	<if test="path != null and path != ''">
+		 		path = #{path},
+		 	</if>
+		 	<if test="group != null and group.id != null">
+		 		group_id = #{group.id}
+		 	</if>
+	 	</set>
+	 	where id = #{id}
+	 </update>
+	 
+	 <select id="list" resultMap="module">
+		select * from 
+		<include refid="tableName"/>	
+		<trim prefix="where">
+			<include refid="common.propertiesCondition"/>
+		</trim>
+		<include refid="common.sortCondition"/>
+		<include refid="common.pageCondition"/>
+	</select>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lmiky.jdp.module.pojo.ModuleGroup">
+	<resultMap type="ModuleGroup" id="moduleGroup" extends="com.lmiky.jdp.database.pojo.BasePojo.basePojo">
+		<id column="name" property="name"/>
+		<id column="path" property="path"/>
+		<id column="modulegroup_id" property="id"/>
+		<id column="modulegroup_name" property="name"/>
+		<id column="modulegroup_path" property="path"/>
+		<collection property="modules" column="id" select="com.lmiky.jdp.module.pojo.Module.findByGroupId"/>
+	</resultMap>
+	<sql id="tableName">
+		t_module_group
+	</sql>
+	<select id="findById" resultMap="moduleGroup">
+		select * from 
+		<include refid="tableName"/>	
+		where id = #{id}
+	</select>
+	
+</mapper>

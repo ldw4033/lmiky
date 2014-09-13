@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lmiky.jdp.user.pojo.Operator">
+	<resultMap type="Operator" id="operator" extends="com.lmiky.jdp.user.pojo.User.user">
+	</resultMap>
+	<sql id="tableName">
+		t_operator
+	</sql>
+	<select id="find" resultMap="operator">
+		select * from 
+		<include refid="com.lmiky.jdp.user.pojo.User.tableName"/>
+		<trim prefix="where">
+			<include refid="common.propertiesCondition"/>
+		</trim>
+	</select>
+	
+	 <insert id="add" parameterType="Operator" keyColumn="id" keyProperty="id">
+	 	insert into <include refid="tableName"/>(id) values(#{id})
+	 </insert>
+	 
+	 <select id="list" resultMap="operator">
+		select * from 
+		<include refid="com.lmiky.jdp.user.pojo.User.tableName"/>
+		<trim prefix="where">
+			<include refid="common.propertiesCondition"/>
+		</trim>
+		<include refid="common.sortCondition"/>
+		<include refid="common.pageCondition"/>
+	</select>
+</mapper>

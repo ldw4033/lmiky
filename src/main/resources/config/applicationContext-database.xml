@@ -9,11 +9,6 @@
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <!--
-        <property name="url" value="jdbc:mysql://localhost:3306/lmiky?useUnicode=true&amp;characterEncoding=utf-8"/>
-        <property name="username" value="root"/>
-        <property name="password" value="root"/>
-        -->
         <property name="url" value="jdbc:mysql://110.76.45.92:3306/lmiky?useUnicode=true&amp;characterEncoding=utf-8"/>
         <property name="username" value="root"/>
         <property name="password" value="xyf123456"/>
@@ -26,22 +21,21 @@
 		<property name="defaultAutoCommit" value="true" />
     </bean>
 
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property  name="configLocation"  value="classpath:config/mybatis.xml"/>
+    	<property name="typeAliasesPackage" value="com.lmiky" />	<!-- 实体类包 -->
+    	<property name="typeAliasesSuperType" value="com.lmiky.jdp.database.pojo.BasePojo" />	<!-- 实体类父类，如果没有，则mybatis默认为Object -->
+        <property name="mapperLocations" value="classpath*:config/mappers/**/*.xml" />
+    </bean>
+
+	<bean id="sqlSessionTemplate"  class="org.mybatis.spring.SqlSessionTemplate"> 
+	      <constructor-arg index="0" ref="sqlSessionFactory" /> 
+	</bean>
+
 	<!-- 事务 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <!-- 
-    	<property  name="configLocation"  value="classpath:mybatis.xml"/>
-    	 -->
-    	<property name="typeAliasesPackage" value="com.lmiky.**.pojo"  />
-        <property name="mapperLocations" value="classpath*:mappers/**/*.xml" />
-    </bean>
-
-	<bean id="sqlSession"     class="org.mybatis.spring.SqlSessionTemplate"> 
-	      <constructor-arg index="0" ref="sqlSessionFactory" /> 
-	</bean>
-
+    <tx:annotation-driven transaction-manager="transactionManager" />
 </beans>

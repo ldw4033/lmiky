@@ -1,14 +1,17 @@
-package com.lmiky.jdp.system.menu.dao.hibernate;
+package com.lmiky.jdp.system.menu.dao.mybatis;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import com.lmiky.jdp.database.dao.hibernate.BaseDAOImpl;
+import com.lmiky.jdp.database.dao.mybatis.BaseDAOImpl;
 import com.lmiky.jdp.database.exception.DatabaseException;
+import com.lmiky.jdp.database.model.Sort;
+import com.lmiky.jdp.database.pojo.BasePojo;
 import com.lmiky.jdp.system.menu.dao.MenuDAO;
+import com.lmiky.jdp.system.menu.pojo.LatelyOperateMenu;
+import com.lmiky.jdp.system.menu.pojo.MyFavoriteMenu;
 
 /**
  * 系统菜单
@@ -25,9 +28,11 @@ public class MenuDAOImpl extends BaseDAOImpl implements MenuDAO {
 	@Override
 	public List<String> listLatelyOperateMenuId(Long userId, int size) throws DatabaseException {
 		try {
-			Map<String, Object> params = new HashMap<String, Object>();
+			Map<String, Object> params = generateParameterMap(LatelyOperateMenu.class);
 			params.put("userId", userId);
-			return this.executeQuery("select distinct LatelyOperateMenu.menuId from LatelyOperateMenu LatelyOperateMenu where LatelyOperateMenu.userId = :userId order by LatelyOperateMenu.id desc", params, 0, size);
+			setSortParameter(params, BasePojo.POJO_FIELD_NAME_ID, Sort.SORT_TYPE_DESC, LatelyOperateMenu.class);
+			setPageParameter(params, null, size);
+			return sqlSessionTemplate.selectList(LatelyOperateMenu.class.getName() + ".listLatelyOperateMenuId", params);
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
@@ -39,9 +44,10 @@ public class MenuDAOImpl extends BaseDAOImpl implements MenuDAO {
 	@Override
 	public List<String> listFavoriteMenuId(Long userId) throws DatabaseException {
 		try {
-			Map<String, Object> params = new HashMap<String, Object>();
+			Map<String, Object> params = generateParameterMap(LatelyOperateMenu.class);
 			params.put("userId", userId);
-			return this.executeQuery("select distinct MyFavoriteMenu.menuId from MyFavoriteMenu MyFavoriteMenu where MyFavoriteMenu.userId = :userId order by MyFavoriteMenu.id desc", params);
+			setSortParameter(params, BasePojo.POJO_FIELD_NAME_ID, Sort.SORT_TYPE_DESC, LatelyOperateMenu.class);
+			return sqlSessionTemplate.selectList(MyFavoriteMenu.class.getName() + ".listFavoriteMenuId", params);
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}

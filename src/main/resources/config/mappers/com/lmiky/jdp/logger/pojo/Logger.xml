@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lmiky.jdp.logger.pojo.Logger">
+	<resultMap type="Logger" id="logger"
+		extends="com.lmiky.jdp.database.pojo.BasePojo.basePojo">
+		<id column="pojoName" property="pojoName" />
+		<id column="pojoId" property="pojoId" />
+		<id column="userId" property="userId" />
+		<id column="userName" property="userName" />
+		<id column="logTime" property="logTime" />
+		<id column="opeType" property="opeType" />
+		<id column="opeClassName" property="opeClassName" />
+		<id column="logDesc" property="logDesc" />
+		<id column="ip" property="ip" />
+	</resultMap>
+
+	<sql id="tableName">
+		t_logger
+	</sql>
+
+	<insert id="add" parameterType="Logger" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+		insert into
+		<include refid="tableName" />
+		(id, pojoName, pojoId, userId, userName, logTime, opeType, opeClassName, logDesc, ip) values(#{id}, #{pojoName}, #{pojoId}, #{userId}, #{userName}, #{logTime}, #{opeType}, #{opeClassName}, #{logDesc}, #{ip})
+	</insert>
+
+	<select id="list" resultMap="logger">
+		select * from
+		<include refid="tableName" />
+		<trim prefix="where">
+			<include refid="common.propertiesCondition" />
+		</trim>
+		<include refid="common.sortCondition" />
+		<include refid="common.pageCondition" />
+	</select>
+</mapper>

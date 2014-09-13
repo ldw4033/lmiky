@@ -53,13 +53,4 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 	 -->
-	 <!-- OpenSessionInView -->
-	 <mvc:interceptors>
-	    <mvc:interceptor>
-	        <mvc:mapping path="/**/*.shtml" />
-	        <bean class="org.springframework.orm.hibernate4.support.OpenSessionInViewInterceptor">
-	            <property name="sessionFactory" ref="sessionFactory" />
-	        </bean>
-	    </mvc:interceptor>
-	</mvc:interceptors>
 </beans>
