@@ -9,6 +9,7 @@ import javax.persistence.Table;
 
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.springframework.stereotype.Repository;
 
 import com.lmiky.jdp.database.dao.BaseDAO;
 import com.lmiky.jdp.database.exception.DatabaseException;
@@ -16,6 +17,12 @@ import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.database.pojo.BasePojo;
 
+/**
+ * 基础dao
+ * @author lmiky
+ * @date 2013-4-15
+ */
+@Repository("baseDAO")
 public class BaseDAOImpl extends SqlSessionDaoSupport implements BaseDAO {
 	private SqlSession sqlSession;
 	
