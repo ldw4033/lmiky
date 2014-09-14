@@ -13,6 +13,9 @@
 	<sql id="tableName">
 		t_my_favorite_menu
 	</sql>
+	<sql id="tableAlias">
+		MyFavoriteMenu
+	</sql>
 
 	<insert id="add" parameterType="MyFavoriteMenu" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
 		insert into
@@ -22,9 +25,9 @@
 
 	<select id="list" resultMap="myFavoriteMenu">
 		select * from
-		<include refid="tableName" />
+		<include refid="tableName" /> <include refid="tableAlias" />
 		<trim prefix="where">
-			<include refid="common.propertiesCondition" />
+			<include refid="common.aliasPropertiesCondition" />
 		</trim>
 		<include refid="common.sortCondition" />
 		<include refid="common.pageCondition" />
@@ -32,6 +35,6 @@
 	
 	<!-- 获取最近操作菜单ID -->
 	<select id="listFavoriteMenuId" resultType="java.lang.String" >
-		select distinct menuId from <include refid="tableName" /> where userId = #{userId} <include refid="common.sortCondition"/> <include refid="common.pageCondition"/>
+		select distinct menuId from <include refid="tableName" />  <include refid="tableAlias" /> where userId = #{userId} <include refid="common.sortCondition"/> <include refid="common.pageCondition"/>
 	</select>
 </mapper>

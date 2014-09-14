@@ -8,11 +8,17 @@
 	<sql id="tableName">
 		t_operator
 	</sql>
+	<sql id="tableAlias">
+		Operator
+	</sql>
+	<sql id="buildCascadeTable"><!-- 构建级联表 -->
+		select u.* from <include refid="com.lmiky.jdp.user.pojo.User.tableName"/> u inner join <include refid="tableName"/> o on u.id = o.id
+	</sql>
+	
 	<select id="find" resultMap="operator">
-		select * from 
-		<include refid="com.lmiky.jdp.user.pojo.User.tableName"/>
+		select * from (<include refid="buildCascadeTable"/>) <include refid="tableAlias"/>
 		<trim prefix="where">
-			<include refid="common.propertiesCondition"/>
+			<include refid="common.aliasPropertiesCondition"/>
 		</trim>
 	</select>
 	
@@ -21,10 +27,9 @@
 	 </insert>
 	 
 	 <select id="list" resultMap="operator">
-		select * from 
-		<include refid="com.lmiky.jdp.user.pojo.User.tableName"/>
+		select * from (<include refid="buildCascadeTable"/>) <include refid="tableAlias"/>
 		<trim prefix="where">
-			<include refid="common.propertiesCondition"/>
+			<include refid="common.aliasPropertiesCondition"/>
 		</trim>
 		<include refid="common.sortCondition"/>
 		<include refid="common.pageCondition"/>

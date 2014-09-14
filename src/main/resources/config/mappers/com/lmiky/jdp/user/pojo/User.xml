@@ -12,6 +12,9 @@
 	<sql id="tableName">
 		t_user
 	</sql>
+	<sql id="tableAlias">
+		User
+	</sql>
 	
 	<insert id="add" parameterType="User"  useGeneratedKeys="true" keyColumn="id" keyProperty="id">
 	 	insert into <include refid="tableName"/>(loginName, password, lastSetPasswordTime, valid, <include refid="com.lmiky.jdp.user.pojo.Person.addField"/>) 

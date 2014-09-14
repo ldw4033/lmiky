@@ -19,6 +19,9 @@
 	<sql id="tableName">
 		t_logger
 	</sql>
+	<sql id="tableAlias">
+		Logger
+	</sql>
 
 	<insert id="add" parameterType="Logger" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
 		insert into
@@ -28,9 +31,9 @@
 
 	<select id="list" resultMap="logger">
 		select * from
-		<include refid="tableName" />
+		<include refid="tableName" /> <include refid="tableAlias" />
 		<trim prefix="where">
-			<include refid="common.propertiesCondition" />
+			<include refid="common.aliasPropertiesCondition" />
 		</trim>
 		<include refid="common.sortCondition" />
 		<include refid="common.pageCondition" />

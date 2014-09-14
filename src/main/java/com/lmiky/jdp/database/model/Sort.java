@@ -76,4 +76,17 @@ public class Sort implements Serializable {
 	public void setSortClass(Class<?> sortClass) {
 		this.sortClass = sortClass;
 	}
+	
+	/**
+	 * 获取排序类的别名
+	 * @author lmiky
+	 * @date 2014年9月14日 上午11:03:33
+	 * @return
+	 */
+	public String getClassAlias() {
+		if(this.sortClass != null) {
+			return this.sortClass.getSimpleName();
+		}
+		return "";
+	}
 }

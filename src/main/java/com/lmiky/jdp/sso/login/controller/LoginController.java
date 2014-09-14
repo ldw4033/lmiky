@@ -76,11 +76,14 @@ public class LoginController extends BaseController {
 			@RequestParam(value = "loginName", required = false) String loginName, @RequestParam(value = "password", required = false) String password,
 			@RequestParam(value = "rememberLoginName", required = false) boolean rememberLoginName) {
 		try {
+			//获取登陆用户信息
 			User user = ssoService.login(loginName, password, Operator.class);
 			SessionInfo sessionInfo = sessionService.generateSessionInfo(request, user);
 			ssoService.recordSessionInfo(sessionInfo);
 			HttpSession session = request.getSession();
+			//设置session信息
 			session.setAttribute(Constants.SESSION_ATTR_SESSIONINFO, sessionInfo);
+			//记录日志
 			LoggerUtils.save(request, null, null, sessionInfo.getUserId(), sessionInfo.getUserName(), OperateType.OPE_TYPE_LOGIN, this.getClass().getName(), null, service);
 			//记录cookie
 			if(rememberLoginName) {
@@ -88,7 +91,7 @@ public class LoginController extends BaseController {
 			} else {
 				CookieUtils.removeCookie(response, COOKIE_NAME_LOGINNAME);
 			}
-			
+			//是否继续之前的操作
 			String continuationId = request.getParameter(Constants.HTTP_PARAM_LOGIN_REDIRECT);
 			if(!StringUtils.isBlank(continuationId)) {
 				String redirectUrl = (String)session.getAttribute(continuationId + Constants.SESSION_ATTR_CONTINUATION_URL_SUFFIX);

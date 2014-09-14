@@ -16,6 +16,10 @@
 	<sql id="tableName">
 		t_module
 	</sql>
+	<sql id="tableAlias">
+		Module
+	</sql>
+	
 	<select id="findById" resultMap="module">
 		select * from 
 		<include refid="tableName"/>	
@@ -30,9 +34,9 @@
 	
 	<select id="find" resultMap="module">
 		select * from 
-		<include refid="tableName"/>
+		<include refid="tableName"/> <include refid="tableAlias" />
 		<trim prefix="where">
-			<include refid="common.propertiesCondition"/>
+			<include refid="common.aliasPropertiesCondition"/>
 		</trim>
 	</select>
 	
@@ -66,9 +70,9 @@
 	 
 	 <select id="list" resultMap="module">
 		select * from 
-		<include refid="tableName"/>	
+		<include refid="tableName"/> <include refid="tableAlias" />
 		<trim prefix="where">
-			<include refid="common.propertiesCondition"/>
+			<include refid="common.aliasPropertiesCondition"/>
 		</trim>
 		<include refid="common.sortCondition"/>
 		<include refid="common.pageCondition"/>

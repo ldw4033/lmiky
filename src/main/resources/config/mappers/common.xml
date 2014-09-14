@@ -26,7 +26,7 @@
      
     <!-- 删除 -->
     <delete id="delete" parameterType="string">
-    	delete from ${tableName} 
+    	delete from ${tableName}
     	<trim prefix="where">
     		<include refid="common.propertiesCondition"/>
     	</trim>
@@ -98,12 +98,67 @@
 		</if>
     </sql>
     
+    <!-- 过滤条件-带别名 -->
+    <sql id="aliasPropertiesCondition">
+    	<if test="filters != null and filters.size > 0">
+        	<foreach collection="filters" item="filter" separator="and">
+				<choose>
+					<when test="filter.compareType.value == 'eq'">
+						${filter.classAlias}.${filter.propertyName} = #{filter.propertyValue}
+					</when>
+					<when test="filter.compareType.value == 'ne'">
+						${filter.classAlias}.${filter.propertyName} != #{filter.propertyValue}
+					</when>
+					<when test="filter.compareType.value == 'gt'">
+						${filter.classAlias}.${filter.propertyName} > #{filter.propertyValue}
+					</when>
+					<when test="filter.compareType.value == 'ge'">
+						${filter.classAlias}.${filter.propertyName} >= #{filter.propertyValue}
+					</when>
+					<when test="filter.compareType.value == 'lt'">
+						<![CDATA[ ${filter.classAlias}.${filter.propertyName} < #{filter.propertyValue} ]]>
+					</when>
+					<when test="filter.compareType.value == 'le'">
+						<![CDATA[ ${filter.classAlias}.${filter.propertyName} <= #{filter.propertyValue} ]]>
+					</when>
+					<when test="filter.compareType.value == 'like'">
+						${filter.classAlias}.${filter.propertyName} like '%${filter.propertyValue}%'
+					</when>
+					<when test="filter.compareType.value == 'llike'">
+						${filter.classAlias}.${filter.propertyName} like '${filter.propertyValue}%'
+					</when>
+					<when test="filter.compareType.value == 'rlike'">
+						${filter.classAlias}.${filter.propertyName} like '%${filter.propertyValue}'
+					</when>
+					<when test="filter.compareType.value == 'nlike'">
+						${filter.classAlias}.${filter.propertyName} not like '${filter.propertyValue}%'
+					</when>
+					<when test="filter.compareType.value == 'nllike'">
+						${filter.classAlias}.${filter.propertyName} not like '${filter.propertyValue}%'
+					</when>
+					<when test="filter.compareType.value == 'nrlike'">
+						${filter.classAlias}.${filter.propertyName} not like '%${filter.propertyValue}'
+					</when>
+					<when test="filter.compareType.value == 'nnull'">
+						${filter.classAlias}.${filter.propertyName} is not null
+					</when>
+					<when test="filter.compareType.value == 'null'">
+						${filter.classAlias}.${filter.propertyName} is null
+					</when>
+					<otherwise>
+						${filter.classAlias}.${filter.propertyName} = #{filter.propertyValue}
+					</otherwise>
+				</choose>
+			</foreach>
+		</if>
+    </sql>
+    
     <!-- 排序 -->
     <sql id="sortCondition">
     	<if test="sorts != null and sorts.size > 0">
 	    	order by
 	        <foreach collection="sorts" item="sort" separator=",">
-					${sort.propertyName} ${sort.sortType}
+					${sort.classAlias}.${sort.propertyName} ${sort.sortType}
 			</foreach>
 		</if>
     </sql>
@@ -117,9 +172,9 @@
     </sql>
      
      <select id="count" resultType="java.lang.Integer">
-     	select count(*) from ${tableName}
+     	select count(*) from ${tableName} ${tableAlias}
      	<trim prefix="where">
-    		<include refid="common.propertiesCondition"/>
+    		<include refid="common.aliasPropertiesCondition"/>
     	</trim>
      </select>
 </mapper>

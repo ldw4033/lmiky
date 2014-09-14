@@ -29,6 +29,14 @@ public class BaseDAOImpl implements BaseDAO {
 
 	// 参数字段
 	/**
+	 * 表名
+	 */
+	protected static final String PARAM_NAME_TABLENAME= "tableName";
+	/**
+	 * 表别名
+	 */
+	protected static final String PARAM_NAME_TABLEALIAS = "tablealias";
+	/**
 	 * 过滤条件
 	 */
 	protected static final String PARAM_NAME_FILTERS = "filters";
@@ -159,8 +167,8 @@ public class BaseDAOImpl implements BaseDAO {
 	 */
 	protected <T extends BasePojo> Map<String, Object> generateParameterMap(Class<T> pojoClass) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("tableName", getPojoTabelName(pojoClass));
-		params.put("pojoName", pojoClass.getSimpleName());
+		params.put(PARAM_NAME_TABLENAME, getPojoTabelName(pojoClass));
+		params.put(PARAM_NAME_TABLEALIAS, pojoClass.getSimpleName());	
 		return params;
 	}
 

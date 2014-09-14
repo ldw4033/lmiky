@@ -36,7 +36,7 @@ public class Authority extends BasePojo {
 	/**
 	 * @return the modulePath
 	 */
-	@Column(name="module_path")
+	@Column(name="modulePath")
 	public String getModulePath() {
 		return modulePath;
 	}
@@ -49,7 +49,7 @@ public class Authority extends BasePojo {
 	/**
 	 * @return the authorityCode
 	 */
-	@Column(name="authority_code")
+	@Column(name="authorityCode")
 	public String getAuthorityCode() {
 		return authorityCode;
 	}

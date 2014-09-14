@@ -1,13 +1,16 @@
 package com.lmiky.jdp.authority.dao.mybatis;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
 import com.lmiky.jdp.authority.dao.AuthorityDAO;
+import com.lmiky.jdp.authority.pojo.Authority;
 import com.lmiky.jdp.database.dao.mybatis.BaseDAOImpl;
 import com.lmiky.jdp.database.exception.DatabaseException;
 import com.lmiky.jdp.service.exception.ServiceException;
+import com.lmiky.jdp.system.menu.pojo.LatelyOperateMenu;
 import com.lmiky.jdp.user.pojo.Role;
 
 /**
@@ -23,10 +26,9 @@ public class AuthorityDAOImpl extends BaseDAOImpl implements AuthorityDAO {
 	 */
 	public List<Role> listAuthorizedOperator(String modulePath) throws DatabaseException {
 		try {
-//			String hql = "select distinct Role from Role Role where exists (select 1 from Authority Authority where Authority.modulePath = '" + modulePath
-//					+ "' and Authority.operator = Role.id)";
-//			return list(hql);
-			return null;
+			Map<String, Object> params = generateParameterMap(LatelyOperateMenu.class);
+			params.put("modulePath", modulePath);
+			return sqlSessionTemplate.selectList(Authority.class.getName() + ".listAuthorizedOperator", params);
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
@@ -38,10 +40,9 @@ public class AuthorityDAOImpl extends BaseDAOImpl implements AuthorityDAO {
 	@Override
 	public List<Role> listUnauthorizedOperator(String modulePath) throws DatabaseException {
 		try {
-//			String hql = "select distinct Role from Role Role where not exists (select 1 from Authority Authority where Authority.modulePath = '" + modulePath
-//					+ "' and Authority.operator = Role.id)";
-//			return list(hql);
-			return null;
+			Map<String, Object> params = generateParameterMap(LatelyOperateMenu.class);
+			params.put("modulePath", modulePath);
+			return sqlSessionTemplate.selectList(Authority.class.getName() + ".listUnauthorizedOperator", params);
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
@@ -53,17 +54,13 @@ public class AuthorityDAOImpl extends BaseDAOImpl implements AuthorityDAO {
 	@Override
 	public boolean checkAuthority(String authorityCode, Long userId) throws ServiceException {
 		try {
-//			StringBuffer hql = new StringBuffer();
-//			// 检查角色
-//			hql.append("select 1 from Operator Operator, Authority  Authority join Operator.roles Role where Operator.id = ").append(userId)
-//					.append(" and Role.id = Authority.operator and Authority.authorityCode = '").append(authorityCode).append("'");
-//			List<Object[]> result = executeQuery(hql.toString());
-//			if (result.size() > 0) {
-//				return true;
-//			}
+			Map<String, Object> params = generateParameterMap(LatelyOperateMenu.class);
+			params.put("authorityCode", authorityCode);
+			params.put("userId", userId);
+			Integer result = sqlSessionTemplate.selectOne(Authority.class.getName() + ".checkAuthority", params);
+			return result > 0;
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
-		return false;
 	}
 }

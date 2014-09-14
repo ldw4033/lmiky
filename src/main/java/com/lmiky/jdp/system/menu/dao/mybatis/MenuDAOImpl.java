@@ -44,9 +44,9 @@ public class MenuDAOImpl extends BaseDAOImpl implements MenuDAO {
 	@Override
 	public List<String> listFavoriteMenuId(Long userId) throws DatabaseException {
 		try {
-			Map<String, Object> params = generateParameterMap(LatelyOperateMenu.class);
+			Map<String, Object> params = generateParameterMap(MyFavoriteMenu.class);
 			params.put("userId", userId);
-			setSortParameter(params, BasePojo.POJO_FIELD_NAME_ID, Sort.SORT_TYPE_DESC, LatelyOperateMenu.class);
+			setSortParameter(params, BasePojo.POJO_FIELD_NAME_ID, Sort.SORT_TYPE_DESC, MyFavoriteMenu.class);
 			return sqlSessionTemplate.selectList(MyFavoriteMenu.class.getName() + ".listFavoriteMenuId", params);
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());

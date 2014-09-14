@@ -120,4 +120,17 @@ public class PropertyFilter implements Serializable {
 	public void setCompareClass(Class<?> compareClass) {
 		this.compareClass = compareClass;
 	}
+	
+	/**
+	 * 获取属性类的别名
+	 * @author lmiky
+	 * @date 2014年9月14日 上午11:03:33
+	 * @return
+	 */
+	public String getClassAlias() {
+		if(this.compareClass != null) {
+			return this.compareClass.getSimpleName();
+		}
+		return "";
+	}
 }
