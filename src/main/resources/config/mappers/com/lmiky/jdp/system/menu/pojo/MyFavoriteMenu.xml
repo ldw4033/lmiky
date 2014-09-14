@@ -5,9 +5,9 @@
 <mapper namespace="com.lmiky.jdp.system.menu.pojo.MyFavoriteMenu">
 	<resultMap type="MyFavoriteMenu" id="myFavoriteMenu"
 		extends="com.lmiky.jdp.database.pojo.BasePojo.basePojo">
-		<id column="userId" property="userId" />
-		<id column="addTime" property="addTime" />
-		<id column="menuId" property="menuId" />
+		<result column="userId" property="userId" />
+		<result column="addTime" property="addTime" />
+		<result column="menuId" property="menuId" />
 	</resultMap>
 
 	<sql id="tableName">

@@ -68,8 +68,11 @@ public class Page<T> implements Serializable {
 	public void resetCurrentPage() {
 		if(currentPage <= 0) {
 			currentPage = 1;
-		} else if(currentPage >= getPageCount()) {
-			currentPage = getPageCount();
+		} else {
+			int pageCount = getPageCount();
+			 if(currentPage > pageCount) {
+				 currentPage = pageCount;
+			 }
 		}
 	}
 	
@@ -80,7 +83,8 @@ public class Page<T> implements Serializable {
 	 * @return
 	 */
 	public int getItemOffset() {
-		return (getCurrentPage() - 1) * getPageSize();
+		int offset = (getCurrentPage() - 1) * getPageSize();
+		return offset < 0 ? 0 : offset;
 	}
 	
 	/**

@@ -4,9 +4,9 @@
 
 <mapper namespace="com.lmiky.jdp.authority.pojo.Authority">
 	<resultMap type="Authority" id="authority" extends="com.lmiky.jdp.database.pojo.BasePojo.basePojo">
-		<id column="operator" property="operator" />
-		<id column="modulePath" property="modulePath" />
-		<id column="authorityCode" property="authorityCode" />
+		<result column="operator" property="operator" />
+		<result column="modulePath" property="modulePath" />
+		<result column="authorityCode" property="authorityCode" />
 	</resultMap>
 	<sql id="tableName">
 		t_authority

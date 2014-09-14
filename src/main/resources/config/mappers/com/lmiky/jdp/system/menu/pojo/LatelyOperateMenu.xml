@@ -5,9 +5,9 @@
 <mapper namespace="com.lmiky.jdp.system.menu.pojo.LatelyOperateMenu">
 	<resultMap type="LatelyOperateMenu" id="latelyOperateMenu"
 		extends="com.lmiky.jdp.database.pojo.BasePojo.basePojo">
-		<id column="userId" property="userId" />
-		<id column="opeTime" property="opeTime" />
-		<id column="menuId" property="menuId" />
+		<result column="userId" property="userId" />
+		<result column="opeTime" property="opeTime" />
+		<result column="menuId" property="menuId" />
 	</resultMap>
 
 	<sql id="tableName">

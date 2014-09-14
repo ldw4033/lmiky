@@ -5,15 +5,15 @@
 <mapper namespace="com.lmiky.jdp.logger.pojo.Logger">
 	<resultMap type="Logger" id="logger"
 		extends="com.lmiky.jdp.database.pojo.BasePojo.basePojo">
-		<id column="pojoName" property="pojoName" />
-		<id column="pojoId" property="pojoId" />
-		<id column="userId" property="userId" />
-		<id column="userName" property="userName" />
-		<id column="logTime" property="logTime" />
-		<id column="opeType" property="opeType" />
-		<id column="opeClassName" property="opeClassName" />
-		<id column="logDesc" property="logDesc" />
-		<id column="ip" property="ip" />
+		<result column="pojoName" property="pojoName" />
+		<result column="pojoId" property="pojoId" />
+		<result column="userId" property="userId" />
+		<result column="userName" property="userName" />
+		<result column="logTime" property="logTime" />
+		<result column="opeType" property="opeType" />
+		<result column="opeClassName" property="opeClassName" />
+		<result column="logDesc" property="logDesc" />
+		<result column="ip" property="ip" />
 	</resultMap>
 
 	<sql id="tableName">

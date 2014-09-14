@@ -4,7 +4,7 @@
 
 <mapper namespace="com.lmiky.jdp.user.pojo.Role">
 	<resultMap type="Role" id="role" extends="com.lmiky.jdp.database.pojo.BasePojo.basePojo">
-		<id column="name" property="name" />
+		<result column="name" property="name" />
 	</resultMap>
 	<sql id="tableName">
 		t_role

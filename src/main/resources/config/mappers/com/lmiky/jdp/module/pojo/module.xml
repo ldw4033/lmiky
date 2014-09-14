@@ -4,8 +4,8 @@
 
 <mapper namespace="com.lmiky.jdp.module.pojo.Module">
 	<resultMap type="Module" id="module" extends="com.lmiky.jdp.database.pojo.BasePojo.basePojo">
-		<id column="name" property="name"/>
-		<id column="path" property="path"/>
+		<result column="name" property="name"/>
+		<result column="path" property="path"/>
 		<!-- 
 		<association property="group" column="group_id" select="com.lmiky.jdp.module.pojo.ModuleGroup.findById"/>
 		 -->

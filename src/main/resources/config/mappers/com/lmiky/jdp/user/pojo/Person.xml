@@ -4,12 +4,12 @@
 
 <mapper namespace="com.lmiky.jdp.user.pojo.Person">
 	<resultMap type="Person" id="person" extends="com.lmiky.jdp.database.pojo.BasePojo.basePojo">
-		<id column="name" property="name"/>
-		<id column="email" property="email"/>
-		<id column="phone" property="phone"/>
-		<id column="photo" property="photo"/>
-		<id column="createTime" property="createTime"/>
-		<id column="description" property="description"/>
+		<result column="name" property="name"/>
+		<result column="email" property="email"/>
+		<result column="phone" property="phone"/>
+		<result column="photo" property="photo"/>
+		<result column="createTime" property="createTime"/>
+		<result column="description" property="description"/>
 	</resultMap>
 	<!-- 添加字段 -->
 	<sql id="addField">

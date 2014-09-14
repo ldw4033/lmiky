@@ -35,7 +35,7 @@ public class BaseDAOImpl implements BaseDAO {
 	/**
 	 * 表别名
 	 */
-	protected static final String PARAM_NAME_TABLEALIAS = "tablealias";
+	protected static final String PARAM_NAME_TABLEALIAS = "tableAlias";
 	/**
 	 * 过滤条件
 	 */
@@ -646,7 +646,7 @@ public class BaseDAOImpl implements BaseDAO {
 			Map<String, Object> params = generateParameterMap(pojoClass);
 			params.put(PARAM_NAME_FILTERS, propertyFilters);
 			setSortParameter(params, sorts);
-			setPageParameter(params, pageFirst, pageSize);
+			setPageParameter(params, pageFirst < 0 ? 0 : pageFirst, pageSize < 1 ? 1 : pageSize);
 			return sqlSessionTemplate.selectList(pojoClass.getName() + SQLNAME_SUFFIX_LIST, params);
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
