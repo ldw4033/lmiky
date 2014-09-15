@@ -17,7 +17,6 @@ import com.lmiky.jdp.database.pojo.BasePojo;
 @Table(name = "t_goods")
 public class Goods extends BasePojo {
 	private static final long serialVersionUID = 7062654114624646911L;
-	
 	//审核状态
 	public static final int AUDIT_NOAUDIT = 0; // 未经审核
 	public static final int AUDIT_PASSED = 1; // 审核通过

@@ -10,7 +10,6 @@ import java.util.Set;
 import javax.annotation.Resource;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.hibernate.Hibernate;
 import org.junit.Test;
 
 import com.lmiky.cms.directory.pojo.CmsDirectory;
@@ -79,7 +78,6 @@ public class CmsResourceTest extends BaseTest {
 	@Test
 	public void testClone() throws ServiceException, ClassNotFoundException, IOException, IllegalAccessException, InvocationTargetException {
 		CmsResource resource = baseService.find(CmsResource.class, 132l);
-		Hibernate.initialize(resource);
 		System.out.println( resource.getTitle());
 		System.out.println(System.currentTimeMillis());
 		CmsResource c1 = (CmsResource) resource.deepClone();
