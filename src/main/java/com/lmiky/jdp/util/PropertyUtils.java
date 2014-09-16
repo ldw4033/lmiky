@@ -1,10 +1,15 @@
 package com.lmiky.jdp.util;
 
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+
+import com.lmiky.tiger.goods.pojo.Goods;
 
 /**
  * 属性工具
@@ -24,7 +29,9 @@ public class PropertyUtils {
 		PropertyDescriptor[] descriptors = org.apache.commons.beanutils.PropertyUtils.getPropertyDescriptors(clazz);
 		Map<String, Class<?>> classTypes = new HashMap<String, Class<?>>();
 		for(int i=0; i<descriptors.length; i++) {
-			classTypes.put(descriptors[i].getName(), descriptors[i].getPropertyType());
+			if(!"class".equals(descriptors[i].getName())) {	//去掉Object的getClass
+				classTypes.put(descriptors[i].getName(), descriptors[i].getPropertyType());
+			}
 		}
 		return classTypes;
 	}
@@ -50,4 +57,47 @@ public class PropertyUtils {
 		return null;
 	}
 
+	/**
+	 * 获取类所有的字段，包含父类的字段
+	 * @author lmiky
+	 * @date 2014年9月16日 下午2:51:38
+	 * @param clazz
+	 * @return
+	 */
+	public static List<String> getProperties(Class<?> clazz) {
+		List<String> properties = new ArrayList<String>();
+		PropertyDescriptor[] descriptors = org.apache.commons.beanutils.PropertyUtils.getPropertyDescriptors(clazz);
+		for(PropertyDescriptor descriptor : descriptors) {
+			if(!"class".equals(descriptor.getName())) {	//去掉Object的getClass
+				properties.add(descriptor.getName());
+			}
+		}
+		return properties;
+	}
+	
+	/**
+	 * 获取类所有的字段，不包含父类
+	 * @author lmiky
+	 * @date 2014年9月16日 下午2:56:46
+	 * @param clazz
+	 * @return
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 */
+	public static List<String> getDeclaredProperties(Class<?> clazz) throws InstantiationException, IllegalAccessException {
+		List<String> properties = new ArrayList<String>();
+		Field[] fields = clazz.getDeclaredFields();
+		Object bean = clazz.newInstance();
+		for(Field field : fields) {
+			if(org.apache.commons.beanutils.PropertyUtils.isReadable(bean, field.getName())) {	//排除定义的一些属性，比如serialVersionUID和public static final VAR
+				properties.add(field.getName());
+			}
+		}
+		return properties;
+	}
+	
+	public static void main(String[] args) throws Exception {
+		PropertyUtils.getProperties(Goods.class);
+//		PropertyUtils.getDeclaredProperties(Goods.class);
+	}
 }

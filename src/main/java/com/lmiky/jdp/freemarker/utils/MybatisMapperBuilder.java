@@ -4,12 +4,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import com.lmiky.jdp.database.pojo.BasePojo;
 import com.lmiky.jdp.logger.util.LoggerUtils;
 import com.lmiky.jdp.util.PropertyUtils;
 import com.lmiky.tiger.goods.pojo.Goods;
@@ -72,24 +69,17 @@ public class MybatisMapperBuilder extends BaseBuilder {
 			Writer writer  = new OutputStreamWriter(new FileOutputStream(outputDirectoryPath + "\\\\" + classSimpleName + ".xml"),"UTF-8");  
 			
 			//类属性列表
-			Map<String, Class<?>> classTypes = PropertyUtils.getPropertiesClassType(clazz);
-			List<String> fields = new ArrayList<String>();
-			for(String fieldName : classTypes.keySet()) {
-				if(fieldName.equals(BasePojo.POJO_FIELD_NAME_ID)) {
-					continue;
-				}
-				fields.add(fieldName);
-			}
-			paramMap.put("fields", fields);
+			paramMap.put("fields", PropertyUtils.getDeclaredProperties(clazz));
             template.process(paramMap, writer);
 			return true;
 		} catch (Exception e) {
+			e.printStackTrace();
 			LoggerUtils.logException(e);
 			return false;
 		}
 	}
 
 	public static void main(String[] args) {
-		MybatisMapperBuilder.builder(Goods.class);
+		System.out.println(MybatisMapperBuilder.builder(Goods.class));
 	}
 }

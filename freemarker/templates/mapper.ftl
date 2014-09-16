@@ -16,6 +16,24 @@
 		${className}
 	</sql>
 
+	<select id="find" resultMap="${resultMapId}">
+		select * from 
+		<include refid="tableName"/> <include refid="tableAlias" />
+		<trim prefix="where">
+			<include refid="common.aliasPropertiesCondition"/>
+		</trim>
+	</select>
+	
+	<select id="list" resultMap="${resultMapId}">
+		select * from
+		<include refid="tableName" /> <include refid="tableAlias" />
+		<trim prefix="where">
+			<include refid="common.aliasPropertiesCondition" />
+		</trim>
+		<include refid="common.sortCondition" />
+		<include refid="common.pageCondition" />
+	</select>
+
 	<insert id="add" parameterType="${className}" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
 		insert into
 		<include refid="tableName" />
@@ -33,14 +51,14 @@
 			</#list>
 		)
 	</insert>
-
-	<select id="list" resultMap="${resultMapId}">
-		select * from
-		<include refid="tableName" /> <include refid="tableAlias" />
-		<trim prefix="where">
-			<include refid="common.aliasPropertiesCondition" />
-		</trim>
-		<include refid="common.sortCondition" />
-		<include refid="common.pageCondition" />
-	</select>
+	
+	<update id="update" parameterType="${className}">
+		update <include refid="tableName" /> 
+		<set>
+			<#list fields as field> 
+			<if test="${field} != null">${field}=${r"#{"}${field}}<#if field_has_next>,</#if></if>
+			</#list>
+		</set>
+		where id=${r"#{"}id}
+	</update>
 </mapper>
