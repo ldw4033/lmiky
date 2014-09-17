@@ -1,0 +1,6 @@
+##---------操作配置-----------##
+#custom：自定义
+#common：通用
+#没在本文件配置的，默认为common
+#操作员
+com.lmiky.jdp.user.pojo.Operator_count=custom

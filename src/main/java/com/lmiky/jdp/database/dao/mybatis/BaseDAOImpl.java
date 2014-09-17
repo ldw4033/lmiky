@@ -5,10 +5,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.MissingResourceException;
 
 import javax.annotation.Resource;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.StringUtils;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +20,7 @@ import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.database.pojo.BasePojo;
+import com.lmiky.jdp.util.PropertiesUtils;
 
 /**
  * 基础dao
@@ -36,6 +39,14 @@ public class BaseDAOImpl implements BaseDAO {
 	 * 表别名
 	 */
 	protected static final String PARAM_NAME_TABLEALIAS = "tableAlias";
+	/**
+	 * 是否有级联其他表
+	 */
+	protected static final String PARAM_NAME_HAS_JOIN = "hasJoin";
+	/**
+	 * 是否有级联其他表
+	 */
+	protected static final String PARAM_NAME_JOIN_TABLEALISA = "joinTableAlias";
 	/**
 	 * 过滤条件
 	 */
@@ -76,6 +87,11 @@ public class BaseDAOImpl implements BaseDAO {
 	protected static final String SQLNAME_UPDATE = "update";
 	
 	/**
+	 * sql方法名：根据参数修改修改
+	 */
+	protected static final String SQLNAME_UPDATE_BY_PARAMS = "updateByParams";
+	
+	/**
 	 * sql方法名：删除
 	 */
 	protected static final String SQLNAME_DELETE = "delete";
@@ -95,43 +111,28 @@ public class BaseDAOImpl implements BaseDAO {
 	 */
 	protected static final String SQLNAME_COUNT = "count";
 
-	// 查询方法名后缀
-	/**
-	 * 查询方法名后缀：查询
-	 */
-	protected static final String SQLNAME_SUFFIX_FIND = "." + SQLNAME_FIND;
-	/**
-	 * 查询方法名后缀：添加
-	 */
-	protected static final String SQLNAME_SUFFIX_ADD = "." + SQLNAME_ADD;
-	/**
-	 * 查询方法名后缀：添加
-	 */
-	protected static final String SQLNAME_SUFFIX_UPDATE = "." + SQLNAME_UPDATE;
-	/**
-	 * 查询方法名后缀：删除
-	 */
-	protected static final String SQLNAME_SUFFIX_DELETE = "." + SQLNAME_DELETE;
-	/**
-	 * 查询方法名后缀：根据ID批量删除
-	 */
-	protected static final String SQLNAME_SUFFIX_DELETE_BATCH_BY_IDS = "." + SQLNAME_DELETE_BATCH_BY_IDS;
-	/**
-	 * 查询方法名后缀：获取列表
-	 */
-	protected static final String SQLNAME_SUFFIX_LIST = "." + SQLNAME_LIST;
-	/**
-	 * 查询方法名后缀：统计
-	 */
-	protected static final String SQLNAME_SUFFIX_COUNT = "." + SQLNAME_COUNT;
-
 	protected SqlSessionTemplate sqlSessionTemplate;
 
 	/**
 	 * 对象对应的数据库表名
 	 */
 	protected Map<Class<?>, String> pojoTableNames = new HashMap<Class<?>, String>();
-
+	
+	/**
+	 * 操作配置：自定义执行，或通用的执行
+	 */
+	protected Map<String, String> operateConfig = new HashMap<String, String>();
+	
+	//操作配置值
+	/**
+	 * 通用
+	 */
+	protected static final String OPEARATE_CONFIG_COMMON = "common";
+	/**
+	 * 自定义
+	 */
+	protected static final String OPEARATE_CONFIG_CUSTOM = "custom";
+	
 	/**
 	 * 获取实体类的表名
 	 * @author lmiky
@@ -159,6 +160,47 @@ public class BaseDAOImpl implements BaseDAO {
 	}
 
 	/**
+	 * 获取操作配置
+	 * @author lmiky
+	 * @date 2014年9月17日 上午10:21:45
+	 * @param pojoClass
+	 * @param operateName
+	 * @return
+	 */
+	protected String getOperateConfig(Class<?> pojoClass, String operateName) {
+		//缓存
+		String cacheKey = pojoClass.getName() + "_" + operateName;
+		String cacheValue = operateConfig.get(cacheKey);
+		if(!StringUtils.isBlank(cacheValue)) {
+			return cacheValue;
+		}
+		try {
+			cacheValue = PropertiesUtils.getStringValue("config/mappers/config", cacheKey);
+		} catch(MissingResourceException e) {	//没有配置，则默认为通用
+			cacheValue = OPEARATE_CONFIG_COMMON;
+		}
+		operateConfig.put(cacheKey, cacheValue);
+		return cacheValue;
+	}
+	
+	/**
+	 * 获取操作空间名
+	 * @author lmiky
+	 * @date 2014年9月17日 上午10:25:14
+	 * @param pojoClass
+	 * @param operateName
+	 * @return
+	 */
+	protected String getOperateNameSpace(Class<?> pojoClass, String operateName) {
+		String operateConfig = getOperateConfig(pojoClass, operateName);
+		if(OPEARATE_CONFIG_COMMON.equals(operateConfig)) {
+			return MAPPER_NAMESPACE_COMMON + "." + operateName;
+		} else {
+			return pojoClass.getName() + "." + operateName;
+		}
+	}
+	
+	/**
 	 * 生成参数
 	 * @author lmiky
 	 * @date 2014年9月9日 上午10:23:01
@@ -166,9 +208,39 @@ public class BaseDAOImpl implements BaseDAO {
 	 * @return
 	 */
 	protected <T extends BasePojo> Map<String, Object> generateParameterMap(Class<T> pojoClass) {
+		return generateParameterMap(pojoClass, null);
+	}
+	
+	/**
+	 * 生成参数
+	 * @author lmiky
+	 * @date 2014年9月17日 下午2:24:46
+	 * @param pojoClass
+	 * @param propertyFilters
+	 * @return
+	 */
+	protected <T extends BasePojo> Map<String, Object> generateParameterMap(Class<T> pojoClass,  List<PropertyFilter> propertyFilters) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put(PARAM_NAME_TABLENAME, getPojoTabelName(pojoClass));
 		params.put(PARAM_NAME_TABLEALIAS, pojoClass.getSimpleName());	
+		if(propertyFilters == null || propertyFilters.isEmpty()) {
+			params.put(PARAM_NAME_HAS_JOIN, false);
+		} else {
+			params.put(PARAM_NAME_FILTERS, propertyFilters);
+			boolean hasJoin = false;	//是否有级联别的表
+			List<String> joinTableAlias = new ArrayList<String>();	
+			String pojoClassName = pojoClass.getName();
+			for(PropertyFilter filter : propertyFilters) {
+				Class<?> filterClass = filter.getCompareClass();
+				String filterClassName = (filterClass == null) ? "" : filterClass.getName();
+				if(!pojoClassName.equals(filterClassName)) {	//是否是其他的表
+					hasJoin = true;
+					joinTableAlias.add(filterClass.getSimpleName());	//添加到所级联的表列表中
+				}
+			}
+			params.put(PARAM_NAME_HAS_JOIN, hasJoin);
+			params.put(PARAM_NAME_JOIN_TABLEALISA, joinTableAlias);
+		}
 		return params;
 	}
 
@@ -266,9 +338,8 @@ public class BaseDAOImpl implements BaseDAO {
 	 */
 	public <T extends BasePojo> T find(Class<T> pojoClass, List<PropertyFilter> propertyFilters) throws DatabaseException {
 		try {
-			Map<String, Object> params = generateParameterMap(pojoClass);
-			params.put(PARAM_NAME_FILTERS, propertyFilters);
-			return sqlSessionTemplate.selectOne(pojoClass.getName() + SQLNAME_SUFFIX_FIND, params);
+			Map<String, Object> params = generateParameterMap(pojoClass, propertyFilters);
+			return sqlSessionTemplate.selectOne(pojoClass.getName() + "." + SQLNAME_FIND, params);
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
@@ -325,7 +396,7 @@ public class BaseDAOImpl implements BaseDAO {
 	@Override
 	public <T extends BasePojo> void add(T pojo) throws DatabaseException {
 		try {
-			sqlSessionTemplate.insert(pojo.getClass().getName() + SQLNAME_SUFFIX_ADD, pojo);
+			sqlSessionTemplate.insert(pojo.getClass().getName() + "." + SQLNAME_ADD, pojo);
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
@@ -353,7 +424,7 @@ public class BaseDAOImpl implements BaseDAO {
 	@Override
 	public <T extends BasePojo> void update(T pojo) throws DatabaseException {
 		try {
-			sqlSessionTemplate.update(pojo.getClass().getName() + SQLNAME_SUFFIX_UPDATE, pojo);
+			sqlSessionTemplate.update(pojo.getClass().getName() + "." + SQLNAME_UPDATE, pojo);
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
@@ -414,7 +485,7 @@ public class BaseDAOImpl implements BaseDAO {
 			Map<String, Object> params = generateParameterMap(pojoClass);
 			params.put("condition", condition);
 			params.put("updateValue", updateValue);
-			return sqlSessionTemplate.update(MAPPER_NAMESPACE_COMMON + SQLNAME_SUFFIX_UPDATE, params) > 0;
+			return sqlSessionTemplate.update(getOperateNameSpace(pojoClass, SQLNAME_UPDATE_BY_PARAMS), params) > 0;
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
@@ -498,7 +569,7 @@ public class BaseDAOImpl implements BaseDAO {
 			Map<String, Object> params = new HashMap<String, Object>();
 			params.put("tableName", getPojoTabelName(pojoClass));
 			params.put("ids", ids);
-			sqlSessionTemplate.delete(MAPPER_NAMESPACE_COMMON + SQLNAME_SUFFIX_DELETE_BATCH_BY_IDS, params);
+			sqlSessionTemplate.delete(getOperateNameSpace(pojoClass, SQLNAME_DELETE_BATCH_BY_IDS), params);
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
@@ -529,9 +600,8 @@ public class BaseDAOImpl implements BaseDAO {
 	@Override
 	public <T extends BasePojo> int delete(Class<T> pojoClass, List<PropertyFilter> propertyFilters) throws DatabaseException {
 		try {
-			Map<String, Object> params = generateParameterMap(pojoClass);
-			params.put(PARAM_NAME_FILTERS, propertyFilters);
-			return sqlSessionTemplate.delete(MAPPER_NAMESPACE_COMMON + SQLNAME_SUFFIX_DELETE, params);
+			Map<String, Object> params = generateParameterMap(pojoClass, propertyFilters);
+			return sqlSessionTemplate.delete(getOperateNameSpace(pojoClass, SQLNAME_DELETE), params);
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
@@ -643,11 +713,10 @@ public class BaseDAOImpl implements BaseDAO {
 	@Override
 	public <T extends BasePojo> List<T> list(Class<T> pojoClass, List<PropertyFilter> propertyFilters, List<Sort> sorts, int pageFirst, int pageSize) throws DatabaseException {
 		try {
-			Map<String, Object> params = generateParameterMap(pojoClass);
-			params.put(PARAM_NAME_FILTERS, propertyFilters);
+			Map<String, Object> params = generateParameterMap(pojoClass, propertyFilters);
 			setSortParameter(params, sorts);
 			setPageParameter(params, pageFirst < 0 ? 0 : pageFirst, pageSize < 1 ? 1 : pageSize);
-			return sqlSessionTemplate.selectList(pojoClass.getName() + SQLNAME_SUFFIX_LIST, params);
+			return sqlSessionTemplate.selectList(pojoClass.getName() + "." + SQLNAME_LIST, params);
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
@@ -699,11 +768,8 @@ public class BaseDAOImpl implements BaseDAO {
 	@Override
 	public <T extends BasePojo> int count(Class<T> pojoClass, List<PropertyFilter> propertyFilters) throws DatabaseException {
 		try {
-			Map<String, Object> params = generateParameterMap(pojoClass);
-			if (propertyFilters != null) {
-				params.put(PARAM_NAME_FILTERS, propertyFilters);
-			}
-			return sqlSessionTemplate.selectOne(MAPPER_NAMESPACE_COMMON + SQLNAME_SUFFIX_COUNT, params);
+			Map<String, Object> params = generateParameterMap(pojoClass, propertyFilters);
+			return sqlSessionTemplate.selectOne(getOperateNameSpace(pojoClass, SQLNAME_COUNT), params);
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}

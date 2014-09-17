@@ -6,7 +6,7 @@
 <mapper namespace="common">
 
 	<!-- 修改 -->
-    <update id="update">
+    <update id="updateByParams">
    		update ${tableName} set
    		<foreach collection="updateValue.keys" item="k" separator=","> 
 		   	<if test="null != updateValue[k]">  

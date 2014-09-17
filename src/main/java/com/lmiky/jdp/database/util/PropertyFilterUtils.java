@@ -96,7 +96,7 @@ public class PropertyFilterUtils {
 									if (entiryDescriptors.get(propertyField) == null) {
 										continue;
 									}
-									filterList.add(new PropertyFilter(propertyName, ConvertUtils.convert(propertyValue, entiryDescriptors.get(propertyField)),
+									filterList.add(new PropertyFilter(propertyField, ConvertUtils.convert(propertyValue, entiryDescriptors.get(propertyField)),
 											compareType, true, entityClass));
 								} else {	//一对一/多对一
 									//读取缓存
@@ -108,7 +108,7 @@ public class PropertyFilterUtils {
 									if (entiryDescriptors.get(propertyField) == null) {
 										continue;
 									}
-									filterList.add(new PropertyFilter(propertyName, ConvertUtils.convert(propertyValue, entiryDescriptors.get(propertyField)),
+									filterList.add(new PropertyFilter(propertyField, ConvertUtils.convert(propertyValue, entiryDescriptors.get(propertyField)),
 											compareType, pojoClass));
 								}
 							}
