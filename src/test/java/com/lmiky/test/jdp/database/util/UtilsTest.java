@@ -24,20 +24,4 @@ public class UtilsTest extends BaseTest {
 			System.out.println(f.getName());
 		}
 	}
-	
-	/**
-	 * 方法说明
-	 * @author lmiky
-	 * @date 2013-5-30
-	 * @param args
-	 */
-	public static void main(String[] args) throws Exception {
-		
-//		isCollectionClass(String.class);
-//		isCollectionClass(Date.class);
-//		isCollectionClass(List.class);
-//		isCollectionClass(Set.class);
-		testField();
-	}
-
 }

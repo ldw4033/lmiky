@@ -4,6 +4,7 @@
 
 <mapper namespace="com.lmiky.jdp.user.pojo.Operator">
 	<resultMap type="Operator" id="operator" extends="com.lmiky.jdp.user.pojo.User.user">
+		<collection property="roles"  column="id" select="com.lmiky.jdp.user.pojo.Role.listByOperate"></collection>
 	</resultMap>
 	<sql id="tableName">
 		t_operator
@@ -33,7 +34,7 @@
 	 </insert>
 	 
 	 <select id="list" resultMap="operator">
-		select * from (<include refid="buildCascadeTable"/>) <include refid="tableAlias"/>
+		select <include refid="tableAlias"/>.* from (<include refid="buildCascadeTable"/>) <include refid="tableAlias"/>
 		<include refid="joinRole"/>
 		<trim prefix="where">
 			<include refid="common.aliasPropertiesCondition"/>
@@ -49,4 +50,10 @@
     		<include refid="common.aliasPropertiesCondition"/>
     	</trim>
      </select>
+     
+     <!-- 获取指定角色所为拥有的操作员 -->
+	<select id="listNoRoleUser" resultMap="operator">
+		select * from <include refid="tableName"/> o
+		where not exists (select 1 from t_user_role ur where ur.roleId = #{roleId} and ur.userId = o.id) order by o.name asc
+	</select>
 </mapper>

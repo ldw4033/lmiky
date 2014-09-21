@@ -39,10 +39,10 @@ public class DAOTest extends BaseTest{
 	@Test
 	public void testFindById() {
 		long begin = System.currentTimeMillis();
-		Module module = baseDAO.find(Module.class, 290l);
-		System.out.println(module);
-		if(module != null) {
-			System.out.println(module.getName());
+		Operator operator = baseDAO.find(Operator.class, 21l);
+		System.out.println(operator);
+		if(operator != null) {
+			System.out.println(operator.getName());
 		}
 		long end = System.currentTimeMillis();
 		System.out.println(end - begin);

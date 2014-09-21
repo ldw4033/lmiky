@@ -39,7 +39,7 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
 	@Transactional(readOnly=true)
 	public List<Operator> listRoleUser(Long roleId) throws ServiceException {
 		List<PropertyFilter> propertyFilters = new ArrayList<PropertyFilter>();
-		propertyFilters.add(new PropertyFilter("roles.id", roleId, PropertyCompareType.EQ, true, Role.class));
+		propertyFilters.add(new PropertyFilter("id", roleId, PropertyCompareType.EQ, true, Role.class));
 		List<Sort> sorts = new ArrayList<Sort>();
 		sorts.add(new Sort("name", Sort.SORT_TYPE_ASC, Operator.class));
 		return list(Operator.class, propertyFilters, sorts);

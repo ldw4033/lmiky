@@ -34,7 +34,7 @@ public class OperatorServiceImpl extends UserServiceImpl implements OperatorServ
 	@Transactional(readOnly=true)
 	public List<Role> listUserRoles(Long userId) throws ServiceException {
 		List<PropertyFilter> propertyFilters = new ArrayList<PropertyFilter>();
-		propertyFilters.add(new PropertyFilter("users.id", userId, PropertyCompareType.EQ, true, Operator.class));
+		propertyFilters.add(new PropertyFilter("id", userId, PropertyCompareType.EQ, true, Operator.class));
 		List<Sort> sorts = new ArrayList<Sort>();
 		sorts.add(new Sort("name", Sort.SORT_TYPE_ASC, Role.class));
 		return list(Role.class, propertyFilters, sorts);

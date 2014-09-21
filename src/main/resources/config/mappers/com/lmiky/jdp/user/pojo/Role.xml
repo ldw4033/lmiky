@@ -12,12 +12,23 @@
 	<sql id="tableAlias">
 		Role
 	</sql>
+	<sql id="joinOperator">
+		<if test="hasJoin and joinTableAlias.contains('Operator')">
+     		join t_user_role ur on Role.id = ur.roleId join <include refid="com.lmiky.jdp.user.pojo.Operator.tableName"/> Operator on Operator.id = ur.userId
+     	</if>
+	</sql>
 	
 	<select id="find" resultMap="role">
 		select * from <include refid="tableName"/> <include refid="tableAlias"/>
 		<trim prefix="where">
 			<include refid="common.aliasPropertiesCondition"/>
 		</trim>
+	</select>
+	
+	<!-- 获取操作员所属的角色列表 -->
+	<select id="listByOperate" resultMap="role">
+		select r.* from <include refid="tableName"/> r, t_user_role ur
+		where ur.userId = #{id} AND r.id = ur.roleId
 	</select>
 	
 	 <insert id="add" parameterType="Role" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
@@ -27,11 +38,18 @@
 	</insert>
 	 
 	 <select id="list" resultMap="role">
-		select * from <include refid="tableName"/> <include refid="tableAlias"/>
+		select <include refid="tableAlias"/>.* from <include refid="tableName"/> <include refid="tableAlias"/>
+		<include refid="joinOperator"/>
 		<trim prefix="where">
 			<include refid="common.aliasPropertiesCondition"/>
 		</trim>
 		<include refid="common.sortCondition"/>
 		<include refid="common.pageCondition"/>
+	</select>
+	
+	<!-- 获取指定用户所为拥有的角色 -->
+	<select id="listNoUserRoles" resultMap="role">
+		select * from <include refid="tableName"/> r
+		where not exists (select 1 from t_user_role ur where ur.userId = #{userId} and ur.roleId = r.id) order by r.name asc
 	</select>
 </mapper>
