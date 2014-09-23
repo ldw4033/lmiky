@@ -7,10 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import com.lmiky.jdp.database.dao.mybatis.BaseDAOImpl;
 import com.lmiky.jdp.database.exception.DatabaseException;
+import com.lmiky.jdp.database.pojo.BasePojo;
 import com.lmiky.jdp.system.menu.pojo.LatelyOperateMenu;
 import com.lmiky.jdp.user.dao.UserDAO;
 import com.lmiky.jdp.user.pojo.Operator;
 import com.lmiky.jdp.user.pojo.Role;
+import com.lmiky.jdp.user.pojo.User;
 
 /**
  * @author lmiky
@@ -19,7 +21,8 @@ import com.lmiky.jdp.user.pojo.Role;
 @Repository("userDAO")
 public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.user.dao.UserDAO#listNoUserRoles(java.lang.Long)
 	 */
 	@Override
@@ -33,7 +36,8 @@ public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.user.dao.UserDAO#listNoRoleUser(java.lang.Long)
 	 */
 	@Override
@@ -47,4 +51,45 @@ public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.mybatis.BaseDAOImpl#update(com.lmiky.jdp.database.pojo.BasePojo)
+	 */
+	@Override
+	public <T extends BasePojo> void update(T pojo) throws DatabaseException {
+		try {
+			sqlSessionTemplate.update(User.class.getName() + "." + SQLNAME_UPDATE, pojo);
+		} catch (Exception e) {
+			throw new DatabaseException(e.getMessage());
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.lmiky.jdp.user.dao.UserDAO#deleteUserRole(java.lang.Long)
+	 */
+	@Override
+	public void deleteUserRole(Long userId) throws DatabaseException {
+		try {
+			sqlSessionTemplate.delete(User.class.getName() + ".deleteUserRole", userId);
+		} catch (Exception e) {
+			throw new DatabaseException(e.getMessage());
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.lmiky.jdp.user.dao.UserDAO#addUserRole(java.lang.Long, java.lang.Long)
+	 */
+	@Override
+	public void addUserRole(Long userId, Long roleId) throws DatabaseException {
+		try {
+			Map<String, Object> params = generateParameterMap(User.class);
+			params.put("userId", userId);
+			params.put("roleId", roleId);
+			sqlSessionTemplate.delete(User.class.getName() + ".addUserRole", params);
+		} catch (Exception e) {
+			throw new DatabaseException(e.getMessage());
+		}
+	}
 }

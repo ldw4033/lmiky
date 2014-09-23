@@ -32,4 +32,23 @@ public interface UserDAO extends BaseDAO {
 	 * @throws DatabaseException
 	 */
 	public List<Operator> listNoRoleUser(Long roleId) throws DatabaseException;
+	
+	/**
+	 * 删除用户-角色中间表
+	 * @author lmiky
+	 * @date 2014年9月23日 下午10:22:39
+	 * @param userId
+	 * @throws DatabaseException
+	 */
+	public void deleteUserRole(Long userId) throws DatabaseException;
+	
+	/**
+	 * 添加用户-角色中间表
+	 * @author lmiky
+	 * @date 2014年9月23日 下午10:22:49
+	 * @param userId
+	 * @param roleId
+	 * @throws DatabaseException
+	 */
+	public void addUserRole(Long userId, Long roleId) throws DatabaseException;
 }

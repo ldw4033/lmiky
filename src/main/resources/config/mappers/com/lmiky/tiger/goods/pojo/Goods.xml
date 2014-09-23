@@ -75,7 +75,7 @@
 	
 	<update id="update" parameterType="Goods">
 		update <include refid="tableName" /> 
-		<set>
+		<trim prefix="set" suffixOverrides=",">
 			<if test="title != null">title=#{title},</if>
 			<if test="logo != null">logo=#{logo},</if>
 			<if test="images != null">images=#{images},</if>
@@ -85,8 +85,8 @@
 			<if test="content != null">content=#{content},</if>
 			<if test="audit != null">audit=#{audit},</if>
 			<if test="createTime != null">createTime=#{createTime},</if>
-			<if test="updateTime != null">updateTime=#{updateTime}</if>
-		</set>
+			<if test="updateTime != null">updateTime=#{updateTime},</if>
+		</trim>
 		where id=#{id}
 	</update>
 </mapper>

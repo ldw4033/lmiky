@@ -129,6 +129,18 @@ public class GoodsController extends TigerController<Goods> {
 		return executeSave(modelMap, request, resopnse, id);
 	}
 
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.form.controller.FormController#setPojoProperties(com.lmiky.jdp.database.pojo.BasePojo, org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
+	 */
+	@Override
+	protected void setPojoProperties(Goods pojo, ModelMap modelMap, HttpServletRequest request) throws Exception {
+		super.setPojoProperties(pojo, modelMap, request);
+		if(pojo.getId() != null) {	//修改更新时间
+			pojo.setUpdateTime(new Date());
+		}
+	}
+
 	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.form.controller.FormController#validateInput(com.lmiky.jdp.database.pojo.BasePojo, java.lang.String, org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */

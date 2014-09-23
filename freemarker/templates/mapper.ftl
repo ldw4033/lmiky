@@ -54,11 +54,11 @@
 	
 	<update id="update" parameterType="${className}">
 		update <include refid="tableName" /> 
-		<set>
+		<trim prefix="set" suffixOverrides=",">
 			<#list fields as field> 
-			<if test="${field} != null">${field}=${r"#{"}${field}}<#if field_has_next>,</#if></if>
+			<if test="${field} != null">${field}=${r"#{"}${field}},</if>
 			</#list>
-		</set>
+		</trim>
 		where id=${r"#{"}id}
 	</update>
 </mapper>

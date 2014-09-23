@@ -18,4 +18,12 @@
 	<sql id="addValue">
 		#{name}, #{email}, #{phone}, #{photo}, #{createTime}, #{description}
 	</sql>
+	<sql id="updateValue">
+		<if test="name != null">name=#{name},</if>
+		<if test="email != null">email=#{email},</if>
+		<if test="phone != null">phone=#{phone},</if>
+		<if test="photo != null">photo=#{photo},</if>
+		<if test="createTime != null">createTime=#{createTime},</if>
+		<if test="description != null">description=#{description},</if>
+	</sql>
 </mapper>
