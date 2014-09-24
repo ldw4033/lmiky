@@ -63,7 +63,7 @@ public class CaptureTask extends BasePojo {
 	/**
 	 * @return the createTime
 	 */
-	@Column(name="create_time")
+	@Column(name="createTime")
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -76,7 +76,7 @@ public class CaptureTask extends BasePojo {
 	/**
 	 * @return the startTime
 	 */
-	@Column(name="start_time")
+	@Column(name="startTime")
 	public Date getStartTime() {
 		return startTime;
 	}
@@ -89,7 +89,7 @@ public class CaptureTask extends BasePojo {
 	/**
 	 * @return the executeInterval
 	 */
-	@Column(name="execute_interval")
+	@Column(name="executeInterval")
 	public Integer getExecuteInterval() {
 		return executeInterval;
 	}
@@ -102,7 +102,7 @@ public class CaptureTask extends BasePojo {
 	/**
 	 * @return the lastExecuteTime
 	 */
-	@Column(name="last_execute_time")
+	@Column(name="lastExecuteTime")
 	public Date getLastExecuteTime() {
 		return lastExecuteTime;
 	}
@@ -115,7 +115,7 @@ public class CaptureTask extends BasePojo {
 	/**
 	 * @return the captureUrl
 	 */
-	@Column(name="capture_url")
+	@Column(name="captureUrl")
 	public String getCaptureUrl() {
 		return captureUrl;
 	}
@@ -154,7 +154,7 @@ public class CaptureTask extends BasePojo {
 	/**
 	 * @return the titleStartPoint
 	 */
-	@Column(name="title_start_point")
+	@Column(name="titleStartPoint")
 	public String getTitleStartPoint() {
 		return titleStartPoint;
 	}
@@ -167,7 +167,7 @@ public class CaptureTask extends BasePojo {
 	/**
 	 * @return the titleEndPoint
 	 */
-	@Column(name="title_end_point")
+	@Column(name="titleEndPoint")
 	public String getTitleEndPoint() {
 		return titleEndPoint;
 	}
@@ -180,7 +180,7 @@ public class CaptureTask extends BasePojo {
 	/**
 	 * @return the subtitleStartPoint
 	 */
-	@Column(name="subtitle_start_point")
+	@Column(name="subtitleStartPoint")
 	public String getSubtitleStartPoint() {
 		return subtitleStartPoint;
 	}
@@ -193,7 +193,7 @@ public class CaptureTask extends BasePojo {
 	/**
 	 * @return the subtitleEndPoint
 	 */
-	@Column(name="subtitle_end_point")
+	@Column(name="subtitleEndPoint")
 	public String getSubtitleEndPoint() {
 		return subtitleEndPoint;
 	}
@@ -206,7 +206,7 @@ public class CaptureTask extends BasePojo {
 	/**
 	 * @return the authorStartPoint
 	 */
-	@Column(name="author_start_point")
+	@Column(name="authorStartPoint")
 	public String getAuthorStartPoint() {
 		return authorStartPoint;
 	}
@@ -219,7 +219,7 @@ public class CaptureTask extends BasePojo {
 	/**
 	 * @return the authorEndPoint
 	 */
-	@Column(name="author_end_point")
+	@Column(name="authorEndPoint")
 	public String getAuthorEndPoint() {
 		return authorEndPoint;
 	}
@@ -232,7 +232,7 @@ public class CaptureTask extends BasePojo {
 	/**
 	 * @return the pubtimeStartPoint
 	 */
-	@Column(name="pubtime_start_point")
+	@Column(name="pubtimeStartPoint")
 	public String getPubtimeStartPoint() {
 		return pubtimeStartPoint;
 	}
@@ -245,7 +245,7 @@ public class CaptureTask extends BasePojo {
 	/**
 	 * @return the pubtimeEndPoint
 	 */
-	@Column(name="pubtime_end_point")
+	@Column(name="pubtimeEndPoint")
 	public String getPubtimeEndPoint() {
 		return pubtimeEndPoint;
 	}
@@ -258,7 +258,7 @@ public class CaptureTask extends BasePojo {
 	/**
 	 * @return the contentStartPoint
 	 */
-	@Column(name="content_start_point")
+	@Column(name="contentStartPoint")
 	public String getContentStartPoint() {
 		return contentStartPoint;
 	}
@@ -271,7 +271,7 @@ public class CaptureTask extends BasePojo {
 	/**
 	 * @return the contentEndPoint
 	 */
-	@Column(name="content_end_point")
+	@Column(name="contentEndPoint")
 	public String getContentEndPoint() {
 		return contentEndPoint;
 	}
@@ -284,7 +284,7 @@ public class CaptureTask extends BasePojo {
 	/**
 	 * @return the resource
 	 */
-	@OneToMany(mappedBy="task", fetch=FetchType.LAZY, cascade={CascadeType.ALL})
+	@OneToMany(mappedBy="captureTask", fetch=FetchType.LAZY, cascade={CascadeType.ALL})
 	public Set<CaptureTaskToResource> getResource() {
 		return resource;
 	}

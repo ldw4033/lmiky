@@ -17,6 +17,14 @@
 		MyFavoriteMenu
 	</sql>
 
+	<select id="find" resultMap="myFavoriteMenu">
+		select * from 
+		<include refid="tableName"/> <include refid="tableAlias" />
+		<trim prefix="where">
+			<include refid="common.aliasPropertiesCondition"/>
+		</trim>
+	</select>
+
 	<insert id="add" parameterType="MyFavoriteMenu" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
 		insert into
 		<include refid="tableName" />

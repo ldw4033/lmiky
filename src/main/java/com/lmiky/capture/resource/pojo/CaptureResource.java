@@ -71,7 +71,7 @@ public class CaptureResource extends BasePojo {
 	/**
 	 * @return the pubTime
 	 */
-	@Column(name="pub_time")
+	@Column(name="pubTime")
 	public Date getPubTime() {
 		return pubTime;
 	}
@@ -85,7 +85,7 @@ public class CaptureResource extends BasePojo {
 	 * @return the content
 	 */
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="content")
+	@JoinColumn(name="contentId")
 	public CaptureResourceContent getContent() {
 		return content;
 	}

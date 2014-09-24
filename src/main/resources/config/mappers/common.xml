@@ -45,7 +45,7 @@
     
     <!-- 过滤条件 -->
     <sql id="propertiesCondition">
-    	<if test="filters != null and filters.size > 0">
+    	<if test="_parameter.containsKey('filters') and filters != null and filters.size > 0">
         	<foreach collection="filters" item="filter" separator="and">
 				<choose>
 					<when test="filter.compareType.value == 'eq'">
@@ -100,7 +100,7 @@
     
     <!-- 过滤条件-带别名 -->
     <sql id="aliasPropertiesCondition">
-    	<if test="filters != null and filters.size > 0">
+    	<if test="_parameter.containsKey('filters') and filters != null and filters.size > 0">
         	<foreach collection="filters" item="filter" separator="and">
 				<choose>
 					<when test="filter.compareType.value == 'eq'">
@@ -155,7 +155,7 @@
     
     <!-- 排序 -->
     <sql id="sortCondition">
-    	<if test="sorts != null and sorts.size > 0">
+    	<if test="_parameter.containsKey('sorts') and sorts != null and sorts.size > 0">
 	    	order by
 	        <foreach collection="sorts" item="sort" separator=",">
 					${sort.classAlias}.${sort.propertyName} ${sort.sortType}

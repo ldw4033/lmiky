@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import org.apache.commons.beanutils.BeanUtils;
 import org.junit.Test;
 
+import com.lmiky.capture.resource.pojo.CaptureResource;
 import com.lmiky.jdp.database.dao.BaseDAO;
 import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
@@ -39,10 +40,10 @@ public class DAOTest extends BaseTest{
 	@Test
 	public void testFindById() {
 		long begin = System.currentTimeMillis();
-		Operator operator = baseDAO.find(Operator.class, 21l);
-		System.out.println(operator);
-		if(operator != null) {
-			System.out.println(operator.getName());
+		CaptureResource resource = baseDAO.find(CaptureResource.class, 1l);
+		System.out.println(resource);
+		if(resource != null) {
+			System.out.println(resource.getTitle());
 		}
 		long end = System.currentTimeMillis();
 		System.out.println(end - begin);

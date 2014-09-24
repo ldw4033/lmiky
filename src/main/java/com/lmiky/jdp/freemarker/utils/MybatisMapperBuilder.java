@@ -7,9 +7,9 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.lmiky.capture.resource.pojo.CaptureResource;
 import com.lmiky.jdp.logger.util.LoggerUtils;
 import com.lmiky.jdp.util.PropertyUtils;
-import com.lmiky.tiger.goods.pojo.Goods;
 
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
@@ -80,6 +80,6 @@ public class MybatisMapperBuilder extends BaseBuilder {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(MybatisMapperBuilder.builder(Goods.class));
+		System.out.println(MybatisMapperBuilder.builder(CaptureResource.class));
 	}
 }

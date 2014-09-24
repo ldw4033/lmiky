@@ -20,35 +20,35 @@ import com.lmiky.jdp.database.pojo.BasePojo;
 @Table(name="t_capture_task_resource")
 public class CaptureTaskToResource extends BasePojo {
 	private static final long serialVersionUID = -264636793559917662L;
-	private CaptureTask task;
-	private CaptureResource resource;
+	private CaptureTask captureTask;
+	private CaptureResource captureResource;
 	
 	/**
-	 * @return the task
+	 * @return the captureTask
 	 */
 	@ManyToOne(fetch=FetchType.LAZY)  
-    @JoinColumn(name="task_id", updatable = false) 
-	public CaptureTask getTask() {
-		return task;
+    @JoinColumn(name="taskId", updatable = false) 
+	public CaptureTask getCaptureTask() {
+		return captureTask;
 	}
 	/**
-	 * @param task the task to set
+	 * @param captureTask the captureTask to set
 	 */
-	public void setTask(CaptureTask task) {
-		this.task = task;
+	public void setCaptureTask(CaptureTask captureTask) {
+		this.captureTask = captureTask;
 	}
 	/**
-	 * @return the resource
+	 * @return the captureResource
 	 */
 	@OneToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinColumn(name="resource_id")
-	public CaptureResource getResource() {
-		return resource;
+	@JoinColumn(name="resourceId")
+	public CaptureResource getCaptureResource() {
+		return captureResource;
 	}
 	/**
-	 * @param resource the resource to set
+	 * @param captureResource the captureResource to set
 	 */
-	public void setResource(CaptureResource resource) {
-		this.resource = resource;
+	public void setCaptureResource(CaptureResource captureResource) {
+		this.captureResource = captureResource;
 	}
 }
