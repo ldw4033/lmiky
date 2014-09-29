@@ -40,7 +40,7 @@ public class Function extends BaseSortPojo {
 	 * @return the module
 	 */
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="module_id", updatable = false)
+	@JoinColumn(name="moduleId", updatable = false)
 	public Module getModule() {
 		return module;
 	}
@@ -53,7 +53,7 @@ public class Function extends BaseSortPojo {
 	/**
 	 * @return the authorityCode
 	 */
-	@Column(name="authority_code")
+	@Column(name="authorityCode")
 	public String getAuthorityCode() {
 		return authorityCode;
 	}

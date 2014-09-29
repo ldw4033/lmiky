@@ -37,6 +37,14 @@
 		(id, name) values(#{id}, #{name})
 	</insert>
 	 
+	 <update id="update" parameterType="Role">
+		update <include refid="tableName" /> 
+		<trim prefix="set" suffixOverrides=",">
+			<if test="name != null">name=#{name}</if>
+		</trim>
+		where id=#{id}
+	</update>
+	 
 	 <select id="list" resultMap="role">
 		select <include refid="tableAlias"/>.* from <include refid="tableName"/> <include refid="tableAlias"/>
 		<include refid="joinOperator"/>

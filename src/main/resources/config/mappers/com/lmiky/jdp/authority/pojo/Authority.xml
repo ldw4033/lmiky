@@ -46,7 +46,7 @@
 	
 	<!-- 获取未授权操作员 -->
 	<select id="listUnauthorizedOperator" resultMap="com.lmiky.jdp.user.pojo.Role.role">
-		select distinct Role from <include refid="com.lmiky.jdp.user.pojo.Role.tableName"/> Role 
+		select distinct Role.* from <include refid="com.lmiky.jdp.user.pojo.Role.tableName"/> Role 
 			where 
 		not exists (select 1 from <include refid="tableName"/> Authority where Authority.modulePath = #{modulePath} and Authority.operator = Role.id)
 	</select>

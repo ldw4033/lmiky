@@ -10,6 +10,7 @@ import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.module.pojo.Function;
 import com.lmiky.jdp.module.pojo.Module;
+import com.lmiky.jdp.module.pojo.ModuleGroup;
 import com.lmiky.jdp.module.service.ModuleService;
 import com.lmiky.jdp.service.exception.ServiceException;
 import com.lmiky.jdp.service.impl.BaseServiceImpl;
@@ -32,16 +33,16 @@ public class ModuleServiceImpl extends BaseServiceImpl implements ModuleService 
 			functions = list(Function.class);
 		} else if(Module.MODULE_TYPE_GROUP.equals(moduleType)) {
 			PropertyFilter propertyFilter = new PropertyFilter();
-			propertyFilter.setCompareClass(Function.class);
+			propertyFilter.setCompareClass(ModuleGroup.class);
 			propertyFilter.setCompareType(PropertyCompareType.EQ);
-			propertyFilter.setPropertyName("module.group.path");
+			propertyFilter.setPropertyName("path");
 			propertyFilter.setPropertyValue(modulePath);
 			functions = this.list(Function.class, propertyFilter);
 		} else if(Module.MODULE_TYPE_MODULE.equals(moduleType)) {
 			PropertyFilter propertyFilter = new PropertyFilter();
-			propertyFilter.setCompareClass(Function.class);
+			propertyFilter.setCompareClass(Module.class);
 			propertyFilter.setCompareType(PropertyCompareType.EQ);
-			propertyFilter.setPropertyName("module.path");
+			propertyFilter.setPropertyName("path");
 			propertyFilter.setPropertyValue(modulePath);
 			functions = this.list(Function.class, propertyFilter);
 		} else if(Module.MODULE_TYPE_FUNCTION.equals(moduleType)) {

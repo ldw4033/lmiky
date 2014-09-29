@@ -58,7 +58,11 @@ public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
 	@Override
 	public <T extends BasePojo> void update(T pojo) throws DatabaseException {
 		try {
-			sqlSessionTemplate.update(User.class.getName() + "." + SQLNAME_UPDATE, pojo);
+			if(pojo instanceof User) {
+				sqlSessionTemplate.update(User.class.getName() + "." + SQLNAME_UPDATE, pojo);
+			} else {
+				super.update(pojo);
+			}
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}

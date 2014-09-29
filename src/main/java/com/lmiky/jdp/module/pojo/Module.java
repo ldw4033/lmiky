@@ -71,7 +71,7 @@ public class Module extends BasePojo {
 	 * @return the group
 	 */
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "group_id", updatable = false)
+	@JoinColumn(name = "groupId", updatable = false)
 	public ModuleGroup getGroup() {
 		return group;
 	}

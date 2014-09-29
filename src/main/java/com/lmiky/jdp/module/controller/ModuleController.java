@@ -16,6 +16,7 @@ import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.module.pojo.Function;
 import com.lmiky.jdp.module.pojo.Module;
+import com.lmiky.jdp.module.pojo.ModuleGroup;
 import com.lmiky.jdp.session.model.SessionInfo;
 
 /**
@@ -55,14 +56,14 @@ public class ModuleController extends BaseController {
 			String moduleId = request.getParameter("id");
 			if(Module.MODULE_TYPE_GROUP.equals(moduleType)) {
 				List<PropertyFilter> filters = new ArrayList<PropertyFilter>();
-				filters.add(new PropertyFilter("group.id", Long.parseLong(moduleId.substring(TREE_LIST_ID_PREFIX_GROUP.length())), PropertyCompareType.EQ, Module.class));
+				filters.add(new PropertyFilter("id", Long.parseLong(moduleId.substring(TREE_LIST_ID_PREFIX_GROUP.length())), PropertyCompareType.EQ, ModuleGroup.class));
 				List<Module> modules = service.list(Module.class, filters, null);
 				modelMap.put("pojos", modules);
 				return "moduleListJsonView";
 			} else if(Module.MODULE_TYPE_MODULE.equals(moduleType)) {
 				Long mId = Long.parseLong(moduleId.substring(TREE_LIST_ID_PREFIX_MODULE.length()));
 				List<PropertyFilter> filters = new ArrayList<PropertyFilter>();
-				filters.add(new PropertyFilter("module.id", mId, PropertyCompareType.EQ, Function.class));
+				filters.add(new PropertyFilter("id", mId, PropertyCompareType.EQ, Module.class));
 				List<Sort> sorts = new ArrayList<Sort>();
 				sorts.add(new Sort("sort", Sort.SORT_TYPE_ASC, Function.class));
 				List<Function> functions = service.list(Function.class, filters, sorts);

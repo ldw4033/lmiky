@@ -323,11 +323,12 @@ public class HttpUtils {
 	}
 
 	public static void main(String[] args) throws Exception {
-		System.out.println(get("http://www.baidu.com/"));
-		String data = "backEndUrl=http%3A%2F%2F218.17.162.151%3A8081%2Fopetv-queen%2Fapi%2FaccountPayList%2Fchinapay%2Fumpm%2Fnotify.do&charset=UTF-8&merId=898440348120476&orderAmount=10&orderCurrency=156&orderDescription=100030%E4%BA%8E2014%2F08%2F07+10%3A22%3A41%E7%94%B3%E8%AF%B7%E7%BC%B4%E8%B4%B9%E5%85%85%E5%80%BC&orderNumber=1408071022010212&orderTime=20140807102241&signMethod=MD5&signature=1bf1024473b7aee7db5ed2afe30fd824&transType=01&version=1.0.0";
-		String respString = post("https://mgate.unionpay.com/gateway/merchant/trade", data);
-		System.out.println(respString);
-		File file = new File("d:/13617.jpg");
-		System.out.println(postFile("http://localhost:8080/lmiky/file/upload.shtml", file, "file"));
+//		System.out.println(get("http://www.baidu.com/"));
+//		String data = "backEndUrl=http%3A%2F%2F218.17.162.151%3A8081%2Fopetv-queen%2Fapi%2FaccountPayList%2Fchinapay%2Fumpm%2Fnotify.do&charset=UTF-8&merId=898440348120476&orderAmount=10&orderCurrency=156&orderDescription=100030%E4%BA%8E2014%2F08%2F07+10%3A22%3A41%E7%94%B3%E8%AF%B7%E7%BC%B4%E8%B4%B9%E5%85%85%E5%80%BC&orderNumber=1408071022010212&orderTime=20140807102241&signMethod=MD5&signature=1bf1024473b7aee7db5ed2afe30fd824&transType=01&version=1.0.0";
+//		String respString = post("https://mgate.unionpay.com/gateway/merchant/trade", data);
+//		System.out.println(respString);
+//		File file = new File("d:/13617.jpg");
+//		System.out.println(postFile("http://localhost:8080/lmiky/file/upload.shtml", file, "file"));
+		System.out.println(HttpUtils.post("http://wx.21f2f.com/api/weixin/message.do?signature=signature&timestamp=timestamp&nonce=nonce", "test微信提交"));
 	}
 }

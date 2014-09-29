@@ -3,7 +3,7 @@
 <div class="control-group">
 	<label class="control-label">名称 <span class="req">*</span></label>
 	<div class="controls">
-		<input name="title" type="text" value="${pojo.name}" />
+		<input name="name" type="text" value="${pojo.name}" />
 	</div>
 </div>
 <div class="form-actions">

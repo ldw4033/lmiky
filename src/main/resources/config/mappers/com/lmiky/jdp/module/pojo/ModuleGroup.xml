@@ -6,18 +6,29 @@
 	<resultMap type="ModuleGroup" id="moduleGroup" extends="com.lmiky.jdp.database.pojo.BasePojo.basePojo">
 		<result column="name" property="name"/>
 		<result column="path" property="path"/>
-		<result column="modulegroup_id" property="id"/>
-		<result column="modulegroup_name" property="name"/>
-		<result column="modulegroup_path" property="path"/>
 		<collection property="modules" column="id" select="com.lmiky.jdp.module.pojo.Module.findByGroupId"/>
 	</resultMap>
 	<sql id="tableName">
 		t_module_group
 	</sql>
+	
+	<sql id="tableAlias">
+		ModuleGroup
+	</sql>
+	
 	<select id="findById" resultMap="moduleGroup">
 		select * from 
 		<include refid="tableName"/>	
 		where id = #{id}
 	</select>
 	
+	<select id="list" resultMap="moduleGroup">
+		select * from 
+		<include refid="tableName"/> <include refid="tableAlias" />
+		<trim prefix="where">
+			<include refid="common.aliasPropertiesCondition"/>
+		</trim>
+		<include refid="common.sortCondition"/>
+		<include refid="common.pageCondition"/>
+	</select>
 </mapper>

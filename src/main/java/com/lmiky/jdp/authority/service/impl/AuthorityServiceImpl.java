@@ -73,6 +73,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 				Authority authority = null;
 				for (String idStr: operatorIds) {
 					for(Function function : functions) {
+						System.out.println(function.getId());
 						authority = new Authority();
 						authority.setAuthorityCode(function.getAuthorityCode());
 						authority.setModulePath(modulePath);
