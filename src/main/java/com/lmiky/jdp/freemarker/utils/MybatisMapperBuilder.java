@@ -7,8 +7,8 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.lmiky.jdp.area.pojo.BaseAreaPojo;
 import com.lmiky.jdp.logger.util.LoggerUtils;
-import com.lmiky.jdp.module.pojo.Function;
 import com.lmiky.jdp.util.PropertyUtils;
 
 import freemarker.template.Configuration;
@@ -80,6 +80,6 @@ public class MybatisMapperBuilder extends BaseBuilder {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(MybatisMapperBuilder.builder(Function.class));
+		System.out.println(MybatisMapperBuilder.builder(BaseAreaPojo.class));
 	}
 }

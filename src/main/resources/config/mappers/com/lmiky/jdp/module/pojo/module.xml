@@ -29,7 +29,7 @@
 		where id = #{id}
 	</select>
 	
-	<select id="findByGroupId" resultMap="module">
+	<select id="listByGroup" resultMap="module">
 		select * from 
 		<include refid="tableName"/>	
 		where groupId = #{groupId}

@@ -97,12 +97,12 @@ public class AreaController extends BaseController {
 				return "countryTreeListJsonView";
 			} else if(AREA_TYPE_COUNTRY.equals(areaType)) {
 				id = Long.parseLong(areaId.substring(AREA_TYPE_COUNTRY.length()));
-				modelMap.put("pojos", service.list(Province.class, new PropertyFilter("country.id", id, PropertyCompareType.EQ, Province.class)));
+				modelMap.put("pojos", service.list(Province.class, new PropertyFilter("id", id, PropertyCompareType.EQ, Country.class)));
 				modelMap.put("id", id);
 				return "provinceTreeListJsonView";
 			} else if(AREA_TYPE_PROVINCE.equals(areaType)) {
 				id = Long.parseLong(areaId.substring(AREA_TYPE_PROVINCE.length()));
-				modelMap.put("pojos", service.list(City.class, new PropertyFilter("province.id", id, PropertyCompareType.EQ, City.class)));
+				modelMap.put("pojos", service.list(City.class, new PropertyFilter("id", id, PropertyCompareType.EQ, Province.class)));
 				modelMap.put("id", id);
 				return "cityTreeListJsonView";
 			}

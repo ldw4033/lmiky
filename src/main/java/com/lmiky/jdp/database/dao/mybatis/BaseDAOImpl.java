@@ -10,6 +10,8 @@ import java.util.MissingResourceException;
 import javax.annotation.Resource;
 import javax.persistence.Table;
 
+import net.sf.cglib.proxy.Enhancer;
+
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -181,6 +183,22 @@ public class BaseDAOImpl implements BaseDAO {
 		}
 		operateConfig.put(cacheKey, cacheValue);
 		return cacheValue;
+	}
+	
+	/**
+	 * 获取执行类
+	 * @author lmiky
+	 * @date 2014年10月2日 上午10:21:45
+	 * @param pojo
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	protected <T extends BasePojo> Class<T> getExecutePojoClass(BasePojo pojo) {
+		if(Enhancer.isEnhanced(pojo.getClass())) {	//判断是否CGLIB代理类
+			return (Class<T>) pojo.getClass().getSuperclass();
+		} else {
+			return (Class<T>) pojo.getClass();
+		}
 	}
 	
 	/**
@@ -396,7 +414,7 @@ public class BaseDAOImpl implements BaseDAO {
 	@Override
 	public <T extends BasePojo> void add(T pojo) throws DatabaseException {
 		try {
-			sqlSessionTemplate.insert(pojo.getClass().getName() + "." + SQLNAME_ADD, pojo);
+			sqlSessionTemplate.insert(getExecutePojoClass(pojo).getName() + "." + SQLNAME_ADD, pojo);
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
@@ -424,7 +442,7 @@ public class BaseDAOImpl implements BaseDAO {
 	@Override
 	public <T extends BasePojo> void update(T pojo) throws DatabaseException {
 		try {
-			sqlSessionTemplate.update(pojo.getClass().getName() + "." + SQLNAME_UPDATE, pojo);
+			sqlSessionTemplate.update(getExecutePojoClass(pojo).getName() + "." + SQLNAME_UPDATE, pojo);
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
@@ -515,7 +533,7 @@ public class BaseDAOImpl implements BaseDAO {
 	@Override
 	public <T extends BasePojo> void delete(T pojo) throws DatabaseException {
 		try {
-			delete(pojo.getClass(), pojo.getId());
+			delete(getExecutePojoClass(pojo), pojo.getId());
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}

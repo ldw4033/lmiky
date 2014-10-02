@@ -6,7 +6,7 @@
 	<resultMap type="ModuleGroup" id="moduleGroup" extends="com.lmiky.jdp.database.pojo.BasePojo.basePojo">
 		<result column="name" property="name"/>
 		<result column="path" property="path"/>
-		<collection property="modules" column="id" select="com.lmiky.jdp.module.pojo.Module.findByGroupId"/>
+		<collection property="modules" column="id" select="com.lmiky.jdp.module.pojo.Module.listByGroup"/>
 	</resultMap>
 	<sql id="tableName">
 		t_module_group

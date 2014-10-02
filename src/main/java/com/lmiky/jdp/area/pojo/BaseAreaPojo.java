@@ -36,7 +36,7 @@ public class BaseAreaPojo extends BasePojo {
 	/**
 	 * @return the phoneticAlphabet
 	 */
-	@Column(name = "phonetic_alphabet")
+	@Column(name = "phoneticAlphabet")
 	public String getPhoneticAlphabet() {
 		return phoneticAlphabet;
 	}
