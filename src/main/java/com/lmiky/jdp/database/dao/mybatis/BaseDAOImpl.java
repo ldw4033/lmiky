@@ -118,7 +118,7 @@ public class BaseDAOImpl implements BaseDAO {
 	/**
 	 * 对象对应的数据库表名
 	 */
-	protected Map<Class<?>, String> pojoTableNames = new HashMap<Class<?>, String>();
+	protected Map<String, String> pojoTableNames = new HashMap<String, String>();
 	
 	/**
 	 * 操作配置：自定义执行，或通用的执行
@@ -144,20 +144,25 @@ public class BaseDAOImpl implements BaseDAO {
 	 * @throws DatabaseException
 	 */
 	protected String getPojoTabelName(Class<?> pojoClass) throws DatabaseException {
+		Class<?> executePojoClass = getExecutePojoClass(pojoClass);
 		// 先读缓存
-		String cacheTableName = pojoTableNames.get(pojoClass);
-		if (cacheTableName != null) {
-			return cacheTableName;
+		String cacheKey = executePojoClass.getName();
+		//String cacheTableName = pojoTableNames.get(pojoClass);
+		if (pojoTableNames.containsKey(cacheKey)) {
+			return pojoTableNames.get(cacheKey);	//不管是否null
 		}
 		// 根据反射获取
-		Table annotation = pojoClass.getAnnotation(Table.class);
+		Table annotation = executePojoClass.getAnnotation(Table.class);
 		// 没有对应的注解
-		if (annotation == null) {
-			throw new DatabaseException(pojoClass.getName() + " is not a db pojo!");
+		//if (annotation == null) {
+		//	throw new DatabaseException(cacheKey + " is not a db pojo!");
+		//}
+		String cacheTableName = null;
+		if(annotation != null) {
+			cacheTableName = annotation.name();
 		}
-		cacheTableName = annotation.name();
 		// 放入缓存
-		pojoTableNames.put(pojoClass, cacheTableName);
+		pojoTableNames.put(cacheKey, cacheTableName);
 		return cacheTableName;
 	}
 
@@ -199,6 +204,52 @@ public class BaseDAOImpl implements BaseDAO {
 		} else {
 			return (Class<T>) pojo.getClass();
 		}
+	}
+	
+	/**
+	 * 获取执行类
+	 * @author lmiky
+	 * @date 2014年10月2日 上午10:21:45
+	 * @param pojoClass
+	 * @return
+	 */
+	protected Class<?> getExecutePojoClass(Class<?> pojoClass) {
+		if(Enhancer.isEnhanced(pojoClass)) {	//判断是否CGLIB代理类
+			return pojoClass.getSuperclass();
+		} else {
+			return pojoClass;
+		}
+	}
+	
+	/**
+	 * 获取对象需要执行的类
+	 * @author lmiky
+	 * @date 2014年10月4日 上午10:21:45
+	 * @param pojoClass
+	 * @param sqlName	mapper名，如果为空，则不需要判断
+	 * @return
+	 */
+	protected <T extends BasePojo> List<Class<?>> listPojoExecuteClass(Class<?> pojoClass, String sqlName) {
+		List<Class<?>> classList = new ArrayList<Class<?>>();
+		Class<?> executeClazz = getExecutePojoClass(pojoClass);
+		//循环执行继承
+		while(!executeClazz.equals(BasePojo.class)) {
+			if(getPojoTabelName(executeClazz) != null) {
+				String executeClassName = executeClazz.getName();
+				if(sqlName != null) {	//需要判断
+					//判断是否有配置
+					if(sqlSessionTemplate.getConfiguration().hasStatement(executeClassName + "." + sqlName)) {
+						classList.add(0, executeClazz);
+					}
+				} else {
+					classList.add(0, executeClazz);
+				}
+				executeClazz = executeClazz.getSuperclass();
+			} else {
+				break;
+			}
+		}
+		return classList;
 	}
 	
 	/**
@@ -414,7 +465,10 @@ public class BaseDAOImpl implements BaseDAO {
 	@Override
 	public <T extends BasePojo> void add(T pojo) throws DatabaseException {
 		try {
-			sqlSessionTemplate.insert(getExecutePojoClass(pojo).getName() + "." + SQLNAME_ADD, pojo);
+			List<Class<?>> classList = listPojoExecuteClass(pojo.getClass(), SQLNAME_ADD);
+			for(Class<?> clazz : classList) {
+				sqlSessionTemplate.insert(clazz.getName() + "." + SQLNAME_ADD, pojo);
+			}
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
@@ -442,7 +496,10 @@ public class BaseDAOImpl implements BaseDAO {
 	@Override
 	public <T extends BasePojo> void update(T pojo) throws DatabaseException {
 		try {
-			sqlSessionTemplate.update(getExecutePojoClass(pojo).getName() + "." + SQLNAME_UPDATE, pojo);
+			List<Class<?>> classList = listPojoExecuteClass(pojo.getClass(), SQLNAME_UPDATE);
+			for(Class<?> clazz : classList) {
+				sqlSessionTemplate.update(clazz.getName() + "." + SQLNAME_UPDATE, pojo);
+			}
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}

@@ -14,10 +14,8 @@
 		$(document).ready(function() {
 			if('${flag}' == 'refresh') {
 				<c:choose>
-					<c:when test="${openMode == 'edit' or openMode == 'create'}">
-						<c:if test="${not empty pojo.id}">
-							parent.reAsyncChildNodes('${param.parentId}', '<%=AreaController.AREA_TYPE_COUNTRY%>${pojo.id}');
-						</c:if>
+					<c:when test="${(openMode == 'edit' or openMode == 'create') and (not empty pojo.id)}">
+						parent.reAsyncChildNodes('${param.parentId}', '<%=AreaController.AREA_TYPE_COUNTRY%>${pojo.id}');
 					</c:when>
 					<c:otherwise>
 						parent.reAsyncChildNodes('${param.parentId}');

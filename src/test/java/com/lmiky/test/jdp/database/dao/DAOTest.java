@@ -2,6 +2,7 @@ package com.lmiky.test.jdp.database.dao;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +11,9 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.ibatis.mapping.MappedStatement;
 import org.junit.Test;
+import org.mybatis.spring.SqlSessionTemplate;
 
 import com.lmiky.capture.resource.pojo.CaptureResource;
 import com.lmiky.jdp.database.dao.BaseDAO;
@@ -31,6 +34,7 @@ import com.lmiky.tiger.goods.pojo.Goods;
  */
 public class DAOTest extends BaseTest{
 	private BaseDAO baseDAO;
+	private SqlSessionTemplate sqlSessionTemplate;
 	
 	@Test
 	public void testGetDAO() {
@@ -318,11 +322,34 @@ public class DAOTest extends BaseTest{
 		System.out.println(baseDAO.count(Module.class));
 	}
 	
+	@Test
+	public void testMapper() {
+		Collection<String> name = sqlSessionTemplate.getConfiguration().getMappedStatementNames();
+		System.out.println(name.toArray()[0]);
+	}
+	
+	@Test
+	public void testMapper2() {
+		Collection<MappedStatement> mappedStatements = sqlSessionTemplate.getConfiguration().getMappedStatements();
+		MappedStatement mappedStatement = (MappedStatement)(mappedStatements.toArray()[0]);
+		System.out.println(mappedStatement.getConfiguration().hasStatement("find"));
+	}
+	
+	@Test
+	public void testMapper3() {
+		System.out.println(sqlSessionTemplate.getConfiguration().hasStatement(User.class.getName() + ".find"));
+	}
+	
 	/**
 	 * @param dao the dao to set
 	 */
 	@Resource(name="baseDAO")
 	public void setDao(BaseDAO baseDAO) {
 		this.baseDAO = baseDAO;
+	}
+
+	@Resource(name = "sqlSessionTemplate")
+	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
+		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
 }

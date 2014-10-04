@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lmiky.cms.directory.pojo.CmsDirectory">
+	<resultMap type="CmsDirectory" id="cmsDirectory" extends="com.lmiky.jdp.database.pojo.BasePojo.basePojo">
+	</resultMap>
+
+	<sql id="tableName">
+		t_cms_directory
+	</sql>
+	<sql id="tableAlias">
+		CmsDirectory
+	</sql>
+
+	<select id="find" resultMap="cmsDirectory">
+		select * from 
+		<include refid="tableName"/> <include refid="tableAlias" />
+		<trim prefix="where">
+			<include refid="common.aliasPropertiesCondition"/>
+		</trim>
+	</select>
+	
+	<select id="list" resultMap="cmsDirectory">
+		select * from
+		<include refid="tableName" /> <include refid="tableAlias" />
+		<trim prefix="where">
+			<include refid="common.aliasPropertiesCondition" />
+		</trim>
+		<include refid="common.sortCondition" />
+		<include refid="common.pageCondition" />
+	</select>
+
+	<insert id="add" parameterType="CmsDirectory" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+		insert into
+		<include refid="tableName" />
+		(
+			 id
+		)
+		values
+		(
+			 #{id}
+		)
+	</insert>
+	
+	<update id="update" parameterType="CmsDirectory">
+		update <include refid="tableName" /> 
+		<trim prefix="set" suffixOverrides=",">
+		</trim>
+		where id=#{id}
+	</update>
+</mapper>

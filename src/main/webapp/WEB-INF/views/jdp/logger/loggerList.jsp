@@ -23,6 +23,11 @@
 										<label class="control-label" style="width: 80px;">操作员名称：</label>
 										<lhtml:propertyFilter inputType="text" compareType="LIKE" propertyName="userName" styleClass="medium"/>
 										&nbsp;
+										<label class="control-label"  style="width: 70px;">操作时间：</label>
+										<lhtml:propertyFilter inputType="dateTime" compareType="GE" propertyName="logTime" styleClass="medium"/>
+										<label style="width: 50px; text-align: center;" class="control-label" >-</label>
+										<lhtml:propertyFilter inputType="dateTime" compareType="LE" propertyName="logTime" styleClass="medium"/>
+										&nbsp;
 										<button type="submit" class="btn action-button">查询</button>
 								</div>
 							</div>						
@@ -68,5 +73,6 @@
 		</div>
 		<%@ include file="/jdp/common/scripts.jsp"%>
 		<%@ include file="/jdp/view/scripts.jsp"%>
+		<%@ include file="/jdp/common/date.jsp"%>
 	</body>
 </html>

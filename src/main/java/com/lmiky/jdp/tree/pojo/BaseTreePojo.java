@@ -48,7 +48,7 @@ public class BaseTreePojo extends BaseSortPojo {
 	 * @return the parent
 	 */
 	@ManyToOne(fetch=FetchType.LAZY)  
-    @JoinColumn(name="parent_id")
+    @JoinColumn(name="parentId")
 	public BaseTreePojo getParent() {
 		return parent;
 	}

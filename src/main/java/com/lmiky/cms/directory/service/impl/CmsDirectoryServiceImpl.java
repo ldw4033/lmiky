@@ -3,6 +3,7 @@ package com.lmiky.cms.directory.service.impl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lmiky.cms.directory.pojo.CmsDirectory;
 import com.lmiky.cms.resource.pojo.CmsResource;
 import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
@@ -25,7 +26,7 @@ public class CmsDirectoryServiceImpl extends TreeServiceImpl {
 	@Transactional(rollbackFor={Exception.class})
 	public <T extends BasePojo> void delete(T pojo) throws ServiceException {
 		super.delete(pojo);
-		delete(CmsResource.class, new PropertyFilter("directory.id", pojo.getId(), PropertyCompareType.EQ, CmsResource.class));
+		delete(CmsResource.class, new PropertyFilter("id", pojo.getId(), PropertyCompareType.EQ, CmsDirectory.class));
 	}
 
 }

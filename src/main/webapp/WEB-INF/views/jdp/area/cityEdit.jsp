@@ -5,10 +5,8 @@
 	<!--
 		$(document).ready(function() {
 			<c:choose>
-				<c:when test="${openMode == 'edit' or openMode == 'create'}">
-					<c:if test="${not empty pojo.id}">
-						parent.reAsyncChildNodes('<%=AreaController.AREA_TYPE_PROVINCE%>${param.parentId}', '<%=AreaController.AREA_TYPE_CITY%>${pojo.id}');
-					</c:if>
+				<c:when test="${(openMode == 'edit' or openMode == 'create') and (not empty pojo.id)}">
+					parent.reAsyncChildNodes('<%=AreaController.AREA_TYPE_PROVINCE%>${param.parentId}', '<%=AreaController.AREA_TYPE_CITY%>${pojo.id}');
 				</c:when>
 				<c:otherwise>
 					parent.reAsyncChildNodes('<%=AreaController.AREA_TYPE_PROVINCE%>${param.parentId}');

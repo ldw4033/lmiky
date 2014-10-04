@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lmiky.cms.resource.pojo.CmsResource">
+	<resultMap type="CmsResource" id="cmsResource" extends="com.lmiky.jdp.database.pojo.BasePojo.basePojo">
+		<result column="title" property="title"/>
+		<result column="subtitle" property="subtitle"/>
+		<result column="author" property="author"/>
+		<result column="creator" property="creator"/>
+		<result column="createTime" property="createTime"/>
+		<result column="publisher" property="publisher"/>
+		<result column="pubTime" property="pubTime"/>
+		<result column="source" property="source"/>
+		<result column="state" property="state"/>
+		<result column="resourceContents" property="resourceContents"/>
+		<result column="directory" property="directory"/>
+		<result column="pictureSnapshots" property="pictureSnapshots"/>
+	</resultMap>
+
+	<sql id="tableName">
+		t_cms_resource
+	</sql>
+	<sql id="tableAlias">
+		CmsResource
+	</sql>
+
+	<select id="find" resultMap="cmsResource">
+		select * from 
+		<include refid="tableName"/> <include refid="tableAlias" />
+		<trim prefix="where">
+			<include refid="common.aliasPropertiesCondition"/>
+		</trim>
+	</select>
+	
+	<select id="list" resultMap="cmsResource">
+		select * from
+		<include refid="tableName" /> <include refid="tableAlias" />
+		<trim prefix="where">
+			<include refid="common.aliasPropertiesCondition" />
+		</trim>
+		<include refid="common.sortCondition" />
+		<include refid="common.pageCondition" />
+	</select>
+
+	<insert id="add" parameterType="CmsResource" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+		insert into
+		<include refid="tableName" />
+		(
+			 id
+			,title
+			,subtitle
+			,author
+			,creator
+			,createTime
+			,publisher
+			,pubTime
+			,source
+			,state
+			,resourceContents
+			,directory
+			,pictureSnapshots
+		)
+		values
+		(
+			 #{id}
+			,#{title}
+			,#{subtitle}
+			,#{author}
+			,#{creator}
+			,#{createTime}
+			,#{publisher}
+			,#{pubTime}
+			,#{source}
+			,#{state}
+			,#{resourceContents}
+			,#{directory}
+			,#{pictureSnapshots}
+		)
+	</insert>
+	
+	<update id="update" parameterType="CmsResource">
+		update <include refid="tableName" /> 
+		<trim prefix="set" suffixOverrides=",">
+			<if test="title != null">title=#{title},</if>
+			<if test="subtitle != null">subtitle=#{subtitle},</if>
+			<if test="author != null">author=#{author},</if>
+			<if test="creator != null">creator=#{creator},</if>
+			<if test="createTime != null">createTime=#{createTime},</if>
+			<if test="publisher != null">publisher=#{publisher},</if>
+			<if test="pubTime != null">pubTime=#{pubTime},</if>
+			<if test="source != null">source=#{source},</if>
+			<if test="state != null">state=#{state},</if>
+			<if test="resourceContents != null">resourceContents=#{resourceContents},</if>
+			<if test="directory != null">directory=#{directory},</if>
+			<if test="pictureSnapshots != null">pictureSnapshots=#{pictureSnapshots},</if>
+		</trim>
+		where id=#{id}
+	</update>
+</mapper>

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import com.lmiky.jdp.database.dao.mybatis.BaseDAOImpl;
 import com.lmiky.jdp.database.exception.DatabaseException;
-import com.lmiky.jdp.database.pojo.BasePojo;
 import com.lmiky.jdp.system.menu.pojo.LatelyOperateMenu;
 import com.lmiky.jdp.user.dao.UserDAO;
 import com.lmiky.jdp.user.pojo.Operator;
@@ -46,23 +45,6 @@ public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
 			Map<String, Object> params = generateParameterMap(LatelyOperateMenu.class);
 			params.put("roleId", roleId);
 			return sqlSessionTemplate.selectList(Operator.class.getName() + ".listNoRoleUser", params);
-		} catch (Exception e) {
-			throw new DatabaseException(e.getMessage());
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.lmiky.jdp.database.dao.mybatis.BaseDAOImpl#update(com.lmiky.jdp.database.pojo.BasePojo)
-	 */
-	@Override
-	public <T extends BasePojo> void update(T pojo) throws DatabaseException {
-		try {
-			if(pojo instanceof User) {
-				sqlSessionTemplate.update(User.class.getName() + "." + SQLNAME_UPDATE, pojo);
-			} else {
-				super.update(pojo);
-			}
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
