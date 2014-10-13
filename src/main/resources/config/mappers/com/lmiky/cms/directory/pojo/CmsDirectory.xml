@@ -12,24 +12,43 @@
 	<sql id="tableAlias">
 		CmsDirectory
 	</sql>
-
+	
+	<sql id="buildCascadeTable"><!-- 构建级联表 -->
+		select tree.* from <include refid="com.lmiky.jdp.tree.pojo.BaseTreePojo.tableName"/> tree inner join <include refid="tableName"/> d on tree.id = d.id
+	</sql>
+	
+	<sql id="joinParent">
+		<if test="hasJoin and joinPojoAlias.contains('parent')">
+     		left join <include refid="com.lmiky.jdp.tree.pojo.BaseTreePojo.tableName"/> parent on <include refid="tableAlias"/>.parentId = parent.id
+     	</if>
+	</sql>
+	
 	<select id="find" resultMap="cmsDirectory">
-		select * from 
-		<include refid="tableName"/> <include refid="tableAlias" />
+		select <include refid="tableAlias" />.* from 
+		(<include refid="buildCascadeTable"/>) <include refid="tableAlias" />
+		<include refid="joinParent"/>
 		<trim prefix="where">
 			<include refid="common.aliasPropertiesCondition"/>
 		</trim>
 	</select>
 	
 	<select id="list" resultMap="cmsDirectory">
-		select * from
-		<include refid="tableName" /> <include refid="tableAlias" />
+		select <include refid="tableAlias" />.* from
+		(<include refid="buildCascadeTable"/>) <include refid="tableAlias" />
+		<include refid="joinParent"/>
 		<trim prefix="where">
 			<include refid="common.aliasPropertiesCondition" />
 		</trim>
 		<include refid="common.sortCondition" />
 		<include refid="common.pageCondition" />
 	</select>
+	
+	<select id="count" resultType="java.lang.Integer">
+     	select count(*) from (<include refid="buildCascadeTable"/>) <include refid="tableAlias" />
+     	<trim prefix="where">
+    		<include refid="common.aliasPropertiesCondition"/>
+    	</trim>
+     </select>
 
 	<insert id="add" parameterType="CmsDirectory" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
 		insert into

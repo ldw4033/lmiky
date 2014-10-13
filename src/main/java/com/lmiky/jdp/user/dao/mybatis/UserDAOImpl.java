@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.lmiky.jdp.database.dao.mybatis.BaseDAOImpl;
 import com.lmiky.jdp.database.exception.DatabaseException;
+import com.lmiky.jdp.database.model.PropertyFilter;
+import com.lmiky.jdp.database.pojo.BasePojo;
 import com.lmiky.jdp.system.menu.pojo.LatelyOperateMenu;
 import com.lmiky.jdp.user.dao.UserDAO;
 import com.lmiky.jdp.user.pojo.Operator;
@@ -74,6 +76,22 @@ public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
 			params.put("userId", userId);
 			params.put("roleId", roleId);
 			sqlSessionTemplate.delete(User.class.getName() + ".addUserRole", params);
+		} catch (Exception e) {
+			throw new DatabaseException(e.getMessage());
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.mybatis.BaseDAOImpl#delete(java.lang.Class, java.util.List)
+	 */
+	@Override
+	public <T extends BasePojo> int delete(Class<T> pojoClass, List<PropertyFilter> propertyFilters) throws DatabaseException {
+		try {
+			int ret = super.delete(pojoClass, propertyFilters);
+			if(User.class.isAssignableFrom(pojoClass)) {	
+				super.delete(User.class, propertyFilters);	//删除用户表记录
+			}
+			return ret;
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}

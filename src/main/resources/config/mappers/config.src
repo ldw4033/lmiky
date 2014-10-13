@@ -4,3 +4,6 @@
 #没在本文件配置的，默认为common
 #操作员
 com.lmiky.jdp.user.pojo.Operator_count=custom
+
+#内容目录
+com.lmiky.cms.directory.pojo.CmsDirectory_count=custom

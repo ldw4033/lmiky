@@ -223,7 +223,9 @@ public class BaseServiceImpl implements BaseService {
 	@Transactional(rollbackFor={Exception.class})
 	public <T extends BasePojo> void delete(List<T> pojos) throws ServiceException {
 		try {
-			getDAO().delete(pojos);
+			for(T pojo: pojos) {
+				delete(pojo);
+			}
 		} catch (DatabaseException e) {
 			throw new ServiceException(e.getMessage());
 		}

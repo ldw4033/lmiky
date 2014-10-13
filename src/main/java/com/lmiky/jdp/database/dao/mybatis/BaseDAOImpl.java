@@ -50,6 +50,10 @@ public class BaseDAOImpl implements BaseDAO {
 	 */
 	protected static final String PARAM_NAME_JOIN_TABLEALISA = "joinTableAlias";
 	/**
+	 * 是否有级联其他对象
+	 */
+	protected static final String PARAM_NAME_JOIN_POJOALISA = "joinPojoAlias";
+	/**
 	 * 过滤条件
 	 */
 	protected static final String PARAM_NAME_FILTERS = "filters";
@@ -298,6 +302,7 @@ public class BaseDAOImpl implements BaseDAO {
 			params.put(PARAM_NAME_FILTERS, propertyFilters);
 			boolean hasJoin = false;	//是否有级联别的表
 			List<String> joinTableAlias = new ArrayList<String>();	
+			List<String> joinPojoAlias = new ArrayList<String>();	
 			String pojoClassName = pojoClass.getName();
 			for(PropertyFilter filter : propertyFilters) {
 				Class<?> filterClass = filter.getCompareClass();
@@ -305,10 +310,21 @@ public class BaseDAOImpl implements BaseDAO {
 				if(!pojoClassName.equals(filterClassName)) {	//是否是其他的表
 					hasJoin = true;
 					joinTableAlias.add(filterClass.getSimpleName());	//添加到所级联的表列表中
+				} else {
+					String filterPropertyName = filter.getPropertyName();
+					int splitIndex = filterPropertyName.indexOf(".");
+					if(splitIndex != -1) {	//其他级联，比如树状的，级联的类跟对象本身是同一种类
+						String pojoName = filterPropertyName.substring(0, splitIndex);
+						if(!joinPojoAlias.contains(pojoName)) {
+							joinPojoAlias.add(pojoName);
+						}
+						hasJoin = true;
+					}
 				}
 			}
 			params.put(PARAM_NAME_HAS_JOIN, hasJoin);
 			params.put(PARAM_NAME_JOIN_TABLEALISA, joinTableAlias);
+			params.put(PARAM_NAME_JOIN_POJOALISA, joinPojoAlias);
 		}
 		return params;
 	}

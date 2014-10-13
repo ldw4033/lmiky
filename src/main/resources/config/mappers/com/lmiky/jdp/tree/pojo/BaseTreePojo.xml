@@ -16,7 +16,7 @@
 	<sql id="tableAlias">
 		BaseTreePojo
 	</sql>
-
+	
 	<select id="find" resultMap="baseTreePojo">
 		select * from 
 		<include refid="tableName"/> <include refid="tableAlias" />

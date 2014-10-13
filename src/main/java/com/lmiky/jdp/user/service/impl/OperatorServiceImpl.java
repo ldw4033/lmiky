@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lmiky.jdp.database.dao.BaseDAO;
 import com.lmiky.jdp.database.exception.DatabaseException;
 import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
@@ -55,14 +52,35 @@ public class OperatorServiceImpl extends UserServiceImpl implements OperatorServ
 	}
 
 	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.service.impl.BaseServiceImpl#add(com.lmiky.jdp.database.pojo.BasePojo)
+	 */
+	@Override
+	public <T extends BasePojo> void add(T pojo) throws ServiceException {
+		try {
+			super.add(pojo);
+			if(pojo instanceof Operator) {
+				UserDAO userDAO = (UserDAO)getDAO();
+				Set<Role> roles = ((Operator) pojo).getRoles();
+				if(roles != null && roles.size() > 0) {
+					for(Role role : roles) {
+						userDAO.addUserRole(pojo.getId(), role.getId());	//添加中间表数据
+					}
+				}
+			}
+		} catch (DatabaseException e) {
+			throw new ServiceException(e.getMessage());
+		}
+	}
+
+	/* (non-Javadoc)
 	 * @see com.lmiky.jdp.service.impl.BaseServiceImpl#update(com.lmiky.jdp.database.pojo.BasePojo)
 	 */
 	@Transactional(rollbackFor={Exception.class})
 	public <T extends BasePojo> void update(T pojo) throws ServiceException {
 		try {
+			super.update(pojo);
 			if(pojo instanceof Operator) {
 				UserDAO userDAO = (UserDAO)getDAO();
-				userDAO.update(pojo);
 				userDAO.deleteUserRole(pojo.getId());	//删除中间表数据
 				Set<Role> roles = ((Operator) pojo).getRoles();
 				if(roles != null && roles.size() > 0) {
@@ -70,20 +88,9 @@ public class OperatorServiceImpl extends UserServiceImpl implements OperatorServ
 						userDAO.addUserRole(pojo.getId(), role.getId());	//添加中间表数据
 					}
 				}
-			} else {
-				super.update(pojo);
 			}
 		} catch (DatabaseException e) {
 			throw new ServiceException(e.getMessage());
 		}
-	}
-	
-	/* (non-Javadoc)
-	 * @see com.lmiky.jdp.service.impl.BaseServiceImpl#setDAO(com.lmiky.jdp.database.dao.BaseDAO)
-	 */
-	@Override
-	@Resource(name="userDAO")
-	public void setDAO(BaseDAO dao) {
-		super.setDAO(dao);
 	}
 }

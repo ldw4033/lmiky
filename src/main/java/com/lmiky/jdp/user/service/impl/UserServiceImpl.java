@@ -1,8 +1,11 @@
 package com.lmiky.jdp.user.service.impl;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lmiky.jdp.database.dao.BaseDAO;
 import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.service.exception.ServiceException;
@@ -32,5 +35,14 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 	@Transactional(readOnly=true)
 	public <T extends User> T findByLoginName(String loginName,  Class<T> userClass) throws ServiceException {
 		return find(userClass, new PropertyFilter(User.POJO_FIELD_NAME_LOGINNAME, loginName, PropertyCompareType.EQ, userClass));
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.service.impl.BaseServiceImpl#setDAO(com.lmiky.jdp.database.dao.BaseDAO)
+	 */
+	@Override
+	@Resource(name="userDAO")
+	public void setDAO(BaseDAO dao) {
+		super.setDAO(dao);
 	}
 }

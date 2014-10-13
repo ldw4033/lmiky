@@ -46,7 +46,7 @@
     <!-- 过滤条件 -->
     <sql id="propertiesCondition">
     	<if test="_parameter.containsKey('filters') and filters != null and filters.size > 0">
-        	<foreach collection="filters" item="filter" separator="and">
+        	<foreach collection="filters" item="filter" separator=" and ">
 				<choose>
 					<when test="filter.compareType.value == 'eq'">
 						${filter.propertyName} = #{filter.propertyValue}
@@ -101,52 +101,53 @@
     <!-- 过滤条件-带别名 -->
     <sql id="aliasPropertiesCondition">
     	<if test="_parameter.containsKey('filters') and filters != null and filters.size > 0">
-        	<foreach collection="filters" item="filter" separator="and">
+        	<foreach collection="filters" item="filter" separator=" and ">
+        		<if test="filter.propertyName.indexOf('.') == -1">${filter.classAlias}.</if>
 				<choose>
 					<when test="filter.compareType.value == 'eq'">
-						${filter.classAlias}.${filter.propertyName} = #{filter.propertyValue}
+						${filter.propertyName} = #{filter.propertyValue}
 					</when>
 					<when test="filter.compareType.value == 'ne'">
-						${filter.classAlias}.${filter.propertyName} != #{filter.propertyValue}
+						${filter.propertyName} != #{filter.propertyValue}
 					</when>
 					<when test="filter.compareType.value == 'gt'">
-						${filter.classAlias}.${filter.propertyName} > #{filter.propertyValue}
+						${filter.propertyName} > #{filter.propertyValue}
 					</when>
 					<when test="filter.compareType.value == 'ge'">
-						${filter.classAlias}.${filter.propertyName} >= #{filter.propertyValue}
+						${filter.propertyName} >= #{filter.propertyValue}
 					</when>
 					<when test="filter.compareType.value == 'lt'">
-						<![CDATA[ ${filter.classAlias}.${filter.propertyName} < #{filter.propertyValue} ]]>
+						<![CDATA[ ${filter.propertyName} < #{filter.propertyValue} ]]>
 					</when>
 					<when test="filter.compareType.value == 'le'">
-						<![CDATA[ ${filter.classAlias}.${filter.propertyName} <= #{filter.propertyValue} ]]>
+						<![CDATA[ ${filter.propertyName} <= #{filter.propertyValue} ]]>
 					</when>
 					<when test="filter.compareType.value == 'like'">
-						${filter.classAlias}.${filter.propertyName} like '%${filter.propertyValue}%'
+						${filter.propertyName} like '%${filter.propertyValue}%'
 					</when>
 					<when test="filter.compareType.value == 'llike'">
-						${filter.classAlias}.${filter.propertyName} like '${filter.propertyValue}%'
+						${filter.propertyName} like '${filter.propertyValue}%'
 					</when>
 					<when test="filter.compareType.value == 'rlike'">
-						${filter.classAlias}.${filter.propertyName} like '%${filter.propertyValue}'
+						${filter.propertyName} like '%${filter.propertyValue}'
 					</when>
 					<when test="filter.compareType.value == 'nlike'">
-						${filter.classAlias}.${filter.propertyName} not like '${filter.propertyValue}%'
+						${filter.propertyName} not like '${filter.propertyValue}%'
 					</when>
 					<when test="filter.compareType.value == 'nllike'">
-						${filter.classAlias}.${filter.propertyName} not like '${filter.propertyValue}%'
+						${filter.propertyName} not like '${filter.propertyValue}%'
 					</when>
 					<when test="filter.compareType.value == 'nrlike'">
-						${filter.classAlias}.${filter.propertyName} not like '%${filter.propertyValue}'
+						${filter.propertyName} not like '%${filter.propertyValue}'
 					</when>
 					<when test="filter.compareType.value == 'nnull'">
-						${filter.classAlias}.${filter.propertyName} is not null
+						${filter.propertyName} is not null
 					</when>
 					<when test="filter.compareType.value == 'null'">
-						${filter.classAlias}.${filter.propertyName} is null
+						${filter.propertyName} is null
 					</when>
 					<otherwise>
-						${filter.classAlias}.${filter.propertyName} = #{filter.propertyValue}
+						${filter.propertyName} = #{filter.propertyValue}
 					</otherwise>
 				</choose>
 			</foreach>
