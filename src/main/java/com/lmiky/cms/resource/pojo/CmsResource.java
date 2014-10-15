@@ -86,7 +86,7 @@ public class CmsResource extends BasePojo {
 	/**
 	 * @return the createTime
 	 */
-	@Column(name="create_time")
+	@Column(name="createTime")
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -99,7 +99,7 @@ public class CmsResource extends BasePojo {
 	/**
 	 * @return the pubTime
 	 */
-	@Column(name="pub_time")
+	@Column(name="pubTime")
 	public Date getPubTime() {
 		return pubTime;
 	}
@@ -197,7 +197,7 @@ public class CmsResource extends BasePojo {
 	 * @return the directory
 	 */
 	@ManyToOne(fetch=FetchType.LAZY)  
-    @JoinColumn(name="directory_id")  
+    @JoinColumn(name="directoryId")  
 	public CmsDirectory getDirectory() {
 		return directory;
 	}

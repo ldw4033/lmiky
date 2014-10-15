@@ -7,8 +7,8 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.lmiky.cms.resource.pojo.CmsResource;
 import com.lmiky.jdp.logger.util.LoggerUtils;
-import com.lmiky.jdp.tree.pojo.BaseTreePojo;
 import com.lmiky.jdp.util.PropertyUtils;
 
 import freemarker.template.Configuration;
@@ -80,6 +80,6 @@ public class MybatisMapperBuilder extends BaseBuilder {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(MybatisMapperBuilder.builder(BaseTreePojo.class));
+		System.out.println(MybatisMapperBuilder.builder(CmsResource.class));
 	}
 }

@@ -23,6 +23,12 @@
 		</trim>
 	</select>
 	
+	<select id="findById" resultMap="user">
+		select * from 
+		<include refid="tableName"/> <include refid="tableAlias" />
+		where id = #{id}
+	</select>
+	
 	<insert id="add" parameterType="User"  useGeneratedKeys="true" keyColumn="id" keyProperty="id">
 	 	insert into <include refid="tableName"/>(loginName, password, lastSetPasswordTime, valid, <include refid="com.lmiky.jdp.user.pojo.Person.addField"/>) 
 	 	values (#{loginName}, #{password}, #{lastSetPasswordTime}, #{valid}, <include refid="com.lmiky.jdp.user.pojo.Person.addValue"/>)

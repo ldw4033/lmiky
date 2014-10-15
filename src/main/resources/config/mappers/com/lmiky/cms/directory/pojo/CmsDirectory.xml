@@ -32,6 +32,12 @@
 		</trim>
 	</select>
 	
+	<select id="findById" resultMap="cmsDirectory">
+		select <include refid="tableAlias" />.* from 
+		(<include refid="buildCascadeTable"/>) <include refid="tableAlias" />
+		where id = #{id}
+	</select>
+	
 	<select id="list" resultMap="cmsDirectory">
 		select <include refid="tableAlias" />.* from
 		(<include refid="buildCascadeTable"/>) <include refid="tableAlias" />

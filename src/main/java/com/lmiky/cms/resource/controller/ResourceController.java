@@ -132,7 +132,7 @@ public class ResourceController extends FormController<CmsResource> {
 		List<PropertyFilter> filters = super.generatePropertyFilters(modelMap, request);
 		String directoryId = request.getParameter("directoryId");
 		if (!StringUtils.isBlank(directoryId)) {
-			filters.add(new PropertyFilter("directory.id", Long.parseLong(directoryId), PropertyCompareType.EQ, CmsResource.class));
+			filters.add(new PropertyFilter("id", Long.parseLong(directoryId), PropertyCompareType.EQ, CmsDirectory.class));
 		}
 		return filters;
 	}

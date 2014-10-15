@@ -7,15 +7,13 @@
 		<result column="title" property="title"/>
 		<result column="subtitle" property="subtitle"/>
 		<result column="author" property="author"/>
-		<result column="creator" property="creator"/>
 		<result column="createTime" property="createTime"/>
-		<result column="publisher" property="publisher"/>
 		<result column="pubTime" property="pubTime"/>
 		<result column="source" property="source"/>
 		<result column="state" property="state"/>
-		<result column="resourceContents" property="resourceContents"/>
-		<result column="directory" property="directory"/>
-		<result column="pictureSnapshots" property="pictureSnapshots"/>
+		<association property="creator" column="creator" select="com.lmiky.jdp.user.pojo.User.findById"/>
+		<association property="publisher" column="publisher" select="com.lmiky.jdp.user.pojo.User.findById"/>
+		<association property="directory" column="directoryId" select="com.lmiky.cms.directory.pojo.CmsDirectory.findById"/>
 	</resultMap>
 
 	<sql id="tableName">
@@ -24,10 +22,22 @@
 	<sql id="tableAlias">
 		CmsResource
 	</sql>
+	<sql id="hasJoin">
+		<if test="hasJoin and joinTableAlias.contains('CmsDirectory')">
+     		left join <include refid="com.lmiky.cms.directory.pojo.CmsDirectory.tableName"/> CmsDirectory on <include refid="tableAlias" />.directoryId = CmsDirectory.id
+     	</if>
+     	<if test="hasJoin and joinPojoAlias.contains('creator')">
+     		left join <include refid="com.lmiky.jdp.user.pojo.User.tableName"/> creator on <include refid="tableAlias" />.creator = creator.id
+     	</if>
+     	<if test="hasJoin and joinPojoAlias.contains('publisher')">
+     		left join <include refid="com.lmiky.jdp.user.pojo.User.tableName"/> publisher on <include refid="tableAlias" />.publisher = publisher.id
+     	</if>
+	</sql>
 
 	<select id="find" resultMap="cmsResource">
 		select * from 
 		<include refid="tableName"/> <include refid="tableAlias" />
+		<include refid="hasJoin"/>
 		<trim prefix="where">
 			<include refid="common.aliasPropertiesCondition"/>
 		</trim>
@@ -36,12 +46,22 @@
 	<select id="list" resultMap="cmsResource">
 		select * from
 		<include refid="tableName" /> <include refid="tableAlias" />
+		<include refid="hasJoin"/>
 		<trim prefix="where">
 			<include refid="common.aliasPropertiesCondition" />
 		</trim>
 		<include refid="common.sortCondition" />
 		<include refid="common.pageCondition" />
 	</select>
+	
+	<select id="count" resultType="java.lang.Integer">
+     	select count(*) from
+     	<include refid="tableName" /> <include refid="tableAlias" />
+		<include refid="hasJoin"/>
+     	<trim prefix="where">
+    		<include refid="common.aliasPropertiesCondition"/>
+    	</trim>
+     </select>
 
 	<insert id="add" parameterType="CmsResource" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
 		insert into
@@ -57,9 +77,7 @@
 			,pubTime
 			,source
 			,state
-			,resourceContents
-			,directory
-			,pictureSnapshots
+			,directoryId
 		)
 		values
 		(
@@ -67,15 +85,13 @@
 			,#{title}
 			,#{subtitle}
 			,#{author}
-			,#{creator}
+			,#{creator.id}
 			,#{createTime}
-			,#{publisher}
+			,#{publisher.id}
 			,#{pubTime}
 			,#{source}
 			,#{state}
-			,#{resourceContents}
-			,#{directory}
-			,#{pictureSnapshots}
+			,#{directory.id}
 		)
 	</insert>
 	
@@ -85,15 +101,13 @@
 			<if test="title != null">title=#{title},</if>
 			<if test="subtitle != null">subtitle=#{subtitle},</if>
 			<if test="author != null">author=#{author},</if>
-			<if test="creator != null">creator=#{creator},</if>
+			<if test="creator != null and creator.id != null">creator=#{creator.id},</if>
 			<if test="createTime != null">createTime=#{createTime},</if>
-			<if test="publisher != null">publisher=#{publisher},</if>
+			<if test="publisher != null and publisher.id != null">publisher=#{publisher.id},</if>
 			<if test="pubTime != null">pubTime=#{pubTime},</if>
 			<if test="source != null">source=#{source},</if>
 			<if test="state != null">state=#{state},</if>
-			<if test="resourceContents != null">resourceContents=#{resourceContents},</if>
-			<if test="directory != null">directory=#{directory},</if>
-			<if test="pictureSnapshots != null">pictureSnapshots=#{pictureSnapshots},</if>
+			<if test="directory != null and directory.id != null">directoryId=#{directory.id},</if>
 		</trim>
 		where id=#{id}
 	</update>
