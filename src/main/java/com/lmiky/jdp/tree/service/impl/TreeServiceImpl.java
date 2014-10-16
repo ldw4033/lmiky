@@ -41,6 +41,7 @@ public class TreeServiceImpl extends BaseServiceImpl {
 	@Override
 	@Transactional(rollbackFor={Exception.class})
 	public <T extends BasePojo> void delete(T pojo) throws ServiceException {
+		super.delete(pojo);
 		if(pojo instanceof BaseTreePojo) {
 			BaseTreePojo pojoTree = (BaseTreePojo) pojo;
 			if(pojoTree.getLeaf() > 0) {
@@ -53,7 +54,7 @@ public class TreeServiceImpl extends BaseServiceImpl {
 				parent.setLeaf(parent.getLeaf() - 1);
 				super.save(parent);
 			}
+			super.delete(BaseTreePojo.class, pojo.getId());	//删除树内容
 		}
-		super.delete(pojo);
 	}
 }
