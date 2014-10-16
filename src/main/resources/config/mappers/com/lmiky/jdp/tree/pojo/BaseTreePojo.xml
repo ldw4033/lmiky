@@ -45,6 +45,7 @@
 		select * from
 		<include refid="tableName" /> <include refid="tableAlias" />
 		where parentId = #{parentId}
+		order by sort desc, id asc
 	</select>
 
 	<insert id="add" parameterType="BaseTreePojo" useGeneratedKeys="true" keyColumn="id" keyProperty="id">

@@ -1,6 +1,9 @@
 package com.lmiky.jdp.tree.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.database.model.Sort;
+import com.lmiky.jdp.database.pojo.BasePojo;
 import com.lmiky.jdp.session.model.SessionInfo;
 import com.lmiky.jdp.sort.pojo.BaseSortPojo;
 import com.lmiky.jdp.tree.pojo.BaseTreePojo;
@@ -45,7 +49,12 @@ public class TreeController extends BaseTreeController<BaseTreePojo> {
 			// 检查单点登陆
 			checkSso(sessionInfo, modelMap, request);
 			Class<? extends BaseTreePojo> treeClass = (Class<? extends BaseTreePojo>) Class.forName(className);
-			modelMap.put("roots", service.list(treeClass, new PropertyFilter("parent.id", null, PropertyCompareType.NULL, treeClass), new Sort(BaseSortPojo.POJO_FIELD_NAME_SORT, Sort.SORT_TYPE_DESC, treeClass)));
+			List<PropertyFilter> filters = new ArrayList<PropertyFilter>();
+			filters.add(new PropertyFilter("parent.id", null, PropertyCompareType.NULL, treeClass));
+			List<Sort> sorts = new ArrayList<Sort>();
+			sorts.add(new Sort(BaseSortPojo.POJO_FIELD_NAME_SORT, Sort.SORT_TYPE_DESC, treeClass));
+			sorts.add(new Sort(BasePojo.POJO_FIELD_NAME_ID, Sort.SORT_TYPE_ASC, treeClass));
+			modelMap.put("roots", service.list(treeClass, filters, sorts));
 			modelMap.put("className", className);
 			return "jdp/tree/selectTree";
 		} catch (Exception e) {

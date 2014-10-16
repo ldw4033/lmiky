@@ -15,6 +15,7 @@ import com.lmiky.jdp.constants.Constants;
 import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.database.model.Sort;
+import com.lmiky.jdp.database.pojo.BasePojo;
 import com.lmiky.jdp.form.controller.FormController;
 import com.lmiky.jdp.form.model.ValidateError;
 import com.lmiky.jdp.form.util.ValidateUtils;
@@ -48,7 +49,12 @@ public abstract class BaseTreeController<T extends BaseTreePojo> extends FormCon
 			checkSso(sessionInfo, modelMap, request);
 			//检查权限
 			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode(modelMap, request));
-			List<?> roots = service.list(pojoClass, new PropertyFilter("parent.id", null, PropertyCompareType.NULL, pojoClass), new Sort(BaseSortPojo.POJO_FIELD_NAME_SORT, Sort.SORT_TYPE_DESC, pojoClass));
+			List<PropertyFilter> filters = new ArrayList<PropertyFilter>();
+			filters.add(new PropertyFilter("parent.id", null, PropertyCompareType.NULL, pojoClass));
+			List<Sort> sorts = new ArrayList<Sort>();
+			sorts.add(new Sort(BaseSortPojo.POJO_FIELD_NAME_SORT, Sort.SORT_TYPE_DESC, pojoClass));
+			sorts.add(new Sort(BasePojo.POJO_FIELD_NAME_ID, Sort.SORT_TYPE_ASC, pojoClass));
+			List<?> roots = service.list(pojoClass, filters, sorts);
 			modelMap.put("roots", roots);
 			appendListAttribute(modelMap, request, resopnse);
 			String modulePath = getModulePath(modelMap, request);
@@ -91,10 +97,16 @@ public abstract class BaseTreeController<T extends BaseTreePojo> extends FormCon
 			checkSso(sessionInfo, modelMap, request);
 			//检查权限
 			checkAuthority(modelMap, request, sessionInfo, getLoadAuthorityCode(modelMap, request));
+			List<PropertyFilter> filters = new ArrayList<PropertyFilter>();
+			List<Sort> sorts = new ArrayList<Sort>();
+			sorts.add(new Sort(BaseSortPojo.POJO_FIELD_NAME_SORT, Sort.SORT_TYPE_DESC, pojoClass));
+			sorts.add(new Sort(BasePojo.POJO_FIELD_NAME_ID, Sort.SORT_TYPE_ASC, pojoClass));
 			if(parentId == null) {
-				modelMap.put("nodes", service.list(pojoClass, new PropertyFilter("parent.id", null, PropertyCompareType.NULL, pojoClass), new Sort(BaseSortPojo.POJO_FIELD_NAME_SORT, Sort.SORT_TYPE_DESC, pojoClass)));
+				filters.add(new PropertyFilter("parent.id", null, PropertyCompareType.NULL, pojoClass));
+				modelMap.put("nodes", service.list(pojoClass, filters, sorts));
 			} else {
-				modelMap.put("nodes", service.list(pojoClass, new PropertyFilter("parent.id", parentId, PropertyCompareType.EQ, pojoClass), new Sort(BaseSortPojo.POJO_FIELD_NAME_SORT, Sort.SORT_TYPE_DESC, pojoClass)));
+				filters.add(new PropertyFilter("parent.id", parentId, PropertyCompareType.EQ, pojoClass));
+				modelMap.put("nodes", service.list(pojoClass, filters, sorts));
 			}
 			return "treeListJsonView";
 		} catch (Exception e) {

@@ -42,18 +42,11 @@ public class SortServiceImpl extends BaseServiceImpl implements SortService {
 	@Transactional(rollbackFor = { Exception.class })
 	public <T extends BaseSortPojo> void sort(Class<T> sortPojoClass, String[] sortedIds, List<PropertyFilter> propertyFilters) throws ServiceException {
 		try {
-			//过滤条件
-			Map<String, Object> condition = new HashMap<String, Object>();
-			if(propertyFilters != null && !propertyFilters.isEmpty()) {
-				for(PropertyFilter propertyFilter: propertyFilters) {
-					condition.put(propertyFilter.getPropertyName(), propertyFilter.getPropertyValue());
-				}
-			}
 			//设置更新值
 			Map<String, Object> updateValue = new HashMap<String, Object>();
 			updateValue.put(BaseSortPojo.POJO_FIELD_NAME_SORT, BaseSortPojo.DEFAULT_SORT);
 			// 清除原先的排序
-			this.update(sortPojoClass, condition, updateValue);
+			this.update(sortPojoClass, propertyFilters, updateValue);
 			int sortValue = sortedIds.length;
 			for (String id : sortedIds) {
 				this.update(sortPojoClass, BasePojo.POJO_FIELD_NAME_ID, Long.valueOf(id), BaseSortPojo.POJO_FIELD_NAME_SORT, sortValue);

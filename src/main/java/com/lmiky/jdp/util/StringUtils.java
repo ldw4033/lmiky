@@ -162,4 +162,30 @@ public class StringUtils {
 		}
 		return ret;
     } 
+	
+	/**
+	 * 首字母转大写
+	 * @author lmiky
+	 * @date 2014年10月16日 下午2:46:31
+	 * @param str
+	 * @return
+	 */
+	public static String firstLetterUpperCase(String str) {
+		String firstLetter = str.charAt(0) + "";
+		//首字母改为小写
+		return str.replaceFirst(firstLetter, firstLetter.toUpperCase());
+	}
+	
+	/**
+	 * 首字母转小写
+	 * @author lmiky
+	 * @date 2014年10月16日 下午2:46:31
+	 * @param str
+	 * @return
+	 */
+	public static String firstLetterLowerCase(String str) {
+		String firstLetter = str.charAt(0) + "";
+		//首字母改为小写
+		return str.replaceFirst(firstLetter, firstLetter.toLowerCase());
+	}
 }

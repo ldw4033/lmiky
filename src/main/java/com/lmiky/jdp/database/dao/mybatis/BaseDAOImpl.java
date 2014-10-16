@@ -1,5 +1,6 @@
 package com.lmiky.jdp.database.dao.mybatis;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.Map;
 import java.util.MissingResourceException;
 
 import javax.annotation.Resource;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 import net.sf.cglib.proxy.Enhancer;
@@ -22,6 +24,7 @@ import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.database.model.Sort;
 import com.lmiky.jdp.database.pojo.BasePojo;
+import com.lmiky.jdp.tree.pojo.BaseTreePojo;
 import com.lmiky.jdp.util.PropertiesUtils;
 
 /**
@@ -279,8 +282,9 @@ public class BaseDAOImpl implements BaseDAO {
 	 * @date 2014年9月9日 上午10:23:01
 	 * @param pojoClass
 	 * @return
+	 * @throws Exception 
 	 */
-	protected <T extends BasePojo> Map<String, Object> generateParameterMap(Class<T> pojoClass) {
+	protected <T extends BasePojo> Map<String, Object> generateParameterMap(Class<T> pojoClass) throws Exception {
 		return generateParameterMap(pojoClass, null);
 	}
 	
@@ -291,26 +295,32 @@ public class BaseDAOImpl implements BaseDAO {
 	 * @param pojoClass
 	 * @param propertyFilters
 	 * @return
+	 * @throws Exception 
 	 */
-	protected <T extends BasePojo> Map<String, Object> generateParameterMap(Class<T> pojoClass,  List<PropertyFilter> propertyFilters) {
+	protected <T extends BasePojo> Map<String, Object> generateParameterMap(Class<T> pojoClass,  List<PropertyFilter> propertyFilters) throws Exception {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put(PARAM_NAME_TABLENAME, getPojoTabelName(pojoClass));
 		params.put(PARAM_NAME_TABLEALIAS, pojoClass.getSimpleName());	
 		if(propertyFilters == null || propertyFilters.isEmpty()) {
 			params.put(PARAM_NAME_HAS_JOIN, false);
 		} else {
-			params.put(PARAM_NAME_FILTERS, propertyFilters);
+			List<PropertyFilter> dbFilters = new ArrayList<PropertyFilter>();
+			for(PropertyFilter filter : propertyFilters) {
+				dbFilters.add((PropertyFilter)filter.clone());
+			}
+			params.put(PARAM_NAME_FILTERS, dbFilters);
 			boolean hasJoin = false;	//是否有级联别的表
 			List<String> joinTableAlias = new ArrayList<String>();	
 			List<String> joinPojoAlias = new ArrayList<String>();	
 			String pojoClassName = pojoClass.getName();
-			for(PropertyFilter filter : propertyFilters) {
+			for(PropertyFilter filter : dbFilters) {
 				Class<?> filterClass = filter.getCompareClass();
 				String filterClassName = (filterClass == null) ? "" : filterClass.getName();
 				if(!pojoClassName.equals(filterClassName)) {	//是否是其他的表
 					hasJoin = true;
 					joinTableAlias.add(filterClass.getSimpleName());	//添加到所级联的表列表中
 				} else {
+					rebuildFilter(filter);
 					String filterPropertyName = filter.getPropertyName();
 					int splitIndex = filterPropertyName.indexOf(".");
 					if(splitIndex != -1) {	//其他级联，比如树状的，级联的类跟对象本身是同一种类
@@ -329,6 +339,27 @@ public class BaseDAOImpl implements BaseDAO {
 		return params;
 	}
 
+	/**
+	 * 重构过滤条件
+	 * @author lmiky
+	 * @date 2014年10月16日 下午3:32:20
+	 * @param filter
+	 * @throws Exception
+	 */
+	protected void rebuildFilter(PropertyFilter filter) throws Exception {
+		String filterPropertyName = filter.getPropertyName();
+		int splitIndex = filterPropertyName.indexOf(".");
+		if(splitIndex != -1) {	//级联
+			String pojoName = filterPropertyName.substring(0, splitIndex);
+			String fieldName = filterPropertyName.substring(splitIndex + 1);	//属性字段
+			if(BasePojo.POJO_FIELD_NAME_ID.equals(fieldName)) {	//获取外键字段
+				Method fieldMethod = BaseTreePojo.class.getMethod("get" + com.lmiky.jdp.util.StringUtils.firstLetterUpperCase(pojoName));
+				JoinColumn joinColumnAnnotation = fieldMethod.getAnnotation(JoinColumn.class); 
+				filter.setPropertyName(joinColumnAnnotation.name());//外键注解
+			}
+		}
+	}
+	
 	/**
 	 * 设置排序参数
 	 * @author lmiky
@@ -380,6 +411,17 @@ public class BaseDAOImpl implements BaseDAO {
 		sort.setSortType(sortType);
 		sort.setSortClass(sortClass);
 		setSortParameter(parameterMap, sort);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#isDBPojo(java.lang.Class)
+	 */
+	public <T extends BasePojo> boolean isDBPojo(Class<T> pojoClass) throws DatabaseException {
+		try {
+			return getPojoTabelName(pojoClass) != null;
+		} catch (Exception e) {
+			throw new DatabaseException(e.getMessage());
+		} 
 	}
 	
 	/*
@@ -592,7 +634,25 @@ public class BaseDAOImpl implements BaseDAO {
 			Map<String, Object> condition = new HashMap<String, Object>();
 			condition.put(conditionFieldName, conditionFieldValue);
 			Map<String, Object> updateValue = new HashMap<String, Object>();
-			condition.put(updateFieldName, updateFieldValue);
+			updateValue.put(updateFieldName, updateFieldValue);
+			return update(pojoClass, condition, updateValue);
+		} catch (Exception e) {
+			throw new DatabaseException(e.getMessage());
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.database.dao.BaseDAO#update(java.lang.Class, java.util.List, java.util.Map)
+	 */
+	public <T extends BasePojo> boolean update(Class<T> pojoClass, List<PropertyFilter> propertyFilters, Map<String, Object> updateValue) throws DatabaseException {
+		try {
+			Map<String, Object> condition = new HashMap<String, Object>();
+			if(propertyFilters != null && !propertyFilters.isEmpty()) {
+				for(PropertyFilter propertyFilter: propertyFilters) {
+					rebuildFilter(propertyFilter);
+					condition.put(propertyFilter.getPropertyName(), propertyFilter.getPropertyValue());
+				}
+			}
 			return update(pojoClass, condition, updateValue);
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());

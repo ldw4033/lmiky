@@ -1,6 +1,6 @@
 package com.lmiky.jdp.tree.pojo;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -29,7 +29,7 @@ public class BaseTreePojo extends BaseSortPojo {
 	private String name;
 	private BaseTreePojo parent;
 	private Integer leaf = 0;
-	private Set<BaseTreePojo> children;
+	private List<BaseTreePojo> children;
 	
 	/**
 	 * @return the name
@@ -76,13 +76,13 @@ public class BaseTreePojo extends BaseSortPojo {
 	 */
 	@OneToMany(mappedBy="parent", fetch=FetchType.LAZY, cascade={CascadeType.ALL})
 	@OrderBy(BaseSortPojo.POJO_FIELD_NAME_SORT + " desc")
-	public Set<BaseTreePojo> getChildren() {
+	public List<BaseTreePojo> getChildren() {
 		return children;
 	}
 	/**
 	 * @param children the children to set
 	 */
-	public void setChildren(Set<BaseTreePojo> children) {
+	public void setChildren(List<BaseTreePojo> children) {
 		this.children = children;
 	}
 }

@@ -25,6 +25,17 @@ import com.lmiky.jdp.service.exception.ServiceException;
 public class BaseServiceImpl implements BaseService {
 	protected BaseDAO baseDAO;
 
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.service.BaseService#isDBPojo(java.lang.Class)
+	 */
+	public <T extends BasePojo> boolean isDBPojo(Class<T> pojoClass) throws ServiceException {
+		try {
+			return getDAO().isDBPojo(pojoClass);
+		} catch (DatabaseException e) {
+			throw new ServiceException(e.getMessage());
+		}
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.service.BaseService#find(java.lang.Class, java.io.Serializable)
@@ -199,6 +210,18 @@ public class BaseServiceImpl implements BaseService {
 	public <T extends BasePojo> boolean update(Class<T> pojoClass, String conditionFieldName, Object conditionFieldValue, String updateFieldName, Object updateFieldValue) throws ServiceException {
 		try {
 			return getDAO().update(pojoClass, conditionFieldName, conditionFieldValue, updateFieldName, updateFieldValue);
+		} catch (DatabaseException e) {
+			throw new ServiceException(e.getMessage());
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.lmiky.jdp.service.BaseService#update(java.lang.Class, java.util.List, java.util.Map)
+	 */
+	@Transactional(rollbackFor={Exception.class})
+	public <T extends BasePojo> boolean update(Class<T> pojoClass, List<PropertyFilter> propertyFilters, Map<String, Object> updateValue) throws ServiceException {
+		try {
+			return getDAO().update(pojoClass, propertyFilters, updateValue);
 		} catch (DatabaseException e) {
 			throw new ServiceException(e.getMessage());
 		}

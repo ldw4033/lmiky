@@ -68,10 +68,22 @@
 		)
 	</insert>
 	
-	<update id="update" parameterType="CmsDirectory">
-		update <include refid="tableName" /> 
-		<trim prefix="set" suffixOverrides=",">
-		</trim>
-		where id=#{id}
-	</update>
+	<update id="updateByParams">
+   		update <include refid="com.lmiky.jdp.tree.pojo.BaseTreePojo.tableName"/> set
+   		<foreach collection="updateValue.keys" item="k" separator=","> 
+		   	<if test="null != updateValue[k]">  
+	             ${k} = #{updateValue[${k}]}
+	       	</if>
+			</foreach> 
+		<if test="null != condition">  
+			<where>
+				<foreach collection="condition.keys" item="k" separator="and"> 
+		    		<if test="null != condition[k]">  
+	                	    ${k} = #{condition[${k}]}  
+	        		</if>
+				</foreach> 
+			</where>
+		</if>
+    </update>
+	
 </mapper>

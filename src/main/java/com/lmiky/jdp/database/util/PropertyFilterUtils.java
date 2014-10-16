@@ -108,8 +108,14 @@ public class PropertyFilterUtils {
 									if (entiryDescriptors.get(propertyField) == null) {
 										continue;
 									}
-									filterList.add(new PropertyFilter(propertyField, ConvertUtils.convert(propertyValue, entiryDescriptors.get(propertyField)),
-											compareType, pojoClass));
+									String propertyFieldName = propertyField;
+									Class<?> propertyFieldClass = fieldClass;
+									if(fieldClass.equals(pojoClass) || fieldClass.isAssignableFrom(pojoClass)) {	//自身的引用
+										propertyFieldName = propertyName;	
+										propertyFieldClass = pojoClass;
+									}
+									filterList.add(new PropertyFilter(propertyFieldName, ConvertUtils.convert(propertyValue, entiryDescriptors.get(propertyField)),
+											compareType, propertyFieldClass));
 								}
 							}
 						}

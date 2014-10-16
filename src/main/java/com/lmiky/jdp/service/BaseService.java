@@ -16,6 +16,16 @@ import com.lmiky.jdp.service.exception.ServiceException;
 public interface BaseService {
 
 	/**
+	 * 是否数据库类
+	 * @author lmiky
+	 * @date 2014年10月16日 上午11:21:52
+	 * @param pojoClass
+	 * @return
+	 * @throws ServiceException
+	 */
+	public <T extends BasePojo> boolean isDBPojo(Class<T> pojoClass) throws ServiceException;
+	
+	/**
 	 * 根据主键获取对象
 	 * @author lmiky
 	 * @date 2013-4-16
@@ -165,6 +175,18 @@ public interface BaseService {
 	 * @throws ServiceException
 	 */
 	public <T extends BasePojo> boolean update(Class<T> pojoClass, String conditionFieldName, Object conditionFieldValue, String updateFieldName, Object updateFieldValue) throws ServiceException;
+	
+	/**
+	 * 根据条件修改
+	 * @author lmiky
+	 * @date 2014年10月16日 下午3:29:02
+	 * @param pojoClass
+	 * @param propertyFilters
+	 * @param updateValue
+	 * @return
+	 * @throws ServiceException
+	 */
+	public <T extends BasePojo> boolean update(Class<T> pojoClass, List<PropertyFilter> propertyFilters, Map<String, Object> updateValue) throws ServiceException;
 	
 	/**
 	 * 删除对象
