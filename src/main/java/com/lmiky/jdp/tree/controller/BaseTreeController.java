@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.ui.ModelMap;
 
-import com.lmiky.cms.resource.pojo.CmsResource;
 import com.lmiky.jdp.constants.Constants;
 import com.lmiky.jdp.database.model.PropertyCompareType;
 import com.lmiky.jdp.database.model.PropertyFilter;
@@ -119,7 +118,7 @@ public abstract class BaseTreeController<T extends BaseTreePojo> extends FormCon
 	 * (non-Javadoc)
 	 * @see com.lmiky.jdp.form.controller.FormController#validateInput(com.lmiky.jdp.database.pojo.BasePojo, java.lang.String, org.springframework.ui.ModelMap, javax.servlet.http.HttpServletRequest)
 	 */
-	public List<ValidateError> validateInput(CmsResource pojo, String openMode, ModelMap modelMap, HttpServletRequest request) throws Exception {
+	public List<ValidateError> validateInput(BaseTreePojo pojo, String openMode, ModelMap modelMap, HttpServletRequest request) throws Exception {
 		List<ValidateError> validateErrors = new ArrayList<ValidateError>();
 		ValidateUtils.validateRequired(request, "name", "名称", validateErrors);
 		return validateErrors;

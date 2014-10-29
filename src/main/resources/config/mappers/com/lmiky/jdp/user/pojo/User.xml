@@ -34,7 +34,7 @@
 	 	values (#{loginName}, #{password}, #{lastSetPasswordTime}, #{valid}, <include refid="com.lmiky.jdp.user.pojo.Person.addValue"/>)
 	 </insert>
 	 
-	 <update id="update" parameterType="Goods">
+	 <update id="update" parameterType="User">
 		update <include refid="tableName" /> 
 		<trim prefix="set" suffixOverrides=",">
 			<include refid="com.lmiky.jdp.user.pojo.Person.updateValue"/>

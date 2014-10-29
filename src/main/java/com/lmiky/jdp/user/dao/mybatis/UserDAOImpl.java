@@ -9,7 +9,6 @@ import com.lmiky.jdp.database.dao.mybatis.BaseDAOImpl;
 import com.lmiky.jdp.database.exception.DatabaseException;
 import com.lmiky.jdp.database.model.PropertyFilter;
 import com.lmiky.jdp.database.pojo.BasePojo;
-import com.lmiky.jdp.system.menu.pojo.LatelyOperateMenu;
 import com.lmiky.jdp.user.dao.UserDAO;
 import com.lmiky.jdp.user.pojo.Operator;
 import com.lmiky.jdp.user.pojo.Role;
@@ -29,7 +28,7 @@ public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
 	@Override
 	public List<Role> listNoUserRoles(Long userId) throws DatabaseException {
 		try {
-			Map<String, Object> params = generateParameterMap(LatelyOperateMenu.class);
+			Map<String, Object> params = generateParameterMap(Role.class);
 			params.put("userId", userId);
 			return sqlSessionTemplate.selectList(Role.class.getName() + ".listNoUserRoles", params);
 		} catch (Exception e) {
@@ -44,7 +43,7 @@ public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
 	@Override
 	public List<Operator> listNoRoleUser(Long roleId) throws DatabaseException {
 		try {
-			Map<String, Object> params = generateParameterMap(LatelyOperateMenu.class);
+			Map<String, Object> params = generateParameterMap(Operator.class);
 			params.put("roleId", roleId);
 			return sqlSessionTemplate.selectList(Operator.class.getName() + ".listNoRoleUser", params);
 		} catch (Exception e) {
