@@ -11,5 +11,12 @@
 	<context:component-scan base-package="com.lmiky" >
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
-	
+
+  <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations">
+      <list>
+        <value>classpath:config/context.properties</value>
+      </list>
+    </property>
+  </bean>
 </beans>
