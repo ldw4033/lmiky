@@ -17,7 +17,7 @@
 		<property name="maxActive" value="20" /> 	<!-- 最大连接数 -->
 		<property name="maxIdle" value="10" />		<!-- 最小空闲连接数 -->
 		<property name="minIdle" value="10" />
-		
+
 		<property name="defaultAutoCommit" value="true" />
     </bean>
 
@@ -29,8 +29,8 @@
         <property name="mapperLocations" value="classpath*:config/mappers/**/*.xml" />
     </bean>
 
-	<bean id="sqlSessionTemplate"  class="org.mybatis.spring.SqlSessionTemplate"> 
-	      <constructor-arg index="0" ref="sqlSessionFactory" /> 
+	<bean id="sqlSessionTemplate"  class="org.mybatis.spring.SqlSessionTemplate">
+	      <constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
 
 	<!-- 事务 -->
