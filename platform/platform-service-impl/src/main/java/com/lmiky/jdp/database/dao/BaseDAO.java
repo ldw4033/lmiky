@@ -1,19 +1,19 @@
-package com.lmiky.platform.service;
-
-import java.util.List;
-import java.util.Map;
+package com.lmiky.jdp.database.dao;
 
 import com.lmiky.platform.database.model.PropertyFilter;
 import com.lmiky.platform.database.model.Sort;
 import com.lmiky.platform.database.pojo.BasePojo;
 
+import java.util.List;
+import java.util.Map;
+
 /**
- * 业务接口
+ * DAO接口
  *
  * @author lmiky
  * @date 2013-4-15
  */
-public interface BaseService {
+public interface BaseDAO {
 
     /**
      * 是否数据库类
@@ -74,7 +74,7 @@ public interface BaseService {
      * 根据属性获取对象
      *
      * @author lmiky
-     * @date 2014年12月4日 下午3:58:38
+     * @date 2014年12月4日 下午3:52:01
      * @param pojoClass
      * @param params
      * @return
@@ -211,7 +211,7 @@ public interface BaseService {
     public <T extends BasePojo> void delete(T pojo);
 
     /**
-     * 批量删除
+     * 批量删除对象s
      *
      * @author lmiky
      * @date 2013-6-24
@@ -321,7 +321,7 @@ public interface BaseService {
      * 查询对象列表
      *
      * @author lmiky
-     * @date 2015年1月24日 下午2:48:09
+     * @date 2015年1月24日 下午2:42:26
      * @param pojoClass
      * @param sort
      * @return
@@ -344,7 +344,7 @@ public interface BaseService {
      * 查询对象列表
      *
      * @author lmiky
-     * @date 2015年1月24日 下午2:48:34
+     * @date 2015年1月24日 下午2:42:55
      * @param pojoClass
      * @param sorts
      * @return
@@ -453,24 +453,24 @@ public interface BaseService {
      * 计算数量
      *
      * @author lmiky
-     * @date 2015年5月7日 下午1:34:49
-     * @param pojoClass
-     * @param propertyName
-     * @param propertyValue
-     * @return
-     */
-    public <T extends BasePojo> int count(Class<T> pojoClass, String propertyName, Object propertyValue);
-
-    /**
-     * 计算数量
-     *
-     * @author lmiky
      * @date 2013-4-16
      * @param pojoClass
      * @param propertyFilters 过滤条件
      * @return
      */
     public <T extends BasePojo> int count(Class<T> pojoClass, List<PropertyFilter> propertyFilters);
+
+    /**
+     * 计算数量
+     *
+     * @author lmiky
+     * @date 2014-8-13 下午5:38:22
+     * @param pojoClass
+     * @param propertyName
+     * @param propertyValue
+     * @return
+     */
+    public <T extends BasePojo> int count(Class<T> pojoClass, String propertyName, Object propertyValue);
 
     /**
      * 计算数量
@@ -487,7 +487,7 @@ public interface BaseService {
      * 计算数量
      *
      * @author lmiky
-     * @date 2014年12月8日 下午5:04:54
+     * @date 2014年12月8日 下午4:56:08
      * @param pojoClass
      * @param params
      * @return
@@ -520,22 +520,22 @@ public interface BaseService {
      * 判断是否存在
      *
      * @author lmiky
-     * @date 2014年12月8日 下午5:05:12
-     * @param pojoClass
-     * @param params
-     * @return
-     */
-    public <T extends BasePojo> boolean exist(Class<T> pojoClass, Map<String, Object> params);
-
-    /**
-     * 判断是否存在
-     *
-     * @author lmiky
-     * @date 2015年5月7日 下午1:35:04
+     * @date 2014-8-13 下午5:39:36
      * @param pojoClass
      * @param propertyName
      * @param propertyValue
      * @return
      */
     public <T extends BasePojo> boolean exist(Class<T> pojoClass, String propertyName, Object propertyValue);
+
+    /**
+     * 判断是否存在
+     *
+     * @author lmiky
+     * @date 2014年12月8日 下午4:58:33
+     * @param pojoClass
+     * @param params
+     * @return
+     */
+    public <T extends BasePojo> boolean exist(Class<T> pojoClass, Map<String, Object> params);
 }

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>platform-service-impl</artifactId>
+  <parent>
+    <groupId>com.lmiky</groupId>
+    <artifactId>platform</artifactId>
+    <version>0.1</version>
+  </parent>
+
+  <dependencies>
+    <!-- platform -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>platform-common</artifactId>
+      <version>0.1</version>
+    </dependency>
+    <!-- platform -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>platform-service</artifactId>
+      <version>0.1</version>
+    </dependency>
+
+    <!-- spring -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-orm</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+    </dependency>
+    <!-- mybatis -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
+    </dependency>
+
+    <!-- Database -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>p6spy</groupId>
+      <artifactId>p6spy</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>cglib</groupId>
+      <artifactId>cglib</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.ow2.asm</groupId>
+      <artifactId>asm</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.ow2.asm</groupId>
+      <artifactId>asm-util</artifactId>
+    </dependency>
+    <!-- slf4j-log4j12 如果不假如这个包，mybatis会因为slf4j而无法打印出sql日志 -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.alibaba.druid</groupId>
+      <artifactId>druid-wrapper</artifactId>
+      <version>0.2.9</version>
+    </dependency>
+    <!-- jta -->
+    <dependency>
+      <groupId>javax.transaction</groupId>
+      <artifactId>jta</artifactId>
+      <version>1.1</version>
+    </dependency>
+    <!-- atomikos -->
+    <dependency>
+      <groupId>com.atomikos</groupId>
+      <artifactId>atomikos-util</artifactId>
+      <version>4.0.0M4</version>
+    </dependency>
+    <dependency>
+      <groupId>com.atomikos</groupId>
+      <artifactId>transactions</artifactId>
+      <version>4.0.0M4</version>
+    </dependency>
+    <dependency>
+      <groupId>com.atomikos</groupId>
+      <artifactId>transactions-api</artifactId>
+      <version>4.0.0M4</version>
+    </dependency>
+    <dependency>
+      <groupId>com.atomikos</groupId>
+      <artifactId>transactions-jdbc</artifactId>
+      <version>4.0.0M4</version>
+    </dependency>
+    <dependency>
+      <groupId>com.atomikos</groupId>
+      <artifactId>transactions-jta</artifactId>
+      <version>4.0.0M4</version>
+    </dependency>
+  </dependencies>
+
+</project>
