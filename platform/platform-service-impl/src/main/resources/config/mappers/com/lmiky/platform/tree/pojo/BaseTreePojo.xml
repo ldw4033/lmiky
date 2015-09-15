@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.lmiky.platform.tree.pojo.BaseTreePojo">
 	<resultMap type="BaseTreePojo" id="baseTreePojo" extends="com.lmiky.platform.sort.pojo.BaseSortPojo.baseSortPojo">
 		<result column="name" property="name"/>
 		<result column="leaf" property="leaf"/>
-		<association property="parent" column="parentId" select="com.lmiky.platform.tree.pojo.BaseTreePojo.findById"/>
-		<collection property="children" column="id" select="com.lmiky.platform.tree.pojo.BaseTreePojo.listByParent" />
+    <result column="parentId" property="parentId"/>
+		<!-- <association property="parent" column="parentId" select="com.lmiky.platform.tree.pojo.BaseTreePojo.findById"/> -->
+		<!-- <collection property="children" column="id" select="com.lmiky.platform.tree.pojo.BaseTreePojo.listByParent" /> -->
 	</resultMap>
 
 	<sql id="tableName">
@@ -16,21 +17,21 @@
 	<sql id="tableAlias">
 		BaseTreePojo
 	</sql>
-	
+
 	<select id="find" resultMap="baseTreePojo">
-		select * from 
+		select * from
 		<include refid="tableName"/> <include refid="tableAlias" />
 		<trim prefix="where">
 			<include refid="common.aliasPropertiesCondition"/>
 		</trim>
 	</select>
-	
+
 	<select id="findById" resultMap="baseTreePojo">
-		select * from 
+		select * from
 		<include refid="tableName"/> <include refid="tableAlias" />
 		where id = #{id}
 	</select>
-	
+
 	<select id="list" resultMap="baseTreePojo">
 		select * from
 		<include refid="tableName" /> <include refid="tableAlias" />
@@ -40,7 +41,7 @@
 		<include refid="common.sortCondition" />
 		<include refid="common.pageCondition" />
 	</select>
-	
+
 	<select id="listByParent" resultMap="baseTreePojo">
 		select * from
 		<include refid="tableName" /> <include refid="tableAlias" />
@@ -62,18 +63,19 @@
 		(
 			 #{id}
 			,#{name}
-			,#{parent.id}
+			,#{parentId}
 			,#{leaf}
 			,#{sort}
 		)
 	</insert>
-	
+
 	<update id="update" parameterType="BaseTreePojo">
-		update <include refid="tableName" /> 
+		update <include refid="tableName" />
 		<trim prefix="set" suffixOverrides=",">
 			<if test="name != null">name=#{name},</if>
-			<if test="parent != null and parent.id != null">parentId=#{parent.id},</if>
+      <if test="parentId != null">parentId=#{parentId},</if>
 			<if test="leaf != null">leaf=#{leaf},</if>
+      <if test="sort != null">sort=#{sort},</if>
 		</trim>
 		where id=#{id}
 	</update>

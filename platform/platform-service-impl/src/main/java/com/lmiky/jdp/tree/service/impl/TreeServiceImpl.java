@@ -26,7 +26,14 @@ public class TreeServiceImpl extends BaseServiceImpl {
     public <T extends BasePojo> void add(T pojo) {
         // 如果是树
         if (pojo instanceof BaseTreePojo) {
-            BaseTreePojo parent = ((BaseTreePojo) pojo).getParent();
+            BaseTreePojo pojoTree = (BaseTreePojo) pojo;
+            BaseTreePojo parent = pojoTree.getParent();
+            if(parent == null) {
+                Long parentId = pojoTree.getParentId();
+                if(parentId != null) {
+                    parent = find(BaseTreePojo.class, parentId);
+                }
+            }
             // 非顶层
             if (parent != null) {
                 // 修改父节点叶子数
@@ -51,6 +58,12 @@ public class TreeServiceImpl extends BaseServiceImpl {
                 throw new ServiceException("无法删除，该节点下有子节点！");
             }
             BaseTreePojo parent = pojoTree.getParent();
+            if(parent == null) {
+                Long parentId = pojoTree.getParentId();
+                if(parentId != null) {
+                    parent = find(BaseTreePojo.class, parentId);
+                }
+            }
             // 非顶层
             if (parent != null) {
                 // 修改父节点叶子数

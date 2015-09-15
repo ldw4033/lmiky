@@ -21,16 +21,17 @@ import com.lmiky.platform.sort.pojo.BaseSortPojo;
  * @author lmiky
  * @date 2014-1-2
  */
-@Entity 
+@Entity
 @Table(name="t_tree")
-@Inheritance(strategy=InheritanceType.JOINED) 
+@Inheritance(strategy=InheritanceType.JOINED)
 public class BaseTreePojo extends BaseSortPojo {
-	private static final long serialVersionUID = -6377646923632564066L;
-	private String name;
-	private BaseTreePojo parent;
+    private static final long serialVersionUID = 1L;
+    private String name;
 	private Integer leaf = 0;
+	private Long parentId;
+    private BaseTreePojo parent;
 	private List<BaseTreePojo> children;
-	
+
 	/**
 	 * @return the name
 	 */
@@ -45,20 +46,6 @@ public class BaseTreePojo extends BaseSortPojo {
 		this.name = name;
 	}
 	/**
-	 * @return the parent
-	 */
-	@ManyToOne(fetch=FetchType.LAZY)  
-    @JoinColumn(name="parentId")
-	public BaseTreePojo getParent() {
-		return parent;
-	}
-	/**
-	 * @param parent the parent to set
-	 */
-	public void setParent(BaseTreePojo parent) {
-		this.parent = parent;
-	}
-	/**
 	 * @return the leaf
 	 */
 	@Column(name="leaf")
@@ -71,6 +58,32 @@ public class BaseTreePojo extends BaseSortPojo {
 	public void setLeaf(Integer leaf) {
 		this.leaf = leaf;
 	}
+	/**
+     * @return the parentId
+     */
+    public Long getParentId() {
+        return parentId;
+    }
+    /**
+     * @param parentId the parentId to set
+     */
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+	/**
+     * @return the parent
+     */
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="parentId")
+    public BaseTreePojo getParent() {
+        return parent;
+    }
+    /**
+     * @param parent the parent to set
+     */
+    public void setParent(BaseTreePojo parent) {
+        this.parent = parent;
+    }
 	/**
 	 * @return the children
 	 */

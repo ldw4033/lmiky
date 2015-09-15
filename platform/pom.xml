@@ -10,9 +10,11 @@
 
   <modules>
     <module>platform-common</module>
-    <module>platform-web</module>
+	<module>platform-support-cache</module>
     <module>platform-service</module>
+    <module>platform-web</module>
     <module>platform-service-impl</module>
+	<module>platform-test</module>
   </modules>
 
   <properties>
@@ -25,6 +27,7 @@
     <com.google.zxing.version>3.1.0</com.google.zxing.version>
     <org.igniterealtime.smack.version>4.0.7</org.igniterealtime.smack.version>
     <org.aspectj.version>1.8.6</org.aspectj.version>
+	<org.ow2.asm.version>4.2</org.ow2.asm.version>
   </properties>
 
   <dependencyManagement>
@@ -239,12 +242,12 @@
       <dependency>
         <groupId>org.ow2.asm</groupId>
         <artifactId>asm</artifactId>
-        <version>4.2</version>
+        <version>${org.ow2.asm.version}</version>
       </dependency>
       <dependency>
         <groupId>org.ow2.asm</groupId>
         <artifactId>asm-util</artifactId>
-        <version>4.2</version>
+        <version>${org.ow2.asm.version}</version>
       </dependency>
 
       <!-- image -->
@@ -358,8 +361,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.2</version>
         <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+          <source>1.8</source>
+          <target>1.8</target>
           <encoding>utf-8</encoding>
           <showWarnings>true</showWarnings>
         </configuration>
