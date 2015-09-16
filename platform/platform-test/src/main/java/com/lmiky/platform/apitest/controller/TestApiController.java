@@ -37,7 +37,9 @@ public class TestApiController extends BaseApiController {
     @ResponseBody
     public BaseCodeDataView test(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
         LoggerUtils.info(String.format("IP[%s]进入到测试接口中", request.getRemoteAddr()));
-        return BaseCodeDataView.buildSuccessVo();
+        BaseCodeDataView view = BaseCodeDataView.buildSuccessView("sessionId", request.getSession().getId());
+        view.addDate("serverId", 2);
+        return view;
     }
 
     /**
@@ -58,7 +60,7 @@ public class TestApiController extends BaseApiController {
     public BaseCodeDataView testList(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
         LoggerUtils.info(String.format("IP[%s]进入到测试接口中", request.getRemoteAddr()));
         List<BaseTreePojo> trees = service.list(BaseTreePojo.class);
-        return BaseCodeDataView.buildSuccessVo("trees", trees);
+        return BaseCodeDataView.buildSuccessView("trees", trees);
     }
 
     /**
@@ -77,7 +79,7 @@ public class TestApiController extends BaseApiController {
             Long id) {
         LoggerUtils.info(String.format("IP[%s]进入到测试接口中", request.getRemoteAddr()));
         BaseTreePojo tree = service.find(BaseTreePojo.class, id);
-        return BaseCodeDataView.buildSuccessVo("tree", tree);
+        return BaseCodeDataView.buildSuccessView("tree", tree);
     }
 
     /**
@@ -95,6 +97,6 @@ public class TestApiController extends BaseApiController {
             Date date) {
         LoggerUtils.info(String.format("IP[%s]进入到测试接口中", request.getRemoteAddr()));
         LoggerUtils.info(date);
-        return BaseCodeDataView.buildSuccessVo("date", date);
+        return BaseCodeDataView.buildSuccessView("date", date);
     }
 }

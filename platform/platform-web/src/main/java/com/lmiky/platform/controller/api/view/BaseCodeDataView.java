@@ -144,11 +144,11 @@ public class BaseCodeDataView implements Serializable {
      * @author lmiky
      * @date 2015年8月12日 下午6:29:06
      */
-    public static BaseCodeDataView buildVo(int code) {
-        BaseCodeDataView vo = new BaseCodeDataView();
-        vo.setCode(code);
-        vo.setMsg(getCodeMsg(code));
-        return vo;
+    public static BaseCodeDataView buildView(int code) {
+        BaseCodeDataView view = new BaseCodeDataView();
+        view.setCode(code);
+        view.setMsg(getCodeMsg(code));
+        return view;
     }
 
     /**
@@ -160,11 +160,11 @@ public class BaseCodeDataView implements Serializable {
      * @author lmiky
      * @date 2015年8月12日 下午6:29:06
      */
-    public static BaseCodeDataView buildVo(int code, String msg) {
-        BaseCodeDataView vo = new BaseCodeDataView();
-        vo.setCode(code);
-        vo.setMsg(msg);
-        return vo;
+    public static BaseCodeDataView buildView(int code, String msg) {
+        BaseCodeDataView view = new BaseCodeDataView();
+        view.setCode(code);
+        view.setMsg(msg);
+        return view;
     }
 
     /**
@@ -174,8 +174,8 @@ public class BaseCodeDataView implements Serializable {
      * @author lmiky
      * @date 2015年8月12日 下午6:28:57
      */
-    public static BaseCodeDataView buildSuccessVo() {
-        return buildVo(BaseCode.CODE_SUCCESS);
+    public static BaseCodeDataView buildSuccessView() {
+        return buildView(BaseCode.CODE_SUCCESS);
     }
 
     /**
@@ -187,10 +187,10 @@ public class BaseCodeDataView implements Serializable {
      * @author lmiky
      * @date 2015年8月12日 下午5:40:51
      */
-    public static BaseCodeDataView buildSuccessVo(String dataKey, Object dataValue) {
-        BaseCodeDataView vo = buildSuccessVo();
-        vo.addDate(dataKey, dataValue);
-        return vo;
+    public static BaseCodeDataView buildSuccessView(String dataKey, Object dataValue) {
+        BaseCodeDataView view = buildSuccessView();
+        view.addDate(dataKey, dataValue);
+        return view;
     }
 
     /**
@@ -201,10 +201,10 @@ public class BaseCodeDataView implements Serializable {
      * @author lmiky
      * @date 2015年8月12日 下午5:41:54
      */
-    public static BaseCodeDataView buildSuccessVo(Map<String, Object> data) {
-        BaseCodeDataView vo = buildSuccessVo();
-        vo.setData(data);
-        return vo;
+    public static BaseCodeDataView buildSuccessView(Map<String, Object> data) {
+        BaseCodeDataView view = buildSuccessView();
+        view.setData(data);
+        return view;
     }
 
     /**
@@ -214,7 +214,7 @@ public class BaseCodeDataView implements Serializable {
      * @author lmiky
      * @date 2015年8月12日 下午6:30:28
      */
-    public static BaseCodeDataView buildErrorVo() {
-        return buildVo(BaseCode.CODE_ERROR);
+    public static BaseCodeDataView buildErrorView() {
+        return buildView(BaseCode.CODE_ERROR);
     }
 }

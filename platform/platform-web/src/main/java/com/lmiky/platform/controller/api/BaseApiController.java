@@ -91,10 +91,10 @@ public abstract class BaseApiController extends BaseController {
                                                      HandlerMethod handlerMethod) {
         // 带结果码异常
         if (exception instanceof BaseCodeException) {
-            return BaseCodeDataView.buildVo(((BaseCodeException) exception).getCode());
+            return BaseCodeDataView.buildView(((BaseCodeException) exception).getCode());
         }
         LoggerUtils.error("handle controller(" + handlerMethod.getMethod().getName() + ") exception !", exception);
-        return BaseCodeDataView.buildErrorVo();
+        return BaseCodeDataView.buildErrorView();
     }
 
     /**
