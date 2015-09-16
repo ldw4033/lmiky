@@ -1,4 +1,4 @@
-package com.lmiky.platform.controller.view;
+package com.lmiky.platform.controller.html.view;
 
 import java.util.Map;
 
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
 
 import com.lmiky.platform.constants.Constants;
+import com.lmiky.platform.controller.view.BaseCode;
 import com.lmiky.platform.logger.util.LoggerUtils;
 import com.lmiky.platform.util.BundleUtils;
 

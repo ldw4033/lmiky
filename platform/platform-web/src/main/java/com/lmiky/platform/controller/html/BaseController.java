@@ -1,4 +1,4 @@
-package com.lmiky.platform.controller;
+package com.lmiky.platform.controller.html;
 
 import javax.annotation.Resource;
 

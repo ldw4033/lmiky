@@ -1,4 +1,4 @@
-package com.lmiky.platform.controller.view;
+package com.lmiky.platform.controller.html.view;
 
 import java.util.ArrayList;
 import java.util.Iterator;

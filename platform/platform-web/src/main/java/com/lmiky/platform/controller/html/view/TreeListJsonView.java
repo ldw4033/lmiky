@@ -1,4 +1,4 @@
-package com.lmiky.platform.tree.view;
+package com.lmiky.platform.controller.html.view;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -8,9 +8,9 @@ package com.lmiky.platform.controller.view;
  * @date 2014年11月3日 下午2:30:31
  */
 public class BaseCode {
-	
+
 	//通用
 	public static final int CODE_SUCCESS = 200;
 	public static final int CODE_ERROR = 500;
-	
+
 }

@@ -1,4 +1,4 @@
-package com.lmiky.platform.controller.view;
+package com.lmiky.platform.controller.html.view;
 
 import java.util.HashMap;
 import java.util.Map;

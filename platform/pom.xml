@@ -10,11 +10,11 @@
 
   <modules>
     <module>platform-common</module>
-	<module>platform-support-cache</module>
+    <module>platform-support-cache</module>
     <module>platform-service</module>
     <module>platform-web</module>
     <module>platform-service-impl</module>
-	<module>platform-test</module>
+    <module>platform-test</module>
   </modules>
 
   <properties>
@@ -27,7 +27,7 @@
     <com.google.zxing.version>3.1.0</com.google.zxing.version>
     <org.igniterealtime.smack.version>4.0.7</org.igniterealtime.smack.version>
     <org.aspectj.version>1.8.6</org.aspectj.version>
-	<org.ow2.asm.version>4.2</org.ow2.asm.version>
+    <org.ow2.asm.version>4.2</org.ow2.asm.version>
   </properties>
 
   <dependencyManagement>
@@ -348,6 +348,13 @@
         <groupId>aopalliance</groupId>
         <artifactId>aopalliance</artifactId>
         <version>1.0</version>
+      </dependency>
+
+      <!-- json -->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>1.2.7</version>
       </dependency>
     </dependencies>
 
