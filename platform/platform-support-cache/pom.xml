@@ -17,6 +17,16 @@
       <artifactId>platform-common</artifactId>
       <version>0.1</version>
     </dependency>
+
+    <!-- memcached -->
+    <dependency>
+      <groupId>com.google.code.simple-spring-memcached</groupId>
+      <artifactId>simple-spring-memcached</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.simple-spring-memcached</groupId>
+      <artifactId>xmemcached-provider</artifactId>
+    </dependency>
   </dependencies>
 
 </project>
