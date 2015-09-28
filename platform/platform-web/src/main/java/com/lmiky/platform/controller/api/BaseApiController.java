@@ -27,20 +27,9 @@ import javax.servlet.http.HttpServletRequest;
  */
 public abstract class BaseApiController extends BaseController {
 
-    static CustomDateEditor customDateEditor;
-
-    static {
-        SimpleDateFormat dateTimeFormat = new SimpleDateFormat(Constants.CONTEXT_KEY_FORMAT_DATETIME_VALUE);
-        dateTimeFormat.setLenient(false);
-        SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.CONTEXT_KEY_FORMAT_DATE_VALUE);
-        dateFormat.setLenient(false);
-        SimpleDateFormat timeFormat = new SimpleDateFormat(Constants.CONTEXT_KEY_FORMAT_TIME_VALUE);
-        timeFormat.setLenient(false);
-        customDateEditor = new CustomDateEditor(true, dateTimeFormat, dateFormat, timeFormat);
-    }
-
     /**
      * 绑定参数，json实体类的参数转换
+     * SimpleDateFormat是非线程安全，所以每个线程需要独立的对象
      *
      * @param binder 绑定参数
      * @author lmiky
@@ -48,6 +37,13 @@ public abstract class BaseApiController extends BaseController {
      */
     @InitBinder
     public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateTimeFormat = new SimpleDateFormat(Constants.CONTEXT_KEY_FORMAT_DATETIME_VALUE);
+        dateTimeFormat.setLenient(false);   //严格的解析,输入必须匹配这个对象的格式
+        SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.CONTEXT_KEY_FORMAT_DATE_VALUE);
+        dateFormat.setLenient(false);
+        SimpleDateFormat timeFormat = new SimpleDateFormat(Constants.CONTEXT_KEY_FORMAT_TIME_VALUE);
+        timeFormat.setLenient(false);
+        CustomDateEditor customDateEditor = new CustomDateEditor(true, dateTimeFormat, dateFormat, timeFormat);
         binder.registerCustomEditor(Date.class, customDateEditor);
     }
 
