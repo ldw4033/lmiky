@@ -3,7 +3,6 @@ package com.lmiky.platform.tree.pojo;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
@@ -16,6 +15,9 @@ import javax.persistence.Table;
 
 import com.lmiky.platform.sort.pojo.BaseSortPojo;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * 树
  * @author lmiky
@@ -26,50 +28,20 @@ import com.lmiky.platform.sort.pojo.BaseSortPojo;
 @Inheritance(strategy=InheritanceType.JOINED)
 public class BaseTreePojo extends BaseSortPojo {
     private static final long serialVersionUID = 1L;
+    @Getter
+	@Setter
     private String name;
+    @Getter
+	@Setter
 	private Integer leaf = 0;
+    @Getter
+	@Setter
 	private Long parentId;
+    @Setter
     private BaseTreePojo parent;
+    @Setter
 	private List<BaseTreePojo> children;
 
-	/**
-	 * @return the name
-	 */
-	@Column(name="name")
-	public String getName() {
-		return name;
-	}
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-	/**
-	 * @return the leaf
-	 */
-	@Column(name="leaf")
-	public Integer getLeaf() {
-		return leaf;
-	}
-	/**
-	 * @param leaf the leaf to set
-	 */
-	public void setLeaf(Integer leaf) {
-		this.leaf = leaf;
-	}
-	/**
-     * @return the parentId
-     */
-    public Long getParentId() {
-        return parentId;
-    }
-    /**
-     * @param parentId the parentId to set
-     */
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
 	/**
      * @return the parent
      */
@@ -78,12 +50,6 @@ public class BaseTreePojo extends BaseSortPojo {
     public BaseTreePojo getParent() {
         return parent;
     }
-    /**
-     * @param parent the parent to set
-     */
-    public void setParent(BaseTreePojo parent) {
-        this.parent = parent;
-    }
 	/**
 	 * @return the children
 	 */
@@ -91,11 +57,5 @@ public class BaseTreePojo extends BaseSortPojo {
 	@OrderBy(BaseSortPojo.POJO_FIELD_NAME_SORT + " desc")
 	public List<BaseTreePojo> getChildren() {
 		return children;
-	}
-	/**
-	 * @param children the children to set
-	 */
-	public void setChildren(List<BaseTreePojo> children) {
-		this.children = children;
 	}
 }

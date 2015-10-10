@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import lombok.Setter;
+
 /**
  * 基本实体类
  * @author lmiky
@@ -23,6 +25,7 @@ public class BasePojo implements Serializable, Cloneable {
 
     public static final String POJO_FIELD_NAME_ID = "id";
 
+    @Setter
 	private Long id;
 
 	/**
@@ -32,13 +35,6 @@ public class BasePojo implements Serializable, Cloneable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	/* (non-Javadoc)
