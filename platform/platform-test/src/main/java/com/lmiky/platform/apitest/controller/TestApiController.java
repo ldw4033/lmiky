@@ -1,7 +1,7 @@
 package com.lmiky.platform.apitest.controller;
 
 import com.lmiky.platform.controller.api.BaseApiController;
-import com.lmiky.platform.controller.api.view.BaseCodeDataView;
+import com.lmiky.platform.controller.api.view.CodeDataView;
 import com.lmiky.platform.logger.util.LoggerUtils;
 import com.lmiky.platform.tree.pojo.BaseTreePojo;
 
@@ -35,9 +35,9 @@ public class TestApiController extends BaseApiController {
      */
     @RequestMapping("/test.shtml")
     @ResponseBody
-    public BaseCodeDataView test(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
+    public CodeDataView test(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
         LoggerUtils.info(String.format("IP[%s]进入到测试接口中", request.getRemoteAddr()));
-        BaseCodeDataView view = BaseCodeDataView.buildSuccessView("sessionId", request.getSession().getId());
+        CodeDataView view = CodeDataView.buildSuccessView("sessionId", request.getSession().getId());
         view.addDate("serverId", 2);
         return view;
     }
@@ -57,10 +57,10 @@ public class TestApiController extends BaseApiController {
      */
     @RequestMapping("/testlist.shtml")
     @ResponseBody
-    public BaseCodeDataView testList(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
+    public CodeDataView testList(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
         LoggerUtils.info(String.format("IP[%s]进入到测试接口中", request.getRemoteAddr()));
         List<BaseTreePojo> trees = service.list(BaseTreePojo.class);
-        return BaseCodeDataView.buildSuccessView("trees", trees);
+        return CodeDataView.buildSuccessView("trees", trees);
     }
 
     /**
@@ -75,11 +75,11 @@ public class TestApiController extends BaseApiController {
      */
     @RequestMapping("/testfind.shtml")
     @ResponseBody
-    public BaseCodeDataView testFind(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response,
+    public CodeDataView testFind(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response,
             Long id) {
         LoggerUtils.info(String.format("IP[%s]进入到测试接口中", request.getRemoteAddr()));
         BaseTreePojo tree = service.find(BaseTreePojo.class, id);
-        return BaseCodeDataView.buildSuccessView("tree", tree);
+        return CodeDataView.buildSuccessView("tree", tree);
     }
 
     /**
@@ -93,10 +93,10 @@ public class TestApiController extends BaseApiController {
      */
     @RequestMapping("/testdateparam.shtml")
     @ResponseBody
-    public BaseCodeDataView testDateParam(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response,
+    public CodeDataView testDateParam(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response,
             Date date) {
         LoggerUtils.info(String.format("IP[%s]进入到测试接口中", request.getRemoteAddr()));
         LoggerUtils.info(date);
-        return BaseCodeDataView.buildSuccessView("date", date);
+        return CodeDataView.buildSuccessView("date", date);
     }
 }

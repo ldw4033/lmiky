@@ -3,7 +3,7 @@ package com.lmiky.platform.controller.api;
 import com.lmiky.platform.constants.Constants;
 import com.lmiky.platform.controller.BaseController;
 import com.lmiky.platform.controller.api.editor.CustomDateEditor;
-import com.lmiky.platform.controller.api.view.BaseCodeDataView;
+import com.lmiky.platform.controller.api.view.CodeDataView;
 import com.lmiky.platform.exception.BaseCodeException;
 import com.lmiky.platform.logger.util.LoggerUtils;
 
@@ -83,14 +83,14 @@ public abstract class BaseApiController extends BaseController {
      * @author lmiky
      * @date 2015年8月13日 上午11:53:01
      */
-    public BaseCodeDataView handleAjaxRequestException(HttpServletRequest request, Exception exception,
+    public CodeDataView handleAjaxRequestException(HttpServletRequest request, Exception exception,
                                                      HandlerMethod handlerMethod) {
         // 带结果码异常
         if (exception instanceof BaseCodeException) {
-            return BaseCodeDataView.buildView(((BaseCodeException) exception).getCode());
+            return CodeDataView.buildView(((BaseCodeException) exception).getCode());
         }
         LoggerUtils.error("handle controller(" + handlerMethod.getMethod().getName() + ") exception !", exception);
-        return BaseCodeDataView.buildErrorView();
+        return CodeDataView.buildErrorView();
     }
 
     /**

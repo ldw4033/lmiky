@@ -15,7 +15,7 @@ import java.util.Map;
  * @author lmiky
  * @date 2015年8月12日 下午4:52:27
  */
-public class BaseCodeDataView implements Serializable {
+public class CodeDataView implements Serializable {
     private static final long serialVersionUID = 1L;
 
 
@@ -31,7 +31,7 @@ public class BaseCodeDataView implements Serializable {
     /**
      *
      */
-    private BaseCodeDataView() {
+    private CodeDataView() {
 
     }
 
@@ -39,7 +39,7 @@ public class BaseCodeDataView implements Serializable {
      * @param code 结果码
      * @param msg  消息
      */
-    private BaseCodeDataView(int code, String msg) {
+    private CodeDataView(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }
@@ -144,8 +144,8 @@ public class BaseCodeDataView implements Serializable {
      * @author lmiky
      * @date 2015年8月12日 下午6:29:06
      */
-    public static BaseCodeDataView buildView(int code) {
-        BaseCodeDataView view = new BaseCodeDataView();
+    public static CodeDataView buildView(int code) {
+        CodeDataView view = new CodeDataView();
         view.setCode(code);
         view.setMsg(getCodeMsg(code));
         return view;
@@ -160,8 +160,8 @@ public class BaseCodeDataView implements Serializable {
      * @author lmiky
      * @date 2015年8月12日 下午6:29:06
      */
-    public static BaseCodeDataView buildView(int code, String msg) {
-        BaseCodeDataView view = new BaseCodeDataView();
+    public static CodeDataView buildView(int code, String msg) {
+        CodeDataView view = new CodeDataView();
         view.setCode(code);
         view.setMsg(msg);
         return view;
@@ -174,7 +174,7 @@ public class BaseCodeDataView implements Serializable {
      * @author lmiky
      * @date 2015年8月12日 下午6:28:57
      */
-    public static BaseCodeDataView buildSuccessView() {
+    public static CodeDataView buildSuccessView() {
         return buildView(BaseCode.CODE_SUCCESS);
     }
 
@@ -187,8 +187,8 @@ public class BaseCodeDataView implements Serializable {
      * @author lmiky
      * @date 2015年8月12日 下午5:40:51
      */
-    public static BaseCodeDataView buildSuccessView(String dataKey, Object dataValue) {
-        BaseCodeDataView view = buildSuccessView();
+    public static CodeDataView buildSuccessView(String dataKey, Object dataValue) {
+        CodeDataView view = buildSuccessView();
         view.addDate(dataKey, dataValue);
         return view;
     }
@@ -201,8 +201,8 @@ public class BaseCodeDataView implements Serializable {
      * @author lmiky
      * @date 2015年8月12日 下午5:41:54
      */
-    public static BaseCodeDataView buildSuccessView(Map<String, Object> data) {
-        BaseCodeDataView view = buildSuccessView();
+    public static CodeDataView buildSuccessView(Map<String, Object> data) {
+        CodeDataView view = buildSuccessView();
         view.setData(data);
         return view;
     }
@@ -214,7 +214,7 @@ public class BaseCodeDataView implements Serializable {
      * @author lmiky
      * @date 2015年8月12日 下午6:30:28
      */
-    public static BaseCodeDataView buildErrorView() {
+    public static CodeDataView buildErrorView() {
         return buildView(BaseCode.CODE_ERROR);
     }
 }
