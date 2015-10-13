@@ -1,0 +1,1023 @@
+[2014-09-21 15:43:24] [ContextLoader.java:285] - [INFO] Root WebApplicationContext: initialization started
+[2014-09-21 15:43:24] [AbstractApplicationContext.java:510] - [INFO] Refreshing Root WebApplicationContext: startup date [Sun Sep 21 15:43:24 CST 2014]; root of context hierarchy
+[2014-09-21 15:43:24] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-bean.xml]
+[2014-09-21 15:43:24] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-database.xml]
+[2014-09-21 15:43:24] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext.xml]
+[2014-09-21 15:43:25] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@182281c6: defining beans [ehCacheFactory,lockService,ssoService,menuParseService,moduleParser,dataSource,sqlSessionFactory,sqlSessionTemplate,transactionManager,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,cmsDirectoryService,cmsResourceService,cityTreeListJsonView,countryTreeListJsonView,provinceTreeListJsonView,authorityDAO,authorityService,baseInfoCodeJsonView,baseInfoJsonView,baseDAO,initService,jacksonJsonMapperImpl,moduleService,functionListJsonView,moduleListJsonView,baseService,sessionService,sortService,menuDAO,menuService,treeService,treeListJsonView,userDAO,operatorService,roleService,userService,pageService,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[2014-09-21 15:43:26] [DiskStorePathManager.java:162] - [WARN] diskStorePath 'D:\Tomcat6.0\cache\lmiky' is already used by an existing CacheManager either in the same VM or in a different process.
+The diskStore path for this CacheManager will be set to D:\Tomcat6.0\cache\lmiky\ehcache_auto_created4964664149795595844diskstore.
+To avoid this warning consider using the CacheManager factory methods to create a singleton CacheManager or specifying a separate ehcache configuration (ehcache.xml) for each CacheManager instance.
+[2014-09-21 15:43:26] [DiskStorageFactory.java:132] - [WARN] Data in persistent disk stores is ignored for stores from automatically created directories.
+Remove diskPersistent or resolve the conflicting disk paths in cache configuration.
+Deleting data file D:\Tomcat6.0\cache\lmiky\ehcache_auto_created4964664149795595844diskstore\sso%0043ache.data
+[2014-09-21 15:43:26] [DiskStorageFactory.java:132] - [WARN] Data in persistent disk stores is ignored for stores from automatically created directories.
+Remove diskPersistent or resolve the conflicting disk paths in cache configuration.
+Deleting data file D:\Tomcat6.0\cache\lmiky\ehcache_auto_created4964664149795595844diskstore\menu%0043ache.data
+[2014-09-21 15:43:26] [DiskStorageFactory.java:132] - [WARN] Data in persistent disk stores is ignored for stores from automatically created directories.
+Remove diskPersistent or resolve the conflicting disk paths in cache configuration.
+Deleting data file D:\Tomcat6.0\cache\lmiky\ehcache_auto_created4964664149795595844diskstore\form%004cock%0043ache.data
+[2014-09-21 15:43:28] [ContextLoader.java:325] - [INFO] Root WebApplicationContext: initialization completed in 4196 ms
+[2014-09-21 15:43:28] [HttpServletBean.java:118] - [DEBUG] Initializing servlet 'Spring MVC Dispatcher Servlet'
+[2014-09-21 15:43:28] [FrameworkServlet.java:457] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization started
+[2014-09-21 15:43:28] [FrameworkServlet.java:585] - [DEBUG] Servlet with name 'Spring MVC Dispatcher Servlet' will try to create custom WebApplicationContext context of class 'org.springframework.web.context.support.XmlWebApplicationContext', using parent context [Root WebApplicationContext: startup date [Sun Sep 21 15:43:24 CST 2014]; root of context hierarchy]
+[2014-09-21 15:43:28] [AbstractApplicationContext.java:510] - [INFO] Refreshing WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet': startup date [Sun Sep 21 15:43:28 CST 2014]; parent: Root WebApplicationContext
+[2014-09-21 15:43:28] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC.xml]
+[2014-09-21 15:43:28] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@601cbd06: defining beans [taskController,directoryController,resourceController,areaController,cityController,countryController,provinceController,authorityController,commonController,cacheController,fileController,kindEditorFileController,initController,lockController,loggerController,moduleController,sortController,loginController,menuController,treeController,operatorController,roleController,goodsController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,xmlViewResolver,jstlViewResolver,multipartResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@182281c6
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/load.shtml] onto handler 'taskController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/list.shtml] onto handler 'taskController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/urlContent.shtml] onto handler 'taskController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/load.shtml] onto handler 'directoryController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/delete.shtml] onto handler 'directoryController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/save.shtml] onto handler 'directoryController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadTree.shtml] onto handler 'directoryController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadPage.shtml] onto handler 'directoryController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/treeList.shtml] onto handler 'directoryController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/load.shtml] onto handler 'resourceController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/delete.shtml] onto handler 'resourceController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/list.shtml] onto handler 'resourceController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/save.shtml] onto handler 'resourceController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/publish.shtml] onto handler 'resourceController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/batchDelete.shtml] onto handler 'resourceController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/unpublish.shtml] onto handler 'resourceController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/load.shtml] onto handler 'areaController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/treeList.shtml] onto handler 'areaController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/load.shtml] onto handler 'cityController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/delete.shtml] onto handler 'cityController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/save.shtml] onto handler 'cityController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/load.shtml] onto handler 'countryController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/delete.shtml] onto handler 'countryController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/save.shtml] onto handler 'countryController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/load.shtml] onto handler 'provinceController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/delete.shtml] onto handler 'provinceController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/save.shtml] onto handler 'provinceController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/load.shtml] onto handler 'authorityController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/authorize.shtml] onto handler 'authorityController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/listOperator.shtml] onto handler 'authorityController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/common/back.shtml] onto handler 'commonController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cache/clearAll.shtml] onto handler 'cacheController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/file/upload.shtml] onto handler 'fileController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/kindEditorFile/upload.shtml] onto handler 'kindEditorFileController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/load.shtml] onto handler 'initController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/init.shtml] onto handler 'initController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateModule.shtml] onto handler 'initController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateMenu.shtml] onto handler 'initController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/lock/unlock.shtml] onto handler 'lockController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/logger/list.shtml] onto handler 'loggerController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/module/treeList.shtml] onto handler 'moduleController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/load.shtml] onto handler 'sortController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/save.shtml] onto handler 'sortController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/load.shtml] onto handler 'loginController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/login.shtml] onto handler 'loginController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/logout.shtml] onto handler 'loginController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/load.shtml] onto handler 'menuController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/listLeftMenus.shtml] onto handler 'menuController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/addMyFavorite.shtml] onto handler 'menuController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/removeMyFavorite.shtml] onto handler 'menuController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/loadSelectTree.shtml] onto handler 'treeController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/treeList.shtml] onto handler 'treeController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/load.shtml] onto handler 'operatorController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/delete.shtml] onto handler 'operatorController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/list.shtml] onto handler 'operatorController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/save.shtml] onto handler 'operatorController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/toModifyPassword.shtml] onto handler 'operatorController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/modifyPassword.shtml] onto handler 'operatorController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/batchDelete.shtml] onto handler 'operatorController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/load.shtml] onto handler 'roleController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/delete.shtml] onto handler 'roleController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/list.shtml] onto handler 'roleController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/save.shtml] onto handler 'roleController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/batchDelete.shtml] onto handler 'roleController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/load.shtml] onto handler 'goodsController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/delete.shtml] onto handler 'goodsController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/list.shtml] onto handler 'goodsController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/save.shtml] onto handler 'goodsController'
+[2014-09-21 15:43:29] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/batchDelete.shtml] onto handler 'goodsController'
+[2014-09-21 15:43:30] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC-views.xml]
+[2014-09-21 15:43:30] [AbstractApplicationContext.java:510] - [INFO] Refreshing org.springframework.web.context.support.GenericWebApplicationContext@1fe4377c: startup date [Sun Sep 21 15:43:30 CST 2014]; parent: WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet'
+[2014-09-21 15:43:30] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@6543a8fc: defining beans []; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@601cbd06
+[2014-09-21 15:43:30] [DispatcherServlet.java:457] - [DEBUG] Using MultipartResolver [org.springframework.web.multipart.commons.CommonsMultipartResolver@4c382aa8]
+[2014-09-21 15:43:30] [DispatcherServlet.java:486] - [DEBUG] Unable to locate LocaleResolver with name 'localeResolver': using default [org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver@1648ca30]
+[2014-09-21 15:43:30] [DispatcherServlet.java:508] - [DEBUG] Unable to locate ThemeResolver with name 'themeResolver': using default [org.springframework.web.servlet.theme.FixedThemeResolver@497a54c6]
+[2014-09-21 15:43:30] [DispatcherServlet.java:625] - [DEBUG] No HandlerExceptionResolvers found in servlet 'Spring MVC Dispatcher Servlet': using default
+[2014-09-21 15:43:30] [DispatcherServlet.java:646] - [DEBUG] Unable to locate RequestToViewNameTranslator with name 'viewNameTranslator': using default [org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@17d82574]
+[2014-09-21 15:43:30] [DispatcherServlet.java:708] - [DEBUG] Unable to locate FlashMapManager with name 'flashMapManager': using default [org.springframework.web.servlet.support.SessionFlashMapManager@519cc233]
+[2014-09-21 15:43:30] [FrameworkServlet.java:536] - [DEBUG] Published WebApplicationContext of servlet 'Spring MVC Dispatcher Servlet' as ServletContext attribute with name [org.springframework.web.servlet.FrameworkServlet.CONTEXT.Spring MVC Dispatcher Servlet]
+[2014-09-21 15:43:30] [FrameworkServlet.java:476] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization completed in 1905 ms
+[2014-09-21 15:43:30] [HttpServletBean.java:139] - [DEBUG] Servlet 'Spring MVC Dispatcher Servlet' configured successfully
+[2014-09-21 15:44:23] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/sso/login/load.shtml]
+[2014-09-21 15:44:23] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/sso/login/load.shtml] is: -1
+[2014-09-21 15:44:23] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/sso/login/load'; URL [/WEB-INF/views/jdp/sso/login/load.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 15:44:23] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:44:27] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing POST request for [/lmiky/sso/login/login.shtml]
+[2014-09-21 15:44:33] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator where Operator.loginName = ? 
+[2014-09-21 15:44:33] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: admin(String)
+[2014-09-21 15:44:33] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:44:34] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: insert into t_logger (id, pojoName, pojoId, userId, userName, logTime, opeType, opeClassName, logDesc, ip) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+[2014-09-21 15:44:34] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: null, null, null, 21(Long), 管理员(String), 2014-09-21 15:44:34.039(Timestamp), login(String), com.lmiky.jdp.sso.login.controller.LoginController(String), null, 0:0:0:0:0:0:0:1(String)
+[2014-09-21 15:44:34] [BaseJdbcLogger.java:139] - [DEBUG] <==    Updates: 1
+[2014-09-21 15:44:34] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.RedirectView: name 'redirect:/'; URL [/]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 15:44:34] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:44:34] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:44:34] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), tiger_goods_load(String)
+[2014-09-21 15:44:34] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:44:34] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:44:34] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), capture_task_load(String)
+[2014-09-21 15:44:34] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:44:34] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:44:34] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), cms_directory_load(String)
+[2014-09-21 15:44:35] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:44:35] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:44:35] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_user_operator_load(String)
+[2014-09-21 15:44:35] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:44:35] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:44:35] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_user_role_load(String)
+[2014-09-21 15:44:35] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:44:35] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:44:35] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_authority_authorize(String)
+[2014-09-21 15:44:35] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:44:36] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:44:36] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_area_manage(String)
+[2014-09-21 15:44:36] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:44:36] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:44:36] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_logger_load(String)
+[2014-09-21 15:44:36] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:44:36] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/sso/system/menu/load.shtml]
+[2014-09-21 15:44:36] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/sso/system/menu/load.shtml] is: -1
+[2014-09-21 15:44:36] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_lately_operate_menu LatelyOperateMenu where userId = ? order by LatelyOperateMenu.id desc limit ? 
+[2014-09-21 15:44:36] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 5(Integer)
+[2014-09-21 15:44:36] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:44:36] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'index'; URL [/WEB-INF/views/index.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 15:44:37] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: insert into t_lately_operate_menu (id, userId, opeTime, menuId) values(?, ?, ?, ?) 
+[2014-09-21 15:44:37] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: null, 21(Long), 2014-09-21 15:44:36.987(Timestamp), jdp_user_operator_load(String)
+[2014-09-21 15:44:37] [BaseJdbcLogger.java:139] - [DEBUG] <==    Updates: 1
+[2014-09-21 15:44:37] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/list.shtml]
+[2014-09-21 15:44:37] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/list.shtml] is: -1
+[2014-09-21 15:44:37] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator 
+[2014-09-21 15:44:37] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 
+[2014-09-21 15:44:37] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:44:37] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator order by Operator.id desc limit ? ,? 
+[2014-09-21 15:44:37] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 0(Integer), 15(Integer)
+[2014-09-21 15:44:37] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 5
+[2014-09-21 15:44:37] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from t_role Role limit ? ,? 
+[2014-09-21 15:44:37] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 0(Integer), 2147483647(Integer)
+[2014-09-21 15:44:37] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:44:37] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_lately_operate_menu LatelyOperateMenu where userId = ? order by LatelyOperateMenu.id desc limit ? 
+[2014-09-21 15:44:37] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 5(Integer)
+[2014-09-21 15:44:38] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:44:38] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_my_favorite_menu MyFavoriteMenu where userId = ? order by MyFavoriteMenu.id desc 
+[2014-09-21 15:44:38] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 15:44:38] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:44:38] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/user/operator/operatorList'; URL [/WEB-INF/views/jdp/user/operator/operatorList.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 15:44:41] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:44:41] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_user_operator_add(String)
+[2014-09-21 15:44:41] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:44:41] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:44:41] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_user_operator_delete(String)
+[2014-09-21 15:44:41] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:44:42] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:44:42] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_user_operator_modify(String)
+[2014-09-21 15:44:42] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:44:42] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:44:42] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:47:02] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/load.shtml]
+[2014-09-21 15:47:02] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/load.shtml] is: -1
+[2014-09-21 15:47:03] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator where Operator.id = ? 
+[2014-09-21 15:47:03] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 26(Long)
+[2014-09-21 15:47:03] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:47:03] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from t_role Role where Operator.users.id = ? order by Role.name asc limit ? ,? 
+[2014-09-21 15:47:03] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 26(Long), 0(Integer), 2147483647(Integer)
+[2014-09-21 15:47:04] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+[2014-09-21 15:47:04] [SQLErrorCodesFactory.java:126] - [INFO] SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase]
+[2014-09-21 15:47:04] [LoggerUtils.java:109] - [ERROR] com.lmiky.jdp.service.exception.ServiceException: 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'Operator.users.id' in 'where clause'
+### The error may exist in file [D:\workspace_jee\lmiky\target\classes\config\mappers\com\lmiky\jdp\user\pojo\Role.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select * from     t_role        Role       where Operator.users.id = ?                   order by                  Role.name asc                          limit ?               ,?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'Operator.users.id' in 'where clause'
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'Operator.users.id' in 'where clause'
+[2014-09-21 15:47:04] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.service.impl.BaseServiceImpl.list(BaseServiceImpl.java:329)
+[2014-09-21 15:47:04] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.user.service.impl.OperatorServiceImpl.listUserRoles(OperatorServiceImpl.java:40)
+[2014-09-21 15:47:04] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2014-09-21 15:47:04] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2014-09-21 15:47:04] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2014-09-21 15:47:04] [LoggerUtils.java:109] - [ERROR] Caused by: java.lang.reflect.Method.invoke(Method.java:483)
+[2014-09-21 15:47:04] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+[2014-09-21 15:47:04] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
+[2014-09-21 15:47:04] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+[2014-09-21 15:47:04] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:96)
+[2014-09-21 15:47:04] [FrameworkServlet.java:976] - [DEBUG] Could not complete request
+com.lmiky.jdp.service.exception.ServiceException: 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'Operator.users.id' in 'where clause'
+### The error may exist in file [D:\workspace_jee\lmiky\target\classes\config\mappers\com\lmiky\jdp\user\pojo\Role.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select * from     t_role        Role       where Operator.users.id = ?                   order by                  Role.name asc                          limit ?               ,?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'Operator.users.id' in 'where clause'
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'Operator.users.id' in 'where clause'
+	at com.lmiky.jdp.service.impl.BaseServiceImpl.list(BaseServiceImpl.java:329)
+	at com.lmiky.jdp.user.service.impl.OperatorServiceImpl.listUserRoles(OperatorServiceImpl.java:40)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:96)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:260)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:94)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
+	at com.sun.proxy.$Proxy29.listUserRoles(Unknown Source)
+	at com.lmiky.jdp.user.controller.OperatorController.appendLoadAttribute(OperatorController.java:126)
+	at com.lmiky.jdp.user.controller.OperatorController.appendLoadAttribute(OperatorController.java:1)
+	at com.lmiky.jdp.form.controller.FormController.executeLoad(FormController.java:156)
+	at com.lmiky.jdp.form.controller.FormController.executeLoad(FormController.java:102)
+	at com.lmiky.jdp.user.controller.OperatorController.load(OperatorController.java:115)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.springframework.web.bind.annotation.support.HandlerMethodInvoker.invokeHandlerMethod(HandlerMethodInvoker.java:176)
+	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:440)
+	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:428)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:919)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:851)
+	at com.lmiky.jdp.base.servlet.DispatcherServlet.doService(DispatcherServlet.java:110)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:953)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:844)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:620)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:829)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:303)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:106)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:220)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:122)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:501)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:103)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:950)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:116)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1070)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:611)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:314)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+[2014-09-21 15:53:10] [ContextLoader.java:285] - [INFO] Root WebApplicationContext: initialization started
+[2014-09-21 15:53:10] [AbstractApplicationContext.java:510] - [INFO] Refreshing Root WebApplicationContext: startup date [Sun Sep 21 15:53:10 CST 2014]; root of context hierarchy
+[2014-09-21 15:53:10] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-bean.xml]
+[2014-09-21 15:53:10] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-database.xml]
+[2014-09-21 15:53:10] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext.xml]
+[2014-09-21 15:53:11] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@4fada693: defining beans [ehCacheFactory,lockService,ssoService,menuParseService,moduleParser,dataSource,sqlSessionFactory,sqlSessionTemplate,transactionManager,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,cmsDirectoryService,cmsResourceService,cityTreeListJsonView,countryTreeListJsonView,provinceTreeListJsonView,authorityDAO,authorityService,baseInfoCodeJsonView,baseInfoJsonView,baseDAO,initService,jacksonJsonMapperImpl,moduleService,functionListJsonView,moduleListJsonView,baseService,sessionService,sortService,menuDAO,menuService,treeService,treeListJsonView,userDAO,operatorService,roleService,userService,pageService,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[2014-09-21 15:53:11] [DiskStorePathManager.java:162] - [WARN] diskStorePath 'D:\Tomcat6.0\cache\lmiky' is already used by an existing CacheManager either in the same VM or in a different process.
+The diskStore path for this CacheManager will be set to D:\Tomcat6.0\cache\lmiky\ehcache_auto_created4895958332800952874diskstore.
+To avoid this warning consider using the CacheManager factory methods to create a singleton CacheManager or specifying a separate ehcache configuration (ehcache.xml) for each CacheManager instance.
+[2014-09-21 15:53:11] [DiskStorageFactory.java:132] - [WARN] Data in persistent disk stores is ignored for stores from automatically created directories.
+Remove diskPersistent or resolve the conflicting disk paths in cache configuration.
+Deleting data file D:\Tomcat6.0\cache\lmiky\ehcache_auto_created4895958332800952874diskstore\form%004cock%0043ache.data
+[2014-09-21 15:53:11] [DiskStorageFactory.java:132] - [WARN] Data in persistent disk stores is ignored for stores from automatically created directories.
+Remove diskPersistent or resolve the conflicting disk paths in cache configuration.
+Deleting data file D:\Tomcat6.0\cache\lmiky\ehcache_auto_created4895958332800952874diskstore\sso%0043ache.data
+[2014-09-21 15:53:11] [DiskStorageFactory.java:132] - [WARN] Data in persistent disk stores is ignored for stores from automatically created directories.
+Remove diskPersistent or resolve the conflicting disk paths in cache configuration.
+Deleting data file D:\Tomcat6.0\cache\lmiky\ehcache_auto_created4895958332800952874diskstore\menu%0043ache.data
+[2014-09-21 15:53:13] [ContextLoader.java:325] - [INFO] Root WebApplicationContext: initialization completed in 3647 ms
+[2014-09-21 15:53:13] [HttpServletBean.java:118] - [DEBUG] Initializing servlet 'Spring MVC Dispatcher Servlet'
+[2014-09-21 15:53:13] [FrameworkServlet.java:457] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization started
+[2014-09-21 15:53:13] [FrameworkServlet.java:585] - [DEBUG] Servlet with name 'Spring MVC Dispatcher Servlet' will try to create custom WebApplicationContext context of class 'org.springframework.web.context.support.XmlWebApplicationContext', using parent context [Root WebApplicationContext: startup date [Sun Sep 21 15:53:10 CST 2014]; root of context hierarchy]
+[2014-09-21 15:53:13] [AbstractApplicationContext.java:510] - [INFO] Refreshing WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet': startup date [Sun Sep 21 15:53:13 CST 2014]; parent: Root WebApplicationContext
+[2014-09-21 15:53:13] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC.xml]
+[2014-09-21 15:53:14] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@67f4c8b9: defining beans [taskController,directoryController,resourceController,areaController,cityController,countryController,provinceController,authorityController,commonController,cacheController,fileController,kindEditorFileController,initController,lockController,loggerController,moduleController,sortController,loginController,menuController,treeController,operatorController,roleController,goodsController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,xmlViewResolver,jstlViewResolver,multipartResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@4fada693
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/load.shtml] onto handler 'taskController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/list.shtml] onto handler 'taskController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/urlContent.shtml] onto handler 'taskController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/load.shtml] onto handler 'directoryController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/delete.shtml] onto handler 'directoryController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/save.shtml] onto handler 'directoryController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadTree.shtml] onto handler 'directoryController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadPage.shtml] onto handler 'directoryController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/treeList.shtml] onto handler 'directoryController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/load.shtml] onto handler 'resourceController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/delete.shtml] onto handler 'resourceController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/list.shtml] onto handler 'resourceController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/save.shtml] onto handler 'resourceController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/publish.shtml] onto handler 'resourceController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/batchDelete.shtml] onto handler 'resourceController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/unpublish.shtml] onto handler 'resourceController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/load.shtml] onto handler 'areaController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/treeList.shtml] onto handler 'areaController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/load.shtml] onto handler 'cityController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/delete.shtml] onto handler 'cityController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/save.shtml] onto handler 'cityController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/load.shtml] onto handler 'countryController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/delete.shtml] onto handler 'countryController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/save.shtml] onto handler 'countryController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/load.shtml] onto handler 'provinceController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/delete.shtml] onto handler 'provinceController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/save.shtml] onto handler 'provinceController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/load.shtml] onto handler 'authorityController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/authorize.shtml] onto handler 'authorityController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/listOperator.shtml] onto handler 'authorityController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/common/back.shtml] onto handler 'commonController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cache/clearAll.shtml] onto handler 'cacheController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/file/upload.shtml] onto handler 'fileController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/kindEditorFile/upload.shtml] onto handler 'kindEditorFileController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/load.shtml] onto handler 'initController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/init.shtml] onto handler 'initController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateModule.shtml] onto handler 'initController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateMenu.shtml] onto handler 'initController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/lock/unlock.shtml] onto handler 'lockController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/logger/list.shtml] onto handler 'loggerController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/module/treeList.shtml] onto handler 'moduleController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/load.shtml] onto handler 'sortController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/save.shtml] onto handler 'sortController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/load.shtml] onto handler 'loginController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/login.shtml] onto handler 'loginController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/logout.shtml] onto handler 'loginController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/load.shtml] onto handler 'menuController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/listLeftMenus.shtml] onto handler 'menuController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/addMyFavorite.shtml] onto handler 'menuController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/removeMyFavorite.shtml] onto handler 'menuController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/treeList.shtml] onto handler 'treeController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/loadSelectTree.shtml] onto handler 'treeController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/load.shtml] onto handler 'operatorController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/delete.shtml] onto handler 'operatorController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/list.shtml] onto handler 'operatorController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/save.shtml] onto handler 'operatorController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/batchDelete.shtml] onto handler 'operatorController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/toModifyPassword.shtml] onto handler 'operatorController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/modifyPassword.shtml] onto handler 'operatorController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/load.shtml] onto handler 'roleController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/delete.shtml] onto handler 'roleController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/list.shtml] onto handler 'roleController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/save.shtml] onto handler 'roleController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/batchDelete.shtml] onto handler 'roleController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/load.shtml] onto handler 'goodsController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/delete.shtml] onto handler 'goodsController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/list.shtml] onto handler 'goodsController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/save.shtml] onto handler 'goodsController'
+[2014-09-21 15:53:14] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/batchDelete.shtml] onto handler 'goodsController'
+[2014-09-21 15:53:15] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC-views.xml]
+[2014-09-21 15:53:15] [AbstractApplicationContext.java:510] - [INFO] Refreshing org.springframework.web.context.support.GenericWebApplicationContext@279f5639: startup date [Sun Sep 21 15:53:15 CST 2014]; parent: WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet'
+[2014-09-21 15:53:15] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@66345819: defining beans []; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@67f4c8b9
+[2014-09-21 15:53:15] [DispatcherServlet.java:457] - [DEBUG] Using MultipartResolver [org.springframework.web.multipart.commons.CommonsMultipartResolver@7ed6946]
+[2014-09-21 15:53:15] [DispatcherServlet.java:486] - [DEBUG] Unable to locate LocaleResolver with name 'localeResolver': using default [org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver@3dab876b]
+[2014-09-21 15:53:15] [DispatcherServlet.java:508] - [DEBUG] Unable to locate ThemeResolver with name 'themeResolver': using default [org.springframework.web.servlet.theme.FixedThemeResolver@6978d71f]
+[2014-09-21 15:53:15] [DispatcherServlet.java:625] - [DEBUG] No HandlerExceptionResolvers found in servlet 'Spring MVC Dispatcher Servlet': using default
+[2014-09-21 15:53:15] [DispatcherServlet.java:646] - [DEBUG] Unable to locate RequestToViewNameTranslator with name 'viewNameTranslator': using default [org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@36afc1fe]
+[2014-09-21 15:53:15] [DispatcherServlet.java:708] - [DEBUG] Unable to locate FlashMapManager with name 'flashMapManager': using default [org.springframework.web.servlet.support.SessionFlashMapManager@259ec157]
+[2014-09-21 15:53:15] [FrameworkServlet.java:536] - [DEBUG] Published WebApplicationContext of servlet 'Spring MVC Dispatcher Servlet' as ServletContext attribute with name [org.springframework.web.servlet.FrameworkServlet.CONTEXT.Spring MVC Dispatcher Servlet]
+[2014-09-21 15:53:15] [FrameworkServlet.java:476] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization completed in 1308 ms
+[2014-09-21 15:53:15] [HttpServletBean.java:139] - [DEBUG] Servlet 'Spring MVC Dispatcher Servlet' configured successfully
+[2014-09-21 15:53:59] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/load.shtml]
+[2014-09-21 15:53:59] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/load.shtml] is: -1
+[2014-09-21 15:54:00] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.RedirectView: name 'redirect:/sso/login/load.shtml?redirect=28dc6c4c159c4bc48cb482e6cd5833a5'; URL [/sso/login/load.shtml?redirect=28dc6c4c159c4bc48cb482e6cd5833a5]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 15:54:00] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:54:00] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/sso/login/load.shtml]
+[2014-09-21 15:54:00] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/sso/login/load.shtml] is: -1
+[2014-09-21 15:54:00] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/sso/login/load'; URL [/WEB-INF/views/jdp/sso/login/load.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 15:54:00] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:54:02] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing POST request for [/lmiky/sso/login/login.shtml]
+[2014-09-21 15:54:15] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator where Operator.loginName = ? 
+[2014-09-21 15:54:15] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: admin(String)
+[2014-09-21 15:54:15] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:54:15] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: insert into t_logger (id, pojoName, pojoId, userId, userName, logTime, opeType, opeClassName, logDesc, ip) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+[2014-09-21 15:54:15] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: null, null, null, 21(Long), 管理员(String), 2014-09-21 15:54:15.606(Timestamp), login(String), com.lmiky.jdp.sso.login.controller.LoginController(String), null, 0:0:0:0:0:0:0:1(String)
+[2014-09-21 15:54:15] [BaseJdbcLogger.java:139] - [DEBUG] <==    Updates: 1
+[2014-09-21 15:54:16] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.RedirectView: name 'redirect:http://localhost:8080/lmiky/operator/load.shtml?id=26&openMode=edit&modulePath=jdp/user/operator&menuFrom=myIndex&subMenuId=jdp_user_operator_load&continuation=28dc6c4c159c4bc48cb482e6cd5833a5'; URL [http://localhost:8080/lmiky/operator/load.shtml?id=26&openMode=edit&modulePath=jdp/user/operator&menuFrom=myIndex&subMenuId=jdp_user_operator_load&continuation=28dc6c4c159c4bc48cb482e6cd5833a5]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 15:54:16] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:54:16] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:54:16] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), tiger_goods_load(String)
+[2014-09-21 15:54:16] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:54:16] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:54:16] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), capture_task_load(String)
+[2014-09-21 15:54:16] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:54:16] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:54:16] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), cms_directory_load(String)
+[2014-09-21 15:54:16] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:54:16] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:54:16] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_user_operator_load(String)
+[2014-09-21 15:54:16] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:54:17] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:54:17] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_user_role_load(String)
+[2014-09-21 15:54:17] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:54:17] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:54:17] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_authority_authorize(String)
+[2014-09-21 15:54:17] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:54:17] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:54:17] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_area_manage(String)
+[2014-09-21 15:54:17] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:54:17] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:54:17] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_logger_load(String)
+[2014-09-21 15:54:18] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:54:18] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/load.shtml]
+[2014-09-21 15:54:18] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/load.shtml] is: -1
+[2014-09-21 15:54:18] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:54:18] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_user_operator_modify(String)
+[2014-09-21 15:54:18] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:54:19] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator where Operator.id = ? 
+[2014-09-21 15:54:19] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 26(Long)
+[2014-09-21 15:54:19] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:54:19] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from t_role Role join t_user_role ur on Role.id = ur.roleId join t_operator Operator on Operator.id = ur.userId where Operator.id = ? order by Role.name asc limit ? ,? 
+[2014-09-21 15:54:19] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 26(Long), 0(Integer), 2147483647(Integer)
+[2014-09-21 15:54:19] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 0
+[2014-09-21 15:54:20] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_lately_operate_menu LatelyOperateMenu where userId = ? order by LatelyOperateMenu.id desc limit ? 
+[2014-09-21 15:54:20] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 5(Integer)
+[2014-09-21 15:54:20] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:54:21] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_my_favorite_menu MyFavoriteMenu where userId = ? order by MyFavoriteMenu.id desc 
+[2014-09-21 15:54:21] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 15:54:21] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:54:21] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/user/operator/operatorForm'; URL [/WEB-INF/views/jdp/user/operator/operatorForm.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 15:54:25] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:54:47] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/load.shtml]
+[2014-09-21 15:54:47] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/load.shtml] is: -1
+[2014-09-21 15:54:47] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator where Operator.id = ? 
+[2014-09-21 15:54:47] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 26(Long)
+[2014-09-21 15:54:47] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:54:48] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from t_role Role join t_user_role ur on Role.id = ur.roleId join t_operator Operator on Operator.id = ur.userId where Operator.id = ? order by Role.name asc limit ? ,? 
+[2014-09-21 15:54:48] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 26(Long), 0(Integer), 2147483647(Integer)
+[2014-09-21 15:54:48] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 0
+[2014-09-21 15:54:49] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_lately_operate_menu LatelyOperateMenu where userId = ? order by LatelyOperateMenu.id desc limit ? 
+[2014-09-21 15:54:49] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 5(Integer)
+[2014-09-21 15:54:49] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:54:50] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_my_favorite_menu MyFavoriteMenu where userId = ? order by MyFavoriteMenu.id desc 
+[2014-09-21 15:54:50] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 15:54:50] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:54:50] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/user/operator/operatorForm'; URL [/WEB-INF/views/jdp/user/operator/operatorForm.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 15:54:50] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:54:50] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/lock/unlock.shtml]
+[2014-09-21 15:54:50] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/lock/unlock.shtml] is: -1
+[2014-09-21 15:54:50] [DispatcherServlet.java:993] - [DEBUG] Null ModelAndView returned to DispatcherServlet with name 'Spring MVC Dispatcher Servlet': assuming HandlerAdapter completed request handling
+[2014-09-21 15:54:50] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:55:38] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/common/back.shtml]
+[2014-09-21 15:55:38] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/common/back.shtml] is: -1
+[2014-09-21 15:55:38] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: insert into t_lately_operate_menu (id, userId, opeTime, menuId) values(?, ?, ?, ?) 
+[2014-09-21 15:55:38] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: null, 21(Long), 2014-09-21 15:55:38.927(Timestamp), jdp_user_operator_load(String)
+[2014-09-21 15:55:39] [BaseJdbcLogger.java:139] - [DEBUG] <==    Updates: 1
+[2014-09-21 15:55:39] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/list.shtml]
+[2014-09-21 15:55:39] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/list.shtml] is: -1
+[2014-09-21 15:55:39] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator 
+[2014-09-21 15:55:39] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 
+[2014-09-21 15:55:39] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:55:39] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator order by Operator.id desc limit ? ,? 
+[2014-09-21 15:55:39] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 0(Integer), 15(Integer)
+[2014-09-21 15:55:39] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 5
+[2014-09-21 15:55:39] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from t_role Role limit ? ,? 
+[2014-09-21 15:55:39] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 0(Integer), 2147483647(Integer)
+[2014-09-21 15:55:40] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:55:40] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_lately_operate_menu LatelyOperateMenu where userId = ? order by LatelyOperateMenu.id desc limit ? 
+[2014-09-21 15:55:40] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 5(Integer)
+[2014-09-21 15:55:40] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:55:41] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_my_favorite_menu MyFavoriteMenu where userId = ? order by MyFavoriteMenu.id desc 
+[2014-09-21 15:55:41] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 15:55:41] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:55:41] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/user/operator/operatorList'; URL [/WEB-INF/views/jdp/user/operator/operatorList.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 15:55:41] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:55:41] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_user_operator_add(String)
+[2014-09-21 15:55:41] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:55:41] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 15:55:41] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_user_operator_delete(String)
+[2014-09-21 15:55:42] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:55:42] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:55:42] [DispatcherServlet.java:993] - [DEBUG] Null ModelAndView returned to DispatcherServlet with name 'Spring MVC Dispatcher Servlet': assuming HandlerAdapter completed request handling
+[2014-09-21 15:55:42] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:55:42] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/lock/unlock.shtml]
+[2014-09-21 15:55:42] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/lock/unlock.shtml] is: -1
+[2014-09-21 15:55:42] [DispatcherServlet.java:993] - [DEBUG] Null ModelAndView returned to DispatcherServlet with name 'Spring MVC Dispatcher Servlet': assuming HandlerAdapter completed request handling
+[2014-09-21 15:55:42] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:55:46] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/load.shtml]
+[2014-09-21 15:55:46] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/load.shtml] is: -1
+[2014-09-21 15:55:47] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator where Operator.id = ? 
+[2014-09-21 15:55:47] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long)
+[2014-09-21 15:55:47] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:55:47] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from t_role Role join t_user_role ur on Role.id = ur.roleId join t_operator Operator on Operator.id = ur.userId where Operator.id = ? order by Role.name asc limit ? ,? 
+[2014-09-21 15:55:47] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long), 0(Integer), 2147483647(Integer)
+[2014-09-21 15:55:47] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:55:47] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_lately_operate_menu LatelyOperateMenu where userId = ? order by LatelyOperateMenu.id desc limit ? 
+[2014-09-21 15:55:47] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 5(Integer)
+[2014-09-21 15:55:48] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:55:48] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_my_favorite_menu MyFavoriteMenu where userId = ? order by MyFavoriteMenu.id desc 
+[2014-09-21 15:55:48] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 15:55:48] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:55:48] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/user/operator/operatorForm'; URL [/WEB-INF/views/jdp/user/operator/operatorForm.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 15:55:48] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:56:40] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/load.shtml]
+[2014-09-21 15:56:40] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/load.shtml] is: -1
+[2014-09-21 15:56:40] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator where Operator.id = ? 
+[2014-09-21 15:56:40] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long)
+[2014-09-21 15:56:40] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:56:55] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from t_role Role join t_user_role ur on Role.id = ur.roleId join t_operator Operator on Operator.id = ur.userId where Operator.id = ? order by Role.name asc limit ? ,? 
+[2014-09-21 15:56:55] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long), 0(Integer), 2147483647(Integer)
+[2014-09-21 15:56:55] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:57:12] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_lately_operate_menu LatelyOperateMenu where userId = ? order by LatelyOperateMenu.id desc limit ? 
+[2014-09-21 15:57:12] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 5(Integer)
+[2014-09-21 15:57:12] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:57:12] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_my_favorite_menu MyFavoriteMenu where userId = ? order by MyFavoriteMenu.id desc 
+[2014-09-21 15:57:12] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 15:57:13] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:57:13] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/user/operator/operatorForm'; URL [/WEB-INF/views/jdp/user/operator/operatorForm.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 15:57:13] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:57:13] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/lock/unlock.shtml]
+[2014-09-21 15:57:13] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/lock/unlock.shtml] is: -1
+[2014-09-21 15:57:13] [DispatcherServlet.java:993] - [DEBUG] Null ModelAndView returned to DispatcherServlet with name 'Spring MVC Dispatcher Servlet': assuming HandlerAdapter completed request handling
+[2014-09-21 15:57:13] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:57:20] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/load.shtml]
+[2014-09-21 15:57:20] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/load.shtml] is: -1
+[2014-09-21 15:57:20] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator where Operator.id = ? 
+[2014-09-21 15:57:20] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long)
+[2014-09-21 15:57:20] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:57:27] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from t_role Role join t_user_role ur on Role.id = ur.roleId join t_operator Operator on Operator.id = ur.userId where Operator.id = ? order by Role.name asc limit ? ,? 
+[2014-09-21 15:57:27] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long), 0(Integer), 2147483647(Integer)
+[2014-09-21 15:57:27] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:57:29] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_lately_operate_menu LatelyOperateMenu where userId = ? order by LatelyOperateMenu.id desc limit ? 
+[2014-09-21 15:57:29] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 5(Integer)
+[2014-09-21 15:57:29] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:57:29] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_my_favorite_menu MyFavoriteMenu where userId = ? order by MyFavoriteMenu.id desc 
+[2014-09-21 15:57:29] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 15:57:29] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:57:29] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/user/operator/operatorForm'; URL [/WEB-INF/views/jdp/user/operator/operatorForm.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 15:57:29] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:57:29] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/lock/unlock.shtml]
+[2014-09-21 15:57:29] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/lock/unlock.shtml] is: -1
+[2014-09-21 15:57:29] [DispatcherServlet.java:993] - [DEBUG] Null ModelAndView returned to DispatcherServlet with name 'Spring MVC Dispatcher Servlet': assuming HandlerAdapter completed request handling
+[2014-09-21 15:57:29] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:57:40] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/load.shtml]
+[2014-09-21 15:57:40] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/load.shtml] is: -1
+[2014-09-21 15:57:40] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator where Operator.id = ? 
+[2014-09-21 15:57:40] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long)
+[2014-09-21 15:57:41] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:57:43] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from t_role Role join t_user_role ur on Role.id = ur.roleId join t_operator Operator on Operator.id = ur.userId where Operator.id = ? order by Role.name asc limit ? ,? 
+[2014-09-21 15:57:43] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long), 0(Integer), 2147483647(Integer)
+[2014-09-21 15:57:43] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:57:49] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select r.* from t_role r, t_user_role ur where ur.userId = ? AND r.id = ur.roleId 
+[2014-09-21 15:57:49] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long)
+[2014-09-21 15:57:49] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:58:31] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_lately_operate_menu LatelyOperateMenu where userId = ? order by LatelyOperateMenu.id desc limit ? 
+[2014-09-21 15:58:31] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 5(Integer)
+[2014-09-21 15:58:31] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:58:31] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_my_favorite_menu MyFavoriteMenu where userId = ? order by MyFavoriteMenu.id desc 
+[2014-09-21 15:58:31] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 15:58:31] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:58:32] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/user/operator/operatorForm'; URL [/WEB-INF/views/jdp/user/operator/operatorForm.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 15:58:32] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:58:32] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/lock/unlock.shtml]
+[2014-09-21 15:58:32] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/lock/unlock.shtml] is: -1
+[2014-09-21 15:58:32] [DispatcherServlet.java:993] - [DEBUG] Null ModelAndView returned to DispatcherServlet with name 'Spring MVC Dispatcher Servlet': assuming HandlerAdapter completed request handling
+[2014-09-21 15:58:32] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:59:17] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/common/back.shtml]
+[2014-09-21 15:59:17] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/common/back.shtml] is: -1
+[2014-09-21 15:59:17] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/list.shtml]
+[2014-09-21 15:59:17] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/list.shtml] is: -1
+[2014-09-21 15:59:17] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator 
+[2014-09-21 15:59:17] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 
+[2014-09-21 15:59:18] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:59:18] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator order by Operator.id desc limit ? ,? 
+[2014-09-21 15:59:18] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 0(Integer), 15(Integer)
+[2014-09-21 15:59:18] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 5
+[2014-09-21 15:59:19] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from t_role Role limit ? ,? 
+[2014-09-21 15:59:19] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 0(Integer), 2147483647(Integer)
+[2014-09-21 15:59:19] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:59:19] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_lately_operate_menu LatelyOperateMenu where userId = ? order by LatelyOperateMenu.id desc limit ? 
+[2014-09-21 15:59:19] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 5(Integer)
+[2014-09-21 15:59:20] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:59:20] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_my_favorite_menu MyFavoriteMenu where userId = ? order by MyFavoriteMenu.id desc 
+[2014-09-21 15:59:20] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 15:59:21] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:59:21] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/user/operator/operatorList'; URL [/WEB-INF/views/jdp/user/operator/operatorList.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 15:59:21] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:59:21] [DispatcherServlet.java:993] - [DEBUG] Null ModelAndView returned to DispatcherServlet with name 'Spring MVC Dispatcher Servlet': assuming HandlerAdapter completed request handling
+[2014-09-21 15:59:21] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:59:21] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/lock/unlock.shtml]
+[2014-09-21 15:59:21] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/lock/unlock.shtml] is: -1
+[2014-09-21 15:59:21] [DispatcherServlet.java:993] - [DEBUG] Null ModelAndView returned to DispatcherServlet with name 'Spring MVC Dispatcher Servlet': assuming HandlerAdapter completed request handling
+[2014-09-21 15:59:21] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 15:59:27] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/load.shtml]
+[2014-09-21 15:59:27] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/load.shtml] is: -1
+[2014-09-21 15:59:27] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator where Operator.id = ? 
+[2014-09-21 15:59:27] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 15:59:28] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:59:29] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from t_role Role join t_user_role ur on Role.id = ur.roleId join t_operator Operator on Operator.id = ur.userId where Operator.id = ? order by Role.name asc limit ? ,? 
+[2014-09-21 15:59:29] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 0(Integer), 2147483647(Integer)
+[2014-09-21 15:59:30] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 15:59:31] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_lately_operate_menu LatelyOperateMenu where userId = ? order by LatelyOperateMenu.id desc limit ? 
+[2014-09-21 15:59:31] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 5(Integer)
+[2014-09-21 15:59:31] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:59:32] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_my_favorite_menu MyFavoriteMenu where userId = ? order by MyFavoriteMenu.id desc 
+[2014-09-21 15:59:32] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 15:59:32] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 15:59:32] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/user/operator/operatorForm'; URL [/WEB-INF/views/jdp/user/operator/operatorForm.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 15:59:32] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 16:24:16] [ContextLoader.java:285] - [INFO] Root WebApplicationContext: initialization started
+[2014-09-21 16:24:16] [AbstractApplicationContext.java:510] - [INFO] Refreshing Root WebApplicationContext: startup date [Sun Sep 21 16:24:16 CST 2014]; root of context hierarchy
+[2014-09-21 16:24:16] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-bean.xml]
+[2014-09-21 16:24:16] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-database.xml]
+[2014-09-21 16:24:16] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext.xml]
+[2014-09-21 16:24:17] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@5590599c: defining beans [ehCacheFactory,lockService,ssoService,menuParseService,moduleParser,dataSource,sqlSessionFactory,sqlSessionTemplate,transactionManager,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,cmsDirectoryService,cmsResourceService,cityTreeListJsonView,countryTreeListJsonView,provinceTreeListJsonView,authorityDAO,authorityService,baseInfoCodeJsonView,baseInfoJsonView,baseDAO,initService,jacksonJsonMapperImpl,moduleService,functionListJsonView,moduleListJsonView,baseService,sessionService,sortService,menuDAO,menuService,treeService,treeListJsonView,userDAO,operatorService,roleService,userService,pageService,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[2014-09-21 16:24:18] [DiskStorePathManager.java:162] - [WARN] diskStorePath 'D:\Tomcat6.0\cache\lmiky' is already used by an existing CacheManager either in the same VM or in a different process.
+The diskStore path for this CacheManager will be set to D:\Tomcat6.0\cache\lmiky\ehcache_auto_created5770904085448420954diskstore.
+To avoid this warning consider using the CacheManager factory methods to create a singleton CacheManager or specifying a separate ehcache configuration (ehcache.xml) for each CacheManager instance.
+[2014-09-21 16:24:18] [DiskStorageFactory.java:132] - [WARN] Data in persistent disk stores is ignored for stores from automatically created directories.
+Remove diskPersistent or resolve the conflicting disk paths in cache configuration.
+Deleting data file D:\Tomcat6.0\cache\lmiky\ehcache_auto_created5770904085448420954diskstore\menu%0043ache.data
+[2014-09-21 16:24:18] [DiskStorageFactory.java:132] - [WARN] Data in persistent disk stores is ignored for stores from automatically created directories.
+Remove diskPersistent or resolve the conflicting disk paths in cache configuration.
+Deleting data file D:\Tomcat6.0\cache\lmiky\ehcache_auto_created5770904085448420954diskstore\form%004cock%0043ache.data
+[2014-09-21 16:24:18] [DiskStorageFactory.java:132] - [WARN] Data in persistent disk stores is ignored for stores from automatically created directories.
+Remove diskPersistent or resolve the conflicting disk paths in cache configuration.
+Deleting data file D:\Tomcat6.0\cache\lmiky\ehcache_auto_created5770904085448420954diskstore\sso%0043ache.data
+[2014-09-21 16:24:20] [ContextLoader.java:325] - [INFO] Root WebApplicationContext: initialization completed in 3828 ms
+[2014-09-21 16:24:20] [HttpServletBean.java:118] - [DEBUG] Initializing servlet 'Spring MVC Dispatcher Servlet'
+[2014-09-21 16:24:20] [FrameworkServlet.java:457] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization started
+[2014-09-21 16:24:20] [FrameworkServlet.java:585] - [DEBUG] Servlet with name 'Spring MVC Dispatcher Servlet' will try to create custom WebApplicationContext context of class 'org.springframework.web.context.support.XmlWebApplicationContext', using parent context [Root WebApplicationContext: startup date [Sun Sep 21 16:24:16 CST 2014]; root of context hierarchy]
+[2014-09-21 16:24:20] [AbstractApplicationContext.java:510] - [INFO] Refreshing WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet': startup date [Sun Sep 21 16:24:20 CST 2014]; parent: Root WebApplicationContext
+[2014-09-21 16:24:20] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC.xml]
+[2014-09-21 16:24:20] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@3cf4711e: defining beans [taskController,directoryController,resourceController,areaController,cityController,countryController,provinceController,authorityController,commonController,cacheController,fileController,kindEditorFileController,initController,lockController,loggerController,moduleController,sortController,loginController,menuController,treeController,operatorController,roleController,goodsController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,xmlViewResolver,jstlViewResolver,multipartResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@5590599c
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/load.shtml] onto handler 'taskController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/list.shtml] onto handler 'taskController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/urlContent.shtml] onto handler 'taskController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/load.shtml] onto handler 'directoryController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/delete.shtml] onto handler 'directoryController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/save.shtml] onto handler 'directoryController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadTree.shtml] onto handler 'directoryController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadPage.shtml] onto handler 'directoryController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/treeList.shtml] onto handler 'directoryController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/load.shtml] onto handler 'resourceController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/delete.shtml] onto handler 'resourceController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/list.shtml] onto handler 'resourceController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/save.shtml] onto handler 'resourceController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/publish.shtml] onto handler 'resourceController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/batchDelete.shtml] onto handler 'resourceController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/unpublish.shtml] onto handler 'resourceController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/load.shtml] onto handler 'areaController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/treeList.shtml] onto handler 'areaController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/load.shtml] onto handler 'cityController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/delete.shtml] onto handler 'cityController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/save.shtml] onto handler 'cityController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/load.shtml] onto handler 'countryController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/delete.shtml] onto handler 'countryController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/save.shtml] onto handler 'countryController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/load.shtml] onto handler 'provinceController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/delete.shtml] onto handler 'provinceController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/save.shtml] onto handler 'provinceController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/load.shtml] onto handler 'authorityController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/listOperator.shtml] onto handler 'authorityController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/authorize.shtml] onto handler 'authorityController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/common/back.shtml] onto handler 'commonController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cache/clearAll.shtml] onto handler 'cacheController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/file/upload.shtml] onto handler 'fileController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/kindEditorFile/upload.shtml] onto handler 'kindEditorFileController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/load.shtml] onto handler 'initController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/init.shtml] onto handler 'initController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateModule.shtml] onto handler 'initController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateMenu.shtml] onto handler 'initController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/lock/unlock.shtml] onto handler 'lockController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/logger/list.shtml] onto handler 'loggerController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/module/treeList.shtml] onto handler 'moduleController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/load.shtml] onto handler 'sortController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/save.shtml] onto handler 'sortController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/load.shtml] onto handler 'loginController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/login.shtml] onto handler 'loginController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/logout.shtml] onto handler 'loginController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/load.shtml] onto handler 'menuController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/listLeftMenus.shtml] onto handler 'menuController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/addMyFavorite.shtml] onto handler 'menuController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/removeMyFavorite.shtml] onto handler 'menuController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/treeList.shtml] onto handler 'treeController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/loadSelectTree.shtml] onto handler 'treeController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/load.shtml] onto handler 'operatorController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/delete.shtml] onto handler 'operatorController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/list.shtml] onto handler 'operatorController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/save.shtml] onto handler 'operatorController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/batchDelete.shtml] onto handler 'operatorController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/toModifyPassword.shtml] onto handler 'operatorController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/modifyPassword.shtml] onto handler 'operatorController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/load.shtml] onto handler 'roleController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/delete.shtml] onto handler 'roleController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/list.shtml] onto handler 'roleController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/save.shtml] onto handler 'roleController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/batchDelete.shtml] onto handler 'roleController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/load.shtml] onto handler 'goodsController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/delete.shtml] onto handler 'goodsController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/list.shtml] onto handler 'goodsController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/save.shtml] onto handler 'goodsController'
+[2014-09-21 16:24:21] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/batchDelete.shtml] onto handler 'goodsController'
+[2014-09-21 16:24:21] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC-views.xml]
+[2014-09-21 16:24:21] [AbstractApplicationContext.java:510] - [INFO] Refreshing org.springframework.web.context.support.GenericWebApplicationContext@78e63689: startup date [Sun Sep 21 16:24:21 CST 2014]; parent: WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet'
+[2014-09-21 16:24:21] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@3f6f9949: defining beans []; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@3cf4711e
+[2014-09-21 16:24:21] [DispatcherServlet.java:457] - [DEBUG] Using MultipartResolver [org.springframework.web.multipart.commons.CommonsMultipartResolver@3713545b]
+[2014-09-21 16:24:21] [DispatcherServlet.java:486] - [DEBUG] Unable to locate LocaleResolver with name 'localeResolver': using default [org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver@2f793a4]
+[2014-09-21 16:24:21] [DispatcherServlet.java:508] - [DEBUG] Unable to locate ThemeResolver with name 'themeResolver': using default [org.springframework.web.servlet.theme.FixedThemeResolver@6eeff428]
+[2014-09-21 16:24:21] [DispatcherServlet.java:625] - [DEBUG] No HandlerExceptionResolvers found in servlet 'Spring MVC Dispatcher Servlet': using default
+[2014-09-21 16:24:21] [DispatcherServlet.java:646] - [DEBUG] Unable to locate RequestToViewNameTranslator with name 'viewNameTranslator': using default [org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@2daa63e4]
+[2014-09-21 16:24:21] [DispatcherServlet.java:708] - [DEBUG] Unable to locate FlashMapManager with name 'flashMapManager': using default [org.springframework.web.servlet.support.SessionFlashMapManager@b918266]
+[2014-09-21 16:24:21] [FrameworkServlet.java:536] - [DEBUG] Published WebApplicationContext of servlet 'Spring MVC Dispatcher Servlet' as ServletContext attribute with name [org.springframework.web.servlet.FrameworkServlet.CONTEXT.Spring MVC Dispatcher Servlet]
+[2014-09-21 16:24:21] [FrameworkServlet.java:476] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization completed in 1137 ms
+[2014-09-21 16:24:21] [HttpServletBean.java:139] - [DEBUG] Servlet 'Spring MVC Dispatcher Servlet' configured successfully
+[2014-09-21 16:24:34] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/load.shtml]
+[2014-09-21 16:24:34] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/load.shtml] is: -1
+[2014-09-21 16:24:34] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.RedirectView: name 'redirect:/sso/login/load.shtml?redirect=6d603a6aadcd4cb8b6b611b986e7f01b'; URL [/sso/login/load.shtml?redirect=6d603a6aadcd4cb8b6b611b986e7f01b]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 16:24:34] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 16:24:34] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/sso/login/load.shtml]
+[2014-09-21 16:24:34] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/sso/login/load.shtml] is: -1
+[2014-09-21 16:24:34] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/sso/login/load'; URL [/WEB-INF/views/jdp/sso/login/load.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 16:24:34] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 16:24:34] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/lock/unlock.shtml]
+[2014-09-21 16:24:34] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/lock/unlock.shtml] is: -1
+[2014-09-21 16:24:34] [LoggerUtils.java:109] - [ERROR] com.lmiky.jdp.session.exception.SessionException: noSession
+[2014-09-21 16:24:34] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.base.controller.BaseController.getSessionInfo(BaseController.java:364)
+[2014-09-21 16:24:34] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.lock.controller.LockController.unlock(LockController.java:39)
+[2014-09-21 16:24:34] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2014-09-21 16:24:34] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2014-09-21 16:24:34] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2014-09-21 16:24:34] [LoggerUtils.java:109] - [ERROR] Caused by: java.lang.reflect.Method.invoke(Method.java:483)
+[2014-09-21 16:24:34] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.bind.annotation.support.HandlerMethodInvoker.invokeHandlerMethod(HandlerMethodInvoker.java:176)
+[2014-09-21 16:24:34] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:440)
+[2014-09-21 16:24:34] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:428)
+[2014-09-21 16:24:34] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:919)
+[2014-09-21 16:24:34] [DispatcherServlet.java:993] - [DEBUG] Null ModelAndView returned to DispatcherServlet with name 'Spring MVC Dispatcher Servlet': assuming HandlerAdapter completed request handling
+[2014-09-21 16:24:34] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 16:24:37] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing POST request for [/lmiky/sso/login/login.shtml]
+[2014-09-21 16:24:43] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator where Operator.loginName = ? 
+[2014-09-21 16:24:43] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: admin(String)
+[2014-09-21 16:24:43] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:24:43] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: insert into t_logger (id, pojoName, pojoId, userId, userName, logTime, opeType, opeClassName, logDesc, ip) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+[2014-09-21 16:24:43] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: null, null, null, 21(Long), 管理员(String), 2014-09-21 16:24:43.795(Timestamp), login(String), com.lmiky.jdp.sso.login.controller.LoginController(String), null, 0:0:0:0:0:0:0:1(String)
+[2014-09-21 16:24:43] [BaseJdbcLogger.java:139] - [DEBUG] <==    Updates: 1
+[2014-09-21 16:24:44] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.RedirectView: name 'redirect:http://localhost:8080/lmiky/operator/load.shtml?id=21&openMode=edit&modulePath=jdp/user/operator&menuFrom=myIndex&subMenuId=jdp_user_operator_load&continuation=6d603a6aadcd4cb8b6b611b986e7f01b'; URL [http://localhost:8080/lmiky/operator/load.shtml?id=21&openMode=edit&modulePath=jdp/user/operator&menuFrom=myIndex&subMenuId=jdp_user_operator_load&continuation=6d603a6aadcd4cb8b6b611b986e7f01b]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 16:24:44] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 16:24:44] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 16:24:44] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), tiger_goods_load(String)
+[2014-09-21 16:24:44] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:24:44] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 16:24:44] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), capture_task_load(String)
+[2014-09-21 16:24:44] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:24:44] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 16:24:44] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), cms_directory_load(String)
+[2014-09-21 16:24:44] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:24:45] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 16:24:45] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_user_operator_load(String)
+[2014-09-21 16:24:45] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:24:45] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 16:24:45] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_user_role_load(String)
+[2014-09-21 16:24:45] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:24:46] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 16:24:46] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_authority_authorize(String)
+[2014-09-21 16:24:46] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:24:46] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 16:24:46] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_area_manage(String)
+[2014-09-21 16:24:46] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:24:46] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 16:24:46] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_logger_load(String)
+[2014-09-21 16:24:46] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:24:46] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/load.shtml]
+[2014-09-21 16:24:46] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/load.shtml] is: -1
+[2014-09-21 16:24:47] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 16:24:47] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_user_operator_modify(String)
+[2014-09-21 16:24:47] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:24:47] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator where Operator.id = ? 
+[2014-09-21 16:24:47] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 16:24:47] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:24:47] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select Role .* from t_role Role join t_user_role ur on Role.id = ur.roleId join t_operator Operator on Operator.id = ur.userId where Operator.id = ? order by Role.name asc limit ? ,? 
+[2014-09-21 16:24:47] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 0(Integer), 2147483647(Integer)
+[2014-09-21 16:24:47] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:24:48] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from t_role r where not exists (select 1 from t_user_role ur where ur.userId = ? and ur.roleId = r.id) order by r.name asc 
+[2014-09-21 16:24:48] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 16:24:48] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:24:48] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_lately_operate_menu LatelyOperateMenu where userId = ? order by LatelyOperateMenu.id desc limit ? 
+[2014-09-21 16:24:48] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 5(Integer)
+[2014-09-21 16:24:48] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 16:24:48] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_my_favorite_menu MyFavoriteMenu where userId = ? order by MyFavoriteMenu.id desc 
+[2014-09-21 16:24:48] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 16:24:48] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 16:24:49] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/user/operator/operatorForm'; URL [/WEB-INF/views/jdp/user/operator/operatorForm.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 16:24:49] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 16:25:24] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/load.shtml]
+[2014-09-21 16:25:24] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/load.shtml] is: -1
+[2014-09-21 16:25:24] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator where Operator.id = ? 
+[2014-09-21 16:25:24] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 16:25:24] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:25:24] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select Role .* from t_role Role join t_user_role ur on Role.id = ur.roleId join t_operator Operator on Operator.id = ur.userId where Operator.id = ? order by Role.name asc limit ? ,? 
+[2014-09-21 16:25:24] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 0(Integer), 2147483647(Integer)
+[2014-09-21 16:25:24] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:25:25] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from t_role r where not exists (select 1 from t_user_role ur where ur.userId = ? and ur.roleId = r.id) order by r.name asc 
+[2014-09-21 16:25:25] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 16:25:25] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 16:25:25] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_lately_operate_menu LatelyOperateMenu where userId = ? order by LatelyOperateMenu.id desc limit ? 
+[2014-09-21 16:25:25] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 5(Integer)
+[2014-09-21 16:25:25] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 16:25:26] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_my_favorite_menu MyFavoriteMenu where userId = ? order by MyFavoriteMenu.id desc 
+[2014-09-21 16:25:26] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 16:25:26] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 16:25:26] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/user/operator/operatorForm'; URL [/WEB-INF/views/jdp/user/operator/operatorForm.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 16:25:26] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 16:25:26] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/lock/unlock.shtml]
+[2014-09-21 16:25:26] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/lock/unlock.shtml] is: -1
+[2014-09-21 16:25:26] [DispatcherServlet.java:993] - [DEBUG] Null ModelAndView returned to DispatcherServlet with name 'Spring MVC Dispatcher Servlet': assuming HandlerAdapter completed request handling
+[2014-09-21 16:25:26] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 16:25:28] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/common/back.shtml]
+[2014-09-21 16:25:28] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/common/back.shtml] is: -1
+[2014-09-21 16:25:28] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: insert into t_lately_operate_menu (id, userId, opeTime, menuId) values(?, ?, ?, ?) 
+[2014-09-21 16:25:28] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: null, 21(Long), 2014-09-21 16:25:28.338(Timestamp), jdp_user_operator_load(String)
+[2014-09-21 16:25:28] [BaseJdbcLogger.java:139] - [DEBUG] <==    Updates: 1
+[2014-09-21 16:25:28] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/list.shtml]
+[2014-09-21 16:25:28] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/list.shtml] is: -1
+[2014-09-21 16:25:28] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator 
+[2014-09-21 16:25:28] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 
+[2014-09-21 16:25:28] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:25:28] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select Operator .* from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator order by Operator.id desc limit ? ,? 
+[2014-09-21 16:25:28] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 0(Integer), 15(Integer)
+[2014-09-21 16:25:28] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 5
+[2014-09-21 16:25:29] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select Role .* from t_role Role limit ? ,? 
+[2014-09-21 16:25:29] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 0(Integer), 2147483647(Integer)
+[2014-09-21 16:25:29] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 3
+[2014-09-21 16:25:29] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_lately_operate_menu LatelyOperateMenu where userId = ? order by LatelyOperateMenu.id desc limit ? 
+[2014-09-21 16:25:29] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 5(Integer)
+[2014-09-21 16:25:29] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 16:25:30] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_my_favorite_menu MyFavoriteMenu where userId = ? order by MyFavoriteMenu.id desc 
+[2014-09-21 16:25:30] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 16:25:30] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 16:25:30] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/user/operator/operatorList'; URL [/WEB-INF/views/jdp/user/operator/operatorList.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 16:25:30] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 16:25:30] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_user_operator_add(String)
+[2014-09-21 16:25:30] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:25:31] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select count(*) from t_operator Operator, t_authority Authority, t_role Role where Operator.id = ? and Role.id = Authority.operator and Authority.authorityCode = ? 
+[2014-09-21 16:25:31] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), jdp_user_operator_delete(String)
+[2014-09-21 16:25:31] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:25:31] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 16:25:31] [DispatcherServlet.java:993] - [DEBUG] Null ModelAndView returned to DispatcherServlet with name 'Spring MVC Dispatcher Servlet': assuming HandlerAdapter completed request handling
+[2014-09-21 16:25:31] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 16:25:31] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/lock/unlock.shtml]
+[2014-09-21 16:25:31] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/lock/unlock.shtml] is: -1
+[2014-09-21 16:25:31] [DispatcherServlet.java:993] - [DEBUG] Null ModelAndView returned to DispatcherServlet with name 'Spring MVC Dispatcher Servlet': assuming HandlerAdapter completed request handling
+[2014-09-21 16:25:31] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 16:25:34] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/load.shtml]
+[2014-09-21 16:25:34] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/load.shtml] is: -1
+[2014-09-21 16:25:34] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator where Operator.id = ? 
+[2014-09-21 16:25:34] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long)
+[2014-09-21 16:25:34] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:25:34] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select Role .* from t_role Role join t_user_role ur on Role.id = ur.roleId join t_operator Operator on Operator.id = ur.userId where Operator.id = ? order by Role.name asc limit ? ,? 
+[2014-09-21 16:25:34] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long), 0(Integer), 2147483647(Integer)
+[2014-09-21 16:25:34] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:25:34] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from t_role r where not exists (select 1 from t_user_role ur where ur.userId = ? and ur.roleId = r.id) order by r.name asc 
+[2014-09-21 16:25:34] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long)
+[2014-09-21 16:25:34] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 16:25:35] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_lately_operate_menu LatelyOperateMenu where userId = ? order by LatelyOperateMenu.id desc limit ? 
+[2014-09-21 16:25:35] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 5(Integer)
+[2014-09-21 16:25:35] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 16:25:35] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_my_favorite_menu MyFavoriteMenu where userId = ? order by MyFavoriteMenu.id desc 
+[2014-09-21 16:25:35] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 16:25:35] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 16:25:35] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/user/operator/operatorForm'; URL [/WEB-INF/views/jdp/user/operator/operatorForm.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 16:25:35] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 16:28:41] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing POST request for [/lmiky/operator/save.shtml]
+[2014-09-21 16:28:41] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator where Operator.id = ? 
+[2014-09-21 16:28:41] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long)
+[2014-09-21 16:28:41] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:28:42] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select r.* from t_role r, t_user_role ur where ur.userId = ? AND r.id = ur.roleId 
+[2014-09-21 16:28:42] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long)
+[2014-09-21 16:28:42] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:28:42] [LoggerUtils.java:109] - [ERROR] com.lmiky.jdp.service.exception.ServiceException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error updating database.  Cause: java.lang.IllegalArgumentException: Mapped Statements collection does not contain value for com.lmiky.jdp.user.pojo.Operator$$EnhancerByCGLIB$$f98f1d06.update
+### Cause: java.lang.IllegalArgumentException: Mapped Statements collection does not contain value for com.lmiky.jdp.user.pojo.Operator$$EnhancerByCGLIB$$f98f1d06.update
+[2014-09-21 16:28:42] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.service.impl.BaseServiceImpl.update(BaseServiceImpl.java:139)
+[2014-09-21 16:28:42] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2014-09-21 16:28:42] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2014-09-21 16:28:42] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2014-09-21 16:28:42] [LoggerUtils.java:109] - [ERROR] Caused by: java.lang.reflect.Method.invoke(Method.java:483)
+[2014-09-21 16:28:42] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+[2014-09-21 16:28:42] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
+[2014-09-21 16:28:42] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+[2014-09-21 16:28:42] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:96)
+[2014-09-21 16:28:42] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:260)
+[2014-09-21 16:28:42] [FrameworkServlet.java:976] - [DEBUG] Could not complete request
+com.lmiky.jdp.service.exception.ServiceException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error updating database.  Cause: java.lang.IllegalArgumentException: Mapped Statements collection does not contain value for com.lmiky.jdp.user.pojo.Operator$$EnhancerByCGLIB$$f98f1d06.update
+### Cause: java.lang.IllegalArgumentException: Mapped Statements collection does not contain value for com.lmiky.jdp.user.pojo.Operator$$EnhancerByCGLIB$$f98f1d06.update
+	at com.lmiky.jdp.service.impl.BaseServiceImpl.update(BaseServiceImpl.java:139)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:96)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:260)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:94)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
+	at com.sun.proxy.$Proxy29.update(Unknown Source)
+	at com.lmiky.jdp.form.controller.FormController.savePojo(FormController.java:480)
+	at com.lmiky.jdp.form.controller.FormController.executeSave(FormController.java:395)
+	at com.lmiky.jdp.form.controller.FormController.executeSave(FormController.java:332)
+	at com.lmiky.jdp.user.controller.OperatorController.save(OperatorController.java:150)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.springframework.web.bind.annotation.support.HandlerMethodInvoker.invokeHandlerMethod(HandlerMethodInvoker.java:176)
+	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:440)
+	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:428)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:919)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:851)
+	at com.lmiky.jdp.base.servlet.DispatcherServlet.doService(DispatcherServlet.java:110)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:953)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:855)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:646)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:829)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:303)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:106)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:220)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:122)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:501)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:103)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:950)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:116)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1070)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:611)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:314)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+[2014-09-21 16:33:13] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/load.shtml]
+[2014-09-21 16:33:13] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/load.shtml] is: -1
+[2014-09-21 16:33:13] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator where Operator.id = ? 
+[2014-09-21 16:33:13] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long)
+[2014-09-21 16:33:13] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:33:14] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select Role .* from t_role Role join t_user_role ur on Role.id = ur.roleId join t_operator Operator on Operator.id = ur.userId where Operator.id = ? order by Role.name asc limit ? ,? 
+[2014-09-21 16:33:14] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long), 0(Integer), 2147483647(Integer)
+[2014-09-21 16:33:14] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:33:14] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from t_role r where not exists (select 1 from t_user_role ur where ur.userId = ? and ur.roleId = r.id) order by r.name asc 
+[2014-09-21 16:33:14] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long)
+[2014-09-21 16:33:14] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 16:33:14] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_lately_operate_menu LatelyOperateMenu where userId = ? order by LatelyOperateMenu.id desc limit ? 
+[2014-09-21 16:33:14] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 5(Integer)
+[2014-09-21 16:33:14] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 16:33:15] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_my_favorite_menu MyFavoriteMenu where userId = ? order by MyFavoriteMenu.id desc 
+[2014-09-21 16:33:15] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 16:33:15] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 16:33:15] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/user/operator/operatorForm'; URL [/WEB-INF/views/jdp/user/operator/operatorForm.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 16:33:15] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 16:33:15] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/lock/unlock.shtml]
+[2014-09-21 16:33:15] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/lock/unlock.shtml] is: -1
+[2014-09-21 16:33:15] [DispatcherServlet.java:993] - [DEBUG] Null ModelAndView returned to DispatcherServlet with name 'Spring MVC Dispatcher Servlet': assuming HandlerAdapter completed request handling
+[2014-09-21 16:33:15] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 16:33:23] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/operator/load.shtml]
+[2014-09-21 16:33:23] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/operator/load.shtml] is: -1
+[2014-09-21 16:33:24] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator where Operator.id = ? 
+[2014-09-21 16:33:24] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long)
+[2014-09-21 16:33:24] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:33:24] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select Role .* from t_role Role join t_user_role ur on Role.id = ur.roleId join t_operator Operator on Operator.id = ur.userId where Operator.id = ? order by Role.name asc limit ? ,? 
+[2014-09-21 16:33:24] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long), 0(Integer), 2147483647(Integer)
+[2014-09-21 16:33:24] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:33:24] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from t_role r where not exists (select 1 from t_user_role ur where ur.userId = ? and ur.roleId = r.id) order by r.name asc 
+[2014-09-21 16:33:24] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long)
+[2014-09-21 16:33:24] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 16:33:24] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_lately_operate_menu LatelyOperateMenu where userId = ? order by LatelyOperateMenu.id desc limit ? 
+[2014-09-21 16:33:24] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long), 5(Integer)
+[2014-09-21 16:33:24] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 16:33:25] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select distinct menuId from t_my_favorite_menu MyFavoriteMenu where userId = ? order by MyFavoriteMenu.id desc 
+[2014-09-21 16:33:25] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 21(Long)
+[2014-09-21 16:33:25] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 2
+[2014-09-21 16:33:25] [DispatcherServlet.java:1198] - [DEBUG] Rendering view [org.springframework.web.servlet.view.JstlView: name 'jdp/user/operator/operatorForm'; URL [/WEB-INF/views/jdp/user/operator/operatorForm.jsp]] in DispatcherServlet with name 'Spring MVC Dispatcher Servlet'
+[2014-09-21 16:33:25] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 16:33:25] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing GET request for [/lmiky/lock/unlock.shtml]
+[2014-09-21 16:33:25] [DispatcherServlet.java:906] - [DEBUG] Last-Modified value for [/lmiky/lock/unlock.shtml] is: -1
+[2014-09-21 16:33:25] [DispatcherServlet.java:993] - [DEBUG] Null ModelAndView returned to DispatcherServlet with name 'Spring MVC Dispatcher Servlet': assuming HandlerAdapter completed request handling
+[2014-09-21 16:33:25] [FrameworkServlet.java:983] - [DEBUG] Successfully completed request
+[2014-09-21 16:34:26] [DispatcherServlet.java:819] - [DEBUG] DispatcherServlet with name 'Spring MVC Dispatcher Servlet' processing POST request for [/lmiky/operator/save.shtml]
+[2014-09-21 16:34:26] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select * from ( select u.* from t_user u inner join t_operator o on u.id = o.id ) Operator where Operator.id = ? 
+[2014-09-21 16:34:26] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long)
+[2014-09-21 16:34:26] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:34:26] [BaseJdbcLogger.java:139] - [DEBUG] ==>  Preparing: select r.* from t_role r, t_user_role ur where ur.userId = ? AND r.id = ur.roleId 
+[2014-09-21 16:34:26] [BaseJdbcLogger.java:139] - [DEBUG] ==> Parameters: 22(Long)
+[2014-09-21 16:34:27] [BaseJdbcLogger.java:139] - [DEBUG] <==      Total: 1
+[2014-09-21 16:49:04] [AbstractApplicationContext.java:1042] - [INFO] Closing WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet': startup date [Sun Sep 21 16:24:20 CST 2014]; parent: Root WebApplicationContext
+[2014-09-21 16:49:04] [DefaultSingletonBeanRegistry.java:444] - [INFO] Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@3cf4711e: defining beans [taskController,directoryController,resourceController,areaController,cityController,countryController,provinceController,authorityController,commonController,cacheController,fileController,kindEditorFileController,initController,lockController,loggerController,moduleController,sortController,loginController,menuController,treeController,operatorController,roleController,goodsController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,xmlViewResolver,jstlViewResolver,multipartResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@5590599c
+[2014-09-21 16:49:04] [AbstractApplicationContext.java:1042] - [INFO] Closing org.springframework.web.context.support.GenericWebApplicationContext@78e63689: startup date [Sun Sep 21 16:24:21 CST 2014]; parent: WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet'
+[2014-09-21 16:49:04] [DefaultSingletonBeanRegistry.java:444] - [INFO] Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@3f6f9949: defining beans []; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@3cf4711e
+[2014-09-21 16:49:04] [AbstractApplicationContext.java:1042] - [INFO] Closing Root WebApplicationContext: startup date [Sun Sep 21 16:24:16 CST 2014]; root of context hierarchy
+[2014-09-21 16:49:04] [DefaultSingletonBeanRegistry.java:444] - [INFO] Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@5590599c: defining beans [ehCacheFactory,lockService,ssoService,menuParseService,moduleParser,dataSource,sqlSessionFactory,sqlSessionTemplate,transactionManager,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,cmsDirectoryService,cmsResourceService,cityTreeListJsonView,countryTreeListJsonView,provinceTreeListJsonView,authorityDAO,authorityService,baseInfoCodeJsonView,baseInfoJsonView,baseDAO,initService,jacksonJsonMapperImpl,moduleService,functionListJsonView,moduleListJsonView,baseService,sessionService,sortService,menuDAO,menuService,treeService,treeListJsonView,userDAO,operatorService,roleService,userService,pageService,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[2014-09-21 16:49:04] [DisposableBeanAdapter.java:338] - [WARN] Invocation of destroy method 'close' failed on bean with name 'sqlSessionTemplate': java.lang.UnsupportedOperationException: Manual close is not allowed over a Spring managed SqlSession

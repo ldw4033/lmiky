@@ -1,0 +1,1088 @@
+[2014-09-14 11:23:33] [ContextLoader.java:285] - [INFO] Root WebApplicationContext: initialization started
+[2014-09-14 11:23:33] [AbstractApplicationContext.java:510] - [INFO] Refreshing Root WebApplicationContext: startup date [Sun Sep 14 11:23:33 CST 2014]; root of context hierarchy
+[2014-09-14 11:23:34] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-bean.xml]
+[2014-09-14 11:23:34] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-database.xml]
+[2014-09-14 11:23:34] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext.xml]
+[2014-09-14 11:23:34] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@68269c3b: defining beans [ehCacheFactory,lockService,ssoService,menuParseService,moduleParser,dataSource,sqlSessionFactory,sqlSessionTemplate,transactionManager,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,cmsDirectoryService,cmsResourceService,cityTreeListJsonView,countryTreeListJsonView,provinceTreeListJsonView,authorityDAO,authorityService,baseInfoCodeJsonView,baseInfoJsonView,baseDAO,initService,jacksonJsonMapperImpl,moduleService,functionListJsonView,moduleListJsonView,baseService,sessionService,sortService,menuDAO,menuService,treeService,treeListJsonView,userDAO,operatorService,roleService,userService,pageService,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[2014-09-14 11:23:38] [ContextLoader.java:325] - [INFO] Root WebApplicationContext: initialization completed in 4157 ms
+[2014-09-14 11:23:38] [FrameworkServlet.java:457] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization started
+[2014-09-14 11:23:38] [AbstractApplicationContext.java:510] - [INFO] Refreshing WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet': startup date [Sun Sep 14 11:23:38 CST 2014]; parent: Root WebApplicationContext
+[2014-09-14 11:23:38] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC.xml]
+[2014-09-14 11:23:39] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@4c1bff59: defining beans [taskController,directoryController,resourceController,areaController,cityController,countryController,provinceController,authorityController,commonController,cacheController,fileController,kindEditorFileController,initController,lockController,loggerController,moduleController,sortController,loginController,menuController,treeController,operatorController,roleController,goodsController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,xmlViewResolver,jstlViewResolver,multipartResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@68269c3b
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/load.shtml] onto handler 'taskController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/list.shtml] onto handler 'taskController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/urlContent.shtml] onto handler 'taskController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/load.shtml] onto handler 'directoryController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/delete.shtml] onto handler 'directoryController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/save.shtml] onto handler 'directoryController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadTree.shtml] onto handler 'directoryController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadPage.shtml] onto handler 'directoryController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/treeList.shtml] onto handler 'directoryController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/load.shtml] onto handler 'resourceController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/delete.shtml] onto handler 'resourceController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/list.shtml] onto handler 'resourceController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/save.shtml] onto handler 'resourceController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/publish.shtml] onto handler 'resourceController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/batchDelete.shtml] onto handler 'resourceController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/unpublish.shtml] onto handler 'resourceController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/load.shtml] onto handler 'areaController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/treeList.shtml] onto handler 'areaController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/load.shtml] onto handler 'cityController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/delete.shtml] onto handler 'cityController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/save.shtml] onto handler 'cityController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/load.shtml] onto handler 'countryController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/delete.shtml] onto handler 'countryController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/save.shtml] onto handler 'countryController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/load.shtml] onto handler 'provinceController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/delete.shtml] onto handler 'provinceController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/save.shtml] onto handler 'provinceController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/load.shtml] onto handler 'authorityController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/listOperator.shtml] onto handler 'authorityController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/authorize.shtml] onto handler 'authorityController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/common/back.shtml] onto handler 'commonController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cache/clearAll.shtml] onto handler 'cacheController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/file/upload.shtml] onto handler 'fileController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/kindEditorFile/upload.shtml] onto handler 'kindEditorFileController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/load.shtml] onto handler 'initController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/init.shtml] onto handler 'initController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateModule.shtml] onto handler 'initController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateMenu.shtml] onto handler 'initController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/lock/unlock.shtml] onto handler 'lockController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/logger/list.shtml] onto handler 'loggerController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/module/treeList.shtml] onto handler 'moduleController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/load.shtml] onto handler 'sortController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/save.shtml] onto handler 'sortController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/load.shtml] onto handler 'loginController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/login.shtml] onto handler 'loginController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/logout.shtml] onto handler 'loginController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/load.shtml] onto handler 'menuController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/listLeftMenus.shtml] onto handler 'menuController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/addMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/removeMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/loadSelectTree.shtml] onto handler 'treeController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/treeList.shtml] onto handler 'treeController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/load.shtml] onto handler 'operatorController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/delete.shtml] onto handler 'operatorController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/list.shtml] onto handler 'operatorController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/save.shtml] onto handler 'operatorController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/toModifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/modifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/batchDelete.shtml] onto handler 'operatorController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/load.shtml] onto handler 'roleController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/delete.shtml] onto handler 'roleController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/list.shtml] onto handler 'roleController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/save.shtml] onto handler 'roleController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/batchDelete.shtml] onto handler 'roleController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/load.shtml] onto handler 'goodsController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/delete.shtml] onto handler 'goodsController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/list.shtml] onto handler 'goodsController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/save.shtml] onto handler 'goodsController'
+[2014-09-14 11:23:39] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/batchDelete.shtml] onto handler 'goodsController'
+[2014-09-14 11:23:40] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC-views.xml]
+[2014-09-14 11:23:40] [AbstractApplicationContext.java:510] - [INFO] Refreshing org.springframework.web.context.support.GenericWebApplicationContext@30c6ee36: startup date [Sun Sep 14 11:23:40 CST 2014]; parent: WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet'
+[2014-09-14 11:23:40] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@5d9e9e86: defining beans []; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@4c1bff59
+[2014-09-14 11:23:40] [FrameworkServlet.java:476] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization completed in 1603 ms
+[2014-09-14 11:24:09] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+[2014-09-14 11:24:10] [SQLErrorCodesFactory.java:126] - [INFO] SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase]
+[2014-09-14 11:24:10] [LoggerUtils.java:109] - [ERROR] com.lmiky.jdp.sso.exception.LoginException: 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'Operator.loginName' in 'where clause'
+### The error may exist in file [D:\workspace_jee\lmiky\target\classes\config\mappers\com\lmiky\jdp\user\pojo\Operator.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select * from        t_user        User       where Operator.loginName = ?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'Operator.loginName' in 'where clause'
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'Operator.loginName' in 'where clause'
+[2014-09-14 11:24:10] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.sso.service.impl.SsoServiceImpl.login(SsoServiceImpl.java:58)
+[2014-09-14 11:24:10] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.sso.login.controller.LoginController.login(LoginController.java:79)
+[2014-09-14 11:24:10] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2014-09-14 11:24:10] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2014-09-14 11:24:10] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2014-09-14 11:24:10] [LoggerUtils.java:109] - [ERROR] Caused by: java.lang.reflect.Method.invoke(Method.java:483)
+[2014-09-14 11:24:10] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.bind.annotation.support.HandlerMethodInvoker.invokeHandlerMethod(HandlerMethodInvoker.java:176)
+[2014-09-14 11:24:10] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:440)
+[2014-09-14 11:24:10] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:428)
+[2014-09-14 11:24:10] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:919)
+[2014-09-14 11:43:53] [ContextLoader.java:285] - [INFO] Root WebApplicationContext: initialization started
+[2014-09-14 11:43:53] [AbstractApplicationContext.java:510] - [INFO] Refreshing Root WebApplicationContext: startup date [Sun Sep 14 11:43:53 CST 2014]; root of context hierarchy
+[2014-09-14 11:43:53] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-bean.xml]
+[2014-09-14 11:43:53] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-database.xml]
+[2014-09-14 11:43:53] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext.xml]
+[2014-09-14 11:43:54] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@21f56f6f: defining beans [ehCacheFactory,lockService,ssoService,menuParseService,moduleParser,dataSource,sqlSessionFactory,sqlSessionTemplate,transactionManager,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,cmsDirectoryService,cmsResourceService,cityTreeListJsonView,countryTreeListJsonView,provinceTreeListJsonView,authorityDAO,authorityService,baseInfoCodeJsonView,baseInfoJsonView,baseDAO,initService,jacksonJsonMapperImpl,moduleService,functionListJsonView,moduleListJsonView,baseService,sessionService,sortService,menuDAO,menuService,treeService,treeListJsonView,userDAO,operatorService,roleService,userService,pageService,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[2014-09-14 11:43:57] [ContextLoader.java:325] - [INFO] Root WebApplicationContext: initialization completed in 3709 ms
+[2014-09-14 11:43:57] [FrameworkServlet.java:457] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization started
+[2014-09-14 11:43:57] [AbstractApplicationContext.java:510] - [INFO] Refreshing WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet': startup date [Sun Sep 14 11:43:57 CST 2014]; parent: Root WebApplicationContext
+[2014-09-14 11:43:57] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC.xml]
+[2014-09-14 11:43:57] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@63625a3: defining beans [taskController,directoryController,resourceController,areaController,cityController,countryController,provinceController,authorityController,commonController,cacheController,fileController,kindEditorFileController,initController,lockController,loggerController,moduleController,sortController,loginController,menuController,treeController,operatorController,roleController,goodsController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,xmlViewResolver,jstlViewResolver,multipartResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@21f56f6f
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/load.shtml] onto handler 'taskController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/list.shtml] onto handler 'taskController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/urlContent.shtml] onto handler 'taskController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/load.shtml] onto handler 'directoryController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/delete.shtml] onto handler 'directoryController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/save.shtml] onto handler 'directoryController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadTree.shtml] onto handler 'directoryController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadPage.shtml] onto handler 'directoryController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/treeList.shtml] onto handler 'directoryController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/load.shtml] onto handler 'resourceController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/delete.shtml] onto handler 'resourceController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/list.shtml] onto handler 'resourceController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/save.shtml] onto handler 'resourceController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/publish.shtml] onto handler 'resourceController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/batchDelete.shtml] onto handler 'resourceController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/unpublish.shtml] onto handler 'resourceController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/load.shtml] onto handler 'areaController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/treeList.shtml] onto handler 'areaController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/load.shtml] onto handler 'cityController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/delete.shtml] onto handler 'cityController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/save.shtml] onto handler 'cityController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/load.shtml] onto handler 'countryController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/delete.shtml] onto handler 'countryController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/save.shtml] onto handler 'countryController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/load.shtml] onto handler 'provinceController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/delete.shtml] onto handler 'provinceController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/save.shtml] onto handler 'provinceController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/load.shtml] onto handler 'authorityController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/listOperator.shtml] onto handler 'authorityController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/authorize.shtml] onto handler 'authorityController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/common/back.shtml] onto handler 'commonController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cache/clearAll.shtml] onto handler 'cacheController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/file/upload.shtml] onto handler 'fileController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/kindEditorFile/upload.shtml] onto handler 'kindEditorFileController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/load.shtml] onto handler 'initController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/init.shtml] onto handler 'initController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateModule.shtml] onto handler 'initController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateMenu.shtml] onto handler 'initController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/lock/unlock.shtml] onto handler 'lockController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/logger/list.shtml] onto handler 'loggerController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/module/treeList.shtml] onto handler 'moduleController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/load.shtml] onto handler 'sortController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/save.shtml] onto handler 'sortController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/load.shtml] onto handler 'loginController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/login.shtml] onto handler 'loginController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/logout.shtml] onto handler 'loginController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/load.shtml] onto handler 'menuController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/listLeftMenus.shtml] onto handler 'menuController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/addMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/removeMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/treeList.shtml] onto handler 'treeController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/loadSelectTree.shtml] onto handler 'treeController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/load.shtml] onto handler 'operatorController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/delete.shtml] onto handler 'operatorController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/list.shtml] onto handler 'operatorController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/save.shtml] onto handler 'operatorController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/batchDelete.shtml] onto handler 'operatorController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/toModifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/modifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/load.shtml] onto handler 'roleController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/delete.shtml] onto handler 'roleController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/list.shtml] onto handler 'roleController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/save.shtml] onto handler 'roleController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/batchDelete.shtml] onto handler 'roleController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/load.shtml] onto handler 'goodsController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/delete.shtml] onto handler 'goodsController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/list.shtml] onto handler 'goodsController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/save.shtml] onto handler 'goodsController'
+[2014-09-14 11:43:58] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/batchDelete.shtml] onto handler 'goodsController'
+[2014-09-14 11:43:58] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC-views.xml]
+[2014-09-14 11:43:58] [AbstractApplicationContext.java:510] - [INFO] Refreshing org.springframework.web.context.support.GenericWebApplicationContext@3ecf45fa: startup date [Sun Sep 14 11:43:58 CST 2014]; parent: WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet'
+[2014-09-14 11:43:58] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@54a79727: defining beans []; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@63625a3
+[2014-09-14 11:43:58] [FrameworkServlet.java:476] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization completed in 1193 ms
+[2014-09-14 11:44:13] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+[2014-09-14 11:44:13] [SQLErrorCodesFactory.java:126] - [INFO] SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase]
+[2014-09-14 11:44:13] [LoggerUtils.java:109] - [ERROR] com.lmiky.jdp.sso.exception.LoginException: 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select u.* from  
+		t_user
+	  u inner join  
+		t_operator
+	  o on u.id = o.id
+	 ' at line 2
+### The error may exist in file [D:\workspace_jee\lmiky\target\classes\config\mappers\com\lmiky\jdp\user\pojo\Operator.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select * from     select u.* from     t_user    u inner join     t_operator    o on u.id = o.id        Operator       where Operator.loginName = ?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select u.* from  
+		t_user
+	  u inner join  
+		t_operator
+	  o on u.id = o.id
+	 ' at line 2
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select u.* from  
+		t_user
+	  u inner join  
+		t_operator
+	  o on u.id = o.id
+	 ' at line 2
+[2014-09-14 11:44:13] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.sso.service.impl.SsoServiceImpl.login(SsoServiceImpl.java:58)
+[2014-09-14 11:44:13] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.sso.login.controller.LoginController.login(LoginController.java:79)
+[2014-09-14 11:44:13] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2014-09-14 11:44:13] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2014-09-14 11:44:13] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2014-09-14 11:44:13] [LoggerUtils.java:109] - [ERROR] Caused by: java.lang.reflect.Method.invoke(Method.java:483)
+[2014-09-14 11:44:13] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.bind.annotation.support.HandlerMethodInvoker.invokeHandlerMethod(HandlerMethodInvoker.java:176)
+[2014-09-14 11:44:13] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:440)
+[2014-09-14 11:44:13] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:428)
+[2014-09-14 11:44:13] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:919)
+[2014-09-14 11:45:07] [ContextLoader.java:285] - [INFO] Root WebApplicationContext: initialization started
+[2014-09-14 11:45:08] [AbstractApplicationContext.java:510] - [INFO] Refreshing Root WebApplicationContext: startup date [Sun Sep 14 11:45:08 CST 2014]; root of context hierarchy
+[2014-09-14 11:45:08] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-bean.xml]
+[2014-09-14 11:45:08] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-database.xml]
+[2014-09-14 11:45:08] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext.xml]
+[2014-09-14 11:45:08] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@721aa699: defining beans [ehCacheFactory,lockService,ssoService,menuParseService,moduleParser,dataSource,sqlSessionFactory,sqlSessionTemplate,transactionManager,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,cmsDirectoryService,cmsResourceService,cityTreeListJsonView,countryTreeListJsonView,provinceTreeListJsonView,authorityDAO,authorityService,baseInfoCodeJsonView,baseInfoJsonView,baseDAO,initService,jacksonJsonMapperImpl,moduleService,functionListJsonView,moduleListJsonView,baseService,sessionService,sortService,menuDAO,menuService,treeService,treeListJsonView,userDAO,operatorService,roleService,userService,pageService,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[2014-09-14 11:45:10] [ContextLoader.java:325] - [INFO] Root WebApplicationContext: initialization completed in 2990 ms
+[2014-09-14 11:45:11] [FrameworkServlet.java:457] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization started
+[2014-09-14 11:45:11] [AbstractApplicationContext.java:510] - [INFO] Refreshing WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet': startup date [Sun Sep 14 11:45:11 CST 2014]; parent: Root WebApplicationContext
+[2014-09-14 11:45:11] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC.xml]
+[2014-09-14 11:45:11] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1cb5bdeb: defining beans [taskController,directoryController,resourceController,areaController,cityController,countryController,provinceController,authorityController,commonController,cacheController,fileController,kindEditorFileController,initController,lockController,loggerController,moduleController,sortController,loginController,menuController,treeController,operatorController,roleController,goodsController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,xmlViewResolver,jstlViewResolver,multipartResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@721aa699
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/load.shtml] onto handler 'taskController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/list.shtml] onto handler 'taskController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/urlContent.shtml] onto handler 'taskController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/load.shtml] onto handler 'directoryController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/delete.shtml] onto handler 'directoryController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/save.shtml] onto handler 'directoryController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadTree.shtml] onto handler 'directoryController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadPage.shtml] onto handler 'directoryController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/treeList.shtml] onto handler 'directoryController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/load.shtml] onto handler 'resourceController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/delete.shtml] onto handler 'resourceController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/list.shtml] onto handler 'resourceController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/save.shtml] onto handler 'resourceController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/publish.shtml] onto handler 'resourceController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/batchDelete.shtml] onto handler 'resourceController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/unpublish.shtml] onto handler 'resourceController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/load.shtml] onto handler 'areaController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/treeList.shtml] onto handler 'areaController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/load.shtml] onto handler 'cityController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/delete.shtml] onto handler 'cityController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/save.shtml] onto handler 'cityController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/load.shtml] onto handler 'countryController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/delete.shtml] onto handler 'countryController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/save.shtml] onto handler 'countryController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/load.shtml] onto handler 'provinceController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/delete.shtml] onto handler 'provinceController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/save.shtml] onto handler 'provinceController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/load.shtml] onto handler 'authorityController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/listOperator.shtml] onto handler 'authorityController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/authorize.shtml] onto handler 'authorityController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/common/back.shtml] onto handler 'commonController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cache/clearAll.shtml] onto handler 'cacheController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/file/upload.shtml] onto handler 'fileController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/kindEditorFile/upload.shtml] onto handler 'kindEditorFileController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/load.shtml] onto handler 'initController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/init.shtml] onto handler 'initController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateModule.shtml] onto handler 'initController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateMenu.shtml] onto handler 'initController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/lock/unlock.shtml] onto handler 'lockController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/logger/list.shtml] onto handler 'loggerController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/module/treeList.shtml] onto handler 'moduleController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/load.shtml] onto handler 'sortController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/save.shtml] onto handler 'sortController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/load.shtml] onto handler 'loginController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/login.shtml] onto handler 'loginController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/logout.shtml] onto handler 'loginController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/load.shtml] onto handler 'menuController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/listLeftMenus.shtml] onto handler 'menuController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/addMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/removeMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/treeList.shtml] onto handler 'treeController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/loadSelectTree.shtml] onto handler 'treeController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/load.shtml] onto handler 'operatorController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/delete.shtml] onto handler 'operatorController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/list.shtml] onto handler 'operatorController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/save.shtml] onto handler 'operatorController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/batchDelete.shtml] onto handler 'operatorController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/toModifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/modifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/load.shtml] onto handler 'roleController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/delete.shtml] onto handler 'roleController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/list.shtml] onto handler 'roleController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/save.shtml] onto handler 'roleController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/batchDelete.shtml] onto handler 'roleController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/load.shtml] onto handler 'goodsController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/delete.shtml] onto handler 'goodsController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/list.shtml] onto handler 'goodsController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/save.shtml] onto handler 'goodsController'
+[2014-09-14 11:45:11] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/batchDelete.shtml] onto handler 'goodsController'
+[2014-09-14 11:45:11] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC-views.xml]
+[2014-09-14 11:45:11] [AbstractApplicationContext.java:510] - [INFO] Refreshing org.springframework.web.context.support.GenericWebApplicationContext@5b01cf7: startup date [Sun Sep 14 11:45:11 CST 2014]; parent: WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet'
+[2014-09-14 11:45:11] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@7e2673be: defining beans []; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@1cb5bdeb
+[2014-09-14 11:45:12] [FrameworkServlet.java:476] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization completed in 1076 ms
+[2014-09-14 11:45:28] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+[2014-09-14 11:45:28] [SQLErrorCodesFactory.java:126] - [INFO] SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase]
+[2014-09-14 11:45:28] [LoggerUtils.java:109] - [ERROR] com.lmiky.jdp.service.exception.ServiceException: 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'LatelyOperateMenu.id' in 'order clause'
+### The error may exist in file [D:\workspace_jee\lmiky\target\classes\config\mappers\com\lmiky\jdp\system\menu\pojo\LatelyOperateMenu.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select distinct menuId from     t_lately_operate_menu    where userId = ?                order by                  LatelyOperateMenu.id desc                        limit ?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'LatelyOperateMenu.id' in 'order clause'
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'LatelyOperateMenu.id' in 'order clause'
+[2014-09-14 11:45:28] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.system.menu.service.impl.MenuServiceImpl.listLatelyOperateMenuId(MenuServiceImpl.java:33)
+[2014-09-14 11:45:28] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2014-09-14 11:45:28] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2014-09-14 11:45:28] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2014-09-14 11:45:28] [LoggerUtils.java:109] - [ERROR] Caused by: java.lang.reflect.Method.invoke(Method.java:483)
+[2014-09-14 11:45:28] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+[2014-09-14 11:45:28] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
+[2014-09-14 11:45:28] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+[2014-09-14 11:45:28] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:96)
+[2014-09-14 11:45:28] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:260)
+[2014-09-14 11:46:26] [ContextLoader.java:285] - [INFO] Root WebApplicationContext: initialization started
+[2014-09-14 11:46:27] [AbstractApplicationContext.java:510] - [INFO] Refreshing Root WebApplicationContext: startup date [Sun Sep 14 11:46:27 CST 2014]; root of context hierarchy
+[2014-09-14 11:46:27] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-bean.xml]
+[2014-09-14 11:46:27] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-database.xml]
+[2014-09-14 11:46:27] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext.xml]
+[2014-09-14 11:46:27] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@68ae669d: defining beans [ehCacheFactory,lockService,ssoService,menuParseService,moduleParser,dataSource,sqlSessionFactory,sqlSessionTemplate,transactionManager,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,cmsDirectoryService,cmsResourceService,cityTreeListJsonView,countryTreeListJsonView,provinceTreeListJsonView,authorityDAO,authorityService,baseInfoCodeJsonView,baseInfoJsonView,baseDAO,initService,jacksonJsonMapperImpl,moduleService,functionListJsonView,moduleListJsonView,baseService,sessionService,sortService,menuDAO,menuService,treeService,treeListJsonView,userDAO,operatorService,roleService,userService,pageService,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[2014-09-14 11:46:30] [ContextLoader.java:325] - [INFO] Root WebApplicationContext: initialization completed in 3225 ms
+[2014-09-14 11:46:30] [FrameworkServlet.java:457] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization started
+[2014-09-14 11:46:30] [AbstractApplicationContext.java:510] - [INFO] Refreshing WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet': startup date [Sun Sep 14 11:46:30 CST 2014]; parent: Root WebApplicationContext
+[2014-09-14 11:46:30] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC.xml]
+[2014-09-14 11:46:30] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@48924207: defining beans [taskController,directoryController,resourceController,areaController,cityController,countryController,provinceController,authorityController,commonController,cacheController,fileController,kindEditorFileController,initController,lockController,loggerController,moduleController,sortController,loginController,menuController,treeController,operatorController,roleController,goodsController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,xmlViewResolver,jstlViewResolver,multipartResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@68ae669d
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/load.shtml] onto handler 'taskController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/list.shtml] onto handler 'taskController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/urlContent.shtml] onto handler 'taskController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/load.shtml] onto handler 'directoryController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/delete.shtml] onto handler 'directoryController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/save.shtml] onto handler 'directoryController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadTree.shtml] onto handler 'directoryController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadPage.shtml] onto handler 'directoryController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/treeList.shtml] onto handler 'directoryController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/load.shtml] onto handler 'resourceController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/delete.shtml] onto handler 'resourceController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/list.shtml] onto handler 'resourceController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/save.shtml] onto handler 'resourceController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/publish.shtml] onto handler 'resourceController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/batchDelete.shtml] onto handler 'resourceController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/unpublish.shtml] onto handler 'resourceController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/load.shtml] onto handler 'areaController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/treeList.shtml] onto handler 'areaController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/load.shtml] onto handler 'cityController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/delete.shtml] onto handler 'cityController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/save.shtml] onto handler 'cityController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/load.shtml] onto handler 'countryController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/delete.shtml] onto handler 'countryController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/save.shtml] onto handler 'countryController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/load.shtml] onto handler 'provinceController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/delete.shtml] onto handler 'provinceController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/save.shtml] onto handler 'provinceController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/load.shtml] onto handler 'authorityController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/authorize.shtml] onto handler 'authorityController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/listOperator.shtml] onto handler 'authorityController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/common/back.shtml] onto handler 'commonController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cache/clearAll.shtml] onto handler 'cacheController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/file/upload.shtml] onto handler 'fileController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/kindEditorFile/upload.shtml] onto handler 'kindEditorFileController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/load.shtml] onto handler 'initController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/init.shtml] onto handler 'initController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateModule.shtml] onto handler 'initController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateMenu.shtml] onto handler 'initController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/lock/unlock.shtml] onto handler 'lockController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/logger/list.shtml] onto handler 'loggerController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/module/treeList.shtml] onto handler 'moduleController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/load.shtml] onto handler 'sortController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/save.shtml] onto handler 'sortController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/load.shtml] onto handler 'loginController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/login.shtml] onto handler 'loginController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/logout.shtml] onto handler 'loginController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/load.shtml] onto handler 'menuController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/listLeftMenus.shtml] onto handler 'menuController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/addMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 11:46:30] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/removeMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/treeList.shtml] onto handler 'treeController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/loadSelectTree.shtml] onto handler 'treeController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/load.shtml] onto handler 'operatorController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/delete.shtml] onto handler 'operatorController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/list.shtml] onto handler 'operatorController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/save.shtml] onto handler 'operatorController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/batchDelete.shtml] onto handler 'operatorController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/toModifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/modifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/load.shtml] onto handler 'roleController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/delete.shtml] onto handler 'roleController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/list.shtml] onto handler 'roleController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/save.shtml] onto handler 'roleController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/batchDelete.shtml] onto handler 'roleController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/load.shtml] onto handler 'goodsController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/delete.shtml] onto handler 'goodsController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/list.shtml] onto handler 'goodsController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/save.shtml] onto handler 'goodsController'
+[2014-09-14 11:46:31] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/batchDelete.shtml] onto handler 'goodsController'
+[2014-09-14 11:46:31] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC-views.xml]
+[2014-09-14 11:46:31] [AbstractApplicationContext.java:510] - [INFO] Refreshing org.springframework.web.context.support.GenericWebApplicationContext@3eddbc25: startup date [Sun Sep 14 11:46:31 CST 2014]; parent: WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet'
+[2014-09-14 11:46:31] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@48d2fa1a: defining beans []; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@48924207
+[2014-09-14 11:46:31] [FrameworkServlet.java:476] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization completed in 1067 ms
+[2014-09-14 11:46:47] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+[2014-09-14 11:46:47] [SQLErrorCodesFactory.java:126] - [INFO] SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase]
+[2014-09-14 11:46:47] [LoggerUtils.java:109] - [ERROR] com.lmiky.jdp.service.exception.ServiceException: 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'LatelyOperateMenu.id' in 'order clause'
+### The error may exist in file [D:\workspace_jee\lmiky\target\classes\config\mappers\com\lmiky\jdp\system\menu\pojo\MyFavoriteMenu.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select distinct menuId from     t_my_favorite_menu         MyFavoriteMenu    where userId = ?                order by                  LatelyOperateMenu.id desc
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'LatelyOperateMenu.id' in 'order clause'
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'LatelyOperateMenu.id' in 'order clause'
+[2014-09-14 11:46:47] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.system.menu.service.impl.MenuServiceImpl.listFavoriteMenuId(MenuServiceImpl.java:47)
+[2014-09-14 11:46:47] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2014-09-14 11:46:47] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2014-09-14 11:46:47] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2014-09-14 11:46:47] [LoggerUtils.java:109] - [ERROR] Caused by: java.lang.reflect.Method.invoke(Method.java:483)
+[2014-09-14 11:46:47] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+[2014-09-14 11:46:47] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
+[2014-09-14 11:46:47] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+[2014-09-14 11:46:47] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:96)
+[2014-09-14 11:46:47] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:260)
+[2014-09-14 11:47:55] [ContextLoader.java:285] - [INFO] Root WebApplicationContext: initialization started
+[2014-09-14 11:47:55] [AbstractApplicationContext.java:510] - [INFO] Refreshing Root WebApplicationContext: startup date [Sun Sep 14 11:47:55 CST 2014]; root of context hierarchy
+[2014-09-14 11:47:55] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-bean.xml]
+[2014-09-14 11:47:55] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-database.xml]
+[2014-09-14 11:47:55] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext.xml]
+[2014-09-14 11:47:56] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@112418f3: defining beans [ehCacheFactory,lockService,ssoService,menuParseService,moduleParser,dataSource,sqlSessionFactory,sqlSessionTemplate,transactionManager,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,cmsDirectoryService,cmsResourceService,cityTreeListJsonView,countryTreeListJsonView,provinceTreeListJsonView,authorityDAO,authorityService,baseInfoCodeJsonView,baseInfoJsonView,baseDAO,initService,jacksonJsonMapperImpl,moduleService,functionListJsonView,moduleListJsonView,baseService,sessionService,sortService,menuDAO,menuService,treeService,treeListJsonView,userDAO,operatorService,roleService,userService,pageService,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[2014-09-14 11:47:59] [ContextLoader.java:325] - [INFO] Root WebApplicationContext: initialization completed in 3962 ms
+[2014-09-14 11:47:59] [FrameworkServlet.java:457] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization started
+[2014-09-14 11:47:59] [AbstractApplicationContext.java:510] - [INFO] Refreshing WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet': startup date [Sun Sep 14 11:47:59 CST 2014]; parent: Root WebApplicationContext
+[2014-09-14 11:47:59] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC.xml]
+[2014-09-14 11:47:59] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@51dd70cb: defining beans [taskController,directoryController,resourceController,areaController,cityController,countryController,provinceController,authorityController,commonController,cacheController,fileController,kindEditorFileController,initController,lockController,loggerController,moduleController,sortController,loginController,menuController,treeController,operatorController,roleController,goodsController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,xmlViewResolver,jstlViewResolver,multipartResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@112418f3
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/load.shtml] onto handler 'taskController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/list.shtml] onto handler 'taskController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/urlContent.shtml] onto handler 'taskController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/load.shtml] onto handler 'directoryController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/delete.shtml] onto handler 'directoryController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/save.shtml] onto handler 'directoryController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadTree.shtml] onto handler 'directoryController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadPage.shtml] onto handler 'directoryController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/treeList.shtml] onto handler 'directoryController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/load.shtml] onto handler 'resourceController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/delete.shtml] onto handler 'resourceController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/list.shtml] onto handler 'resourceController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/save.shtml] onto handler 'resourceController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/publish.shtml] onto handler 'resourceController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/batchDelete.shtml] onto handler 'resourceController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/unpublish.shtml] onto handler 'resourceController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/load.shtml] onto handler 'areaController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/treeList.shtml] onto handler 'areaController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/load.shtml] onto handler 'cityController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/delete.shtml] onto handler 'cityController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/save.shtml] onto handler 'cityController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/load.shtml] onto handler 'countryController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/delete.shtml] onto handler 'countryController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/save.shtml] onto handler 'countryController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/load.shtml] onto handler 'provinceController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/delete.shtml] onto handler 'provinceController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/save.shtml] onto handler 'provinceController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/load.shtml] onto handler 'authorityController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/authorize.shtml] onto handler 'authorityController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/listOperator.shtml] onto handler 'authorityController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/common/back.shtml] onto handler 'commonController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cache/clearAll.shtml] onto handler 'cacheController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/file/upload.shtml] onto handler 'fileController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/kindEditorFile/upload.shtml] onto handler 'kindEditorFileController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/load.shtml] onto handler 'initController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/init.shtml] onto handler 'initController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateModule.shtml] onto handler 'initController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateMenu.shtml] onto handler 'initController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/lock/unlock.shtml] onto handler 'lockController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/logger/list.shtml] onto handler 'loggerController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/module/treeList.shtml] onto handler 'moduleController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/load.shtml] onto handler 'sortController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/save.shtml] onto handler 'sortController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/load.shtml] onto handler 'loginController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/login.shtml] onto handler 'loginController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/logout.shtml] onto handler 'loginController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/load.shtml] onto handler 'menuController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/listLeftMenus.shtml] onto handler 'menuController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/addMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/removeMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/loadSelectTree.shtml] onto handler 'treeController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/treeList.shtml] onto handler 'treeController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/load.shtml] onto handler 'operatorController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/delete.shtml] onto handler 'operatorController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/list.shtml] onto handler 'operatorController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/save.shtml] onto handler 'operatorController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/toModifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/modifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/batchDelete.shtml] onto handler 'operatorController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/load.shtml] onto handler 'roleController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/delete.shtml] onto handler 'roleController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/list.shtml] onto handler 'roleController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/save.shtml] onto handler 'roleController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/batchDelete.shtml] onto handler 'roleController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/load.shtml] onto handler 'goodsController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/delete.shtml] onto handler 'goodsController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/list.shtml] onto handler 'goodsController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/save.shtml] onto handler 'goodsController'
+[2014-09-14 11:48:00] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/batchDelete.shtml] onto handler 'goodsController'
+[2014-09-14 11:48:00] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC-views.xml]
+[2014-09-14 11:48:00] [AbstractApplicationContext.java:510] - [INFO] Refreshing org.springframework.web.context.support.GenericWebApplicationContext@5e425d10: startup date [Sun Sep 14 11:48:00 CST 2014]; parent: WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet'
+[2014-09-14 11:48:00] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@404b91dc: defining beans []; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@51dd70cb
+[2014-09-14 11:48:00] [FrameworkServlet.java:476] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization completed in 1180 ms
+[2014-09-14 13:05:39] [AbstractApplicationContext.java:1042] - [INFO] Closing WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet': startup date [Sun Sep 14 11:47:59 CST 2014]; parent: Root WebApplicationContext
+[2014-09-14 13:05:39] [DefaultSingletonBeanRegistry.java:444] - [INFO] Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@51dd70cb: defining beans [taskController,directoryController,resourceController,areaController,cityController,countryController,provinceController,authorityController,commonController,cacheController,fileController,kindEditorFileController,initController,lockController,loggerController,moduleController,sortController,loginController,menuController,treeController,operatorController,roleController,goodsController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,xmlViewResolver,jstlViewResolver,multipartResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@112418f3
+[2014-09-14 13:05:39] [AbstractApplicationContext.java:1042] - [INFO] Closing org.springframework.web.context.support.GenericWebApplicationContext@5e425d10: startup date [Sun Sep 14 11:48:00 CST 2014]; parent: WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet'
+[2014-09-14 13:05:39] [DefaultSingletonBeanRegistry.java:444] - [INFO] Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@404b91dc: defining beans []; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@51dd70cb
+[2014-09-14 13:05:39] [AbstractApplicationContext.java:1042] - [INFO] Closing Root WebApplicationContext: startup date [Sun Sep 14 11:47:55 CST 2014]; root of context hierarchy
+[2014-09-14 13:05:39] [DefaultSingletonBeanRegistry.java:444] - [INFO] Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@112418f3: defining beans [ehCacheFactory,lockService,ssoService,menuParseService,moduleParser,dataSource,sqlSessionFactory,sqlSessionTemplate,transactionManager,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,cmsDirectoryService,cmsResourceService,cityTreeListJsonView,countryTreeListJsonView,provinceTreeListJsonView,authorityDAO,authorityService,baseInfoCodeJsonView,baseInfoJsonView,baseDAO,initService,jacksonJsonMapperImpl,moduleService,functionListJsonView,moduleListJsonView,baseService,sessionService,sortService,menuDAO,menuService,treeService,treeListJsonView,userDAO,operatorService,roleService,userService,pageService,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[2014-09-14 13:05:39] [DisposableBeanAdapter.java:338] - [WARN] Invocation of destroy method 'close' failed on bean with name 'sqlSessionTemplate': java.lang.UnsupportedOperationException: Manual close is not allowed over a Spring managed SqlSession
+[2014-09-14 13:06:02] [ContextLoader.java:285] - [INFO] Root WebApplicationContext: initialization started
+[2014-09-14 13:06:02] [AbstractApplicationContext.java:510] - [INFO] Refreshing Root WebApplicationContext: startup date [Sun Sep 14 13:06:02 CST 2014]; root of context hierarchy
+[2014-09-14 13:06:02] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-bean.xml]
+[2014-09-14 13:06:02] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-database.xml]
+[2014-09-14 13:06:02] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext.xml]
+[2014-09-14 13:06:03] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@532c85cb: defining beans [ehCacheFactory,lockService,ssoService,menuParseService,moduleParser,dataSource,sqlSessionFactory,sqlSessionTemplate,transactionManager,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,cmsDirectoryService,cmsResourceService,cityTreeListJsonView,countryTreeListJsonView,provinceTreeListJsonView,authorityDAO,authorityService,baseInfoCodeJsonView,baseInfoJsonView,baseDAO,initService,jacksonJsonMapperImpl,moduleService,functionListJsonView,moduleListJsonView,baseService,sessionService,sortService,menuDAO,menuService,treeService,treeListJsonView,userDAO,operatorService,roleService,userService,pageService,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[2014-09-14 13:06:05] [ContextLoader.java:325] - [INFO] Root WebApplicationContext: initialization completed in 3202 ms
+[2014-09-14 13:06:05] [FrameworkServlet.java:457] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization started
+[2014-09-14 13:06:05] [AbstractApplicationContext.java:510] - [INFO] Refreshing WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet': startup date [Sun Sep 14 13:06:05 CST 2014]; parent: Root WebApplicationContext
+[2014-09-14 13:06:05] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC.xml]
+[2014-09-14 13:06:05] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@20cf691: defining beans [taskController,directoryController,resourceController,areaController,cityController,countryController,provinceController,authorityController,commonController,cacheController,fileController,kindEditorFileController,initController,lockController,loggerController,moduleController,sortController,loginController,menuController,treeController,operatorController,roleController,goodsController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,xmlViewResolver,jstlViewResolver,multipartResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@532c85cb
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/load.shtml] onto handler 'taskController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/list.shtml] onto handler 'taskController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/urlContent.shtml] onto handler 'taskController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/load.shtml] onto handler 'directoryController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/delete.shtml] onto handler 'directoryController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/save.shtml] onto handler 'directoryController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadTree.shtml] onto handler 'directoryController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadPage.shtml] onto handler 'directoryController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/treeList.shtml] onto handler 'directoryController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/load.shtml] onto handler 'resourceController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/delete.shtml] onto handler 'resourceController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/list.shtml] onto handler 'resourceController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/save.shtml] onto handler 'resourceController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/publish.shtml] onto handler 'resourceController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/batchDelete.shtml] onto handler 'resourceController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/unpublish.shtml] onto handler 'resourceController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/load.shtml] onto handler 'areaController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/treeList.shtml] onto handler 'areaController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/load.shtml] onto handler 'cityController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/delete.shtml] onto handler 'cityController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/save.shtml] onto handler 'cityController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/load.shtml] onto handler 'countryController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/delete.shtml] onto handler 'countryController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/save.shtml] onto handler 'countryController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/load.shtml] onto handler 'provinceController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/delete.shtml] onto handler 'provinceController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/save.shtml] onto handler 'provinceController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/load.shtml] onto handler 'authorityController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/listOperator.shtml] onto handler 'authorityController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/authorize.shtml] onto handler 'authorityController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/common/back.shtml] onto handler 'commonController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cache/clearAll.shtml] onto handler 'cacheController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/file/upload.shtml] onto handler 'fileController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/kindEditorFile/upload.shtml] onto handler 'kindEditorFileController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/load.shtml] onto handler 'initController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/init.shtml] onto handler 'initController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateModule.shtml] onto handler 'initController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateMenu.shtml] onto handler 'initController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/lock/unlock.shtml] onto handler 'lockController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/logger/list.shtml] onto handler 'loggerController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/module/treeList.shtml] onto handler 'moduleController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/load.shtml] onto handler 'sortController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/save.shtml] onto handler 'sortController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/load.shtml] onto handler 'loginController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/login.shtml] onto handler 'loginController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/logout.shtml] onto handler 'loginController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/load.shtml] onto handler 'menuController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/listLeftMenus.shtml] onto handler 'menuController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/addMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/removeMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/treeList.shtml] onto handler 'treeController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/loadSelectTree.shtml] onto handler 'treeController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/load.shtml] onto handler 'operatorController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/delete.shtml] onto handler 'operatorController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/list.shtml] onto handler 'operatorController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/save.shtml] onto handler 'operatorController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/batchDelete.shtml] onto handler 'operatorController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/toModifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/modifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/load.shtml] onto handler 'roleController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/delete.shtml] onto handler 'roleController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/list.shtml] onto handler 'roleController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/save.shtml] onto handler 'roleController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/batchDelete.shtml] onto handler 'roleController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/load.shtml] onto handler 'goodsController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/delete.shtml] onto handler 'goodsController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/list.shtml] onto handler 'goodsController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/save.shtml] onto handler 'goodsController'
+[2014-09-14 13:06:06] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/batchDelete.shtml] onto handler 'goodsController'
+[2014-09-14 13:06:06] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC-views.xml]
+[2014-09-14 13:06:06] [AbstractApplicationContext.java:510] - [INFO] Refreshing org.springframework.web.context.support.GenericWebApplicationContext@1153be86: startup date [Sun Sep 14 13:06:06 CST 2014]; parent: WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet'
+[2014-09-14 13:06:06] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@6ef6c10a: defining beans []; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@20cf691
+[2014-09-14 13:06:06] [FrameworkServlet.java:476] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization completed in 1230 ms
+[2014-09-14 13:06:59] [LoggerUtils.java:109] - [ERROR] com.lmiky.jdp.sso.exception.LoginException: nested exception is org.apache.ibatis.builder.IncompleteElementException: Could not find result map com.lmiky.jdp.authority.pojo.Authority.operator
+[2014-09-14 13:06:59] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.sso.service.impl.SsoServiceImpl.login(SsoServiceImpl.java:58)
+[2014-09-14 13:06:59] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.sso.login.controller.LoginController.login(LoginController.java:80)
+[2014-09-14 13:06:59] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2014-09-14 13:06:59] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2014-09-14 13:06:59] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2014-09-14 13:06:59] [LoggerUtils.java:109] - [ERROR] Caused by: java.lang.reflect.Method.invoke(Method.java:483)
+[2014-09-14 13:06:59] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.bind.annotation.support.HandlerMethodInvoker.invokeHandlerMethod(HandlerMethodInvoker.java:176)
+[2014-09-14 13:06:59] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:440)
+[2014-09-14 13:06:59] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:428)
+[2014-09-14 13:06:59] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:919)
+[2014-09-14 13:07:38] [ContextLoader.java:285] - [INFO] Root WebApplicationContext: initialization started
+[2014-09-14 13:07:38] [AbstractApplicationContext.java:510] - [INFO] Refreshing Root WebApplicationContext: startup date [Sun Sep 14 13:07:38 CST 2014]; root of context hierarchy
+[2014-09-14 13:07:38] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-bean.xml]
+[2014-09-14 13:07:38] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-database.xml]
+[2014-09-14 13:07:38] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext.xml]
+[2014-09-14 13:07:39] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@721aa699: defining beans [ehCacheFactory,lockService,ssoService,menuParseService,moduleParser,dataSource,sqlSessionFactory,sqlSessionTemplate,transactionManager,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,cmsDirectoryService,cmsResourceService,cityTreeListJsonView,countryTreeListJsonView,provinceTreeListJsonView,authorityDAO,authorityService,baseInfoCodeJsonView,baseInfoJsonView,baseDAO,initService,jacksonJsonMapperImpl,moduleService,functionListJsonView,moduleListJsonView,baseService,sessionService,sortService,menuDAO,menuService,treeService,treeListJsonView,userDAO,operatorService,roleService,userService,pageService,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[2014-09-14 13:07:41] [ContextLoader.java:325] - [INFO] Root WebApplicationContext: initialization completed in 3381 ms
+[2014-09-14 13:07:41] [FrameworkServlet.java:457] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization started
+[2014-09-14 13:07:41] [AbstractApplicationContext.java:510] - [INFO] Refreshing WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet': startup date [Sun Sep 14 13:07:41 CST 2014]; parent: Root WebApplicationContext
+[2014-09-14 13:07:41] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC.xml]
+[2014-09-14 13:07:41] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@c5d4a9: defining beans [taskController,directoryController,resourceController,areaController,cityController,countryController,provinceController,authorityController,commonController,cacheController,fileController,kindEditorFileController,initController,lockController,loggerController,moduleController,sortController,loginController,menuController,treeController,operatorController,roleController,goodsController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,xmlViewResolver,jstlViewResolver,multipartResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@721aa699
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/load.shtml] onto handler 'taskController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/list.shtml] onto handler 'taskController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/urlContent.shtml] onto handler 'taskController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/load.shtml] onto handler 'directoryController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/delete.shtml] onto handler 'directoryController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/save.shtml] onto handler 'directoryController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadTree.shtml] onto handler 'directoryController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadPage.shtml] onto handler 'directoryController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/treeList.shtml] onto handler 'directoryController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/load.shtml] onto handler 'resourceController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/delete.shtml] onto handler 'resourceController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/list.shtml] onto handler 'resourceController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/save.shtml] onto handler 'resourceController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/publish.shtml] onto handler 'resourceController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/batchDelete.shtml] onto handler 'resourceController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/unpublish.shtml] onto handler 'resourceController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/load.shtml] onto handler 'areaController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/treeList.shtml] onto handler 'areaController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/load.shtml] onto handler 'cityController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/delete.shtml] onto handler 'cityController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/save.shtml] onto handler 'cityController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/load.shtml] onto handler 'countryController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/delete.shtml] onto handler 'countryController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/save.shtml] onto handler 'countryController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/load.shtml] onto handler 'provinceController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/delete.shtml] onto handler 'provinceController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/save.shtml] onto handler 'provinceController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/load.shtml] onto handler 'authorityController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/authorize.shtml] onto handler 'authorityController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/listOperator.shtml] onto handler 'authorityController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/common/back.shtml] onto handler 'commonController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cache/clearAll.shtml] onto handler 'cacheController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/file/upload.shtml] onto handler 'fileController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/kindEditorFile/upload.shtml] onto handler 'kindEditorFileController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/load.shtml] onto handler 'initController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/init.shtml] onto handler 'initController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateModule.shtml] onto handler 'initController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateMenu.shtml] onto handler 'initController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/lock/unlock.shtml] onto handler 'lockController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/logger/list.shtml] onto handler 'loggerController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/module/treeList.shtml] onto handler 'moduleController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/load.shtml] onto handler 'sortController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/save.shtml] onto handler 'sortController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/load.shtml] onto handler 'loginController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/login.shtml] onto handler 'loginController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/logout.shtml] onto handler 'loginController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/load.shtml] onto handler 'menuController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/listLeftMenus.shtml] onto handler 'menuController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/addMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/removeMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/treeList.shtml] onto handler 'treeController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/loadSelectTree.shtml] onto handler 'treeController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/load.shtml] onto handler 'operatorController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/delete.shtml] onto handler 'operatorController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/list.shtml] onto handler 'operatorController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/save.shtml] onto handler 'operatorController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/batchDelete.shtml] onto handler 'operatorController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/toModifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/modifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/load.shtml] onto handler 'roleController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/delete.shtml] onto handler 'roleController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/list.shtml] onto handler 'roleController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/save.shtml] onto handler 'roleController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/batchDelete.shtml] onto handler 'roleController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/load.shtml] onto handler 'goodsController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/delete.shtml] onto handler 'goodsController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/list.shtml] onto handler 'goodsController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/save.shtml] onto handler 'goodsController'
+[2014-09-14 13:07:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/batchDelete.shtml] onto handler 'goodsController'
+[2014-09-14 13:07:42] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC-views.xml]
+[2014-09-14 13:07:42] [AbstractApplicationContext.java:510] - [INFO] Refreshing org.springframework.web.context.support.GenericWebApplicationContext@41c69930: startup date [Sun Sep 14 13:07:42 CST 2014]; parent: WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet'
+[2014-09-14 13:07:42] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@53a5ad71: defining beans []; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@c5d4a9
+[2014-09-14 13:07:42] [FrameworkServlet.java:476] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization completed in 1080 ms
+[2014-09-14 13:07:54] [LoggerUtils.java:109] - [ERROR] com.lmiky.jdp.sso.exception.LoginException: nested exception is org.apache.ibatis.builder.IncompleteElementException: Could not find result map com.lmiky.jdp.user.pojo.Role.operator
+[2014-09-14 13:07:54] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.sso.service.impl.SsoServiceImpl.login(SsoServiceImpl.java:58)
+[2014-09-14 13:07:54] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.sso.login.controller.LoginController.login(LoginController.java:80)
+[2014-09-14 13:07:54] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2014-09-14 13:07:54] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2014-09-14 13:07:54] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2014-09-14 13:07:54] [LoggerUtils.java:109] - [ERROR] Caused by: java.lang.reflect.Method.invoke(Method.java:483)
+[2014-09-14 13:07:54] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.bind.annotation.support.HandlerMethodInvoker.invokeHandlerMethod(HandlerMethodInvoker.java:176)
+[2014-09-14 13:07:54] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:440)
+[2014-09-14 13:07:54] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:428)
+[2014-09-14 13:07:54] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:919)
+[2014-09-14 13:08:38] [ContextLoader.java:285] - [INFO] Root WebApplicationContext: initialization started
+[2014-09-14 13:08:38] [AbstractApplicationContext.java:510] - [INFO] Refreshing Root WebApplicationContext: startup date [Sun Sep 14 13:08:38 CST 2014]; root of context hierarchy
+[2014-09-14 13:08:38] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-bean.xml]
+[2014-09-14 13:08:38] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-database.xml]
+[2014-09-14 13:08:38] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext.xml]
+[2014-09-14 13:08:39] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@532c85cb: defining beans [ehCacheFactory,lockService,ssoService,menuParseService,moduleParser,dataSource,sqlSessionFactory,sqlSessionTemplate,transactionManager,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,cmsDirectoryService,cmsResourceService,cityTreeListJsonView,countryTreeListJsonView,provinceTreeListJsonView,authorityDAO,authorityService,baseInfoCodeJsonView,baseInfoJsonView,baseDAO,initService,jacksonJsonMapperImpl,moduleService,functionListJsonView,moduleListJsonView,baseService,sessionService,sortService,menuDAO,menuService,treeService,treeListJsonView,userDAO,operatorService,roleService,userService,pageService,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[2014-09-14 13:08:41] [ContextLoader.java:325] - [INFO] Root WebApplicationContext: initialization completed in 3163 ms
+[2014-09-14 13:08:41] [FrameworkServlet.java:457] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization started
+[2014-09-14 13:08:41] [AbstractApplicationContext.java:510] - [INFO] Refreshing WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet': startup date [Sun Sep 14 13:08:41 CST 2014]; parent: Root WebApplicationContext
+[2014-09-14 13:08:41] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC.xml]
+[2014-09-14 13:08:41] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@22bf2fc2: defining beans [taskController,directoryController,resourceController,areaController,cityController,countryController,provinceController,authorityController,commonController,cacheController,fileController,kindEditorFileController,initController,lockController,loggerController,moduleController,sortController,loginController,menuController,treeController,operatorController,roleController,goodsController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,xmlViewResolver,jstlViewResolver,multipartResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@532c85cb
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/load.shtml] onto handler 'taskController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/list.shtml] onto handler 'taskController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/urlContent.shtml] onto handler 'taskController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/load.shtml] onto handler 'directoryController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/delete.shtml] onto handler 'directoryController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/save.shtml] onto handler 'directoryController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadTree.shtml] onto handler 'directoryController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadPage.shtml] onto handler 'directoryController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/treeList.shtml] onto handler 'directoryController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/load.shtml] onto handler 'resourceController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/delete.shtml] onto handler 'resourceController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/list.shtml] onto handler 'resourceController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/save.shtml] onto handler 'resourceController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/publish.shtml] onto handler 'resourceController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/batchDelete.shtml] onto handler 'resourceController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/unpublish.shtml] onto handler 'resourceController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/load.shtml] onto handler 'areaController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/treeList.shtml] onto handler 'areaController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/load.shtml] onto handler 'cityController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/delete.shtml] onto handler 'cityController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/save.shtml] onto handler 'cityController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/load.shtml] onto handler 'countryController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/delete.shtml] onto handler 'countryController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/save.shtml] onto handler 'countryController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/load.shtml] onto handler 'provinceController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/delete.shtml] onto handler 'provinceController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/save.shtml] onto handler 'provinceController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/load.shtml] onto handler 'authorityController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/authorize.shtml] onto handler 'authorityController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/listOperator.shtml] onto handler 'authorityController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/common/back.shtml] onto handler 'commonController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cache/clearAll.shtml] onto handler 'cacheController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/file/upload.shtml] onto handler 'fileController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/kindEditorFile/upload.shtml] onto handler 'kindEditorFileController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/load.shtml] onto handler 'initController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/init.shtml] onto handler 'initController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateModule.shtml] onto handler 'initController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateMenu.shtml] onto handler 'initController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/lock/unlock.shtml] onto handler 'lockController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/logger/list.shtml] onto handler 'loggerController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/module/treeList.shtml] onto handler 'moduleController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/load.shtml] onto handler 'sortController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/save.shtml] onto handler 'sortController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/load.shtml] onto handler 'loginController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/login.shtml] onto handler 'loginController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/logout.shtml] onto handler 'loginController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/load.shtml] onto handler 'menuController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/listLeftMenus.shtml] onto handler 'menuController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/addMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/removeMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/loadSelectTree.shtml] onto handler 'treeController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/treeList.shtml] onto handler 'treeController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/load.shtml] onto handler 'operatorController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/delete.shtml] onto handler 'operatorController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/list.shtml] onto handler 'operatorController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/save.shtml] onto handler 'operatorController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/toModifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/modifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/batchDelete.shtml] onto handler 'operatorController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/load.shtml] onto handler 'roleController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/delete.shtml] onto handler 'roleController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/list.shtml] onto handler 'roleController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/save.shtml] onto handler 'roleController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/batchDelete.shtml] onto handler 'roleController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/load.shtml] onto handler 'goodsController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/delete.shtml] onto handler 'goodsController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/list.shtml] onto handler 'goodsController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/save.shtml] onto handler 'goodsController'
+[2014-09-14 13:08:42] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/batchDelete.shtml] onto handler 'goodsController'
+[2014-09-14 13:08:42] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC-views.xml]
+[2014-09-14 13:08:42] [AbstractApplicationContext.java:510] - [INFO] Refreshing org.springframework.web.context.support.GenericWebApplicationContext@1b8d9cce: startup date [Sun Sep 14 13:08:42 CST 2014]; parent: WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet'
+[2014-09-14 13:08:42] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@70488217: defining beans []; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@22bf2fc2
+[2014-09-14 13:08:42] [FrameworkServlet.java:476] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization completed in 1024 ms
+[2014-09-14 13:11:09] [LoggerUtils.java:109] - [ERROR] com.lmiky.jdp.database.exception.DatabaseException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalArgumentException: Mapped Statements collection does not contain value for com.lmiky.tiger.goods.pojo.Goods.list
+### Cause: java.lang.IllegalArgumentException: Mapped Statements collection does not contain value for com.lmiky.tiger.goods.pojo.Goods.list
+[2014-09-14 13:11:09] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.database.dao.mybatis.BaseDAOImpl.list(BaseDAOImpl.java:652)
+[2014-09-14 13:11:09] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.web.page.service.impl.PageServiceImpl.fillPage(PageServiceImpl.java:48)
+[2014-09-14 13:11:09] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2014-09-14 13:11:09] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2014-09-14 13:11:09] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2014-09-14 13:11:09] [LoggerUtils.java:109] - [ERROR] Caused by: java.lang.reflect.Method.invoke(Method.java:483)
+[2014-09-14 13:11:09] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+[2014-09-14 13:11:09] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
+[2014-09-14 13:11:09] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+[2014-09-14 13:11:09] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:96)
+[2014-09-14 20:40:48] [ContextLoader.java:285] - [INFO] Root WebApplicationContext: initialization started
+[2014-09-14 20:40:49] [AbstractApplicationContext.java:510] - [INFO] Refreshing Root WebApplicationContext: startup date [Sun Sep 14 20:40:49 CST 2014]; root of context hierarchy
+[2014-09-14 20:40:49] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-bean.xml]
+[2014-09-14 20:40:49] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-database.xml]
+[2014-09-14 20:40:49] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext.xml]
+[2014-09-14 20:40:50] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@71a7e46a: defining beans [ehCacheFactory,lockService,ssoService,menuParseService,moduleParser,dataSource,sqlSessionFactory,sqlSessionTemplate,transactionManager,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,cmsDirectoryService,cmsResourceService,cityTreeListJsonView,countryTreeListJsonView,provinceTreeListJsonView,authorityDAO,authorityService,baseInfoCodeJsonView,baseInfoJsonView,baseDAO,initService,jacksonJsonMapperImpl,moduleService,functionListJsonView,moduleListJsonView,baseService,sessionService,sortService,menuDAO,menuService,treeService,treeListJsonView,userDAO,operatorService,roleService,userService,pageService,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[2014-09-14 20:40:52] [ContextLoader.java:325] - [INFO] Root WebApplicationContext: initialization completed in 3741 ms
+[2014-09-14 20:40:52] [FrameworkServlet.java:457] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization started
+[2014-09-14 20:40:52] [AbstractApplicationContext.java:510] - [INFO] Refreshing WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet': startup date [Sun Sep 14 20:40:52 CST 2014]; parent: Root WebApplicationContext
+[2014-09-14 20:40:52] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC.xml]
+[2014-09-14 20:40:53] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@46efb386: defining beans [taskController,directoryController,resourceController,areaController,cityController,countryController,provinceController,authorityController,commonController,cacheController,fileController,kindEditorFileController,initController,lockController,loggerController,moduleController,sortController,loginController,menuController,treeController,operatorController,roleController,goodsController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,xmlViewResolver,jstlViewResolver,multipartResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@71a7e46a
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/load.shtml] onto handler 'taskController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/list.shtml] onto handler 'taskController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/urlContent.shtml] onto handler 'taskController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/load.shtml] onto handler 'directoryController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/delete.shtml] onto handler 'directoryController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/save.shtml] onto handler 'directoryController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadTree.shtml] onto handler 'directoryController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadPage.shtml] onto handler 'directoryController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/treeList.shtml] onto handler 'directoryController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/load.shtml] onto handler 'resourceController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/delete.shtml] onto handler 'resourceController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/list.shtml] onto handler 'resourceController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/save.shtml] onto handler 'resourceController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/publish.shtml] onto handler 'resourceController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/batchDelete.shtml] onto handler 'resourceController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/unpublish.shtml] onto handler 'resourceController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/load.shtml] onto handler 'areaController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/treeList.shtml] onto handler 'areaController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/load.shtml] onto handler 'cityController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/delete.shtml] onto handler 'cityController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/save.shtml] onto handler 'cityController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/load.shtml] onto handler 'countryController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/delete.shtml] onto handler 'countryController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/save.shtml] onto handler 'countryController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/load.shtml] onto handler 'provinceController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/delete.shtml] onto handler 'provinceController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/save.shtml] onto handler 'provinceController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/load.shtml] onto handler 'authorityController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/authorize.shtml] onto handler 'authorityController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/listOperator.shtml] onto handler 'authorityController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/common/back.shtml] onto handler 'commonController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cache/clearAll.shtml] onto handler 'cacheController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/file/upload.shtml] onto handler 'fileController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/kindEditorFile/upload.shtml] onto handler 'kindEditorFileController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/load.shtml] onto handler 'initController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/init.shtml] onto handler 'initController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateModule.shtml] onto handler 'initController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateMenu.shtml] onto handler 'initController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/lock/unlock.shtml] onto handler 'lockController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/logger/list.shtml] onto handler 'loggerController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/module/treeList.shtml] onto handler 'moduleController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/load.shtml] onto handler 'sortController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/save.shtml] onto handler 'sortController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/load.shtml] onto handler 'loginController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/login.shtml] onto handler 'loginController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/logout.shtml] onto handler 'loginController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/load.shtml] onto handler 'menuController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/listLeftMenus.shtml] onto handler 'menuController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/addMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/removeMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/treeList.shtml] onto handler 'treeController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/loadSelectTree.shtml] onto handler 'treeController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/load.shtml] onto handler 'operatorController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/delete.shtml] onto handler 'operatorController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/list.shtml] onto handler 'operatorController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/save.shtml] onto handler 'operatorController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/batchDelete.shtml] onto handler 'operatorController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/toModifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/modifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/load.shtml] onto handler 'roleController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/delete.shtml] onto handler 'roleController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/list.shtml] onto handler 'roleController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/save.shtml] onto handler 'roleController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/batchDelete.shtml] onto handler 'roleController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/load.shtml] onto handler 'goodsController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/delete.shtml] onto handler 'goodsController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/list.shtml] onto handler 'goodsController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/save.shtml] onto handler 'goodsController'
+[2014-09-14 20:40:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/batchDelete.shtml] onto handler 'goodsController'
+[2014-09-14 20:40:54] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC-views.xml]
+[2014-09-14 20:40:54] [AbstractApplicationContext.java:510] - [INFO] Refreshing org.springframework.web.context.support.GenericWebApplicationContext@701742c2: startup date [Sun Sep 14 20:40:54 CST 2014]; parent: WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet'
+[2014-09-14 20:40:54] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@e2d6280: defining beans []; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@46efb386
+[2014-09-14 20:40:54] [FrameworkServlet.java:476] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization completed in 1306 ms
+[2014-09-14 20:41:38] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+[2014-09-14 20:41:38] [SQLErrorCodesFactory.java:126] - [INFO] SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase]
+[2014-09-14 20:41:38] [LoggerUtils.java:109] - [ERROR] com.lmiky.jdp.database.exception.DatabaseException: 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'Goods.createTime' in 'order clause'
+### The error may exist in file [D:\workspace_jee\lmiky\target\classes\config\mappers\com\lmiky\tiger\goods\pojo\Goods.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select * from       t_goods        Goods                          order by                  Goods.createTime desc     ,       Goods.id desc                          limit ?               ,?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'Goods.createTime' in 'order clause'
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'Goods.createTime' in 'order clause'
+[2014-09-14 20:41:38] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.database.dao.mybatis.BaseDAOImpl.list(BaseDAOImpl.java:652)
+[2014-09-14 20:41:38] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.web.page.service.impl.PageServiceImpl.fillPage(PageServiceImpl.java:48)
+[2014-09-14 20:41:38] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2014-09-14 20:41:38] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2014-09-14 20:41:38] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2014-09-14 20:41:38] [LoggerUtils.java:109] - [ERROR] Caused by: java.lang.reflect.Method.invoke(Method.java:483)
+[2014-09-14 20:41:38] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+[2014-09-14 20:41:38] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
+[2014-09-14 20:41:38] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+[2014-09-14 20:41:38] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:96)
+[2014-09-14 20:46:10] [LoggerUtils.java:109] - [ERROR] com.lmiky.jdp.database.exception.DatabaseException: 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-15  
+            ,15' at line 19
+### The error may exist in file [D:\workspace_jee\lmiky\target\classes\config\mappers\com\lmiky\tiger\goods\pojo\Goods.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select * from       t_goods        Goods       where Goods.title like '%222%'                   order by                  Goods.createTime desc     ,       Goods.id desc                          limit ?               ,?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-15  
+            ,15' at line 19
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-15  
+            ,15' at line 19
+[2014-09-14 20:46:10] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.database.dao.mybatis.BaseDAOImpl.list(BaseDAOImpl.java:652)
+[2014-09-14 20:46:10] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.web.page.service.impl.PageServiceImpl.fillPage(PageServiceImpl.java:48)
+[2014-09-14 20:46:10] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2014-09-14 20:46:10] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2014-09-14 20:46:10] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2014-09-14 20:46:10] [LoggerUtils.java:109] - [ERROR] Caused by: java.lang.reflect.Method.invoke(Method.java:483)
+[2014-09-14 20:46:10] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+[2014-09-14 20:46:10] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
+[2014-09-14 20:46:10] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+[2014-09-14 20:46:10] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:96)
+[2014-09-14 20:48:04] [LoggerUtils.java:109] - [ERROR] com.lmiky.jdp.database.exception.DatabaseException: 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-15  
+            ,15' at line 19
+### The error may exist in file [D:\workspace_jee\lmiky\target\classes\config\mappers\com\lmiky\tiger\goods\pojo\Goods.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select * from       t_goods        Goods       where Goods.title like '%1FDSA%'                   order by                  Goods.createTime desc     ,       Goods.id desc                          limit ?               ,?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-15  
+            ,15' at line 19
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-15  
+            ,15' at line 19
+[2014-09-14 20:48:04] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.database.dao.mybatis.BaseDAOImpl.list(BaseDAOImpl.java:652)
+[2014-09-14 20:48:04] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.web.page.service.impl.PageServiceImpl.fillPage(PageServiceImpl.java:48)
+[2014-09-14 20:48:04] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2014-09-14 20:48:04] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2014-09-14 20:48:04] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2014-09-14 20:48:04] [LoggerUtils.java:109] - [ERROR] Caused by: java.lang.reflect.Method.invoke(Method.java:483)
+[2014-09-14 20:48:04] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+[2014-09-14 20:48:04] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
+[2014-09-14 20:48:04] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+[2014-09-14 20:48:04] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:96)
+[2014-09-14 20:48:35] [LoggerUtils.java:109] - [ERROR] com.lmiky.jdp.database.exception.DatabaseException: 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-15  
+            ,15' at line 19
+### The error may exist in file [D:\workspace_jee\lmiky\target\classes\config\mappers\com\lmiky\tiger\goods\pojo\Goods.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select * from       t_goods        Goods       where Goods.title like '%1FDSA%'                   order by                  Goods.createTime desc     ,       Goods.id desc                          limit ?               ,?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-15  
+            ,15' at line 19
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-15  
+            ,15' at line 19
+[2014-09-14 20:48:35] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.database.dao.mybatis.BaseDAOImpl.list(BaseDAOImpl.java:652)
+[2014-09-14 20:48:35] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.web.page.service.impl.PageServiceImpl.fillPage(PageServiceImpl.java:48)
+[2014-09-14 20:48:35] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2014-09-14 20:48:35] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2014-09-14 20:48:35] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2014-09-14 20:48:35] [LoggerUtils.java:109] - [ERROR] Caused by: java.lang.reflect.Method.invoke(Method.java:483)
+[2014-09-14 20:48:35] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+[2014-09-14 20:48:35] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
+[2014-09-14 20:48:35] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+[2014-09-14 20:48:35] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:96)
+[2014-09-14 20:49:38] [LoggerUtils.java:109] - [ERROR] com.lmiky.jdp.database.exception.DatabaseException: 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-15  
+            ,15' at line 19
+### The error may exist in file [D:\workspace_jee\lmiky\target\classes\config\mappers\com\lmiky\tiger\goods\pojo\Goods.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select * from       t_goods        Goods       where Goods.title like '%1FDSA%'                   order by                  Goods.createTime desc     ,       Goods.id desc                          limit ?               ,?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-15  
+            ,15' at line 19
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-15  
+            ,15' at line 19
+[2014-09-14 20:49:38] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.database.dao.mybatis.BaseDAOImpl.list(BaseDAOImpl.java:652)
+[2014-09-14 20:49:38] [LoggerUtils.java:109] - [ERROR] Caused by: com.lmiky.jdp.web.page.service.impl.PageServiceImpl.fillPage(PageServiceImpl.java:48)
+[2014-09-14 20:49:38] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2014-09-14 20:49:38] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2014-09-14 20:49:38] [LoggerUtils.java:109] - [ERROR] Caused by: sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2014-09-14 20:49:38] [LoggerUtils.java:109] - [ERROR] Caused by: java.lang.reflect.Method.invoke(Method.java:483)
+[2014-09-14 20:49:38] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+[2014-09-14 20:49:38] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
+[2014-09-14 20:49:38] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+[2014-09-14 20:49:38] [LoggerUtils.java:109] - [ERROR] Caused by: org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:96)
+[2014-09-14 20:58:42] [AbstractApplicationContext.java:1042] - [INFO] Closing WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet': startup date [Sun Sep 14 20:40:52 CST 2014]; parent: Root WebApplicationContext
+[2014-09-14 20:58:42] [DefaultSingletonBeanRegistry.java:444] - [INFO] Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@46efb386: defining beans [taskController,directoryController,resourceController,areaController,cityController,countryController,provinceController,authorityController,commonController,cacheController,fileController,kindEditorFileController,initController,lockController,loggerController,moduleController,sortController,loginController,menuController,treeController,operatorController,roleController,goodsController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,xmlViewResolver,jstlViewResolver,multipartResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@71a7e46a
+[2014-09-14 20:58:42] [AbstractApplicationContext.java:1042] - [INFO] Closing org.springframework.web.context.support.GenericWebApplicationContext@701742c2: startup date [Sun Sep 14 20:40:54 CST 2014]; parent: WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet'
+[2014-09-14 20:58:42] [DefaultSingletonBeanRegistry.java:444] - [INFO] Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@e2d6280: defining beans []; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@46efb386
+[2014-09-14 20:58:42] [AbstractApplicationContext.java:1042] - [INFO] Closing Root WebApplicationContext: startup date [Sun Sep 14 20:40:49 CST 2014]; root of context hierarchy
+[2014-09-14 20:58:42] [DefaultSingletonBeanRegistry.java:444] - [INFO] Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@71a7e46a: defining beans [ehCacheFactory,lockService,ssoService,menuParseService,moduleParser,dataSource,sqlSessionFactory,sqlSessionTemplate,transactionManager,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,cmsDirectoryService,cmsResourceService,cityTreeListJsonView,countryTreeListJsonView,provinceTreeListJsonView,authorityDAO,authorityService,baseInfoCodeJsonView,baseInfoJsonView,baseDAO,initService,jacksonJsonMapperImpl,moduleService,functionListJsonView,moduleListJsonView,baseService,sessionService,sortService,menuDAO,menuService,treeService,treeListJsonView,userDAO,operatorService,roleService,userService,pageService,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[2014-09-14 20:58:42] [DisposableBeanAdapter.java:338] - [WARN] Invocation of destroy method 'close' failed on bean with name 'sqlSessionTemplate': java.lang.UnsupportedOperationException: Manual close is not allowed over a Spring managed SqlSession
+[2014-09-14 20:58:49] [ContextLoader.java:285] - [INFO] Root WebApplicationContext: initialization started
+[2014-09-14 20:58:49] [AbstractApplicationContext.java:510] - [INFO] Refreshing Root WebApplicationContext: startup date [Sun Sep 14 20:58:49 CST 2014]; root of context hierarchy
+[2014-09-14 20:58:49] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-bean.xml]
+[2014-09-14 20:58:49] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext-database.xml]
+[2014-09-14 20:58:50] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from file [D:\workspace_jee\lmiky\target\classes\config\applicationContext.xml]
+[2014-09-14 20:58:50] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@675f2820: defining beans [ehCacheFactory,lockService,ssoService,menuParseService,moduleParser,dataSource,sqlSessionFactory,sqlSessionTemplate,transactionManager,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,cmsDirectoryService,cmsResourceService,cityTreeListJsonView,countryTreeListJsonView,provinceTreeListJsonView,authorityDAO,authorityService,baseInfoCodeJsonView,baseInfoJsonView,baseDAO,initService,jacksonJsonMapperImpl,moduleService,functionListJsonView,moduleListJsonView,baseService,sessionService,sortService,menuDAO,menuService,treeService,treeListJsonView,userDAO,operatorService,roleService,userService,pageService,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[2014-09-14 20:58:52] [ContextLoader.java:325] - [INFO] Root WebApplicationContext: initialization completed in 3199 ms
+[2014-09-14 20:58:52] [FrameworkServlet.java:457] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization started
+[2014-09-14 20:58:52] [AbstractApplicationContext.java:510] - [INFO] Refreshing WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet': startup date [Sun Sep 14 20:58:52 CST 2014]; parent: Root WebApplicationContext
+[2014-09-14 20:58:52] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC.xml]
+[2014-09-14 20:58:53] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@179d8e05: defining beans [taskController,directoryController,resourceController,areaController,cityController,countryController,provinceController,authorityController,commonController,cacheController,fileController,kindEditorFileController,initController,lockController,loggerController,moduleController,sortController,loginController,menuController,treeController,operatorController,roleController,goodsController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,xmlViewResolver,jstlViewResolver,multipartResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@675f2820
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/load.shtml] onto handler 'taskController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/list.shtml] onto handler 'taskController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/capture/task/urlContent.shtml] onto handler 'taskController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/load.shtml] onto handler 'directoryController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/delete.shtml] onto handler 'directoryController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/save.shtml] onto handler 'directoryController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadTree.shtml] onto handler 'directoryController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/loadPage.shtml] onto handler 'directoryController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/directory/treeList.shtml] onto handler 'directoryController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/load.shtml] onto handler 'resourceController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/delete.shtml] onto handler 'resourceController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/list.shtml] onto handler 'resourceController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/save.shtml] onto handler 'resourceController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/publish.shtml] onto handler 'resourceController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/batchDelete.shtml] onto handler 'resourceController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cms/resource/unpublish.shtml] onto handler 'resourceController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/load.shtml] onto handler 'areaController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/area/treeList.shtml] onto handler 'areaController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/load.shtml] onto handler 'cityController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/delete.shtml] onto handler 'cityController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/city/save.shtml] onto handler 'cityController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/load.shtml] onto handler 'countryController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/delete.shtml] onto handler 'countryController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/country/save.shtml] onto handler 'countryController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/load.shtml] onto handler 'provinceController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/delete.shtml] onto handler 'provinceController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/province/save.shtml] onto handler 'provinceController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/load.shtml] onto handler 'authorityController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/authorize.shtml] onto handler 'authorityController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/authority/listOperator.shtml] onto handler 'authorityController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/common/back.shtml] onto handler 'commonController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/cache/clearAll.shtml] onto handler 'cacheController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/file/upload.shtml] onto handler 'fileController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/kindEditorFile/upload.shtml] onto handler 'kindEditorFileController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/load.shtml] onto handler 'initController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/init.shtml] onto handler 'initController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateModule.shtml] onto handler 'initController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/init/updateMenu.shtml] onto handler 'initController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/lock/unlock.shtml] onto handler 'lockController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/logger/list.shtml] onto handler 'loggerController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/module/treeList.shtml] onto handler 'moduleController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/load.shtml] onto handler 'sortController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sort/save.shtml] onto handler 'sortController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/load.shtml] onto handler 'loginController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/login.shtml] onto handler 'loginController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/login/logout.shtml] onto handler 'loginController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/load.shtml] onto handler 'menuController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/listLeftMenus.shtml] onto handler 'menuController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/addMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/sso/system/menu/removeMyFavorite.shtml] onto handler 'menuController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/loadSelectTree.shtml] onto handler 'treeController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tree/treeList.shtml] onto handler 'treeController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/load.shtml] onto handler 'operatorController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/delete.shtml] onto handler 'operatorController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/list.shtml] onto handler 'operatorController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/save.shtml] onto handler 'operatorController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/toModifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/modifyPassword.shtml] onto handler 'operatorController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/operator/batchDelete.shtml] onto handler 'operatorController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/load.shtml] onto handler 'roleController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/delete.shtml] onto handler 'roleController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/list.shtml] onto handler 'roleController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/save.shtml] onto handler 'roleController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/role/batchDelete.shtml] onto handler 'roleController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/load.shtml] onto handler 'goodsController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/delete.shtml] onto handler 'goodsController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/list.shtml] onto handler 'goodsController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/save.shtml] onto handler 'goodsController'
+[2014-09-14 20:58:53] [AbstractUrlHandlerMapping.java:315] - [INFO] Mapped URL path [/tiger/goods/batchDelete.shtml] onto handler 'goodsController'
+[2014-09-14 20:58:53] [XmlBeanDefinitionReader.java:315] - [INFO] Loading XML bean definitions from class path resource [config/springMVC-views.xml]
+[2014-09-14 20:58:53] [AbstractApplicationContext.java:510] - [INFO] Refreshing org.springframework.web.context.support.GenericWebApplicationContext@5a5a86c7: startup date [Sun Sep 14 20:58:53 CST 2014]; parent: WebApplicationContext for namespace 'Spring MVC Dispatcher Servlet-servlet'
+[2014-09-14 20:58:53] [DefaultListableBeanFactory.java:603] - [INFO] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@2f40302d: defining beans []; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@179d8e05
+[2014-09-14 20:58:53] [FrameworkServlet.java:476] - [INFO] FrameworkServlet 'Spring MVC Dispatcher Servlet': initialization completed in 1010 ms
