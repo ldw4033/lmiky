@@ -12,19 +12,18 @@ public class Constants {
 
 	// ****************************************properties文件****************************************//
 	// 配置文件
-	public static final String PROPERTIES_KEY_PLATFORM_FILE = "config/platform";	//核心配置
 	public static final String PROPERTIES_KEY_CONTEXT_FILE = "config/context";
 	public static final String PROPERTIES_KEY_OPERATENAME_FILE = "config/operateName";
 	public static final String PROPERTIES_KEY_CODE_MSG_FILE = "config/codeMsg";
 
 	//系统
-	public static final String SYSTEM_ENCODE =  BundleUtils.getStringValue(PROPERTIES_KEY_PLATFORM_FILE, "system.encode"); 	//系统编码
-	public static final int SYSTEM_EXCEPTION_STACKLOGNUM = BundleUtils.getIntValue(PROPERTIES_KEY_PLATFORM_FILE, "system.exceptionStackLogNum");	//错误日志行数
+	public static final String SYSTEM_ENCODE =  BundleUtils.getStringValue(PROPERTIES_KEY_CONTEXT_FILE, "system.encode"); 	//系统编码
+	public static final int SYSTEM_EXCEPTION_STACKLOGNUM = BundleUtils.getIntValue(PROPERTIES_KEY_CONTEXT_FILE, "system.exceptionStackLogNum");	//错误日志行数
 
 	//日期格式值
-	public static final String CONTEXT_KEY_FORMAT_DATE_VALUE = BundleUtils.getStringValue(PROPERTIES_KEY_PLATFORM_FILE, "format.date"); // 日期
-	public static final String CONTEXT_KEY_FORMAT_DATETIME_VALUE = BundleUtils.getStringValue(PROPERTIES_KEY_PLATFORM_FILE, "format.dateTime"); // 日期时间
-	public static final String CONTEXT_KEY_FORMAT_TIME_VALUE = BundleUtils.getStringValue(PROPERTIES_KEY_PLATFORM_FILE, "format.time");  // 时间
+	public static final String CONTEXT_KEY_FORMAT_DATE_VALUE = BundleUtils.getStringValue(PROPERTIES_KEY_CONTEXT_FILE, "format.date"); // 日期
+	public static final String CONTEXT_KEY_FORMAT_DATETIME_VALUE = BundleUtils.getStringValue(PROPERTIES_KEY_CONTEXT_FILE, "format.dateTime"); // 日期时间
+	public static final String CONTEXT_KEY_FORMAT_TIME_VALUE = BundleUtils.getStringValue(PROPERTIES_KEY_CONTEXT_FILE, "format.time");  // 时间
 
 	//文件上传路径
 	//临时目录
