@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 
 import org.apache.commons.beanutils.ConvertUtils;
 
+import com.alibaba.fastjson.JSON;
 import com.lmiky.platform.constants.Constants;
 import com.lmiky.platform.controller.html.converter.DateConverter;
 import com.lmiky.platform.util.Environment;
@@ -30,6 +31,8 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 		dateConverter.setUseLocaleFormat(true);
 		dateConverter.setPatterns(new String[] { Constants.CONTEXT_KEY_FORMAT_DATE_VALUE, Constants.CONTEXT_KEY_FORMAT_DATETIME_VALUE });
 		ConvertUtils.register(dateConverter, Date.class);
+		//设置fastjson默认日期格式
+		JSON.DEFFAULT_DATE_FORMAT = Constants.CONTEXT_KEY_FORMAT_DATETIME_VALUE;
 		// 设置环境
 		ServletContext application = config.getServletContext();
 		Environment.setServletContext(application);
