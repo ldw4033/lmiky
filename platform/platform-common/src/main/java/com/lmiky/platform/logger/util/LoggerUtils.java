@@ -15,6 +15,28 @@ public class LoggerUtils {
 	private static final Log log = LogFactory.getLog(LoggerUtils.class);
 
 	/**
+	 * 获取日志对象
+	 * @param clazz 要记录日志的类
+	 * @return 日志对象
+	 * @author lmiky
+	 * @date 2015年10月21日 下午3:25:38
+	 */
+	public static Log getLog(Class<?> clazz) {
+		return LogFactory.getLog(clazz);
+	}
+
+	/**
+	 * 获取日志对象
+	 * @param obj 要记录日志的对象
+	 * @return 日志对象
+	 * @author lmiky
+	 * @date 2015年10月21日 下午3:26:25
+	 */
+	public static Log getLog(Object obj) {
+		return LogFactory.getLog(obj.getClass());
+	}
+
+	/**
 	 * @author lmiky
 	 * @date 2013-5-10
 	 * @return
@@ -74,7 +96,9 @@ public class LoggerUtils {
 	 * @param obj
 	 */
 	public static void debug(Object obj) {
-		log.debug(obj);
+		if (isDebugEnabled()) {
+			log.debug(obj);
+		}
 	}
 
 	/**
@@ -84,7 +108,9 @@ public class LoggerUtils {
 	 * @param t
 	 */
 	public static void debug(Object obj, Throwable t) {
-		log.debug(obj, t);
+		if (isDebugEnabled()) {
+			log.debug(obj, t);
+		}
 	}
 
 	/**
@@ -93,7 +119,9 @@ public class LoggerUtils {
 	 * @param obj
 	 */
 	public static void error(Object obj) {
-		log.error(obj);
+		if (isErrorEnabled()) {
+			log.error(obj);
+		}
 	}
 
 	/**
@@ -103,7 +131,9 @@ public class LoggerUtils {
 	 * @param t
 	 */
 	public static void error(Object obj, Throwable t) {
-		log.error(obj, t);
+		if (isErrorEnabled()) {
+			log.error(obj, t);
+		}
 	}
 
 	/**
@@ -112,7 +142,9 @@ public class LoggerUtils {
 	 * @param obj
 	 */
 	public static void fatal(Object obj) {
-		log.fatal(obj);
+		if (isFatalEnabled()) {
+			log.fatal(obj);
+		}
 	}
 
 	/**
@@ -122,7 +154,9 @@ public class LoggerUtils {
 	 * @param t
 	 */
 	public static void fatal(Object obj, Throwable t) {
-		log.fatal(obj, t);
+		if (isFatalEnabled()) {
+			log.fatal(obj, t);
+		}
 	}
 
 	/**
@@ -131,7 +165,9 @@ public class LoggerUtils {
 	 * @param obj
 	 */
 	public static void info(Object obj) {
-		log.info(obj);
+		if (isInfoEnabled()) {
+			log.info(obj);
+		}
 	}
 
 	/**
@@ -141,7 +177,9 @@ public class LoggerUtils {
 	 * @param t
 	 */
 	public static void info(Object obj, Throwable t) {
-		log.info(obj, t);
+		if (isInfoEnabled()) {
+			log.info(obj, t);
+		}
 	}
 
 	/**
@@ -150,7 +188,9 @@ public class LoggerUtils {
 	 * @param obj
 	 */
 	public static void trace(Object obj) {
-		log.trace(obj);
+		if (isTraceEnabled()) {
+			log.trace(obj);
+		}
 	}
 
 	/**
@@ -160,7 +200,9 @@ public class LoggerUtils {
 	 * @param t
 	 */
 	public static void trace(Object obj, Throwable t) {
-		log.trace(obj, t);
+		if (isTraceEnabled()) {
+			log.trace(obj, t);
+		}
 	}
 
 	/**
@@ -169,7 +211,9 @@ public class LoggerUtils {
 	 * @param obj
 	 */
 	public static void warn(Object obj) {
-		log.warn(obj);
+		if (isWarnEnabled()) {
+			log.warn(obj);
+		}
 	}
 
 	/**
@@ -179,7 +223,9 @@ public class LoggerUtils {
 	 * @param t
 	 */
 	public static void warn(Object obj, Throwable t) {
-		log.warn(obj, t);
+		if (isWarnEnabled()) {
+			log.warn(obj, t);
+		}
 	}
 
 	/**
@@ -200,7 +246,7 @@ public class LoggerUtils {
 		StackTraceElement stackTraceElement = null;
 		for (int i = 0; i < logNum; i++) {
 			stackTraceElement = stackTraceElements[i];
-			if(stackTraceElement == null) {
+			if (stackTraceElement == null) {
 				break;
 			}
 			error(String.format("Caused by: %s", stackTraceElement));
