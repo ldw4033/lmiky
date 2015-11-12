@@ -12,7 +12,7 @@ public class Constants {
 
 	// ****************************************properties文件****************************************//
 	// 配置文件
-	public static final String PROPERTIES_KEY_CONTEXT_FILE = "config/context";
+	public static final String PROPERTIES_KEY_CONTEXT_FILE = BundleUtils.buildEnvironmentResourceFile("config/context");
 	public static final String PROPERTIES_KEY_OPERATENAME_FILE = "config/operateName";
 	public static final String PROPERTIES_KEY_CODE_MSG_FILE = "config/codeMsg";
 

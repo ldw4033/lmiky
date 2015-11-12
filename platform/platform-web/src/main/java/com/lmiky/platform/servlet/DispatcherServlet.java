@@ -3,7 +3,6 @@ package com.lmiky.platform.servlet;
 import java.util.Date;
 
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import org.apache.commons.beanutils.ConvertUtils;
@@ -11,7 +10,6 @@ import org.apache.commons.beanutils.ConvertUtils;
 import com.alibaba.fastjson.JSON;
 import com.lmiky.platform.constants.Constants;
 import com.lmiky.platform.controller.html.converter.DateConverter;
-import com.lmiky.platform.util.Environment;
 
 /**
  * @author lmiky
@@ -33,9 +31,6 @@ public class DispatcherServlet extends org.springframework.web.servlet.Dispatche
 		ConvertUtils.register(dateConverter, Date.class);
 		//设置fastjson默认日期格式
 		JSON.DEFFAULT_DATE_FORMAT = Constants.CONTEXT_KEY_FORMAT_DATETIME_VALUE;
-		// 设置环境
-		ServletContext application = config.getServletContext();
-		Environment.setServletContext(application);
 		super.init(config);
 	}
 }
