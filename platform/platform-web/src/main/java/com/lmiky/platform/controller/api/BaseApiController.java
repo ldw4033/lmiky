@@ -27,87 +27,81 @@ import javax.servlet.http.HttpServletRequest;
  */
 public abstract class BaseApiController extends BaseController {
 
-    /**
-     * 绑定参数，json实体类的参数转换
-     * SimpleDateFormat是非线程安全，所以每个线程需要独立的对象
-     *
-     * @param binder 绑定参数
-     * @author lmiky
-     * @date 2015年8月20日 上午10:35:08
-     */
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        SimpleDateFormat dateTimeFormat = new SimpleDateFormat(Constants.CONTEXT_KEY_FORMAT_DATETIME_VALUE);
-        dateTimeFormat.setLenient(false);   //严格的解析,输入必须匹配这个对象的格式
-        SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.CONTEXT_KEY_FORMAT_DATE_VALUE);
-        dateFormat.setLenient(false);
-        SimpleDateFormat timeFormat = new SimpleDateFormat(Constants.CONTEXT_KEY_FORMAT_TIME_VALUE);
-        timeFormat.setLenient(false);
-        CustomDateEditor customDateEditor = new CustomDateEditor(true, dateTimeFormat, dateFormat, timeFormat);
-        binder.registerCustomEditor(Date.class, customDateEditor);
-    }
+	/**
+	 * 绑定参数，json实体类的参数转换
+	 * SimpleDateFormat是非线程安全，所以每个线程需要独立的对象
+	 * @param binder 绑定参数
+	 * @author lmiky
+	 * @date 2015年8月20日 上午10:35:08
+	 */
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat dateTimeFormat = new SimpleDateFormat(Constants.CONTEXT_KEY_FORMAT_DATETIME_VALUE);
+		dateTimeFormat.setLenient(false); // 严格的解析,输入必须匹配这个对象的格式
+		SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.CONTEXT_KEY_FORMAT_DATE_VALUE);
+		dateFormat.setLenient(false);
+		SimpleDateFormat timeFormat = new SimpleDateFormat(Constants.CONTEXT_KEY_FORMAT_TIME_VALUE);
+		timeFormat.setLenient(false);
+		CustomDateEditor customDateEditor = new CustomDateEditor(true, dateTimeFormat, dateFormat, timeFormat);
+		binder.registerCustomEditor(Date.class, customDateEditor);
+	}
 
-    /**
-     * 异常处理
-     *
-     * @param request       request
-     * @param exception     错误
-     * @param handlerMethod 方法处理器
-     * @return 如果是ajax请求，返回构建的数据实体类，否则返回null
-     * @author lmiky
-     * @throws Exception
-     * @date 2015年8月12日 下午7:33:41
-     */
-    @ExceptionHandler({Exception.class})
-    @ResponseBody
-    public Object handleException(HttpServletRequest request, Exception exception, HandlerMethod handlerMethod) throws Exception {
-        Method method = handlerMethod.getMethod();
-        if (method == null) {
-            return null;
-        }
-        // 判断是否ajax请求
-        ResponseBody responseBodyAnn = AnnotationUtils.findAnnotation(method, ResponseBody.class);
-        if (responseBodyAnn != null) {
-            return handleAjaxRequestException(request, exception, handlerMethod);
-        }
-        return handleViewRequestException(request, exception, handlerMethod);
-    }
+	/**
+	 * 异常处理
+	 * @param request request
+	 * @param exception 错误
+	 * @param handlerMethod 方法处理器
+	 * @return 如果是ajax请求，返回构建的数据实体类，否则返回null
+	 * @author lmiky
+	 * @throws Exception
+	 * @date 2015年8月12日 下午7:33:41
+	 */
+	@ExceptionHandler({ Exception.class })
+	@ResponseBody
+	public Object handleException(HttpServletRequest request, Exception exception, HandlerMethod handlerMethod) throws Exception {
+		Method method = handlerMethod.getMethod();
+		if (method == null) {
+			return null;
+		}
+		// 判断是否ajax请求
+		ResponseBody responseBodyAnn = AnnotationUtils.findAnnotation(method, ResponseBody.class);
+		if (responseBodyAnn != null) {
+			return handleAjaxRequestException(request, exception, handlerMethod);
+		}
+		return handleViewRequestException(request, exception, handlerMethod);
+	}
 
-    /**
-     * 处理ajax请求异常
-     *
-     * @param request       request
-     * @param exception     错误
-     * @param handlerMethod 方法处理器
-     * @return 返回构建的数据实体类
-     * @author lmiky
-     * @date 2015年8月13日 上午11:53:01
-     */
-    public CodeDataView handleAjaxRequestException(HttpServletRequest request, Exception exception,
-                                                     HandlerMethod handlerMethod) {
-        // 带结果码异常
-        if (exception instanceof BaseCodeException) {
-            return CodeDataView.buildView(((BaseCodeException) exception).getCode());
-        }
-        LoggerUtils.error("handle controller(" + handlerMethod.getMethod().getName() + ") exception !", exception);
-        return CodeDataView.buildErrorView();
-    }
+	/**
+	 * 处理ajax请求异常
+	 * @param request request
+	 * @param exception 错误
+	 * @param handlerMethod 方法处理器
+	 * @return 返回构建的数据实体类
+	 * @author lmiky
+	 * @date 2015年8月13日 上午11:53:01
+	 */
+	public CodeDataView handleAjaxRequestException(HttpServletRequest request, Exception exception, HandlerMethod handlerMethod) {
+		// 带结果码异常
+		if (exception instanceof BaseCodeException) {
+			return CodeDataView.buildView(((BaseCodeException) exception).getCode());
+		}
+		LoggerUtils.error("handle controller(" + handlerMethod.getMethod().getName() + ") exception !", exception);
+		return CodeDataView.buildErrorView();
+	}
 
-    /**
-     * 处理视图请求异常
-     *
-     * @param request       request
-     * @param exception     错误
-     * @param handlerMethod 方法处理器
-     * @return 返回视图信息
-     * @author lmiky
-     * @throws Exception
-     * @date 2015年8月13日 上午11:53:59
-     */
-    public Object handleViewRequestException(HttpServletRequest request, Exception exception,
-                                             HandlerMethod handlerMethod) throws Exception {
-        LoggerUtils.error("handle controller(" + handlerMethod.getMethod().getName() + ") exception !", exception);
-        throw exception;
-    }
+	/**
+	 * 处理视图请求异常
+	 * @param request request
+	 * @param exception 错误
+	 * @param handlerMethod 方法处理器
+	 * @return 返回视图信息
+	 * @author lmiky
+	 * @throws Exception
+	 * @date 2015年8月13日 上午11:53:59
+	 */
+	public Object handleViewRequestException(HttpServletRequest request, Exception exception, HandlerMethod handlerMethod) throws Exception {
+		LoggerUtils.error("handle controller(" + handlerMethod.getMethod().getName() + ") exception !", exception);
+		throw exception;
+	}
 
 }
