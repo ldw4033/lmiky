@@ -40,7 +40,6 @@ import com.lmiky.platform.http.client.AutoHttpClient;
  * @date 2013-11-17
  */
 public class HttpOperator {
-	protected static HttpOperator instance;
 
 	// 编码
 	public static final String CHARSET_UTF8 = "UTF-8";
@@ -48,11 +47,12 @@ public class HttpOperator {
 	public static final String CHARSET_GB2312 = "GB2312";
 	public static final String CHARSET_DEFAULT = CHARSET_UTF8;
 
-	public static synchronized HttpOperator getInstance() {
-		if (instance == null) {
-			instance = new HttpOperator();
-		}
-		return instance;
+	public static HttpOperator getInstance() {
+		return SingletonHolder.instance;
+	}
+	
+	private static class SingletonHolder {
+		protected static final HttpOperator instance = new HttpOperator();
 	}
 
 	/**
