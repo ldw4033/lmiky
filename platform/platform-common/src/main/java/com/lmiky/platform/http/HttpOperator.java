@@ -71,7 +71,10 @@ public class HttpOperator {
 			int status = response.getStatusLine().getStatusCode();
 			if (status >= 200 && status < 300) {
 				HttpEntity entity = response.getEntity();
-				return entity != null ? EntityUtils.toString(entity, CHARSET_DEFAULT) : null;
+				String content = entity != null ? EntityUtils.toString(entity, CHARSET_DEFAULT) : null;
+				//CloseableHttpClient.execute() 240行会自动EntityUtils.consume(entity);
+				//EntityUtils.consume(entity);
+				return content;
 			} else {
 				throw new ClientProtocolException("HTTP请求非预期结果码: " + status);
 			}
