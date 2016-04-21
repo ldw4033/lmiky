@@ -17,12 +17,13 @@ import org.apache.http.impl.client.HttpClientBuilder;
  * @date 2015年10月26日 下午1:41:04
  */
 public class HttpsOperator extends HttpOperator {
+	
 	/**
 	 * @return
 	 * @author lmiky
 	 * @date 2015年10月26日 下午1:57:45
 	 */
-	public static synchronized HttpsOperator getInstance() {
+	public static HttpsOperator getInstance() {
 		return SingletonHolder.instance;
 	}
 	
