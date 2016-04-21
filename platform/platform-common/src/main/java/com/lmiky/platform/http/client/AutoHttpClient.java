@@ -61,24 +61,22 @@ public class AutoHttpClient extends CloseableHttpClient {
 	@Override
 	public HttpParams getParams() {
 		// TODO Auto-generated method stub
-		return null;
+		return target.getParams();
 	}
 
 	@Override
 	public ClientConnectionManager getConnectionManager() {
 		// TODO Auto-generated method stub
-		return null;
+		return target.getConnectionManager();
 	}
 
 	@Override
 	public void close() throws IOException {
-		// TODO Auto-generated method stub
-		
+		target.close();
 	}
 
 	@Override
 	protected CloseableHttpResponse doExecute(HttpHost target, HttpRequest request, HttpContext context) throws IOException, ClientProtocolException {
-		// TODO Auto-generated method stub
-		return null;
+		throw new RuntimeException("auth http client not support doExecute method!");
 	}
 }
