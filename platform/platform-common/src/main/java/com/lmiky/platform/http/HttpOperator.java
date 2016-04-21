@@ -15,6 +15,7 @@ import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
@@ -50,7 +51,7 @@ public class HttpOperator {
 	public static HttpOperator getInstance() {
 		return SingletonHolder.instance;
 	}
-	
+
 	private static class SingletonHolder {
 		protected static final HttpOperator instance = new HttpOperator();
 	}
@@ -68,15 +69,21 @@ public class HttpOperator {
 		 */
 		@Override
 		public String handleResponse(HttpResponse response) throws ClientProtocolException, IOException {
-			int status = response.getStatusLine().getStatusCode();
-			if (status >= 200 && status < 300) {
-				HttpEntity entity = response.getEntity();
-				String content = entity != null ? EntityUtils.toString(entity, CHARSET_DEFAULT) : null;
-				//CloseableHttpClient.execute() 240行会自动EntityUtils.consume(entity);
-				//EntityUtils.consume(entity);
-				return content;
-			} else {
-				throw new ClientProtocolException("HTTP请求非预期结果码: " + status);
+			try {
+				int status = response.getStatusLine().getStatusCode();
+				if (status >= 200 && status < 300) {
+					HttpEntity entity = response.getEntity();
+					String content = entity != null ? EntityUtils.toString(entity, CHARSET_DEFAULT) : null;
+					// CloseableHttpClient.execute() 240行会自动EntityUtils.consume(entity);
+					// EntityUtils.consume(entity);
+					return content;
+				} else {
+					throw new ClientProtocolException("HTTP请求非预期结果码: " + status);
+				}
+			} finally {
+				if(response != null && response instanceof CloseableHttpResponse) {
+					((CloseableHttpResponse)response).close();
+				}
 			}
 		}
 	};
@@ -108,10 +115,9 @@ public class HttpOperator {
 	 * 创建连接客户端
 	 * @author lmiky
 	 * @date 2014-8-7 上午11:07:10
-	 * @throws Exception
 	 * @return
 	 */
-	public CloseableHttpClient createDefaultClient() throws Exception {
+	public CloseableHttpClient createDefaultClient() {
 		return HttpClients.createDefault();
 	}
 
@@ -151,7 +157,7 @@ public class HttpOperator {
 					} else {
 						closeableHttpClient = (CloseableHttpClient) httpClient;
 					}
-					if(closeableHttpClient != null) {
+					if (closeableHttpClient != null) {
 						closeableHttpClient.close();
 					}
 				}

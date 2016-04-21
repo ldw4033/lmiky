@@ -11,6 +11,8 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HttpContext;
 
+import com.lmiky.platform.http.HttpOperator;
+
 /**
  * 自动关闭HTTP客户端
  * @author lmiky
@@ -25,6 +27,11 @@ public class AutoHttpClient extends CloseableHttpClient {
 		
 	}
 
+	public AutoHttpClient(boolean autoClose) {
+		this.target = HttpOperator.getInstance().createDefaultClient();
+		this.autoClose = autoClose;
+	}
+	
 	public AutoHttpClient(CloseableHttpClient target,  boolean autoClose) {
 		this.target = target;
 		this.autoClose = autoClose;
@@ -61,24 +68,22 @@ public class AutoHttpClient extends CloseableHttpClient {
 	@Override
 	public HttpParams getParams() {
 		// TODO Auto-generated method stub
-		return null;
+		return target.getParams();
 	}
 
 	@Override
 	public ClientConnectionManager getConnectionManager() {
 		// TODO Auto-generated method stub
-		return null;
+		return target.getConnectionManager();
 	}
 
 	@Override
 	public void close() throws IOException {
-		// TODO Auto-generated method stub
-		
+		target.close();
 	}
 
 	@Override
 	protected CloseableHttpResponse doExecute(HttpHost target, HttpRequest request, HttpContext context) throws IOException, ClientProtocolException {
-		// TODO Auto-generated method stub
-		return null;
+		throw new RuntimeException("auth http client not support doExecute method!");
 	}
 }
