@@ -35,6 +35,7 @@ import org.apache.http.util.EntityUtils;
 import org.springframework.util.CollectionUtils;
 
 import com.lmiky.platform.http.client.CustomCloseHttpClient;
+import com.lmiky.platform.util.BundleUtils;
 
 /**
  * HTTP请求工具
@@ -52,16 +53,28 @@ public class HttpOperator {
 	/**
 	 * 连接超时时间
 	 */
-	public final static int CONNECT_TIMEOUT = 10000;
+	public final static int DEFAULT_CONNECT_TIMEOUT = 10000;
 	/**
 	 * 读取超时时间
 	 */
-	public final static int Socket_TIMEOUT = 10000;
+	public final static int DEFAULT_SOCKET_TIMEOUT = 10000;
 
 	protected RequestConfig defaultRequestConfig = null;
 
 	protected HttpOperator() {
-		defaultRequestConfig = RequestConfig.custom().setSocketTimeout(Socket_TIMEOUT).setConnectTimeout(CONNECT_TIMEOUT).build();
+		int httpSocketTimeout = 0;
+		try {
+			httpSocketTimeout = BundleUtils.getIntContextValue("http.socket.timeout");
+		} catch(Throwable e) {
+			httpSocketTimeout = DEFAULT_SOCKET_TIMEOUT;
+		}
+		int httpConnectTimeout = 0;
+		try {
+			httpConnectTimeout = BundleUtils.getIntContextValue("http.connect.timeout");
+		} catch(Throwable e) {
+			httpConnectTimeout = DEFAULT_CONNECT_TIMEOUT;
+		}
+		defaultRequestConfig = RequestConfig.custom().setSocketTimeout(httpSocketTimeout).setConnectTimeout(httpConnectTimeout).build();
 	}
 	
 	public static HttpOperator getInstance() {
