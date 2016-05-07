@@ -11,39 +11,47 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HttpContext;
 
+import com.lmiky.platform.http.HttpOperator;
+
 /**
- * 自动关闭HTTP客户端
+ * 自定义关闭HTTP客户端
  * @author lmiky
  * @date 2015年10月26日 下午3:34:57
  */
 @SuppressWarnings("deprecation")
-public class AutoHttpClient extends CloseableHttpClient {
-	private CloseableHttpClient target;
-	private boolean autoClose = true;	//是否自动关闭
+public class CustomCloseHttpClient extends CloseableHttpClient {
+	protected CloseableHttpClient client;
+	protected boolean autoClose = true;	//是否自动关闭
 	
-	public AutoHttpClient() {
+	public CustomCloseHttpClient() {
 		
 	}
 
-	public AutoHttpClient(CloseableHttpClient target,  boolean autoClose) {
-		this.target = target;
+	public CustomCloseHttpClient(boolean autoClose) throws Exception {
+		this.client = HttpOperator.getInstance().createDefaultClient();
+		this.autoClose = autoClose;
+	}
+	
+	public CustomCloseHttpClient(CloseableHttpClient client,  boolean autoClose) {
+		this.client = client;
 		this.autoClose = autoClose;
 	}
 
+	
 	/**
-	 * @return the target
+	 * @return the client
 	 */
-	public CloseableHttpClient getTarget() {
-		return target;
+	public CloseableHttpClient getClient() {
+		return client;
 	}
 
 	/**
-	 * @param target the target to set
+	 * @param client the client to set
 	 */
-	public void setTarget(CloseableHttpClient target) {
-		this.target = target;
+	public void setClient(CloseableHttpClient client) {
+		this.client = client;
 	}
-	
+
 	/**
 	 * @return the autoClose
 	 */
@@ -58,27 +66,34 @@ public class AutoHttpClient extends CloseableHttpClient {
 		this.autoClose = autoClose;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.apache.http.client.HttpClient#getParams()
+	 */
 	@Override
 	public HttpParams getParams() {
 		// TODO Auto-generated method stub
-		return null;
+		return client.getParams();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.apache.http.client.HttpClient#getConnectionManager()
+	 */
 	@Override
 	public ClientConnectionManager getConnectionManager() {
 		// TODO Auto-generated method stub
-		return null;
+		return client.getConnectionManager();
 	}
 
+	/* (non-Javadoc)
+	 * @see java.io.Closeable#close()
+	 */
 	@Override
 	public void close() throws IOException {
-		// TODO Auto-generated method stub
-		
+		client.close();
 	}
 
 	@Override
 	protected CloseableHttpResponse doExecute(HttpHost target, HttpRequest request, HttpContext context) throws IOException, ClientProtocolException {
-		// TODO Auto-generated method stub
-		return null;
+		throw new RuntimeException("auth http client not support doExecute method!");
 	}
 }

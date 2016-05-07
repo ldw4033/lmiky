@@ -14,7 +14,9 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
@@ -32,7 +34,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.springframework.util.CollectionUtils;
 
-import com.lmiky.platform.http.client.AutoHttpClient;
+import com.lmiky.platform.http.client.CustomCloseHttpClient;
+import com.lmiky.platform.util.BundleUtils;
 
 /**
  * HTTP请求工具
@@ -40,7 +43,6 @@ import com.lmiky.platform.http.client.AutoHttpClient;
  * @date 2013-11-17
  */
 public class HttpOperator {
-	protected static HttpOperator instance;
 
 	// 编码
 	public static final String CHARSET_UTF8 = "UTF-8";
@@ -48,11 +50,39 @@ public class HttpOperator {
 	public static final String CHARSET_GB2312 = "GB2312";
 	public static final String CHARSET_DEFAULT = CHARSET_UTF8;
 
-	public static synchronized HttpOperator getInstance() {
-		if (instance == null) {
-			instance = new HttpOperator();
+	/**
+	 * 连接超时时间
+	 */
+	public final static int DEFAULT_CONNECT_TIMEOUT = 10000;
+	/**
+	 * 读取超时时间
+	 */
+	public final static int DEFAULT_SOCKET_TIMEOUT = 10000;
+
+	protected RequestConfig defaultRequestConfig = null;
+
+	protected HttpOperator() {
+		int httpSocketTimeout = 0;
+		try {
+			httpSocketTimeout = BundleUtils.getIntContextValue("http.socket.timeout");
+		} catch(Throwable e) {
+			httpSocketTimeout = DEFAULT_SOCKET_TIMEOUT;
 		}
-		return instance;
+		int httpConnectTimeout = 0;
+		try {
+			httpConnectTimeout = BundleUtils.getIntContextValue("http.connect.timeout");
+		} catch(Throwable e) {
+			httpConnectTimeout = DEFAULT_CONNECT_TIMEOUT;
+		}
+		defaultRequestConfig = RequestConfig.custom().setSocketTimeout(httpSocketTimeout).setConnectTimeout(httpConnectTimeout).build();
+	}
+	
+	public static HttpOperator getInstance() {
+		return SingletonHolder.instance;
+	}
+
+	private static class SingletonHolder {
+		protected static final HttpOperator instance = new HttpOperator();
 	}
 
 	/**
@@ -68,12 +98,21 @@ public class HttpOperator {
 		 */
 		@Override
 		public String handleResponse(HttpResponse response) throws ClientProtocolException, IOException {
-			int status = response.getStatusLine().getStatusCode();
-			if (status >= 200 && status < 300) {
-				HttpEntity entity = response.getEntity();
-				return entity != null ? EntityUtils.toString(entity, CHARSET_DEFAULT) : null;
-			} else {
-				throw new ClientProtocolException("HTTP请求非预期结果码: " + status);
+			try {
+				int status = response.getStatusLine().getStatusCode();
+				if (status >= 200 && status < 300) {
+					HttpEntity entity = response.getEntity();
+					String content = entity != null ? EntityUtils.toString(entity, CHARSET_DEFAULT) : null;
+					// CloseableHttpClient.execute() 240行会自动EntityUtils.consume(entity);
+					// EntityUtils.consume(entity);
+					return content;
+				} else {
+					throw new ClientProtocolException("HTTP请求非预期结果码: " + status);
+				}
+			} finally {
+				if(response != null && response instanceof CloseableHttpResponse) {
+					((CloseableHttpResponse)response).close();
+				}
 			}
 		}
 	};
@@ -103,9 +142,9 @@ public class HttpOperator {
 
 	/**
 	 * 创建连接客户端
+	 * @throws Exception
 	 * @author lmiky
 	 * @date 2014-8-7 上午11:07:10
-	 * @throws Exception
 	 * @return
 	 */
 	public CloseableHttpClient createDefaultClient() throws Exception {
@@ -142,13 +181,13 @@ public class HttpOperator {
 			try {
 				if (httpClient instanceof CloseableHttpClient) {
 					CloseableHttpClient closeableHttpClient = null;
-					if (closeableHttpClient instanceof AutoHttpClient) {
-						AutoHttpClient autoHttpClient = (AutoHttpClient) httpClient;
-						closeableHttpClient = autoHttpClient.getTarget();
+					if (closeableHttpClient instanceof CustomCloseHttpClient) {
+						CustomCloseHttpClient autoHttpClient = (CustomCloseHttpClient) httpClient;
+						closeableHttpClient = autoHttpClient.getClient();
 					} else {
 						closeableHttpClient = (CloseableHttpClient) httpClient;
 					}
-					if(closeableHttpClient != null) {
+					if (closeableHttpClient != null) {
 						closeableHttpClient.close();
 					}
 				}
@@ -185,8 +224,8 @@ public class HttpOperator {
 				httpClient = createDefaultClient();
 			}
 			// 构建请求内容
-			if (httpClient instanceof AutoHttpClient) {
-				return ((AutoHttpClient) httpClient).getTarget().execute(httpRequestBase, stringResponseHandler);
+			if (httpClient instanceof CustomCloseHttpClient) {
+				return ((CustomCloseHttpClient) httpClient).getClient().execute(httpRequestBase, stringResponseHandler);
 			} else {
 				return httpClient.execute(httpRequestBase, stringResponseHandler);
 			}
@@ -194,8 +233,8 @@ public class HttpOperator {
 			throw e;
 		} finally {
 			// 关闭资源
-			if (httpClient instanceof AutoHttpClient) {
-				AutoHttpClient autoHttpClient = (AutoHttpClient) httpClient;
+			if (httpClient instanceof CustomCloseHttpClient) {
+				CustomCloseHttpClient autoHttpClient = (CustomCloseHttpClient) httpClient;
 				if (autoHttpClient.isAutoClose()) {
 					close(autoHttpClient);
 				}

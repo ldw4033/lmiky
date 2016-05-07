@@ -17,19 +17,18 @@ import org.apache.http.impl.client.HttpClientBuilder;
  * @date 2015年10月26日 下午1:41:04
  */
 public class HttpsOperator extends HttpOperator {
-	protected static HttpsOperator httpsInstance;
-
+	
 	/**
-	 * 说明
 	 * @return
 	 * @author lmiky
 	 * @date 2015年10月26日 下午1:57:45
 	 */
-	public static synchronized HttpsOperator getInstance() {
-		if (httpsInstance == null) {
-			httpsInstance = new HttpsOperator();
-		}
-		return httpsInstance;
+	public static HttpsOperator getInstance() {
+		return SingletonHolder.instance;
+	}
+	
+	private static class SingletonHolder {
+		protected static final HttpsOperator instance = new HttpsOperator();
 	}
 
 	/* (non-Javadoc)
