@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.MissingResourceException;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
@@ -131,12 +132,12 @@ public class BaseDAOImpl extends AbstractBaseDAOImpl implements BaseDAO {
     /**
      * 对象对应的数据库表名
      */
-    protected Map<String, String> pojoTableNames = new HashMap<String, String>();
+    protected ConcurrentHashMap<String, String> pojoTableNames = new ConcurrentHashMap<String, String>();
 
     /**
      * 操作配置：自定义执行，或通用的执行
      */
-    protected Map<String, String> operateConfig = new HashMap<String, String>();
+    protected ConcurrentHashMap<String, String> operateConfig = new ConcurrentHashMap<String, String>();
 
     // 操作配置值
     /**
@@ -175,7 +176,7 @@ public class BaseDAOImpl extends AbstractBaseDAOImpl implements BaseDAO {
             cacheTableName = annotation.name();
         }
         // 放入缓存
-        pojoTableNames.put(cacheKey, cacheTableName);
+        pojoTableNames.putIfAbsent(cacheKey, cacheTableName);
         return cacheTableName;
     }
 
@@ -200,7 +201,7 @@ public class BaseDAOImpl extends AbstractBaseDAOImpl implements BaseDAO {
         } catch (MissingResourceException e) { // 没有配置，则默认为通用
             cacheValue = OPEARATE_CONFIG_COMMON;
         }
-        operateConfig.put(cacheKey, cacheValue);
+        operateConfig.putIfAbsent(cacheKey, cacheValue);
         return cacheValue;
     }
 
@@ -558,30 +559,6 @@ public class BaseDAOImpl extends AbstractBaseDAOImpl implements BaseDAO {
             propertyFilters.add(new PropertyFilter(key, entry.getValue(), PropertyCompareType.EQ, pojoClass));
         }
         return find(pojoClass, propertyFilters);
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see com.lmiky.jdp.database.dao.BaseDAO#save(com.lmiky.jdp.database.pojo.BasePojo)
-     */
-    @Override
-    public <T extends BasePojo> void save(T pojo) {
-        if (pojo.getId() == null) {
-            add(pojo);
-        } else {
-            update(pojo);
-        }
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see com.lmiky.jdp.database.dao.BaseDAO#save(java.util.List)
-     */
-    @Override
-    public <T extends BasePojo> void save(List<T> pojos) {
-        for (T pojo : pojos) {
-            save(pojo);
-        }
     }
 
     /*

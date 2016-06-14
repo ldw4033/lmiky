@@ -30,17 +30,7 @@ public class DateSourceAspect {
      * @date 2015年9月7日 下午3:45:27
      */
     public Object determineReadOrWriteDB(ProceedingJoinPoint pjp) throws Throwable {
-        Method method = ((MethodSignature) pjp.getSignature()).getMethod();
-        Object target = pjp.getTarget();
-        String cacheKey = target.getClass().getName() + "." + method.getName();
-        Boolean isReadCacheValue = methodIsReadCache.get(cacheKey);
-        if (isReadCacheValue == null) {
-            // 重新获取方法，否则传递的是接口的方法信息
-            Method realMethod = target.getClass().getMethod(method.getName(), method.getParameterTypes());
-            isReadCacheValue = isChoiceReadDB(realMethod);
-            methodIsReadCache.put(cacheKey, isReadCacheValue);
-        }
-        if (isReadCacheValue) {
+        if (isChoiceReadDB(pjp)) {
             DynamicDataSourceHolder.markRead();
         } else {
             DynamicDataSourceHolder.markWrite();
@@ -55,23 +45,36 @@ public class DateSourceAspect {
     /**
      * 判断是否只读方法
      *
-     * @param method 执行方法
+     * @param method 织入点
      * @return 当前方法是否只读
      * @author lmiky
+     * @throws SecurityException 
+     * @throws NoSuchMethodException 
      * @date 2015年9月7日 下午3:45:10
      */
-    private boolean isChoiceReadDB(Method method) {
-        Transactional transactionalAnno = AnnotationUtils.findAnnotation(method, Transactional.class);
-        if (transactionalAnno == null) {
-            return true;
-        }
-        // 如果之前选择了写库，则现在还选择写库
+    private boolean isChoiceReadDB(ProceedingJoinPoint pjp) throws NoSuchMethodException, SecurityException {
+    	// 如果之前选择了写库，则现在还选择写库
         if (DynamicDataSourceHolder.isChoiceWrite()) {
             return false;
         }
-        if (transactionalAnno.readOnly()) {
-            return true;
+        Method method = ((MethodSignature) pjp.getSignature()).getMethod();
+        Object target = pjp.getTarget();
+        String cacheKey = target.getClass().getName() + "." + method.getName();
+        Boolean isReadCacheValue = methodIsReadCache.get(cacheKey);
+        if (isReadCacheValue != null) {
+            return isReadCacheValue.booleanValue();
         }
-        return false;
+        Method realMethod = target.getClass().getMethod(method.getName(), method.getParameterTypes());
+        Transactional transactionalAnno = AnnotationUtils.findAnnotation(realMethod, Transactional.class);
+        boolean isRead = false;
+        if (transactionalAnno == null) {
+        	isRead = true;
+        }else if (transactionalAnno.readOnly()) {
+        	isRead = true;
+        } else {
+        	isRead = false;
+        }
+        methodIsReadCache.put(cacheKey, isRead);
+        return isRead;
     }
 }

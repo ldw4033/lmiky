@@ -82,24 +82,6 @@ public interface BaseDAO {
     public <T extends BasePojo> T find(Class<T> pojoClass, Map<String, Object> params);
 
     /**
-     * 保存对象
-     *
-     * @author lmiky
-     * @date 2013-4-16
-     * @param pojo
-     */
-    public <T extends BasePojo> void save(T pojo);
-
-    /**
-     * 保存对象
-     *
-     * @author lmiky
-     * @date 2013-5-29
-     * @param pojos
-     */
-    public <T extends BasePojo> void save(List<T> pojos);
-
-    /**
      * 添加对象
      *
      * @author lmiky

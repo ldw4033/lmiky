@@ -5,10 +5,14 @@ import com.lmiky.platform.database.model.PropertyFilter;
 import com.lmiky.platform.database.model.Sort;
 import com.lmiky.platform.database.pojo.BasePojo;
 import com.lmiky.platform.service.BaseService;
+import com.lmiky.platform.service.exception.ServiceException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -83,6 +87,9 @@ public class BaseServiceImpl implements BaseService {
      */
     @Transactional(rollbackFor = { Exception.class })
     public <T extends BasePojo> void save(T pojo) {
+    	if(pojo == null) {
+    		throw new ServiceException("to save pojo is null");
+    	}
         if (pojo.getId() == null) {
             add(pojo);
         } else {
@@ -96,9 +103,13 @@ public class BaseServiceImpl implements BaseService {
      */
     @Transactional(rollbackFor = { Exception.class })
     public <T extends BasePojo> void save(List<T> pojos) {
-        for (T t : pojos) {
-            save(t);
-        }
+    	if(CollectionUtils.isEmpty(pojos)) {
+    		return;
+    	}
+    	if(pojos.get(0).getId() != null) {
+    		add(pojos);
+    	}
+    	update(pojos);
     }
 
     /*

@@ -16,6 +16,7 @@ public class BundleUtils {
 	// 环境类别
 	public static enum EnvironmentType {
 		PRODUCTION("production"), // 运营环境
+		TEST("test"), // 测试
 		DEVELOPMENT("development"); // 开发
 
 		private String value;

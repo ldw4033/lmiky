@@ -2,8 +2,10 @@ package com.lmiky.platform.util;
 
 import javax.servlet.ServletContext;
 
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import com.lmiky.platform.util.BundleUtils.EnvironmentType;
 
 /**
  * 环境
@@ -11,14 +13,14 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  * @date 2013-4-22
  */
 public class Environment {
-    public static final String WEBINF_NAME = "WEB-INF";
+	public static final String WEBINF_NAME = "WEB-INF";
     public static final String CLASSPATH_NAME = "classes";
     private static String classPath; // web应用class目录
     private static String webAppPath; // web应用上下文目录
     private static String contextPath;
 
     private static ServletContext servletContext;
-    private static WebApplicationContext webApplicationContext;
+    private static ApplicationContext applicationContext;
 
     static {
         // 初始化
@@ -84,8 +86,9 @@ public class Environment {
      * @param beanName
      * @return
      */
-    public static Object getBean(String beanName) {
-        return webApplicationContext.getBean(beanName);
+    @SuppressWarnings("unchecked")
+	public static <T> T getBean(String beanName) {
+        return (T) applicationContext.getBean(beanName);
     }
 
     /**
@@ -96,8 +99,9 @@ public class Environment {
      * @param args
      * @return
      */
-    public static Object getBean(String beanName, Object... args) {
-        return webApplicationContext.getBean(beanName, args);
+    @SuppressWarnings("unchecked")
+    public static <T> T getBean(String beanName, Object... args) {
+        return (T) applicationContext.getBean(beanName, args);
     }
 
     /**
@@ -105,8 +109,15 @@ public class Environment {
      */
     public static void setServletContext(ServletContext servletContext) {
         Environment.servletContext = servletContext;
-        webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
-        contextPath = servletContext.getRealPath("/");
+        Environment.applicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+        Environment.contextPath = servletContext.getRealPath("/");
+        if(applicationContext != null) {
+	        String[] activeProfiles = applicationContext.getEnvironment().getActiveProfiles();
+			// 设置文件读取工具部署环境
+			if (activeProfiles != null && activeProfiles.length > 0) {
+				BundleUtils.setEnvironmentType(EnvironmentType.build(activeProfiles[0]));
+			}
+        }
     }
 
     /**
@@ -117,9 +128,16 @@ public class Environment {
     }
 
     /**
-     * @return the webApplicationContext
+     * @return the applicationContext
      */
-    public static WebApplicationContext getWebApplicationContext() {
-        return webApplicationContext;
+    public static ApplicationContext getApplicationContext() {
+        return applicationContext;
     }
+
+	/**
+	 * @param applicationContext the applicationContext to set
+	 */
+	public static void setApplicationContext(ApplicationContext applicationContext) {
+		Environment.applicationContext = applicationContext;
+	}
 }

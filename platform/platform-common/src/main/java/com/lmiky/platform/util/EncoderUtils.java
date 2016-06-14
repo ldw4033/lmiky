@@ -44,7 +44,9 @@ public class EncoderUtils {
 		try {
 			KeyGenerator kgen = KeyGenerator.getInstance("AES");
 
-			kgen.init(128, new SecureRandom(password.getBytes()));
+			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+	        random.setSeed(password.getBytes(DEFAULT_CODING));
+			kgen.init(128, random);
 			SecretKey secretKey = kgen.generateKey();
 			byte[] enCodeFormat = secretKey.getEncoded();
 			SecretKeySpec key = new SecretKeySpec(enCodeFormat, "AES");
@@ -72,7 +74,9 @@ public class EncoderUtils {
 	public static String aes128Decrypt(String content, String password) throws Exception {
 		try {
 			KeyGenerator kgen = KeyGenerator.getInstance("AES");
-			kgen.init(128, new SecureRandom(password.getBytes(DEFAULT_CODING)));
+			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+	        random.setSeed(password.getBytes(DEFAULT_CODING));
+			kgen.init(128, random);
 			SecretKey secretKey = kgen.generateKey();
 			byte[] enCodeFormat = secretKey.getEncoded();
 			SecretKeySpec key = new SecretKeySpec(enCodeFormat, "AES");
@@ -201,7 +205,7 @@ public class EncoderUtils {
 	 * @param hexString
 	 * @return
 	 */
-	private static byte[] toByte(String hexString) {
+	public static byte[] toByte(String hexString) {
 		int len = hexString.length() / 2;
 		byte[] result = new byte[len];
 		for (int i = 0; i < len; i++) {
@@ -217,7 +221,7 @@ public class EncoderUtils {
 	 * @param buf
 	 * @return
 	 */
-	private static String parseByte2HexStr(byte buf[]) {
+	public static String parseByte2HexStr(byte buf[]) {
 		StringBuffer sb = new StringBuffer();
 		for (int i = 0; i < buf.length; i++) {
 			String hex = Integer.toHexString(buf[i] & 0xFF);
